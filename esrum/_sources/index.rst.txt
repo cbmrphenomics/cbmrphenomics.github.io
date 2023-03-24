@@ -6,6 +6,11 @@
    :maxdepth: 2
    :caption: Contents:
 
+   connecting
+   running_tasks
+   modules
+   tips_and_tricks/index.rst
+
 ####################
  Indices and tables
 ####################

@@ -1,0 +1,149 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Transferring data to/from SIF and ERDA &#8212; Esrum Cluster  documentation</title>
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="prev" title="Tips and tricks" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Tips and tricks"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Tips and tricks</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Transferring data to/from SIF and ERDA</a><ul>
+<li><a class="reference internal" href="#two-factor-authentication">Two Factor Authentication</a></li>
+<li><a class="reference internal" href="#transferring-data-using-lftp">Transferring data using lftp</a></li>
+<li><a class="reference internal" href="#transferring-data-using-sshfs">Transferring data using sshfs</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Tips and tricks</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/tips_and_tricks/sif_and_erda.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="transferring-data-to-from-sif-and-erda">
+<h1>Transferring data to/from SIF and ERDA<a class="headerlink" href="#transferring-data-to-from-sif-and-erda" title="Permalink to this headline">¶</a></h1>
+<p>The following describes how to bulk transfer data from the Esrum cluster
+to <a class="reference external" href="https://sif.ku.dk/">SIF</a> (Sensitive Information Facility) or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> (Electronic Research
+Data Archive) and vice versa. For small amounts of data, it may be
+easier to use the web interfaces provided by the <a class="reference external" href="https://sif.ku.dk/">SIF</a> and <a class="reference external" href="https://erda.ku.dk/">ERDA</a>
+websites.</p>
+<div class="section" id="two-factor-authentication">
+<h2>Two Factor Authentication<a class="headerlink" href="#two-factor-authentication" title="Permalink to this headline">¶</a></h2>
+<p>Connecting to the <a class="reference external" href="https://sif.ku.dk/">SIF</a> or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> servers requires that the user has
+successfully authenticated using Two Factor Authentication. Futhermore,
+this must be done using the same IP from which the user intends to
+connect, in this case from the Esrum IP.</p>
+<p>This poses some challenges, as running a full-fledged browser over SSH
+performs extremely poorly. This section therefore describes how to
+authenticate to <a class="reference external" href="https://sif.ku.dk/">SIF</a> or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> using a purely text-based browser
+available on the cluster (<a class="reference external" href="https://en.wikipedia.org/wiki/Lynx_(web_browser)">Lynx</a>).</p>
+</div>
+<div class="section" id="transferring-data-using-lftp">
+<h2>Transferring data using lftp<a class="headerlink" href="#transferring-data-using-lftp" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="transferring-data-using-sshfs">
+<h2>Transferring data using sshfs<a class="headerlink" href="#transferring-data-using-sshfs" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The following assumes that you have successfully authenticated as
+described in <a class="reference internal" href="#two-factor-authentication">Two Factor Authentication</a>.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that sshfs <em>cannot</em> be used in project folders. See below for
+more information.</p>
+</div>
+<p>SSHFS makes it possible to mount folders over SSH and access those as
+were normal filesystems (with some limitations). This is useful if you
+wish to explore the content of a <a class="reference external" href="https://sif.ku.dk/">SIF</a> or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> project,</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Note that sshfs <em>cannot</em> be used in project folders. Attempting to
+mount a folder under <cite>/projects</cite> using sshfs will result in a broken
+mount-point that cannot be removed. You must therefore only create
+mount-points in your home folder!</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="index.html" title="Tips and tricks"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Tips and tricks</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, CBMR Phenomics.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
+    </div>
+  </body>
+</html>

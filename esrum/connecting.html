@@ -1,0 +1,191 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Connecting to the Cluster &#8212; Esrum Cluster  documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running tasks on the cluster" href="running_tasks.html" />
+    <link rel="prev" title="Documentation for the Esrum cluster at CBMR" href="index.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="running_tasks.html" title="Running tasks on the cluster"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Documentation for the Esrum cluster at CBMR"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Connecting to the Cluster</a><ul>
+<li><a class="reference internal" href="#applying-for-access-to-the-cluster">Applying for access to the cluster</a></li>
+<li><a class="reference internal" href="#id1">Connecting to the cluster</a><ul>
+<li><a class="reference internal" href="#for-windows-users">For Windows users</a><ul>
+<li><a class="reference internal" href="#configuration-mobaxterm">Configuration MobaXterm</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#for-linux-users">For Linux users</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Documentation for the Esrum cluster at CBMR</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="running_tasks.html"
+                        title="next chapter">Running tasks on the cluster</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/connecting.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="connecting-to-the-cluster">
+<h1>Connecting to the Cluster<a class="headerlink" href="#connecting-to-the-cluster" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="applying-for-access-to-the-cluster">
+<h2>Applying for access to the cluster<a class="headerlink" href="#applying-for-access-to-the-cluster" title="Permalink to this headline">¶</a></h2>
+<p>An <a class="reference external" href="https://kunet.ku.dk/medarbejderguide/ITvejl/KU%20IdM%20-%20S%C3%A5dan%20anmodes%20om%20funktionsrolle.pdf">official guide</a> is available here.</p>
+<ol class="arabic simple">
+<li><p>Visit <a class="reference external" href="https://identity.ku.dk/">identity.ku.dk</a>.</p></li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">My</span> <span class="pre">Access</span></code> button or the <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">User</span>
+<span class="pre">Access</span></code> button. Which of the two buttons you’ll see depends on your
+existing roles.</p>
+<ol class="arabic simple">
+<li><p>If you clicked on the <code class="docutils literal notranslate"><span class="pre">Manage</span> <span class="pre">user</span> <span class="pre">Access</span></code> button, first search
+for your KU username (e.g. <code class="docutils literal notranslate"><span class="pre">abc123</span></code>) and then click on the check
+mark to the left of the search result <em>once</em>. Wait for the check
+mark to turn green and then click the <code class="docutils literal notranslate"><span class="pre">Next</span></code> button.</p></li>
+</ol>
+</li>
+<li><p>Search for <code class="docutils literal notranslate"><span class="pre">SRV-esrumhead-users</span></code>.</p></li>
+<li><p>Click <em>once</em> on the check mark to the left of <code class="docutils literal notranslate"><span class="pre">SRV-esrumhead-users</span></code>
+in the resulting list. Wait for the check mark to turn green and then
+click the <code class="docutils literal notranslate"><span class="pre">Next</span></code> button.</p></li>
+<li><p>Verify that you are applying for access to <code class="docutils literal notranslate"><span class="pre">SRV-esrumhead-users</span></code>
+and then click the <code class="docutils literal notranslate"><span class="pre">Submit</span></code> button.</p></li>
+<li><p>Wait for your request to be processed.</p></li>
+</ol>
+<p>You will receive an email that <code class="docutils literal notranslate"><span class="pre">Changes</span> <span class="pre">to</span> <span class="pre">your</span> <span class="pre">Identity</span> <span class="pre">were</span>
+<span class="pre">processed</span></code> once you have been granted access, but note that it may take
+longer before your account is ready for use.</p>
+</div>
+<div class="section" id="id1">
+<h2>Connecting to the cluster<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>The cluster is accessible via SSH at <code class="docutils literal notranslate"><span class="pre">esrumhead01fl.unicph.domain</span></code>. To
+connect to the cluster you will typically need to connect to the KU VPN.</p>
+<div class="section" id="for-windows-users">
+<h3>For Windows users<a class="headerlink" href="#for-windows-users" title="Permalink to this headline">¶</a></h3>
+<p>Windows users will need to install a SSH client in order to be able to
+connect to the server. Options include <a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a>, <a class="reference external" href="https://www.putty.org/">Putty</a>, and Windows
+Subsystem for Linux (<a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>), and many more. The following demonstrates
+how to setup MobaXterm. Please refer to the <a class="reference internal" href="#for-linux-users">For Linux users</a> section
+if using <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>.</p>
+<div class="section" id="configuration-mobaxterm">
+<h4>Configuration MobaXterm<a class="headerlink" href="#configuration-mobaxterm" title="Permalink to this headline">¶</a></h4>
+</div>
+</div>
+<div class="section" id="for-linux-users">
+<h3>For Linux users<a class="headerlink" href="#for-linux-users" title="Permalink to this headline">¶</a></h3>
+<p>Linux users can connect to the cluster using the following command,
+replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with your KU username:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ssh abc123@esrumhead01fl.unicph.domain
+</pre></div>
+</div>
+<p>It is recommended to add an entry for the cluster to your
+<code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> file:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat ~/.ssh/config
+<span class="go">Host esrum esrumhead01fl.unicph.domain</span>
+<span class="go">    HostName esrumhead01fl.unicph.domain</span>
+<span class="go">    User abc123</span>
+</pre></div>
+</div>
+<p>This allows you connect to the server using the abbreviated name
+<code class="docutils literal notranslate"><span class="pre">esrum</span></code> and without having to specify your username:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ssh esrum
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that the cluster <em>does not</em> support authentication through a
+public SSH key and that you have to enter your password when
+connecting to the server.</p>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="running_tasks.html" title="Running tasks on the cluster"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Documentation for the Esrum cluster at CBMR"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, CBMR Phenomics.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
+    </div>
+  </body>
+</html>
