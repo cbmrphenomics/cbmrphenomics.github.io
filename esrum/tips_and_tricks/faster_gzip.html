@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Tips and tricks &#8212; Esrum Cluster  documentation</title>
+    <title>Faster gzip (de)compression with pigz and igzip &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     
@@ -17,8 +17,8 @@
     <script src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Transferring data to/from SIF and ERDA" href="sif_and_erda.html" />
-    <link rel="prev" title="The module system" href="../modules.html" />
+    <link rel="next" title="Safer bash scripts with nounset, pipefail, errtrace, and trap" href="safer_bash_scripts.html" />
+    <link rel="prev" title="Persistent sessions with tmux" href="tmux.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--[if lt IE 9]>
     <script src="_static/css3-mediaqueries.js"></script>
@@ -31,26 +31,27 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="sif_and_erda.html" title="Transferring data to/from SIF and ERDA"
+          <a href="safer_bash_scripts.html" title="Safer bash scripts with nounset, pipefail, errtrace, and trap"
              accesskey="N">next</a> |</li>
         <li class="right" >
-          <a href="../modules.html" title="The module system"
+          <a href="tmux.html" title="Persistent sessions with tmux"
              accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Tips and tricks</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h4>Previous topic</h4>
-  <p class="topless"><a href="../modules.html"
-                        title="previous chapter">The module system</a></p>
+  <p class="topless"><a href="tmux.html"
+                        title="previous chapter">Persistent sessions with tmux</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="sif_and_erda.html"
-                        title="next chapter">Transferring data to/from SIF and ERDA</a></p>
+  <p class="topless"><a href="safer_bash_scripts.html"
+                        title="next chapter">Safer bash scripts with nounset, pipefail, errtrace, and trap</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
-      <li><a href="../_sources/tips_and_tricks/index.rst.txt"
+      <li><a href="../_sources/tips_and_tricks/faster_gzip.rst.txt"
             rel="nofollow">Show Source</a></li>
     </ul>
    </div>
@@ -72,21 +73,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="tips-and-tricks">
-<h1>Tips and tricks<a class="headerlink" href="#tips-and-tricks" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="sif_and_erda.html">Transferring data to/from SIF and ERDA</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sif_and_erda.html#two-factor-authentication">Two Factor Authentication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sif_and_erda.html#transferring-data-using-lftp">Transferring data using lftp</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sif_and_erda.html#transferring-data-using-sshfs">Transferring data using sshfs</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="tmux.html">Persistent sessions with tmux</a></li>
-<li class="toctree-l1"><a class="reference internal" href="faster_gzip.html">Faster gzip (de)compression with pigz and igzip</a></li>
-<li class="toctree-l1"><a class="reference internal" href="safer_bash_scripts.html">Safer bash scripts with nounset, pipefail, errtrace, and trap</a></li>
-</ul>
-</div>
+  <div class="section" id="faster-gzip-de-compression-with-pigz-and-igzip">
+<h1>Faster gzip (de)compression with pigz and igzip<a class="headerlink" href="#faster-gzip-de-compression-with-pigz-and-igzip" title="Permalink to this headline">¶</a></h1>
 </div>
 
 
@@ -102,12 +90,13 @@
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="sif_and_erda.html" title="Transferring data to/from SIF and ERDA"
+          <a href="safer_bash_scripts.html" title="Safer bash scripts with nounset, pipefail, errtrace, and trap"
              >next</a> |</li>
         <li class="right" >
-          <a href="../modules.html" title="The module system"
+          <a href="tmux.html" title="Persistent sessions with tmux"
              >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Tips and tricks</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
