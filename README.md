@@ -18,9 +18,9 @@ To add additional sources of documentation, modify `.github/workflows/default.ya
 The `sphinx-autobuild` command can be used to automatically rebuild the documentation when you make changes:
 
 ```console
-$ pip install --user sphinx-autobuild
-$ cd /path/to/cbmrphenomics.github.io/esrum
-$ sphinx-autobuild ./source ./build -q
+pip install --user sphinx-autobuild
+cd /path/to/cbmrphenomics.github.io/esrum
+sphinx-autobuild ./source ./build -q
 ```
 
 Then go to [127.0.0.1:8000](http://127.0.0.1:8000/). The page automatically refreshes when you save changes to the documentation.
@@ -30,6 +30,22 @@ Then go to [127.0.0.1:8000](http://127.0.0.1:8000/). The page automatically refr
 The `rstfmt` command can be used to automatically format `.rst` files for consistency:
 
 ```console
-$ cd /path/to/cbmrphenomics.github.io/esrum
-$ find -name '*.rst' | rstfmt
+cd /path/to/cbmrphenomics.github.io/esrum
+find -name '*.rst' | rstfmt
+```
+
+If using VSCode, the [Custom Local Formatters](https://marketplace.visualstudio.com/items?itemName=jkillian.custom-local-formatters) extension can be used to enable automatic formatting of documentation. This requires merging the following configuration into your workspace configuration:
+
+```json
+{
+  "customLocalFormatters.formatters": [
+    {
+      "command": "/path/to/rstfmt",
+      "languages": [
+        "restructuredtext"
+      ]
+    }
+  ],
+  "editor.formatOnSave": true
+}
 ```
