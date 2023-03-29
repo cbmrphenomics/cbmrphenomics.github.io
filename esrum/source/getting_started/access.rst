@@ -1,3 +1,5 @@
+.. _applying_for_access:
+
 #####################
  Applying for access
 #####################
@@ -30,9 +32,19 @@ An `official guide`_ is available here.
 
 #. Wait for your request to be processed.
 
-You will receive an email that ``Changes to your Identity were
-processed`` once you have been granted access, but note that it may take
-longer before your account is ready for use.
+Once you have been granted access you will receive an email that
+``Changes to your Identity were processed``.
+
+.. warning::
+
+   Please note that your account may not be ready by the time you
+   receive the email described above. In that case, logging in will
+   result in a warning that your home folder does not exist. If so, then
+   simply wait a few hours before trying again.
+
+Once you have been granted access and your account is ready, you may
+refer to the :ref:`connecting` page for instructions on how to connect
+to the cluster.
 
 .. _identity.ku.dk: https://identity.ku.dk/
 

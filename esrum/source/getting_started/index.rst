@@ -8,3 +8,5 @@
 
    access
    connecting
+   welcome_to_esrum
+   running_jobs
