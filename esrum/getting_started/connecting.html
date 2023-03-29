@@ -17,7 +17,7 @@
     <script src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Running tasks on the cluster" href="../running_tasks.html" />
+    <link rel="next" title="Welcome to Esrum" href="welcome_to_esrum.html" />
     <link rel="prev" title="Applying for access" href="access.html" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <!--[if lt IE 9]>
@@ -31,7 +31,7 @@
           <a href="../genindex.html" title="General Index"
              accesskey="I">index</a></li>
         <li class="right" >
-          <a href="../running_tasks.html" title="Running tasks on the cluster"
+          <a href="welcome_to_esrum.html" title="Welcome to Esrum"
              accesskey="N">next</a> |</li>
         <li class="right" >
           <a href="access.html" title="Applying for access"
@@ -49,7 +49,7 @@
 <li><a class="reference internal" href="#configuring-mobaxterm">Configuring MobaXterm</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#for-linux-users">For Linux users</a></li>
+<li><a class="reference internal" href="#for-linux-and-osx-users">For Linux and OSX users</a></li>
 </ul>
 </li>
 </ul>
@@ -58,8 +58,8 @@
   <p class="topless"><a href="access.html"
                         title="previous chapter">Applying for access</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../running_tasks.html"
-                        title="next chapter">Running tasks on the cluster</a></p>
+  <p class="topless"><a href="welcome_to_esrum.html"
+                        title="next chapter">Welcome to Esrum</a></p>
   <div role="note" aria-label="source link">
     <h3>This Page</h3>
     <ul class="this-page-menu">
@@ -86,46 +86,59 @@
           <div class="body" role="main">
             
   <div class="section" id="connecting-to-the-cluster">
-<h1>Connecting to the cluster<a class="headerlink" href="#connecting-to-the-cluster" title="Permalink to this headline">¶</a></h1>
+<span id="connecting"></span><h1>Connecting to the cluster<a class="headerlink" href="#connecting-to-the-cluster" title="Permalink to this headline">¶</a></h1>
+<p>If you have not already applied for and been granted access to the
+cluster, then please see the <a class="reference internal" href="access.html#applying-for-access"><span class="std std-ref">Applying for access</span></a> page.</p>
 <p>The cluster is accessible via SSH at <code class="docutils literal notranslate"><span class="pre">esrumhead01fl.unicph.domain</span></code>. To
 connect to the cluster you will typically need to be connected to the KU
 VPN.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO: Link to KU VPN documentation and/or add tips section</p>
-</div>
+<p>For information about connecting to the VPN, see the support pages on
+KUNet in <a class="reference external" href="https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx">Danish</a>
+and <a class="reference external" href="https://kunet.ku.dk/employee-guide/Pages/IT/Remote-access.aspx">English</a>.</p>
 <div class="section" id="for-windows-users">
 <h2>For Windows users<a class="headerlink" href="#for-windows-users" title="Permalink to this headline">¶</a></h2>
 <p>Windows users will need to install a SSH client in order to be able to
 connect to the server. Options include <a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a>, <a class="reference external" href="https://www.putty.org/">Putty</a>, and Windows
 Subsystem for Linux (<a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>), and many more. The following demonstrates
-how to setup MobaXterm. Please refer to the <a class="reference internal" href="#for-linux-users">For Linux users</a> section
-if using <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<dl class="simple">
-<dt>TODO: Write instructions for MobaXterm</dt><dd><ol class="arabic simple">
-<li><p>Where to get it</p></li>
-<li><p>Setting up a server profile</p></li>
-<li><p>Add downloadable session file?</p></li>
-<li><p>Basic usage</p></li>
-</ol>
-</dd>
-</dl>
-</div>
+how to setup MobaXterm. Please refer to the <a class="reference internal" href="#for-linux-and-osx-users">For Linux and OSX users</a>
+section if using <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>.</p>
 <div class="section" id="configuring-mobaxterm">
 <h3>Configuring MobaXterm<a class="headerlink" href="#configuring-mobaxterm" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Install and open MobaXterm.</p></li>
+<li><p>Click left-most <code class="docutils literal notranslate"><span class="pre">Session</span></code> button on the toolbar.</p></li>
+<li><p>Click on the left-most <code class="docutils literal notranslate"><span class="pre">SSH</span></code> button on the resulting <code class="docutils literal notranslate"><span class="pre">Session</span>
+<span class="pre">settings</span></code> dialog</p></li>
+<li><p>Under <code class="docutils literal notranslate"><span class="pre">Basic</span> <span class="pre">SSH</span> <span class="pre">settings</span></code></p>
+<ol class="arabic simple">
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">esrumhead01fl.unicph.domain</span></code> under <code class="docutils literal notranslate"><span class="pre">Remote</span> <span class="pre">Host</span></code></p></li>
+<li><p>Click the checkbox next to <code class="docutils literal notranslate"><span class="pre">Specify</span> <span class="pre">username</span></code> and enter your KU
+username (in the form <code class="docutils literal notranslate"><span class="pre">abc123</span></code>)</p></li>
+</ol>
+</li>
+<li><p>Click on the <code class="docutils literal notranslate"><span class="pre">Bookmark</span> <span class="pre">settings</span></code> tab and</p></li>
+<li><p>Write <code class="docutils literal notranslate"><span class="pre">Esrum</span></code> or a name you prefer under <code class="docutils literal notranslate"><span class="pre">Session</span> <span class="pre">Name</span></code></p></li>
+<li><p>Optionally click the <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">a</span> <span class="pre">desktop</span> <span class="pre">shortcut</span> <span class="pre">to</span> <span class="pre">this</span> <span class="pre">session</span></code>
+button. This will create a shortcut on your desktop that connects to
+Esrum.</p></li>
+<li><p>Click OK and you should connect to the server. Note that this will
+likely fail if you are not connected to the KU VPN.</p></li>
+</ol>
+<p>To connect again another time, either use the desktop shortcut (if you
+created it), double click on <code class="docutils literal notranslate"><span class="pre">Esrum</span></code> in the list of sessions on the
+left side of MobaXterm, or select <code class="docutils literal notranslate"><span class="pre">Esrum</span></code> from the list that appears
+when clicking on the middle <code class="docutils literal notranslate"><span class="pre">Sessions</span></code> button on the main menu.</p>
 </div>
 </div>
-<div class="section" id="for-linux-users">
-<h2>For Linux users<a class="headerlink" href="#for-linux-users" title="Permalink to this headline">¶</a></h2>
-<p>Linux users can connect to the cluster using the following command,
-replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with your KU username:</p>
+<div class="section" id="for-linux-and-osx-users">
+<h2>For Linux and OSX users<a class="headerlink" href="#for-linux-and-osx-users" title="Permalink to this headline">¶</a></h2>
+<p>Linux and OSX users can connect to the cluster using the following
+terminal command, replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with your KU username:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ssh abc123@esrumhead01fl.unicph.domain
 </pre></div>
 </div>
 <p>It is recommended to add an entry for the cluster to your
-<code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> file:</p>
+<code class="docutils literal notranslate"><span class="pre">.ssh/config</span></code> file, replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with your KU username:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> cat ~/.ssh/config
 <span class="go">Host esrum esrumhead01fl.unicph.domain</span>
 <span class="go">    HostName esrumhead01fl.unicph.domain</span>
@@ -135,13 +148,24 @@ replacing <code class="docutils literal notranslate"><span class="pre">abc123</s
 <p>This allows you connect to the server using the abbreviated name
 <code class="docutils literal notranslate"><span class="pre">esrum</span></code> and without having to specify your username:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ssh esrum
+<span class="go">abc123@esrumhead01fl.unicph.domain&#39;s password:</span>
+<span class="go">     __</span>
+<span class="go">    /  \</span>
+<span class="go">   _\__/  Welcome to esrumhead01fl</span>
+<span class="go">  (_)     University of Copenhagen</span>
+<span class="go">_____O______________________________________</span>
+<span class="go">Supported by UNICPH IT  it.ku.dk/english</span>
+
+
+<span class="go">Last login: Fri Oct 13 01:35:00 1980 from 127.0.0.1</span>
+<span class="gp">$</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Note that the cluster <em>does not</em> support authentication through a
-public SSH key and that you have to enter your password when
-connecting to the server.</p>
+public SSH key and that you therefore have to enter your password
+when connecting to the server.</p>
 </div>
 </div>
 </div>
@@ -159,7 +183,7 @@ connecting to the server.</p>
           <a href="../genindex.html" title="General Index"
              >index</a></li>
         <li class="right" >
-          <a href="../running_tasks.html" title="Running tasks on the cluster"
+          <a href="welcome_to_esrum.html" title="Welcome to Esrum"
              >next</a> |</li>
         <li class="right" >
           <a href="access.html" title="Applying for access"

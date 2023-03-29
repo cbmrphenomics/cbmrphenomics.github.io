@@ -1,0 +1,163 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Welcome to Esrum &#8212; Esrum Cluster  documentation</title>
+    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../_static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Running jobs using Slurm" href="running_jobs.html" />
+    <link rel="prev" title="Connecting to the cluster" href="connecting.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script src="_static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="running_jobs.html" title="Running jobs using Slurm"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="connecting.html" title="Connecting to the cluster"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Getting started</a> &#187;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Welcome to Esrum</a><ul>
+<li><a class="reference internal" href="#your-home-folder">Your home folder</a></li>
+<li><a class="reference internal" href="#your-project-folders">Your project folders</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="connecting.html"
+                        title="previous chapter">Connecting to the cluster</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="running_jobs.html"
+                        title="next chapter">Running jobs using Slurm</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/getting_started/welcome_to_esrum.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="welcome-to-esrum">
+<h1>Welcome to Esrum<a class="headerlink" href="#welcome-to-esrum" title="Permalink to this headline">¶</a></h1>
+<p>The Esrum cluster runs <a class="reference external" href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise Linux</a> 8.7 (Ootpa) and uses
+the <a class="reference external" href="https://slurm.schedmd.com/overview.html">Slurm</a> job management system for running tasks on the available
+nodes.</p>
+<p>For a description of software available on Esrum, as well as
+instructions for adding your own software, see TODO. For an introduction</p>
+<div class="section" id="your-home-folder">
+<h2>Your home folder<a class="headerlink" href="#your-home-folder" title="Permalink to this headline">¶</a></h2>
+<p>When you login to Esrum for the first time, your home folder should
+contain a single folder named <cite>ucph</cite>. This folder in turn contains your
+KU network drives (formerly <cite>H:</cite> and <cite>N:</cite>).</p>
+<p>The primary use of your home folder is to store programs, your own
+scripts, configuration files, and similar files that are not related to
+a specific project. However, if possible it is recommended to keep your
+scripts in your group project folder, to ensure that your group has
+access as well:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do <strong>not</strong> put project related files in your home folder! Only you
+have access to your home folder and it requires written permission
+from you if other users need to access files in your home after
+you’ve left CBMR.</p>
+<p>Your home should therefore be limited to your personal configuration
+files, installed programs, and whatever/tools scripts that are not
+required to reproduce your work in the projects you are working on.</p>
+</div>
+</div>
+<div class="section" id="your-project-folders">
+<h2>Your project folders<a class="headerlink" href="#your-project-folders" title="Permalink to this headline">¶</a></h2>
+<p>The majority of your work on Esrum should take place in the folder
+corresponding either to your group or a specific project. Folders for
+both are located in the <cite>/projects</cite> folder:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls -1 /projects
+<span class="go">phenomics</span>
+<span class="go">genotyping-AUDIT</span>
+<span class="go">...</span>
+</pre></div>
+</div>
+<p>To apply for access to a specific project follow the instructions in
+<a class="reference internal" href="access.html#applying-for-access"><span class="std std-ref">Applying for access</span></a>, using the name of the project in the
+following form <cite>COMP-PRJ-genotyping</cite>, replacing <cite>genotyping</cite> with the
+name of your project.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Projects configured for GDPR data are marked with the <cite>AUDIT</cite>. NEVER
+work on GDPR data in your home folder or in non-AUDIT projects!</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="running_jobs.html" title="Running jobs using Slurm"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="connecting.html" title="Connecting to the cluster"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Getting started</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2023, CBMR Phenomics.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 2.4.4.
+    </div>
+  </body>
+</html>
