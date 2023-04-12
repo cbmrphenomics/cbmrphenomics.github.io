@@ -26,3 +26,5 @@ highlight_language = "console"
 
 html_theme = "bizstyle"
 html_static_path = ["_static"]
+html_css_files = ["css/playback.css"]
+html_js_files = ["js/libgif.js"]
