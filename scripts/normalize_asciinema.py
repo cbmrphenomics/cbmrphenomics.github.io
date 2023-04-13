@@ -148,7 +148,7 @@ def main(argv: List[str]) -> int:
     eprint("Reading asciinema file", args.input)
     header, records = read_asciinema_v2(args.input)
 
-    if not any(kind == "a" for _, kind, _ in records):
+    if not any(kind in "ac" for _, kind, _ in records):
         eprint(
             "No user input in recording. Please edit the second column in rows "
             'representing user input from "o" to "a" (converted to "a" as is) or "c" ('
