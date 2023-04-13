@@ -131,7 +131,7 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
         "--jitter",
         metavar="MS",
         type=int,
-        default=30,
+        default=15,
         help="Mean of normal distribution describing variation in input/output rates",
     )
     parser.add_argument(
@@ -162,7 +162,7 @@ def main(argv: List[str]) -> int:
     records = normalize_timings(args, records)
     blob = write_asciinema_v2(header, records)
 
-    if args.gif is None:
+    if not args.gif:
         if args.output is None:
             print(blob)
         else:
