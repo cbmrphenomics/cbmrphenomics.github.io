@@ -40,7 +40,7 @@ a name with ``-n`` as follows:
 
 .. code::
 
-   $ tmux new -s my-project -n my-terminal
+   $ tmux new -s project -n task
 
 .. image:: images/tmux_new_named.gif
    :class: gif
@@ -85,7 +85,7 @@ name of the session you wish to open:
    ### either
    $ tmux attach
    ### or
-   $ tmux attach -t my-project
+   $ tmux attach -t project
 
 Alternatively, you can use the keyboard shortcut ``CTRL+b s`` to switch
 to the correct session after you've attached tmux.

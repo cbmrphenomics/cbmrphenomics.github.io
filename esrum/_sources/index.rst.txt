@@ -16,6 +16,7 @@ employees at CBMR.
    :caption: Contents:
 
    overview
+   gpdr
    getting_started/index.rst
    running_tasks
    modules

@@ -5,17 +5,15 @@
 ###########################
 
 If you have not already applied for and been granted access to the
-cluster, then please see the :ref:`applying_for_access` page.
+cluster, then please see the :ref:`applying_for_access` page before
+continuing.
 
 The cluster is accessible via SSH at ``esrumhead01fl.unicph.domain``. To
 connect to the cluster you will typically need to be connected to the KU
 VPN.
 
 For information about connecting to the VPN, see the support pages on
-KUNet in `Danish
-<https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx>`_
-and `English
-<https://kunet.ku.dk/employee-guide/Pages/IT/Remote-access.aspx>`_.
+KUNet in Danish_ and English_.
 
 *******************
  For Windows users
@@ -70,6 +68,9 @@ terminal command, replacing ``abc123`` with your KU username:
 
    $ ssh abc123@esrumhead01fl.unicph.domain
 
+.. image:: images/connecting_ssh.gif
+   :class: gif
+
 It is recommended to add an entry for the cluster to your
 ``.ssh/config`` file, replacing ``abc123`` with your KU username:
 
@@ -103,6 +104,64 @@ This allows you connect to the server using the abbreviated name
    Note that the cluster *does not* support authentication through a
    public SSH key and that you therefore have to enter your password
    when connecting to the server.
+
+*****************
+ Troubleshooting
+*****************
+
+Timeout while connecting to the cluster
+=======================================
+
+You may experience timeout errors when you attempt to connect to the
+server:
+
+.. image:: images/connecting_ssh_timeout.gif
+   :class: gif
+
+If have not already been granted access to the server, then please see
+the :ref:`applying_for_access` page before continuing!
+
+#. Firstly verify that you are either connected using a wired connection
+   at CBMR (you must be physically located at CBMR). You cannot connect
+   to the server from outside of CBMR or while using a wireless
+   connection.
+
+#. If that does not help or if you are located outside of CBMR, you will
+   need to connect to the KU VPN before attempting to connect to the
+   Esrum cluster. Please see the official documentation in Danish_ or
+   English_.
+
+#. If neither using a wired connection nor connecting the the KU VPN
+   fixes the problem, you may need to create a support ticket to have KU
+   IT permit you to connect to the server.
+
+   #. Login to the KU `IT Serviceportal`_.
+
+   #. Click the ``Create Ticket`` button.
+
+   #. Select the ``Research IT`` category.
+
+   #. Then select the ``Research Applications and Services``
+      subcategory.
+
+   #. Finally, select ``Consultancy and Support``.
+
+   #. Write something like "SSH connection times out when attempting to
+      connect to esrumhead01fl.unicph.domain" in the "Please describe"
+      text-box and describe the steps you have taken to try to fix this
+      problem (wired connection, VPN).
+
+   #. Write "esrumhead01fl.unicph.domain" in the System name text-box.
+
+   #. Click the ``Add to cart`` button.
+
+   #. Click the ``SUBMIT ORDER`` button.
+
+.. _danish: https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx
+
+.. _english: https://kunet.ku.dk/employee-guide/Pages/IT/Remote-access.aspx
+
+.. _it serviceportal: https://serviceportal.ku.dk/
 
 .. _mobaxterm: https://mobaxterm.mobatek.net/
 
