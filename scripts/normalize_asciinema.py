@@ -124,7 +124,7 @@ def parse_args(argv: List[str]) -> argparse.Namespace:
         "--after-output",
         metavar="MS",
         type=int,
-        default=500,
+        default=1000,
         help="Pause after showing output before next input (milliseconds)",
     )
     parser.add_argument(
