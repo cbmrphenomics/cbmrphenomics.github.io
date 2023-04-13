@@ -55,14 +55,14 @@ If using VSCode, the [Custom Local Formatters](https://marketplace.visualstudio.
 Terminal commands/output can be recorded using [asciinema](https://asciinema.org/) and animated GIFs can be created using [agg](https://github.com/asciinema/agg):
 
 ```console
-$ asciinema rec --overwrite --cols 80 --rows 24 output.cast
+$ asciinema rec output.cast
 asciinema: recording asciicast to output.cast
 asciinema: press <ctrl-d> or type "exit" when you're done
 $ # Your commands here
 $ exit
 asciinema: recording finished
 asciinema: asciicast saved to output.cast
-$ agg output.cast output.gif
+$ agg --cols 80 --rows 24 output.cast output.gif
 ```
 
 A help-script is provided to normalize timings and produce more consistent animations. To use this script, first edit the cast file and change the second column of rows containing user output, changing "o" to "a", so that rows like ```[1.145546, "o", "t"]``` become ```[1.145546, "a", "t"]```. This lets the script assign different timings to input, output, and insert pauses as appropriate.
