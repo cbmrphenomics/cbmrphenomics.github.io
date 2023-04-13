@@ -8,21 +8,21 @@
     <title>Running jobs using Slurm &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
     
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
     <script src="../_static/language_data.js"></script>
+    <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Running tasks on the cluster" href="../running_tasks.html" />
     <link rel="prev" title="Welcome to Esrum" href="welcome_to_esrum.html" />
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--[if lt IE 9]>
-    <script src="_static/css3-mediaqueries.js"></script>
-    <![endif]-->
+    <script defer src="../_static/js/playback.js"></script>
+
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
@@ -89,10 +89,10 @@
 to queue and distribute jobs on the available nodes. This section
 describes how to start an interactive shell on a compute node, how run
 basic jobs, and how to reserve the needed resources for your work.</p>
-<p>It is strongly recommended that you make use of <a href="#id1"><span class="problematic" id="id2">tmux_</span></a> or a similar tool
+<p>It is strongly recommended that you make use of <a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> or a similar tool
 when running tasks, in order to ensure that your work is not interrupted
 if you lose connection to the server or need to turn off your PC. See
-the <a class="reference internal" href="../tips_and_tricks/tmux.html#tmux"><span class="std std-ref">Persistent sessions with tmux</span></a> page for a short tutorial.</p>
+the <a class="reference internal" href="../tips_and_tricks/tmux.html#tmux-page"><span class="std std-ref">Persistent sessions with tmux</span></a> page for a short tutorial.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Resource intensive jobs <em>must</em> be run using the queuing system. Your

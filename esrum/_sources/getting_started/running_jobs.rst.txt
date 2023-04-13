@@ -10,7 +10,7 @@ basic jobs, and how to reserve the needed resources for your work.
 It is strongly recommended that you make use of tmux_ or a similar tool
 when running tasks, in order to ensure that your work is not interrupted
 if you lose connection to the server or need to turn off your PC. See
-the :ref:`tmux` page for a short tutorial.
+the :ref:`tmux_page` page for a short tutorial.
 
 .. warning::
 
@@ -68,3 +68,5 @@ using the `-c` or `--cpus-per-task` options, and the
 ****************
 
 .. _slurm: https://slurm.schedmd.com/overview.html
+
+.. _tmux: https://github.com/tmux/tmux/wiki
