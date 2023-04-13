@@ -70,14 +70,19 @@ def normalize_timings(args: argparse.Namespace, records: List[Record]) -> List[R
     offset = 0.0
     last_kind = "?"
     normalized: List[Tuple[float, str, Any]] = []
-    for _offset, kind, value in records:
-        timing = timings[(last_kind, kind)]
-        jitter = random.gauss(0, 1) * args.jitter if kind == "a" else 0
-        offset = max(offset, offset + timing + jitter)
-        last_kind = kind
+    for _offset, kind, values in records:
+        if kind == "c":
+            kind = "a"
+        else:
+            values = (values,)
 
-        kind = "o" if kind == "a" else kind
-        normalized.append((offset / 1000.0, kind, value))
+        for value in values:
+            timing = timings[(last_kind, kind)]
+            jitter = random.gauss(0, 1) * args.jitter if kind == "a" else 0
+            offset = max(offset, offset + timing + jitter)
+            last_kind = kind
+
+            normalized.append((offset / 1000.0, "o" if kind == "a" else kind, value))
 
     return normalized
 
@@ -146,8 +151,9 @@ def main(argv: List[str]) -> int:
     if not any(kind == "a" for _, kind, _ in records):
         eprint(
             "No user input in recording. Please edit the second column in rows "
-            'representing user input from "o" to "a". This allows this script '
-            "to normalize timings for key presses, etc."
+            'representing user input from "o" to "a" (converted to "a" as is) or "c" ('
+            "(split into a key-press per character). This allows this script to "
+            "normalize timings for key presses, etc."
         )
 
         return 1
