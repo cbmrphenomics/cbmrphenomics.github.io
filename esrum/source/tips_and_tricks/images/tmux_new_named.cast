@@ -1,4 +1,4 @@
-{"version": 2, "width": 80, "height": 24, "timestamp": 1680270948, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+{"version": 2, "width": 80, "height": 12, "timestamp": 1680270948, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
 [0.086026, "o", "\u001b]0;abc123@esrumhead01fl:~\u0007"]
 [0.086702, "o", "[abc123@esrumhead01fl ~]$ "]
 [1.145546, "c", "tmux new -s project -n task"]
