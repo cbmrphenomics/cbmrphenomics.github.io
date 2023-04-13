@@ -1,0 +1,9 @@
+{"version": 2, "width": 80, "height": 12, "timestamp": 1681388634, "env": {"SHELL": "/bin/zsh", "TERM": "xterm-256color"}}
+[1, "o", "\u001b[?2004h\u001b]0;abc123@SUND1234567: ~\u0007\u001b[01;32mabc123@SUND1234567\u001b[00m:\u001b[01;34m~\u001b[00m$ "]
+[2, "c", "ssh abc123@esrumhead01fl.unicph.domain"]
+[3, "a", "\r\n"]
+[5, "o", "abc123@esrumhead01fl.unicph.domain's password: "]
+[6, "c", "********"]
+[7, "a", "\r\n"]
+[8, "o", "     __\r\n    /  \\\r\n   _\\__/  Welcome to esrumhead01fl\r\n  (_)     University of Copenhagen\r\n_____O______________________________________\r\n  Supported by UNICPH IT  it.ku.dk/english\r\n\r\n\r\nLast login: Fri Mar 31 15:52:54 2023 from 127.0.0.1\r\r\n"]
+[9, "o", "\u001b]0;abc123@esrumhead01fl:~\u0007[abc123@esrumhead01fl ~]$ "]
