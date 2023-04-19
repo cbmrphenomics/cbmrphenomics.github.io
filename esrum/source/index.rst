@@ -11,12 +11,16 @@ employees at CBMR.
 -  For an overview of the cluster architecture, see the
    :ref:`overview_page` page.
 
+In addition to the documentation provided here, KU IT also provides
+documentation for the `UPCH computing/HPC Systems`_
+
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    overview
-   gpdr
+   gdpr
+   dos_and_donts
    getting_started/index.rst
    running_tasks
    modules
@@ -29,3 +33,5 @@ employees at CBMR.
 -  :ref:`genindex`
 -  :ref:`modindex`
 -  :ref:`search`
+
+.. _upch computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx

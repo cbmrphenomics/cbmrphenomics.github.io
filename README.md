@@ -20,7 +20,9 @@ The `sphinx-autobuild` command can be used to automatically rebuild the document
 ```console
 pip install --user sphinx-autobuild
 cd /path/to/cbmrphenomics.github.io/esrum
-sphinx-autobuild ./source ./build -q
+# -a to disable incremental builds as this does not work for all file types
+# -q to slice output when autobuild triggers
+sphinx-autobuild ./source ./build -aq
 ```
 
 Then go to [127.0.0.1:8000](http://127.0.0.1:8000/). The page automatically refreshes when you save changes to the documentation.
