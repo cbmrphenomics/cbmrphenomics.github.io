@@ -26,38 +26,50 @@ the :ref:`tmux_page` page for a short tutorial.
    while your jobs are running. Failure to do so will result in your
    jobs being terminated without prior warning.
 
+***************************
+ Running commands on SLURM
+***************************
+
 ******************************
  Running an interactive shell
 ******************************
 
-If you need to run analyses in using an interactive process, for example
-an R shell, then you can start a remote shell
+If you need to run an interactive process, for example if you need to
+use an interactive R shell to process a large data-set, then you can
+start a remote shell as follows:
 
 .. code::
 
-   [abc123@esrumhead01fl ~] $ srun --pty
+   [abc123@esrumhead01fl ~] $ srun --pty -- /bin/bash
    [abc123@esrumcmpn07fl ~] $
 
 Note that the hostname displayed changes from `esrumhead01fl` to
 `esrumcmpn07fl`, where `esrumcmpn07fl` is one of the eight Esrum compute
 nodes.
 
-You can now run interactive jobs, for example running an R shell or
-testing computationally expensive tools or scripts. Once you are done,
-exit the interactive shell by using the `exit` command or pressing
-`Ctrl+D`.
+You can now run interactive jobs, for example running an R shell, or
+test computationally expensive tools or scripts. Once you are done, exit
+the interactive shell by using the `exit` command or pressing `Ctrl+D`.
 
 Be sure to exit the interactive session once you are done working, so
 that the resources reserved for your shell is made available to other
-users.
+users!
 
 ***********************************
  Reserving resources for your jobs
 ***********************************
 
-By default a `srun` will reserve 1 CPU (2 threads) and TODO GB of ram
-per CPU. Should your job require more resources, you may request those
-using the `-c` or `--cpus-per-task` options, and the
+By default a `srun` will reserve 1 CPU (2 threads) and 8 GB of ram per
+CPU. Should your job require more CPUs or RAM, then you can request CPUs
+using the `-c` or `--cpus-per-task` options, and request RAM using the
+`--mem` or `--mem-per-cpu` options. Values given to `--mem` are assumed
+to be in megabytes by default, but this may be overridden by using an
+explicit unit (M for megabyte, G for gigabyte, T for terabyte):
+
+.. code::
+
+   # Run a task with 8 CPUs and 64 gigabytes of memory
+   srun -c 8 --mem 64G -- my-command
 
 .. warning::
 
@@ -66,6 +78,15 @@ using the `-c` or `--cpus-per-task` options, and the
 ****************
  Reserving GPUs
 ****************
+
+To reserve GPU resources, you need to select the GPU queue and
+(optionally) specify the number of Nvidia A100 GPUs (1 or 2) needed. The
+following command queues command ``${COMMAND}`` and requests a single
+A100 GPU:
+
+.. code::
+
+   srun --partition=gpuqueue --gres=gpu:a100:1 -- ${COMMAND}
 
 .. _slurm: https://slurm.schedmd.com/overview.html
 

@@ -45,6 +45,7 @@
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">Running jobs using Slurm</a><ul>
+<li><a class="reference internal" href="#running-commands-on-slurm">Running commands on SLURM</a></li>
 <li><a class="reference internal" href="#running-an-interactive-shell">Running an interactive shell</a></li>
 <li><a class="reference internal" href="#reserving-resources-for-your-jobs">Reserving resources for your jobs</a></li>
 <li><a class="reference internal" href="#reserving-gpus">Reserving GPUs</a></li>
@@ -107,30 +108,40 @@ we can ensure that the cluster will still be usable by other users
 while your jobs are running. Failure to do so will result in your
 jobs being terminated without prior warning.</p>
 </div>
+<div class="section" id="running-commands-on-slurm">
+<h2>Running commands on SLURM<a class="headerlink" href="#running-commands-on-slurm" title="Permalink to this headline">¶</a></h2>
+</div>
 <div class="section" id="running-an-interactive-shell">
 <h2>Running an interactive shell<a class="headerlink" href="#running-an-interactive-shell" title="Permalink to this headline">¶</a></h2>
-<p>If you need to run analyses in using an interactive process, for example
-an R shell, then you can start a remote shell</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[abc123@esrumhead01fl ~] $</span> srun --pty
+<p>If you need to run an interactive process, for example if you need to
+use an interactive R shell to process a large data-set, then you can
+start a remote shell as follows:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">[abc123@esrumhead01fl ~] $</span> srun --pty -- /bin/bash
 <span class="gp">[abc123@esrumcmpn07fl ~] $</span>
 </pre></div>
 </div>
 <p>Note that the hostname displayed changes from <cite>esrumhead01fl</cite> to
 <cite>esrumcmpn07fl</cite>, where <cite>esrumcmpn07fl</cite> is one of the eight Esrum compute
 nodes.</p>
-<p>You can now run interactive jobs, for example running an R shell or
-testing computationally expensive tools or scripts. Once you are done,
-exit the interactive shell by using the <cite>exit</cite> command or pressing
-<cite>Ctrl+D</cite>.</p>
+<p>You can now run interactive jobs, for example running an R shell, or
+test computationally expensive tools or scripts. Once you are done, exit
+the interactive shell by using the <cite>exit</cite> command or pressing <cite>Ctrl+D</cite>.</p>
 <p>Be sure to exit the interactive session once you are done working, so
 that the resources reserved for your shell is made available to other
-users.</p>
+users!</p>
 </div>
 <div class="section" id="reserving-resources-for-your-jobs">
 <h2>Reserving resources for your jobs<a class="headerlink" href="#reserving-resources-for-your-jobs" title="Permalink to this headline">¶</a></h2>
-<p>By default a <cite>srun</cite> will reserve 1 CPU (2 threads) and TODO GB of ram
-per CPU. Should your job require more resources, you may request those
-using the <cite>-c</cite> or <cite>–cpus-per-task</cite> options, and the</p>
+<p>By default a <cite>srun</cite> will reserve 1 CPU (2 threads) and 8 GB of ram per
+CPU. Should your job require more CPUs or RAM, then you can request CPUs
+using the <cite>-c</cite> or <cite>–cpus-per-task</cite> options, and request RAM using the
+<cite>–mem</cite> or <cite>–mem-per-cpu</cite> options. Values given to <cite>–mem</cite> are assumed
+to be in megabytes by default, but this may be overridden by using an
+explicit unit (M for megabyte, G for gigabyte, T for terabyte):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Run a task with <span class="m">8</span> CPUs and <span class="m">64</span> gigabytes of memory
+<span class="go">srun -c 8 --mem 64G -- my-command</span>
+</pre></div>
+</div>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>If you</p>
@@ -138,6 +149,13 @@ using the <cite>-c</cite> or <cite>–cpus-per-task</cite> options, and the</p>
 </div>
 <div class="section" id="reserving-gpus">
 <h2>Reserving GPUs<a class="headerlink" href="#reserving-gpus" title="Permalink to this headline">¶</a></h2>
+<p>To reserve GPU resources, you need to select the GPU queue and
+(optionally) specify the number of Nvidia A100 GPUs (1 or 2) needed. The
+following command queues command <code class="docutils literal notranslate"><span class="pre">${COMMAND}</span></code> and requests a single
+A100 GPU:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">srun --partition=gpuqueue --gres=gpu:a100:1 -- ${COMMAND}</span>
+</pre></div>
+</div>
 </div>
 </div>
 

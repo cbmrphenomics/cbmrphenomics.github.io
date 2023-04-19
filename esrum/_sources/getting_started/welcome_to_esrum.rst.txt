@@ -19,9 +19,11 @@ KU network drives (formerly `H:` and `N:`).
 
 The primary use of your home folder is to store programs, your own
 scripts, configuration files, and similar files that are not related to
-a specific project. However, if possible it is recommended to keep your
-scripts in your group project folder, to ensure that your group has
-access as well:
+a specific project. Your home futhermore cannot exceed 100 GB in size.
+
+However, if possible it is recommended to keep your scripts in your
+group project folder, to ensure that your group will have access to
+these now and in the future:
 
 .. warning::
 
@@ -38,9 +40,9 @@ access as well:
  Your project folders
 **********************
 
-The majority of your work on Esrum should take place in the folder
-corresponding either to your group or a specific project. Folders for
-both are located in the `/projects` folder:
+The majority of your work on Esrum should take place in the project
+folder corresponding either to your group or an actual project. These
+are both are located in the `/projects` folder:
 
 .. code::
 
@@ -58,6 +60,34 @@ name of your project.
 
    Projects configured for GDPR data are marked with the `AUDIT`. NEVER
    work on GDPR data in your home folder or in non-AUDIT projects!
+
+Projects folder contain four sub-folders, namely
+
+-  `/projects/<project-name>/people`
+
+   Every member of a project has their own people folder. It is
+   suggested that you keep your scripts, configuration files,
+   documentation, and the like in this folder. The `people` folder is
+   automatically backed up every day.
+
+-  `/projects/<project-name>/apps`
+
+   The apps folder is intended for storing software shared between
+   project members. See for example the :ref:`modules_page` for how to
+   setup a shared repository of software that can be used with the
+   module system. The `apps` folder is automatically backed up every
+   day.
+
+-  `/projects/<project-name>/data`
+
+   The `data` folder is intended for data-sets shared between project
+   members. This could be your raw data or your results files from
+   processing your raw data. The `data` folder is automatically backed
+   up every day.
+
+-  `/projects/<project-name>/scratch`
+
+   TODO
 
 .. _red hat enterprise linux: https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux
 

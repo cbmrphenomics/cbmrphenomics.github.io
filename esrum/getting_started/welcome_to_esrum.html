@@ -96,9 +96,10 @@ contain a single folder named <cite>ucph</cite>. This folder in turn contains yo
 KU network drives (formerly <cite>H:</cite> and <cite>N:</cite>).</p>
 <p>The primary use of your home folder is to store programs, your own
 scripts, configuration files, and similar files that are not related to
-a specific project. However, if possible it is recommended to keep your
-scripts in your group project folder, to ensure that your group has
-access as well:</p>
+a specific project. Your home futhermore cannot exceed 100 GB in size.</p>
+<p>However, if possible it is recommended to keep your scripts in your
+group project folder, to ensure that your group will have access to
+these now and in the future:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Do <strong>not</strong> put project related files in your home folder! Only you
@@ -112,9 +113,9 @@ required to reproduce your work in the projects you are working on.</p>
 </div>
 <div class="section" id="your-project-folders">
 <h2>Your project folders<a class="headerlink" href="#your-project-folders" title="Permalink to this headline">¶</a></h2>
-<p>The majority of your work on Esrum should take place in the folder
-corresponding either to your group or a specific project. Folders for
-both are located in the <cite>/projects</cite> folder:</p>
+<p>The majority of your work on Esrum should take place in the project
+folder corresponding either to your group or an actual project. These
+are both are located in the <cite>/projects</cite> folder:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls -1 /projects
 <span class="go">phenomics</span>
 <span class="go">genotyping-AUDIT</span>
@@ -130,6 +131,31 @@ name of your project.</p>
 <p>Projects configured for GDPR data are marked with the <cite>AUDIT</cite>. NEVER
 work on GDPR data in your home folder or in non-AUDIT projects!</p>
 </div>
+<p>Projects folder contain four sub-folders, namely</p>
+<ul>
+<li><p><cite>/projects/&lt;project-name&gt;/people</cite></p>
+<p>Every member of a project has their own people folder. It is
+suggested that you keep your scripts, configuration files,
+documentation, and the like in this folder. The <cite>people</cite> folder is
+automatically backed up every day.</p>
+</li>
+<li><p><cite>/projects/&lt;project-name&gt;/apps</cite></p>
+<p>The apps folder is intended for storing software shared between
+project members. See for example the <a class="reference internal" href="../modules.html#modules-page"><span class="std std-ref">The module system</span></a> for how to
+setup a shared repository of software that can be used with the
+module system. The <cite>apps</cite> folder is automatically backed up every
+day.</p>
+</li>
+<li><p><cite>/projects/&lt;project-name&gt;/data</cite></p>
+<p>The <cite>data</cite> folder is intended for data-sets shared between project
+members. This could be your raw data or your results files from
+processing your raw data. The <cite>data</cite> folder is automatically backed
+up every day.</p>
+</li>
+<li><p><cite>/projects/&lt;project-name&gt;/scratch</cite></p>
+<p>TODO</p>
+</li>
+</ul>
 </div>
 </div>
 
