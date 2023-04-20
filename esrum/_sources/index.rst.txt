@@ -19,19 +19,8 @@ documentation for the `UPCH computing/HPC Systems`_
    :caption: Contents:
 
    overview
-   gdpr
-   dos_and_donts
-   getting_started/index.rst
-   running_tasks
-   modules
+   contact
+   usage/index.rst
    tips_and_tricks/index.rst
-
-####################
- Indices and tables
-####################
-
--  :ref:`genindex`
--  :ref:`modindex`
--  :ref:`search`
 
 .. _upch computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx

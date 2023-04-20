@@ -1,8 +1,8 @@
 .. _getting_started:
 
-#################
- Getting started
-#################
+###################
+ Using the cluster
+###################
 
 .. toctree::
 
@@ -10,3 +10,5 @@
    connecting
    welcome_to_esrum
    running_jobs
+   modules
+   dos_and_donts
