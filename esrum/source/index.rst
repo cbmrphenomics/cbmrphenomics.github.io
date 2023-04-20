@@ -23,12 +23,4 @@ documentation for the `UPCH computing/HPC Systems`_
    usage/index.rst
    tips_and_tricks/index.rst
 
-####################
- Indices and tables
-####################
-
--  :ref:`genindex`
--  :ref:`modindex`
--  :ref:`search`
-
 .. _upch computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx

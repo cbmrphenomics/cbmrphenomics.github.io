@@ -21,6 +21,11 @@ exclude_patterns = []
 # Default language for code blocks (terminal sessions)
 highlight_language = "console"
 
+# Disable index page (not used)
+html_use_index = False
+# Disable the "View source" link on every page
+html_show_sourcelink = False
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
