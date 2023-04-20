@@ -21,7 +21,7 @@ KUNet in Danish_ and English_.
 
 Windows users will need to install a SSH client in order to be able to
 connect to the server. Options include MobaXterm_, Putty_, and Windows
-Subsystem for Linux (WSL_), and many more. The following demonstrates
+Subsystem for Linux (WSL_), and much more. The following demonstrates
 how to setup MobaXterm. Please refer to the `For Linux and OSX users`_
 section if using WSL_.
 

@@ -17,9 +17,16 @@ When you login to Esrum for the first time, your home folder should
 contain a single folder named `ucph`. This folder in turn contains your
 KU network drives (formerly `H:` and `N:`).
 
-The primary use of your home folder is to store programs, your own
+.. note::
+
+   The shared drives are only accessible from the head node. If you need
+   to analyze data located on either of these shared, then you will need
+   to copy it an appropriate projects folder.
+
+The primary use of your home folder is to store your programs and
 scripts, configuration files, and similar files that are not related to
-a specific project. Your home futhermore cannot exceed 100 GB in size.
+a specific project. For this reason, your home cannot exceed 100 GB in
+size.
 
 However, if possible it is recommended to keep your scripts in your
 group project folder, to ensure that your group will have access to
