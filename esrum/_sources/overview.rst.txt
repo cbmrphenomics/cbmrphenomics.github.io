@@ -6,7 +6,7 @@
 
 The Esrum cluster is a cluster managed by the Phenomics group at CBMR.
 The server runs Red Hat Enterprise Linux 8, uses the SLURM_ management
-system for running tasks, and `environment modules`_ for managing
+system for running tasks, and uses `environment modules`_ for managing
 software.
 
 The cluster consists of a head node, 8 compute nodes, and 1 GPU node:
