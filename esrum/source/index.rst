@@ -19,11 +19,8 @@ documentation for the `UPCH computing/HPC Systems`_
    :caption: Contents:
 
    overview
-   gdpr
-   dos_and_donts
-   getting_started/index.rst
-   running_tasks
-   modules
+   contact
+   usage/index.rst
    tips_and_tricks/index.rst
 
 ####################
