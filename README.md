@@ -67,8 +67,28 @@ asciinema: asciicast saved to output.cast
 $ agg --cols 80 --rows 24 output.cast output.gif
 ```
 
-A help-script is provided to normalize timings and produce more consistent animations. To use this script, first edit the cast file and change the second column of rows containing user output, changing "o" to "a", so that rows like ```[1.145546, "o", "t"]``` become ```[1.145546, "a", "t"]```. This lets the script assign different timings to input, output, and insert pauses as appropriate.
+A help-script is provided to convert to/from a more easily editable format, and to produce more consistent animations. To use this script, first record an animation using `asciinema`, then import it using `scripts/terminal_recordings.py`, edit it, and then generate a gif using `agg` via the `terminal_recordings.py` script.
 
-```console
-python3 ./scripts/normalize_asciinema.py edited.cast edited.gif --gif
+```bash
+# 1. Record a session using asciinema and exit asciinema once you are done.
+asciinema rec my_recording.cast
+# 2. Convert the asciinema recording to a more editable format
+python3 ./scripts/terminal_recordings.py import my_recording.cast > my_recording.rec
+# 3. Modify the recording as desired: Merge typing, add/remove breaks, etc.
+nano my_recording.rec
+# 4. Convert the recording to a GIF file (required agg)
+python3 ./scripts/terminal_recordings.py gif my_recording.rec my_recording.gif
 ```
+
+The recording consists of a asciinema header followed by one or more single-line JSON records:
+
+```python
+# 'output' is printed to the terminal
+{"action": "output", "value": "Output is written directly to the terminal"}
+# 'type' is shown as if the user typed it by hand
+{"action": "type", "value": "The user types this"}
+# 'wait' inserts a pause lasting `value` milliseconds
+{"action": "wait", "value": 1000}
+```
+
+Pauses are automatically inserted between output and the user typing something, but by default there is no delay between lines of output. Pauses can be added or removed by manually adding `wait` records. Empty lines and lines starting with `#` are ignored.
