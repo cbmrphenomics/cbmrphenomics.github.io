@@ -7,8 +7,8 @@ for Basic Metabolic Research (CBMR_). The Esrum cluster is managed by
 the `Phenomics Platform`_ and is available to employees at CBMR and
 collaborators visiting CBMR.
 
--  See the Contact page for information about how and where to contact
-   us.
+-  See the :ref:`page_contact` page for information about how and where
+   to contact us.
 -  For an overview of the cluster architecture and features, see the
    :ref:`page_overview` page.
 -  To get access to the cluster and to run simple jobs, see the
