@@ -43,13 +43,18 @@ these now and in the future:
    files, installed programs, and whatever/tools scripts that are not
    required to reproduce your work in the projects you are working on.
 
+.. _section_projects:
+
 **********************
  Your project folders
 **********************
 
 The majority of your work on Esrum should take place in the project
-folder corresponding either to your group or an actual project. These
-are both are located in the `/projects` folder:
+folder corresponding either to your research group or an actual project.
+See the :ref:`applying_for_projects` section for information about
+applying for access to projects on Esrum.
+
+Project folders are both are located in the `/projects` folder:
 
 .. code::
 
