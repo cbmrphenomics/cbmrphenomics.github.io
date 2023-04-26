@@ -1,0 +1,18 @@
+{"version": 2, "width": 80, "height": 12, "timestamp": 1682514267, "env": {"SHELL": "/bin/bash", "TERM": "xterm-256color"}}
+{"action": "output", "value": "\u001b]0;abc123@esrumhead01fl:~\u0007"}
+{"action": "output", "value": "abc123@esrumhead01fl:~$ "}
+{"action": "type", "value": "ls -lh\r\n"}
+{"action": "wait", "value": 100}
+{"action": "output", "value": "total 63M\r\n-rw-r--r--. 1 abc123 users 63M Apr 26 15:03 chr20.fasta\r\n"}
+{"action": "output", "value": "\u001b]0;abc123@esrumhead01fl:~\u0007"}
+{"action": "output", "value": "abc123@esrumhead01fl:~$ "}
+{"action": "type", "value": "srun gzip chr20.fasta\r\n"}
+{"action": "wait", "value": 2000}
+{"action": "output", "value": "\u001b]0;abc123@esrumhead01fl:~\u0007"}
+{"action": "output", "value": "abc123@esrumhead01fl:~$ "}
+{"action": "type", "value": "ls -lh\r\n"}
+{"action": "wait", "value": 100}
+{"action": "output", "value": "total 18M\r\n"}
+{"action": "output", "value": "-rw-r--r--. 1 abc123 users 18M Apr 26 15:03 \u001b[0m\u001b[38;5;9mchr20.fasta.gz\u001b[0m\r\n"}
+{"action": "output", "value": "\u001b]0;abc123@esrumhead01fl:~\u0007"}
+{"action": "output", "value": "abc123@esrumhead01fl:~$ "}

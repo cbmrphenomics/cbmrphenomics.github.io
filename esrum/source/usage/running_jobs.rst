@@ -5,40 +5,74 @@
 ##########################
 
 The Esrum cluster makes use of the Slurm_ job management system in order
-to queue and distribute jobs on the available nodes. This section
-describes how to start an interactive shell on a compute node, how run
-basic jobs, and how to reserve the needed resources for your work.
+to queue and distribute jobs on the compute and GPU nodes. This section
+describes how to how to run basic jobs, how to start an interactive
+shell on a compute node, and how to reserve the needed resources for
+your tasks.
 
-It is strongly recommended that you make use of tmux_ or a similar tool
-when running tasks, in order to ensure that your work is not interrupted
-if you lose connection to the server or need to turn off your PC. See
-the :ref:`tmux_page` page for a short tutorial.
+It is strongly recommended that you run tmux_ or a similar tool before
+starting tasks using ``srun``, in order to ensure that your work is not
+interrupted if you lose connection to the server or need to turn off
+your PC. See the :ref:`tmux_page` page for a short tutorial.
 
 .. warning::
 
-   Resource intensive jobs *must* be run using the queuing system. Your
-   tasks *will* be terminated without prior warning if you fail to do
-   so, in order to prevent any impact on other users of the cluster.
+   Resource intensive jobs *must* be run using Slurm. Your tasks *will*
+   be terminated without prior warning if you fail to do so, in order to
+   prevent any impact on other users of the cluster.
 
 .. warning::
 
    Show consideration towards other users of the cluster. If you need to
-   run very intensive jobs then please contact Phenomics first so that
-   we can ensure that the cluster will still be usable by other users
-   while your jobs are running. Failure to do so will result in your
-   jobs being terminated without prior warning.
+   run very intensive jobs then please :ref:`page_contact` Phenomics
+   first so that we can ensure that the cluster will still be usable by
+   other users while your jobs are running. Failure to do so may result
+   in your jobs being terminated without prior warning.
 
-***************************
- Running commands on SLURM
-***************************
+******************************
+ Running commands using Slurm
+******************************
+
+The ``srun`` command is used to queue and execute commands on the
+compute nodes, and for most part it should feel no different than
+running a command on the head node. Simply prefix your command with
+``srun`` and the queuing system takes care of running it on the first
+available compute node:
+
+.. code::
+
+   srun gzip chr20.fasta
+
+.. image:: images/srun_minimal.gif
+   :class: gif
+
+Except for the ``srun`` prefix, this is exactly as if you ran the
+``gzip`` command on the head node. However, if you need to pipe output
+to a file or to another command, then you *must* wrap your commands in a
+bash (or similar) script. The script can then be run using ``srun``:
+
+.. code::
+
+   srun bash my_script.sh
+
+.. image:: images/srun_wrapped.gif
+   :class: gif
+
+For tips to make your bash scripts more robust, see the :ref:`page_bash`
+page.
+
+By default task are allocated one CPU and 15 GB of RAM. If you need to
+use additional resources, then see `Reserving resources for your jobs`_
+and `Reserving GPUs`_ below.
 
 ******************************
  Running an interactive shell
 ******************************
 
 If you need to run an interactive process, for example if you need to
-use an interactive R shell to process a large dataset, then you can
-start a remote shell as follows:
+use an interactive R shell to process a large dataset, or if you just
+need to experiment with running an computationally heavy process, then
+you can start a shell on one of the compute nodes as follows:
 
 .. code::
 
