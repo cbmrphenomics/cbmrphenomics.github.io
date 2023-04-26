@@ -8,7 +8,7 @@
 
    access
    connecting
-   welcome_to_esrum
+   filesystem
    running_jobs
    batch_jobs
    modules

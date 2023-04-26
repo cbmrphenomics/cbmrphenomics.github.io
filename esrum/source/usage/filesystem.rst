@@ -1,13 +1,9 @@
-##################
- Welcome to Esrum
-##################
+################
+ The filesystem
+################
 
-The Esrum cluster runs `Red Hat Enterprise Linux`_ 8.7 (Ootpa) and uses
-the Slurm_ job management system for running tasks on the available
-nodes.
-
-For a description of software available on Esrum, as well as
-instructions for adding your own software, see TODO. For an introduction
+This section describes the layout of your home folder on Esrum, as well
+as the location and layout of projects and data-shares.
 
 .. _section_home:
 
@@ -22,8 +18,8 @@ KU network drives (formerly `H:` and `N:`).
 .. note::
 
    The shared drives are only accessible from the head node. If you need
-   to analyze data located on either of these shared, then you will need
-   to copy it an appropriate projects folder.
+   to analyze data located on either of these shared drives, then you
+   will need to copy it an appropriate projects folder.
 
 The primary use of your home folder is to store your programs and
 scripts, configuration files, and similar files that are not related to
@@ -101,7 +97,12 @@ Projects folder contain four sub-folders, namely
 
 -  `/projects/<project-name>/scratch`
 
-   TODO
+   The `scratch` folder is intended for temporary files. It is also
+   suitable for files that do not need to be backed up, for example
+   public databases or datasets used for a specific project.
+
+Unlike your `home` folder, there are no limits on how much you store in
+these folders.
 
 .. _red hat enterprise linux: https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux
 
