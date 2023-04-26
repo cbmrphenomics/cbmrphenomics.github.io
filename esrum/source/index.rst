@@ -21,6 +21,7 @@ documentation for the `UPCH computing/HPC Systems`_ on KUNet.
 
 .. toctree::
    :maxdepth: 2
+   :titlesonly:
    :caption: Contents:
 
    contact
