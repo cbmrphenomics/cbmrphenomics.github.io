@@ -10,5 +10,6 @@
    connecting
    welcome_to_esrum
    running_jobs
+   batch_jobs
    modules
    dos_and_donts
