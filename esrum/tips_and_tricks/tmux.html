@@ -18,8 +18,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Faster gzip (de)compression with pigz and igzip" href="faster_gzip.html" />
-    <link rel="prev" title="Transferring data to/from SIF and ERDA" href="sif_and_erda.html" />
+    <link rel="next" title="Working remotely" href="working_remotely.html" />
+    <link rel="prev" title="Using and managing software" href="software.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -27,10 +27,10 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="faster_gzip.html" title="Faster gzip (de)compression with pigz and igzip"
+          <a href="working_remotely.html" title="Working remotely"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="sif_and_erda.html" title="Transferring data to/from SIF and ERDA"
+          <a href="software.html" title="Using and managing software"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Tips and tricks</a> &#187;</li> 
@@ -44,19 +44,21 @@
 <li><a class="reference internal" href="#getting-started">Getting started</a><ul>
 <li><a class="reference internal" href="#creating-and-navigating-between-terminals">Creating and navigating between terminals</a></li>
 <li><a class="reference internal" href="#detaching-from-and-re-attaching-to-your-sessions">Detaching from and re-attaching to your sessions</a></li>
+<li><a class="reference internal" href="#naming-your-sessions-and-windows">Naming your sessions and windows</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#basic-shortcuts">Basic shortcuts</a></li>
+<li><a class="reference internal" href="#additional-resources">Additional resources</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="sif_and_erda.html"
-                        title="previous chapter">Transferring data to/from SIF and ERDA</a></p>
+  <p class="topless"><a href="software.html"
+                        title="previous chapter">Using and managing software</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="faster_gzip.html"
-                        title="next chapter">Faster gzip (de)compression with pigz and igzip</a></p>
+  <p class="topless"><a href="working_remotely.html"
+                        title="next chapter">Working remotely</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -92,29 +94,39 @@ documentation.</p>
 <div class="section" id="getting-started">
 <h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>To get started, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory you wish to work in and run
-<code class="docutils literal notranslate"><span class="pre">tmux</span></code>:</p>
+<code class="docutils literal notranslate"><span class="pre">tmux</span></code> or the equivalent command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /projects/my_project/people/abc123
 <span class="gp">$</span> tmux
 </pre></div>
 </div>
-<p>This will create a new session (group of terminals) with a single window
-(terminal), and will make new terminal start with the current working
-directory set to <code class="docutils literal notranslate"><span class="pre">/projects/my_project/people/abc123</span></code> for convenience.</p>
-<p>The session can be given a name with <code class="docutils literal notranslate"><span class="pre">-s</span></code> and the window can be given
-a name with <code class="docutils literal notranslate"><span class="pre">-n</span></code> as follows:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tmux new -s project -n task
-</pre></div>
-</div>
-<img alt="../_images/tmux_new_named.gif" class="gif" src="../_images/tmux_new_named.gif" />
-<p>See <a class="reference internal" href="#basic-shortcuts">basic shortcuts</a> section for how to change these names after
-you’ve created a session or window. It is not required to name your
-sessions/windows, but is recommended to do so if you work on multiple
-things at once.</p>
+<img alt="../_images/tmux_new.gif" class="gif" src="../_images/tmux_new.gif" />
+<p>This will start tmux and create a new session (group of terminals) with
+a single window (terminal) to begin with, and will make new terminal
+start with the current working directory set to
+<code class="docutils literal notranslate"><span class="pre">/projects/my_project/people/abc123</span></code>. The benefit of setting your
+working directory before starting tmux is that all terminals opened in
+that session will start in that directory.</p>
 <div class="section" id="creating-and-navigating-between-terminals">
 <h3>Creating and navigating between terminals<a class="headerlink" href="#creating-and-navigating-between-terminals" title="Permalink to this headline">¶</a></h3>
-<p>You start your new session with a single, blank terminal and you can
-create any number of additional terminals using the <code class="docutils literal notranslate"><span class="pre">CTRL+c</span></code> shortcut.
-The current terminals are listed at the bottom of the screen:</p>
+<p>You start your new session with a single, blank terminal, but you can
+create any number of additional terminals using the <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">c</span></code>
+keyboard shortcut. To use this shortcut first press <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then
+release the buttons and press <code class="docutils literal notranslate"><span class="pre">c</span></code> and <em>only</em> <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
+<p>Notice how each terminal gets listed on the tmux bar:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>TODO: Screenshot</p>
+</div>
+<p>When you have more than one terminal in a session, you can switch
+between them using <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">c</span></code> to switch to the next terminal and
+<code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">p</span></code> to switch to the previous terminal:</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>TODO: Screenshot</p>
+</div>
+<p>To close the terminals, either use the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command or type
+<code class="docutils literal notranslate"><span class="pre">Ctrl+d</span></code> on an empty command-line. tmux automatically closes once the
+last terminal has exited:</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>TODO: Screenshot</p>
@@ -153,6 +165,23 @@ the <code class="docutils literal notranslate"><span class="pre">exit</span></co
 </div>
 <p><a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> will exit with the message <code class="docutils literal notranslate"><span class="pre">[exited]</span></code> once the last terminal in
 the current session has been closed.</p>
+</div>
+<div class="section" id="naming-your-sessions-and-windows">
+<h3>Naming your sessions and windows<a class="headerlink" href="#naming-your-sessions-and-windows" title="Permalink to this headline">¶</a></h3>
+<p>tmux allows you to give custom names to each session (group of
+terminals) and each window (terminal), in order to help you
+differentiate between them. This is not required, but is is recommended
+to do so if you work on multiple things at once.</p>
+<p>When starting a new session with the command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span></code>, you can also
+give the session a name with <code class="docutils literal notranslate"><span class="pre">-s</span></code> and the window can be given a name
+with <code class="docutils literal notranslate"><span class="pre">-n</span></code> as follows. However, this can only if you are not already in
+an active tmux session:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> tmux new -s project -n task
+</pre></div>
+</div>
+<img alt="../_images/tmux_new_named.gif" class="gif" src="../_images/tmux_new_named.gif" />
+<p>To rename an existing tmux session or window, you instead need to use
+the <a class="reference internal" href="#basic-shortcuts">basic shortcuts</a> described below.</p>
 </div>
 </div>
 <div class="section" id="basic-shortcuts">
@@ -193,6 +222,10 @@ terminals.</p></li>
 </ul>
 </div></blockquote>
 </div>
+<div class="section" id="additional-resources">
+<h2>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+</div>
 </div>
 
 
@@ -205,10 +238,10 @@ terminals.</p></li>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="faster_gzip.html" title="Faster gzip (de)compression with pigz and igzip"
+          <a href="working_remotely.html" title="Working remotely"
              >next</a></li>
         <li class="right" >
-          <a href="sif_and_erda.html" title="Transferring data to/from SIF and ERDA"
+          <a href="software.html" title="Using and managing software"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" >Tips and tricks</a> &#187;</li> 

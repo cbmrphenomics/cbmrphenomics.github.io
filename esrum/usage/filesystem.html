@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Welcome to Esrum &#8212; Esrum Cluster  documentation</title>
+    <title>The filesystem &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
@@ -40,7 +40,7 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Welcome to Esrum</a><ul>
+<li><a class="reference internal" href="#">The filesystem</a><ul>
 <li><a class="reference internal" href="#your-home-folder">Your home folder</a></li>
 <li><a class="reference internal" href="#your-project-folders">Your project folders</a></li>
 </ul>
@@ -71,23 +71,20 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="welcome-to-esrum">
-<h1>Welcome to Esrum<a class="headerlink" href="#welcome-to-esrum" title="Permalink to this headline">¶</a></h1>
-<p>The Esrum cluster runs <a class="reference external" href="https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux">Red Hat Enterprise Linux</a> 8.7 (Ootpa) and uses
-the <a class="reference external" href="https://slurm.schedmd.com/overview.html">Slurm</a> job management system for running tasks on the available
-nodes.</p>
-<p>For a description of software available on Esrum, as well as
-instructions for adding your own software, see TODO. For an introduction</p>
+  <div class="section" id="the-filesystem">
+<h1>The filesystem<a class="headerlink" href="#the-filesystem" title="Permalink to this headline">¶</a></h1>
+<p>This section describes the layout of your home folder on Esrum, as well
+as the location and layout of projects and data-shares.</p>
 <div class="section" id="your-home-folder">
-<h2>Your home folder<a class="headerlink" href="#your-home-folder" title="Permalink to this headline">¶</a></h2>
+<span id="section-home"></span><h2>Your home folder<a class="headerlink" href="#your-home-folder" title="Permalink to this headline">¶</a></h2>
 <p>When you login to Esrum for the first time, your home folder should
-contain a single folder named <cite>ucph</cite>. This folder in turn contains your
-KU network drives (formerly <cite>H:</cite> and <cite>N:</cite>).</p>
+contain a single folder named <code class="docutils literal notranslate"><span class="pre">ucph</span></code>. This folder in turn contains
+your KU network drives (formerly <code class="docutils literal notranslate"><span class="pre">H:</span></code> and <code class="docutils literal notranslate"><span class="pre">N:</span></code>).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The shared drives are only accessible from the head node. If you need
-to analyze data located on either of these shared, then you will need
-to copy it an appropriate projects folder.</p>
+to analyze data located on either of these shared drives, then you
+will need to copy it an appropriate projects folder.</p>
 </div>
 <p>The primary use of your home folder is to store your programs and
 scripts, configuration files, and similar files that are not related to
@@ -108,10 +105,12 @@ required to reproduce your work in the projects you are working on.</p>
 </div>
 </div>
 <div class="section" id="your-project-folders">
-<h2>Your project folders<a class="headerlink" href="#your-project-folders" title="Permalink to this headline">¶</a></h2>
+<span id="section-projects"></span><h2>Your project folders<a class="headerlink" href="#your-project-folders" title="Permalink to this headline">¶</a></h2>
 <p>The majority of your work on Esrum should take place in the project
-folder corresponding either to your group or an actual project. These
-are both are located in the <cite>/projects</cite> folder:</p>
+folder corresponding either to your research group or an actual project.
+See the <a class="reference internal" href="access.html#applying-for-projects"><span class="std std-ref">Applying for access to the projects</span></a> section for information about
+applying for access to projects on Esrum.</p>
+<p>Project folders are both are located in the <code class="docutils literal notranslate"><span class="pre">/projects</span></code> folder:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ls -1 /projects
 <span class="go">phenomics</span>
 <span class="go">genotyping-AUDIT</span>
@@ -120,38 +119,42 @@ are both are located in the <cite>/projects</cite> folder:</p>
 </div>
 <p>To apply for access to a specific project follow the instructions in
 <a class="reference internal" href="access.html#applying-for-access"><span class="std std-ref">Applying for access</span></a>, using the name of the project in the
-following form <cite>COMP-PRJ-genotyping</cite>, replacing <cite>genotyping</cite> with the
-name of your project.</p>
+following form <code class="docutils literal notranslate"><span class="pre">COMP-PRJ-genotyping</span></code>, replacing <code class="docutils literal notranslate"><span class="pre">genotyping</span></code> with
+the name of your project.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Projects configured for GDPR data are marked with the <cite>AUDIT</cite>. NEVER
-work on GDPR data in your home folder or in non-AUDIT projects!</p>
+<p>Projects configured for GDPR data are marked with the <code class="docutils literal notranslate"><span class="pre">AUDIT</span></code>.
+NEVER work on GDPR data in your home folder or in non-AUDIT projects!</p>
 </div>
 <p>Projects folder contain four sub-folders, namely</p>
 <ul>
-<li><p><cite>/projects/&lt;project-name&gt;/people</cite></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">/projects/&lt;project-name&gt;/people</span></code></p>
 <p>Every member of a project has their own people folder. It is
 suggested that you keep your scripts, configuration files,
-documentation, and the like in this folder. The <cite>people</cite> folder is
+documentation, and the like in this folder. The <code class="docutils literal notranslate"><span class="pre">people</span></code> folder is
 automatically backed up every day.</p>
 </li>
-<li><p><cite>/projects/&lt;project-name&gt;/apps</cite></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">/projects/&lt;project-name&gt;/apps</span></code></p>
 <p>The apps folder is intended for storing software shared between
 project members. See for example the <a class="reference internal" href="modules.html#modules-page"><span class="std std-ref">The module system</span></a> for how to
 setup a shared repository of software that can be used with the
-module system. The <cite>apps</cite> folder is automatically backed up every
+module system. The <code class="docutils literal notranslate"><span class="pre">apps</span></code> folder is automatically backed up every
 day.</p>
 </li>
-<li><p><cite>/projects/&lt;project-name&gt;/data</cite></p>
-<p>The <cite>data</cite> folder is intended for data-sets shared between project
+<li><p><code class="docutils literal notranslate"><span class="pre">/projects/&lt;project-name&gt;/data</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">data</span></code> folder is intended for datasets shared between project
 members. This could be your raw data or your results files from
-processing your raw data. The <cite>data</cite> folder is automatically backed
+processing your raw data. The <code class="docutils literal notranslate"><span class="pre">data</span></code> folder is automatically backed
 up every day.</p>
 </li>
-<li><p><cite>/projects/&lt;project-name&gt;/scratch</cite></p>
-<p>TODO</p>
+<li><p><code class="docutils literal notranslate"><span class="pre">/projects/&lt;project-name&gt;/scratch</span></code></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">scratch</span></code> folder is intended for temporary files. It is also
+suitable for files that do not need to be backed up, for example
+public databases or datasets used for a specific project.</p>
 </li>
 </ul>
+<p>Unlike your <code class="docutils literal notranslate"><span class="pre">/home</span></code> folder, there are no limits on how much you store
+in these folders.</p>
 </div>
 </div>
 

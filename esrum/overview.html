@@ -18,8 +18,8 @@
     <script src="_static/js/libgif.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Contact Us" href="contact.html" />
-    <link rel="prev" title="Documentation for the Esrum cluster at CBMR" href="index.html" />
+    <link rel="next" title="Using the cluster" href="usage/index.html" />
+    <link rel="prev" title="Contact" href="contact.html" />
     <script defer src="_static/js/playback.js"></script>
 
   </head><body>
@@ -27,22 +27,33 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="contact.html" title="Contact Us"
+          <a href="usage/index.html" title="Using the cluster"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="index.html" title="Documentation for the Esrum cluster at CBMR"
+          <a href="contact.html" title="Contact"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Overview</a><ul>
+<li><a class="reference internal" href="#architecture">Architecture</a></li>
+<li><a class="reference internal" href="#projects-and-data-shares">Projects and data-shares</a></li>
+<li><a class="reference internal" href="#backup-policies-and-quotas">Backup policies and quotas</a></li>
+<li><a class="reference internal" href="#additional-resources">Additional resources</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
-  <p class="topless"><a href="index.html"
-                        title="previous chapter">Documentation for the Esrum cluster at CBMR</a></p>
-  <h4>Next topic</h4>
   <p class="topless"><a href="contact.html"
-                        title="next chapter">Contact Us</a></p>
+                        title="previous chapter">Contact</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="usage/index.html"
+                        title="next chapter">Using the cluster</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -62,11 +73,11 @@
           <div class="body" role="main">
             
   <div class="section" id="overview">
-<span id="overview-page"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
-<p>The Esrum cluster is a cluster managed by the Phenomics group at CBMR.
-The server runs Red Hat Enterprise Linux 8, uses the <a class="reference external" href="https://slurm.schedmd.com/">SLURM</a> management
-system for running tasks, and uses <a class="reference external" href="https://modules.readthedocs.io/en/latest/">environment modules</a> for managing
-software.</p>
+<span id="page-overview"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<p>The Esrum cluster is a cluster managed by the <a class="reference external" href="https://cbmr.ku.dk/research-facilities/phenomics/">Phenomics Platform</a> at
+<a class="reference external" href="https://cbmr.ku.dk/">CBMR</a>. Technical support and administration is handled by KU-IT.</p>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <p>The cluster consists of a head node, 8 compute nodes, and 1 GPU node:</p>
 <table class="docutils align-default">
 <colgroup>
@@ -105,8 +116,42 @@ software.</p>
 </tr>
 </tbody>
 </table>
-<p>In addition, a server for running container instances, an <a class="reference external" href="https://posit.co/products/open-source/rstudio/">RStudio</a> web
-server, and a <a class="reference external" href="https://shiny.rstudio.com/">Shiny</a> server are available.</p>
+<p>Users connect to the “head” node, from which jobs can be submitted to
+the individual nodes. In addition, a server for running container
+instances, an <a class="reference external" href="https://posit.co/products/open-source/rstudio/">RStudio</a> web server, and a <a class="reference external" href="https://shiny.rstudio.com/">Shiny</a> server are available.</p>
+<p>The nodes runs Red Hat Enterprise Linux 8, use the <a class="reference external" href="https://slurm.schedmd.com/">SLURM</a> management
+system for running tasks, and use <a class="reference external" href="https://modules.readthedocs.io/en/latest/">environment modules</a> for managing
+software.</p>
+</div>
+<div class="section" id="projects-and-data-shares">
+<h2>Projects and data-shares<a class="headerlink" href="#projects-and-data-shares" title="Permalink to this headline">¶</a></h2>
+<p>Access is managed on a per-project level, and is administrated by
+individual project owners, with each project folder containing a
+standard set of sub-folders (<code class="docutils literal notranslate"><span class="pre">apps</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">people</span></code>,
+<code class="docutils literal notranslate"><span class="pre">scratch</span></code>).</p>
+<p>Datasets used by several projects may made available via read-only
+network shares. As with projects, access is administered by the data
+owner.</p>
+</div>
+<div class="section" id="backup-policies-and-quotas">
+<h2>Backup policies and quotas<a class="headerlink" href="#backup-policies-and-quotas" title="Permalink to this headline">¶</a></h2>
+<p>Your <code class="docutils literal notranslate"><span class="pre">/home</span></code> and the <code class="docutils literal notranslate"><span class="pre">apps</span></code>. <code class="docutils literal notranslate"><span class="pre">data</span></code>, and <code class="docutils literal notranslate"><span class="pre">people</span></code> folders in
+each projects are automatically backed up. The <code class="docutils literal notranslate"><span class="pre">scratch</span></code> folders are
+NOT backed up. The specific frequency and duration of backups differ for
+each type of folder and may also differ for individual projects.</p>
+<p>As a rule folders for projects involving GDPR protected data (indicated
+by the project name ending with <code class="docutils literal notranslate"><span class="pre">-AUDIT</span></code>) is subject to more frequent
+backups. However, on-site backups are kept for a shorter time to prevent
+the unauthorized recovery of intentionally deleted data.</p>
+</div>
+<div class="section" id="additional-resources">
+<h2>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Official <a class="reference external" href="https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx">UPCH computing/HPC Systems</a> documentation on KUNet.</p></li>
+</ul>
+</div></blockquote>
+</div>
 </div>
 
 
@@ -119,10 +164,10 @@ server, and a <a class="reference external" href="https://shiny.rstudio.com/">Sh
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="contact.html" title="Contact Us"
+          <a href="usage/index.html" title="Using the cluster"
              >next</a></li>
         <li class="right" >
-          <a href="index.html" title="Documentation for the Esrum cluster at CBMR"
+          <a href="contact.html" title="Contact"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>

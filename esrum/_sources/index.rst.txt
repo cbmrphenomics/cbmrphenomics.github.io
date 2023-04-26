@@ -1,26 +1,36 @@
-#############################################
- Documentation for the Esrum cluster at CBMR
-#############################################
+###########################
+ The Esrum cluster at CBMR
+###########################
 
-Welcome to the documentation pages for the Erum HPC cluster at CBMR. The
-Esrum cluster is managed by the Phenomics group and is available to
-employees at CBMR.
+Welcome to the Esrum HPC cluster at The Novo Nordisk Foundation Center
+for Basic Metabolic Research (CBMR_). The Esrum cluster is managed by
+the `Phenomics Platform`_ and is available to employees at CBMR and
+collaborators visiting CBMR.
 
+-  See the :ref:`page_contact` page for information about how and where
+   to contact us.
+-  For an overview of the cluster architecture and features, see the
+   :ref:`page_overview` page.
 -  To get access to the cluster and to run simple jobs, see the
-   :ref:`getting_started` pages.
--  For an overview of the cluster architecture, see the
-   :ref:`overview_page` page.
+   :ref:`page_usage` pages.
+-  For ways to make working on the cluster easier, ways to make your
+   analyses more reliable, and more, see the :ref:`tips` page.
 
 In addition to the documentation provided here, KU IT also provides
-documentation for the `UPCH computing/HPC Systems`_
+documentation for the `UPCH computing/HPC Systems`_ on KUNet.
 
 .. toctree::
    :maxdepth: 2
+   :titlesonly:
    :caption: Contents:
 
-   overview
    contact
+   overview
    usage/index.rst
    tips_and_tricks/index.rst
+
+.. _cbmr: https://cbmr.ku.dk/
+
+.. _phenomics platform: https://cbmr.ku.dk/research-facilities/phenomics/
 
 .. _upch computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx

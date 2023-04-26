@@ -4,11 +4,13 @@
  Applying for access
 #####################
 
-The following describes how to apply for access to the Esrum cluster.
-You can apply for access to specific projects in the same manner, simply
-by substituting ``SRV-esrumhead-users`` with the name of your project.
+The following describes how to apply for access to the Esrum cluster and
+related related services, projects, and datasets. An official guide to
+the identity system used is available here_.
 
-An `official guide`_ is available here.
+************************************
+ Applying for access to the servers
+************************************
 
 #. Visit identity.ku.dk_.
 
@@ -46,8 +48,51 @@ Once you have been granted access and your account is ready, you may
 refer to the :ref:`connecting` page for instructions on how to connect
 to the cluster.
 
+.. _applying_for_projects:
+
+*************************************
+ Applying for access to the projects
+*************************************
+
+You can apply for access to projects using the same method as described
+in `Applying for access to the servers`_. Alternatively, the project
+owner(s) can add you to projects directly. However, the Phenomics group
+cannot add you to projects owned by a third party.
+
+See :ref:`section_projects` for a description of the location and
+file-structure of projects on Esrum.
+
+*********************************************
+ Applying for access to the datasets/cohorts
+*********************************************
+
+.. warning::
+
+   Transfer of data to the new servers has not yet been completed. You
+   can still apply for access to cohorts, but you may not be granted
+   access until everything is ready.
+
+You can find an up-to-date of datasets and cohorts in the N-drive at
+
+.. code::
+
+   N:/path/to/TODO.xlsx
+
+In order to apply for access to a dataset, simply follow the steps
+described in the `Applying for access to the servers`_ section and
+substitute ``SRV-esrumhead-users`` with the name of your project.
+
+.. note::
+
+   Access to datasets managed by the Phenomics group requires permission
+   from the data-manager responsible for that data. The Phenomics group
+   will verify that you are permitted to access the data. You may speed
+   up this process by having the data manager :ref:`page_contact` us in
+   advance.
+
+.. _here: https://kunet.ku.dk/medarbejderguide/ITvejl/KU%20IdM%20-%20S%C3%A5dan%20anmodes%20om%20funktionsrolle.pdf
+
 .. _identity.ku.dk: https://identity.ku.dk/
 
-.. _official guide: https://kunet.ku.dk/medarbejderguide/ITvejl/KU%20IdM%20-%20S%C3%A5dan%20anmodes%20om%20funktionsrolle.pdf
-
 .. _wsl: https://learn.microsoft.com/en-us/windows/wsl/about
+
