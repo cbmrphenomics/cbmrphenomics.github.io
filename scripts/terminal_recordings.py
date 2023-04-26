@@ -8,7 +8,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Literal, Optional, Tuple, TypedDict, Union
+from typing import Any, Dict, List, Literal, NoReturn, Optional, Tuple, TypedDict, Union
 
 
 AsciinemaHeader = Dict[str, Union[int, float, str, None]]
@@ -30,6 +30,11 @@ class CastRecord(TypedDict):
 def eprint(*args: Any, **kwargs: Any) -> None:
     kwargs["file"] = sys.stderr
     print(*args, **kwargs)
+
+
+def abort(*args: Any, **kwargs: Any) -> NoReturn:
+    eprint(*args, **kwargs)
+    sys.exit(1)
 
 
 def write_output(filepath: Optional[Path], lines: List[str]) -> None:
@@ -76,8 +81,7 @@ def main_import(args: argparse.Namespace) -> int:
     previous_offset = 0
     for offset, kind, value in records:
         if kind != "o":
-            eprint("ERROR: Only output ('o') is supported:", [offset, kind, value])
-            sys.exit(1)
+            abort("ERROR: Only output ('o') is supported:", [offset, kind, value])
 
         delay = int((offset - previous_offset) * 1000)
         if delay >= args.min_delay:
@@ -99,9 +103,19 @@ def read_cast(filepath: Path) -> Tuple[AsciinemaHeader, List[CastRecord]]:
     with filepath.open() as handle:
         header = json.loads(handle.readline())
         records: List[CastRecord] = []
-        for line in handle:
+        for idx, line in enumerate(handle, start=1):
             line = line.strip()
             if line and not line.startswith("#"):
+                data = json.loads(line)
+                if set(("action", "value")) - data.keys():
+                    abort(f"ERROR: Invalid keys on line {idx}: {tuple(data)}")
+                elif data["action"] not in ("output", "type", "wait"):
+                    abort(f"ERROR: Invalid action on line {idx}: {data['action']}")
+                elif data["action"] == "wait" and not isinstance(data["value"], int):
+                    abort(f"ERROR: Invalid value on line {idx}: {data['action']}")
+                elif data["action"] != "wait" and not isinstance(data["value"], str):
+                    abort(f"ERROR: Invalid value on line {idx}: {data['action']}")
+
                 records.append(json.loads(line))
 
         return header, records
