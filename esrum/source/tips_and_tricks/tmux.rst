@@ -24,38 +24,48 @@ documentation.
 *****************
 
 To get started, ``cd`` to the directory you wish to work in and run
-``tmux``:
+``tmux`` or the equivalent command ``tmux new``:
 
 .. code::
 
    $ cd /projects/my_project/people/abc123
    $ tmux
 
-This will create a new session (group of terminals) with a single window
-(terminal), and will make new terminal start with the current working
-directory set to ``/projects/my_project/people/abc123`` for convenience.
-
-The session can be given a name with ``-s`` and the window can be given
-a name with ``-n`` as follows:
-
-.. code::
-
-   $ tmux new -s project -n task
-
-.. image:: images/tmux_new_named.gif
+.. image:: images/tmux_new.gif
    :class: gif
 
-See `basic shortcuts`_ section for how to change these names after
-you've created a session or window. It is not required to name your
-sessions/windows, but is recommended to do so if you work on multiple
-things at once.
+This will start tmux and create a new session (group of terminals) with
+a single window (terminal) to begin with, and will make new terminal
+start with the current working directory set to
+``/projects/my_project/people/abc123``. The benefit of setting your
+working directory before starting tmux is that all terminals opened in
+that session will start in that directory.
 
 Creating and navigating between terminals
 =========================================
 
-You start your new session with a single, blank terminal and you can
-create any number of additional terminals using the ``CTRL+c`` shortcut.
-The current terminals are listed at the bottom of the screen:
+You start your new session with a single, blank terminal, but you can
+create any number of additional terminals using the ``Ctrl+b c``
+keyboard shortcut. To use this shortcut first press ``Ctrl+b``, then
+release the buttons and press ``c`` and *only* ``c``.
+
+Notice how each terminal gets listed on the tmux bar:
+
+.. warning::
+
+   TODO: Screenshot
+
+When you have more than one terminal in a session, you can switch
+between them using ``Ctrl+b c`` to switch to the next terminal and
+``Ctrl+b p`` to switch to the previous terminal:
+
+.. warning::
+
+   TODO: Screenshot
+
+To close the terminals, either use the ``exit`` command or type
+``Ctrl+d`` on an empty command-line. tmux automatically closes once the
+last terminal has exited:
 
 .. warning::
 
@@ -103,6 +113,29 @@ the ``exit`` command or pressing ``CTRL+d`` while on an empty line:
 tmux_ will exit with the message ``[exited]`` once the last terminal in
 the current session has been closed.
 
+Naming your sessions and windows
+================================
+
+tmux allows you to give custom names to each session (group of
+terminals) and each window (terminal), in order to help you
+differentiate between them. This is not required, but is is recommended
+to do so if you work on multiple things at once.
+
+When starting a new session with the command `tmux new`, you can also
+give the session a name with ``-s`` and the window can be given a name
+with ``-n`` as follows. However, this can only if you are not already in
+an active tmux session:
+
+.. code::
+
+   $ tmux new -s project -n task
+
+.. image:: images/tmux_new_named.gif
+   :class: gif
+
+To rename an existing tmux session or window, you instead need to use
+the `basic shortcuts`_ described below.
+
 *****************
  Basic shortcuts
 *****************
@@ -135,6 +168,12 @@ releasing those keys, and *then* pressing the specified button and
    -  ``CTRL+b d`` Detaches from the current session (group of
       terminals). Tmux keeps running after this along with your
       terminals.
+
+**********************
+ Additional resources
+**********************
+
+TODO
 
 .. _getting started: https://github.com/tmux/tmux/wiki/Getting-Started
 
