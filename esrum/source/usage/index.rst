@@ -1,4 +1,4 @@
-.. _getting_started:
+.. _page_usage:
 
 ###################
  Using the cluster
