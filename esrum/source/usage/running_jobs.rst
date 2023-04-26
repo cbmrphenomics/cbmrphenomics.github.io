@@ -35,7 +35,7 @@ the :ref:`tmux_page` page for a short tutorial.
 ******************************
 
 If you need to run an interactive process, for example if you need to
-use an interactive R shell to process a large data-set, then you can
+use an interactive R shell to process a large dataset, then you can
 start a remote shell as follows:
 
 .. code::

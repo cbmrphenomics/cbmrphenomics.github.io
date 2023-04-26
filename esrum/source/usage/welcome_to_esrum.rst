@@ -92,7 +92,7 @@ Projects folder contain four sub-folders, namely
 
 -  `/projects/<project-name>/data`
 
-   The `data` folder is intended for data-sets shared between project
+   The `data` folder is intended for datasets shared between project
    members. This could be your raw data or your results files from
    processing your raw data. The `data` folder is automatically backed
    up every day.
