@@ -1,3 +1,5 @@
+.. _page_running:
+
 ##########################
  Running jobs using Slurm
 ##########################

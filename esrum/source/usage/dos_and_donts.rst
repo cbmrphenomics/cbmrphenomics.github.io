@@ -10,16 +10,17 @@ In general
 
 -  Do not place data or custom scripts in your home folder. Your home
    folder is accessible only to you, unless you provide a written
-   permission to KU IT. See TODO LINK for more information.
+   permission to KU IT. See :ref:`section_home` for more information.
 
 -  Do not run big jobs on the head node (`esrumhead01fl`). Small jobs
-   are allowed (at most a couple cores and modest memory usage), but
-   larger jobs *will* be terminated without warning. See the TODO page
-   for how to run your tasks.
+   are allowed (a couple of cores at most and modest memory usage), but
+   larger jobs *will* be terminated without warning. See the
+   :ref:`page_batch_jobs` page for how to run your tasks on the cluster.
 
 -  Be considerate of other users who also need to run their analyses and
    please talk to us if you have a lot of jobs to run, need to use a lot
-   of computational resources, and so on. See also TODO.
+   of computational resources, and so on. See also the
+   :ref:`page_running` page.
 
 The following may make your use of the Esrum cluster easier:
 

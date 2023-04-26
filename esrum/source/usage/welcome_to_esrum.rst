@@ -9,6 +9,8 @@ nodes.
 For a description of software available on Esrum, as well as
 instructions for adding your own software, see TODO. For an introduction
 
+.. _section_home:
+
 ******************
  Your home folder
 ******************
