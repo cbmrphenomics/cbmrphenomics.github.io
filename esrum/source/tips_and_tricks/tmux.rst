@@ -121,7 +121,7 @@ terminals) and each window (terminal), in order to help you
 differentiate between them. This is not required, but is is recommended
 to do so if you work on multiple things at once.
 
-When starting a new session with the command `tmux new`, you can also
+When starting a new session with the command ``tmux new``, you can also
 give the session a name with ``-s`` and the window can be given a name
 with ``-n`` as follows. However, this can only if you are not already in
 an active tmux session:

@@ -45,13 +45,14 @@ start a remote shell as follows:
    [abc123@esrumhead01fl ~] $ srun --pty -- /bin/bash
    [abc123@esrumcmpn07fl ~] $
 
-Note that the hostname displayed changes from `esrumhead01fl` to
-`esrumcmpn07fl`, where `esrumcmpn07fl` is one of the eight Esrum compute
-nodes.
+Note that the hostname displayed changes from ``esrumhead01fl`` to
+``esrumcmpn07fl``, where ``esrumcmpn07fl`` is one of the eight Esrum
+compute nodes.
 
 You can now run interactive jobs, for example running an R shell, or
 test computationally expensive tools or scripts. Once you are done, exit
-the interactive shell by using the `exit` command or pressing `Ctrl+D`.
+the interactive shell by using the ``exit`` command or pressing
+``Ctrl+D``.
 
 Be sure to exit the interactive session once you are done working, so
 that the resources reserved for your shell is made available to other
@@ -61,12 +62,12 @@ users!
  Reserving resources for your jobs
 ***********************************
 
-By default a `srun` will reserve 1 CPU (2 threads) and 8 GB of ram per
+By default a ``srun`` will reserve 1 CPU (2 threads) and 8 GB of ram per
 CPU. Should your job require more CPUs or RAM, then you can request CPUs
-using the `-c` or `--cpus-per-task` options, and request RAM using the
-`--mem` or `--mem-per-cpu` options. Values given to `--mem` are assumed
-to be in megabytes by default, but this may be overridden by using an
-explicit unit (M for megabyte, G for gigabyte, T for terabyte):
+using the ``-c`` or ``--cpus-per-task`` options, and request RAM using
+the ``--mem`` or ``--mem-per-cpu`` options. Values given to ``--mem``
+are assumed to be in megabytes by default, but this may be overridden by
+using an explicit unit (M for megabyte, G for gigabyte, T for terabyte):
 
 .. code::
 

@@ -47,9 +47,9 @@ wish to explore the content of a SIF_ or ERDA_ project,
 .. warning::
 
    Note that sshfs *cannot* be used in project folders. Attempting to
-   mount a folder under `/projects` using sshfs will result in a broken
-   mount-point that cannot be removed. You must therefore only create
-   mount-points in your home folder!
+   mount a folder under ``/projects`` using sshfs will result in a
+   broken mount-point that cannot be removed. You must therefore only
+   create mount-points in your home folder!
 
 .. _erda: https://erda.ku.dk/
 

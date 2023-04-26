@@ -26,7 +26,7 @@ The following may make your use of the Esrum cluster easier:
 
 -  Use tmux_ for running persistent shells on the cluster. See the
    :ref:`tmux_page` page for more information.
--  If using `ssh` directly, then setup an alias for connecting to Esrum.
-   See TODO page for more information.
+-  If using ``ssh`` directly, then setup an alias for connecting to
+   Esrum. See TODO page for more information.
 
 .. _tmux: https://github.com/tmux/tmux/wiki

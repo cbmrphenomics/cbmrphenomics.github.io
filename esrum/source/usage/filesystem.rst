@@ -12,8 +12,8 @@ as the location and layout of projects and data-shares.
 ******************
 
 When you login to Esrum for the first time, your home folder should
-contain a single folder named `ucph`. This folder in turn contains your
-KU network drives (formerly `H:` and `N:`).
+contain a single folder named ``ucph``. This folder in turn contains
+your KU network drives (formerly ``H:`` and ``N:``).
 
 .. note::
 
@@ -52,7 +52,7 @@ folder corresponding either to your research group or an actual project.
 See the :ref:`applying_for_projects` section for information about
 applying for access to projects on Esrum.
 
-Project folders are both are located in the `/projects` folder:
+Project folders are both are located in the ``/projects`` folder:
 
 .. code::
 
@@ -63,46 +63,46 @@ Project folders are both are located in the `/projects` folder:
 
 To apply for access to a specific project follow the instructions in
 :ref:`applying_for_access`, using the name of the project in the
-following form `COMP-PRJ-genotyping`, replacing `genotyping` with the
-name of your project.
+following form ``COMP-PRJ-genotyping``, replacing ``genotyping`` with
+the name of your project.
 
 .. warning::
 
-   Projects configured for GDPR data are marked with the `AUDIT`. NEVER
-   work on GDPR data in your home folder or in non-AUDIT projects!
+   Projects configured for GDPR data are marked with the ``AUDIT``.
+   NEVER work on GDPR data in your home folder or in non-AUDIT projects!
 
 Projects folder contain four sub-folders, namely
 
--  `/projects/<project-name>/people`
+-  ``/projects/<project-name>/people``
 
    Every member of a project has their own people folder. It is
    suggested that you keep your scripts, configuration files,
-   documentation, and the like in this folder. The `people` folder is
+   documentation, and the like in this folder. The ``people`` folder is
    automatically backed up every day.
 
--  `/projects/<project-name>/apps`
+-  ``/projects/<project-name>/apps``
 
    The apps folder is intended for storing software shared between
    project members. See for example the :ref:`modules_page` for how to
    setup a shared repository of software that can be used with the
-   module system. The `apps` folder is automatically backed up every
+   module system. The ``apps`` folder is automatically backed up every
    day.
 
--  `/projects/<project-name>/data`
+-  ``/projects/<project-name>/data``
 
-   The `data` folder is intended for datasets shared between project
+   The ``data`` folder is intended for datasets shared between project
    members. This could be your raw data or your results files from
-   processing your raw data. The `data` folder is automatically backed
+   processing your raw data. The ``data`` folder is automatically backed
    up every day.
 
--  `/projects/<project-name>/scratch`
+-  ``/projects/<project-name>/scratch``
 
-   The `scratch` folder is intended for temporary files. It is also
+   The ``scratch`` folder is intended for temporary files. It is also
    suitable for files that do not need to be backed up, for example
    public databases or datasets used for a specific project.
 
-Unlike your `home` folder, there are no limits on how much you store in
-these folders.
+Unlike your ``/home`` folder, there are no limits on how much you store
+in these folders.
 
 .. _red hat enterprise linux: https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux
 
