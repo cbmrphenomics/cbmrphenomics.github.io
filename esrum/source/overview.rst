@@ -27,7 +27,7 @@ Users connect to the "head" node, from which jobs can be submitted to
 the individual nodes. In addition, a server for running container
 instances, an RStudio_ web server, and a Shiny_ server are available.
 
-The nodes runs Red Hat Enterprise Linux 8, use the SLURM_ management
+The nodes runs Red Hat Enterprise Linux 8, use the Slurm_ management
 system for running tasks, and use `environment modules`_ for managing
 software.
 
