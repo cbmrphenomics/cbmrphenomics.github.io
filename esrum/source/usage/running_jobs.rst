@@ -84,13 +84,13 @@ Note that the hostname displayed changes from ``esrumhead01fl`` to
 compute nodes.
 
 You can now run interactive jobs, for example running an R shell, or
-test computationally expensive tools or scripts. Once you are done, exit
-the interactive shell by using the ``exit`` command or pressing
-``Ctrl+D``.
+test computationally expensive tools or scripts. However, note that you
+*cannot* start jobs using Slurm in an interactive shell; jobs can only
+be started from the head node.
 
-Be sure to exit the interactive session once you are done working, so
-that the resources reserved for your shell is made available to other
-users!
+Once you are done, be sure to exit the interactive shell by using the
+``exit`` command or pressing ``Ctrl+D``, so that the resources reserved
+for your shell is made available to other users!
 
 ***********************************
  Reserving resources for your jobs
