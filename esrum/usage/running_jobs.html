@@ -43,8 +43,11 @@
 <li><a class="reference internal" href="#">Running jobs using Slurm</a><ul>
 <li><a class="reference internal" href="#running-commands-using-slurm">Running commands using Slurm</a></li>
 <li><a class="reference internal" href="#running-an-interactive-shell">Running an interactive shell</a></li>
-<li><a class="reference internal" href="#reserving-resources-for-your-jobs">Reserving resources for your jobs</a></li>
+<li><a class="reference internal" href="#reserving-resources-for-your-jobs">Reserving resources for your jobs</a><ul>
 <li><a class="reference internal" href="#reserving-gpus">Reserving GPUs</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#additional-resources">Additional resources</a></li>
 </ul>
 </li>
 </ul>
@@ -80,10 +83,10 @@ to queue and distribute jobs on the compute and GPU nodes. This section
 describes how to how to run basic jobs, how to start an interactive
 shell on a compute node, and how to reserve the needed resources for
 your tasks.</p>
-<p>It is strongly recommended that you run <a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> or a similar tool before
-starting tasks using <code class="docutils literal notranslate"><span class="pre">srun</span></code>, in order to ensure that your work is not
-interrupted if you lose connection to the server or need to turn off
-your PC. See the <a class="reference internal" href="../tips_and_tricks/tmux.html#tmux-page"><span class="std std-ref">Persistent sessions with tmux</span></a> page for a short tutorial.</p>
+<p>If you need to run a number of similar jobs in parallel, for example
+genotyping a set of samples or mapping FASTQ files to a reference
+genome, then the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> can be used to automatically queue multiple
+jobs. See the <a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a> for more information.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Resource intensive jobs <em>must</em> be run using Slurm. Your tasks <em>will</em>
@@ -94,9 +97,9 @@ prevent any impact on other users of the cluster.</p>
 <p class="admonition-title">Warning</p>
 <p>Show consideration towards other users of the cluster. If you need to
 run very intensive jobs then please <a class="reference internal" href="../contact.html#page-contact"><span class="std std-ref">Contact</span></a> Phenomics
-first so that we can ensure that the cluster will still be usable by
-other users while your jobs are running. Failure to do so may result
-in your jobs being terminated without prior warning.</p>
+first so that we can help ensure that the cluster will still be
+usable by other users while your jobs are running. Failure to do so
+may result in your jobs being terminated without prior warning.</p>
 </div>
 <div class="section" id="running-commands-using-slurm">
 <h2>Running commands using Slurm<a class="headerlink" href="#running-commands-using-slurm" title="Permalink to this headline">¶</a></h2>
@@ -137,39 +140,51 @@ you can start a shell on one of the compute nodes as follows:</p>
 <code class="docutils literal notranslate"><span class="pre">esrumcmpn07fl</span></code>, where <code class="docutils literal notranslate"><span class="pre">esrumcmpn07fl</span></code> is one of the eight Esrum
 compute nodes.</p>
 <p>You can now run interactive jobs, for example running an R shell, or
-test computationally expensive tools or scripts. Once you are done, exit
-the interactive shell by using the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command or pressing
-<code class="docutils literal notranslate"><span class="pre">Ctrl+D</span></code>.</p>
-<p>Be sure to exit the interactive session once you are done working, so
-that the resources reserved for your shell is made available to other
-users!</p>
+test computationally expensive tools or scripts. However, note that you
+<em>cannot</em> start jobs using Slurm in an interactive shell; jobs can only
+be started from the head node.</p>
+<p>Once you are done, be sure to exit the interactive shell by using the
+<code class="docutils literal notranslate"><span class="pre">exit</span></code> command or pressing <code class="docutils literal notranslate"><span class="pre">Ctrl+D</span></code>, so that the resources reserved
+for your shell is made available to other users!</p>
 </div>
 <div class="section" id="reserving-resources-for-your-jobs">
 <h2>Reserving resources for your jobs<a class="headerlink" href="#reserving-resources-for-your-jobs" title="Permalink to this headline">¶</a></h2>
-<p>By default a <code class="docutils literal notranslate"><span class="pre">srun</span></code> will reserve 1 CPU (2 threads) and 8 GB of ram per
-CPU. Should your job require more CPUs or RAM, then you can request CPUs
-using the <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> options, and request RAM using
-the <code class="docutils literal notranslate"><span class="pre">--mem</span></code> or <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code> options. Values given to <code class="docutils literal notranslate"><span class="pre">--mem</span></code>
-are assumed to be in megabytes by default, but this may be overridden by
-using an explicit unit (M for megabyte, G for gigabyte, T for terabyte):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Run a task with <span class="m">8</span> CPUs and <span class="m">64</span> gigabytes of memory
-<span class="go">srun -c 8 --mem 64G -- my-command</span>
+<p>By default a <code class="docutils literal notranslate"><span class="pre">srun</span></code> will reserve 1 CPU and just under 15 GB of ram per
+CPU. Should your job require more CPUs, then you can request them using
+the <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> options:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Run a task with <span class="m">8</span> CPUs and <span class="m">8</span> * <span class="nv">15</span> <span class="o">=</span> <span class="m">120</span> gigabytes of RAM
+<span class="go">srun -c 8 -- my-command</span>
 </pre></div>
 </div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>If you</p>
+<p>The amount of RAM allocated by default should be sufficient for most
+tasks, but when needed you can request additional RAM using the
+<code class="docutils literal notranslate"><span class="pre">--mem</span></code> or <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code> options:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Run a task with <span class="m">8</span> CPUs and <span class="m">512</span> gigabytes of RAM
+<span class="go">srun -c 8 --mem 512G -- my-command</span>
+</pre></div>
 </div>
-</div>
+<p>As described in the <a class="reference internal" href="../overview.html#page-overview"><span class="std std-ref">Overview</span></a>, each node has 128 CPUs
+available and 2048 GB of RAM, of which about 1993 GB can be reserved in
+total.</p>
+<p>The GPU node has 4096 GB of RAM, of which 3920 is reservable, but since
+we only have one GPU node we ask that you use the regular nodes unless
+your analyses actually requires that much RAM at once.</p>
 <div class="section" id="reserving-gpus">
-<h2>Reserving GPUs<a class="headerlink" href="#reserving-gpus" title="Permalink to this headline">¶</a></h2>
+<h3>Reserving GPUs<a class="headerlink" href="#reserving-gpus" title="Permalink to this headline">¶</a></h3>
 <p>To reserve GPU resources, you need to select the GPU queue and
 (optionally) specify the number of Nvidia A100 GPUs (1 or 2) needed. The
-following command queues command <code class="docutils literal notranslate"><span class="pre">${COMMAND}</span></code> and requests a single
+following command queues command <code class="docutils literal notranslate"><span class="pre">my-command</span></code> and requests a single
 A100 GPU:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">srun --partition=gpuqueue --gres=gpu:a100:1 -- ${COMMAND}</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">srun --partition=gpuqueue --gres=gpu:a100:1 -- my-command</span>
 </pre></div>
 </div>
+</div>
+</div>
+<div class="section" id="additional-resources">
+<h2>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">srun</span></code> <a class="reference external" href="https://slurm.schedmd.com/srun.html">manual page</a></p></li>
+</ul>
 </div>
 </div>
 

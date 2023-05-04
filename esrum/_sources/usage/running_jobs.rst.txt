@@ -10,10 +10,10 @@ describes how to how to run basic jobs, how to start an interactive
 shell on a compute node, and how to reserve the needed resources for
 your tasks.
 
-It is strongly recommended that you run tmux_ or a similar tool before
-starting tasks using ``srun``, in order to ensure that your work is not
-interrupted if you lose connection to the server or need to turn off
-your PC. See the :ref:`tmux_page` page for a short tutorial.
+If you need to run a number of similar jobs in parallel, for example
+genotyping a set of samples or mapping FASTQ files to a reference
+genome, then the ``sbatch`` can be used to automatically queue multiple
+jobs. See the :ref:`page_batch_jobs` for more information.
 
 .. warning::
 
@@ -25,9 +25,9 @@ your PC. See the :ref:`tmux_page` page for a short tutorial.
 
    Show consideration towards other users of the cluster. If you need to
    run very intensive jobs then please :ref:`page_contact` Phenomics
-   first so that we can ensure that the cluster will still be usable by
-   other users while your jobs are running. Failure to do so may result
-   in your jobs being terminated without prior warning.
+   first so that we can help ensure that the cluster will still be
+   usable by other users while your jobs are running. Failure to do so
+   may result in your jobs being terminated without prior warning.
 
 ******************************
  Running commands using Slurm
@@ -84,46 +84,61 @@ Note that the hostname displayed changes from ``esrumhead01fl`` to
 compute nodes.
 
 You can now run interactive jobs, for example running an R shell, or
-test computationally expensive tools or scripts. Once you are done, exit
-the interactive shell by using the ``exit`` command or pressing
-``Ctrl+D``.
+test computationally expensive tools or scripts. However, note that you
+*cannot* start jobs using Slurm in an interactive shell; jobs can only
+be started from the head node.
 
-Be sure to exit the interactive session once you are done working, so
-that the resources reserved for your shell is made available to other
-users!
+Once you are done, be sure to exit the interactive shell by using the
+``exit`` command or pressing ``Ctrl+D``, so that the resources reserved
+for your shell is made available to other users!
 
 ***********************************
  Reserving resources for your jobs
 ***********************************
 
-By default a ``srun`` will reserve 1 CPU (2 threads) and 8 GB of ram per
-CPU. Should your job require more CPUs or RAM, then you can request CPUs
-using the ``-c`` or ``--cpus-per-task`` options, and request RAM using
-the ``--mem`` or ``--mem-per-cpu`` options. Values given to ``--mem``
-are assumed to be in megabytes by default, but this may be overridden by
-using an explicit unit (M for megabyte, G for gigabyte, T for terabyte):
+By default a ``srun`` will reserve 1 CPU and just under 15 GB of ram per
+CPU. Should your job require more CPUs, then you can request them using
+the ``-c`` or ``--cpus-per-task`` options:
 
 .. code::
 
-   # Run a task with 8 CPUs and 64 gigabytes of memory
-   srun -c 8 --mem 64G -- my-command
+   # Run a task with 8 CPUs and 8 * 15 = 120 gigabytes of RAM
+   srun -c 8 -- my-command
 
-.. warning::
+The amount of RAM allocated by default should be sufficient for most
+tasks, but when needed you can request additional RAM using the
+``--mem`` or ``--mem-per-cpu`` options:
 
-   If you
+.. code::
 
-****************
- Reserving GPUs
-****************
+   # Run a task with 8 CPUs and 512 gigabytes of RAM
+   srun -c 8 --mem 512G -- my-command
+
+As described in the :ref:`page_overview`, each node has 128 CPUs
+available and 2048 GB of RAM, of which about 1993 GB can be reserved in
+total.
+
+The GPU node has 4096 GB of RAM, of which 3920 is reservable, but since
+we only have one GPU node we ask that you use the regular nodes unless
+your analyses actually requires that much RAM at once.
+
+Reserving GPUs
+==============
 
 To reserve GPU resources, you need to select the GPU queue and
 (optionally) specify the number of Nvidia A100 GPUs (1 or 2) needed. The
-following command queues command ``${COMMAND}`` and requests a single
+following command queues command ``my-command`` and requests a single
 A100 GPU:
 
 .. code::
 
-   srun --partition=gpuqueue --gres=gpu:a100:1 -- ${COMMAND}
+   srun --partition=gpuqueue --gres=gpu:a100:1 -- my-command
+
+**********************
+ Additional resources
+**********************
+
+-  The ``srun`` `manual page <https://slurm.schedmd.com/srun.html>`_
 
 .. _slurm: https://slurm.schedmd.com/overview.html
 
