@@ -72,7 +72,8 @@ file-structure of projects on Esrum.
    can still apply for access to cohorts, but you may not be granted
    access until everything is ready.
 
-You can find an up-to-date of datasets and cohorts in the N-drive at
+You can find an up-to-date list of datasets and cohorts in the N-drive
+at
 
 .. code::
 
@@ -88,11 +89,10 @@ substitute ``SRV-esrumhead-users`` with the name of your project.
    from the data-manager responsible for that data. The Phenomics group
    will verify that you are permitted to access the data. You may speed
    up this process by having the data manager :ref:`page_contact` us in
-   advance.
+   advance with a written approval.
 
 .. _here: https://kunet.ku.dk/medarbejderguide/ITvejl/KU%20IdM%20-%20S%C3%A5dan%20anmodes%20om%20funktionsrolle.pdf
 
 .. _identity.ku.dk: https://identity.ku.dk/
 
 .. _wsl: https://learn.microsoft.com/en-us/windows/wsl/about
-
