@@ -41,7 +41,7 @@ available compute node:
 
 .. code::
 
-   srun gzip chr20.fasta
+   $ srun gzip chr20.fasta
 
 .. image:: images/srun_minimal.gif
    :class: gif
@@ -53,7 +53,7 @@ bash (or similar) script. The script can then be run using ``srun``:
 
 .. code::
 
-   srun bash my_script.sh
+   $ srun bash my_script.sh
 
 .. image:: images/srun_wrapped.gif
    :class: gif
@@ -98,21 +98,21 @@ for your shell is made available to other users!
 
 By default a ``srun`` will reserve 1 CPU and just under 15 GB of ram per
 CPU. Should your job require more CPUs, then you can request them using
-the ``-c`` or ``--cpus-per-task`` options:
+the ``-c`` or ``--cpus-per-task`` options. The following runs a task
+with 8 CPUs and 8 * 15 = 120 gigabytes of RAM:
 
 .. code::
 
-   # Run a task with 8 CPUs and 8 * 15 = 120 gigabytes of RAM
-   srun -c 8 -- my-command
+   $ srun -c 8 -- my-command
 
 The amount of RAM allocated by default should be sufficient for most
 tasks, but when needed you can request additional RAM using the
-``--mem`` or ``--mem-per-cpu`` options:
+``--mem`` or ``--mem-per-cpu`` options. The following runs a task with 8
+CPUs and 512 gigabytes of RAM:
 
 .. code::
 
-   # Run a task with 8 CPUs and 512 gigabytes of RAM
-   srun -c 8 --mem 512G -- my-command
+   $ srun -c 8 --mem 512G -- my-command
 
 As described in the :ref:`page_overview`, each node has 128 CPUs
 available and 2048 GB of RAM, of which about 1993 GB can be reserved in
@@ -132,7 +132,13 @@ A100 GPU:
 
 .. code::
 
-   srun --partition=gpuqueue --gres=gpu:a100:1 -- my-command
+   $ srun --partition=gpuqueue --gres=gpu:a100:1 -- my-command
+
+Alternatively you may reserve both CPUs:
+
+.. code::
+
+   $ srun --partition=gpuqueue --gres=gpu:a100:2 -- my-command
 
 **********************
  Additional resources
