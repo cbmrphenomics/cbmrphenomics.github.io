@@ -4,11 +4,14 @@
  Running jobs using Slurm
 ##########################
 
-The Esrum cluster makes use of the Slurm_ job management system in order
-to queue and distribute jobs on the compute and GPU nodes. This section
-describes how to how to run basic jobs, how to start an interactive
-shell on a compute node, and how to reserve the needed resources for
-your tasks.
+In order to run jobs on the Esrum cluster, you must connect to the head
+node and queue them using the Slurm_ job management system. Slurm_ takes
+care of automatically queuing and distribute jobs on the compute and GPU
+nodes when the required resources are available.
+
+This section describes how to run basic jobs, how to start an
+interactive shell on a compute node, and how to reserve the resources
+needed for your tasks.
 
 If you need to run a number of similar jobs in parallel, for example
 genotyping a set of samples or mapping FASTQ files to a reference
@@ -17,8 +20,8 @@ jobs. See the :ref:`page_batch_jobs` for more information.
 
 .. warning::
 
-   Resource intensive jobs *must* be run using Slurm. Your tasks *will*
-   be terminated without prior warning if you fail to do so, in order to
+   Resource intensive jobs *must* be run using Slurm_. Tasks running on
+   the head node *will* be terminated without prior warning, in order to
    prevent any impact on other users of the cluster.
 
 .. warning::
@@ -35,7 +38,7 @@ jobs. See the :ref:`page_batch_jobs` for more information.
 
 The ``srun`` command is used to queue and execute commands on the
 compute nodes, and for most part it should feel no different than
-running a command on the head node. Simply prefix your command with
+running a command without Slurm_. Simply prefix your command with
 ``srun`` and the queuing system takes care of running it on the first
 available compute node:
 

@@ -8,12 +8,14 @@ If you have not already applied for and been granted access to the
 cluster, then please see the :ref:`applying_for_access` page before
 continuing.
 
-The cluster is accessible via SSH at ``esrumhead01fl.unicph.domain``. To
-connect to the cluster you will typically need to be connected to the KU
-VPN.
+The cluster's is accessible via SSH at ``esrumhead01fl.unicph.domain``.
+This is the Esrum "head" node, which serves as the entry-point for the
+cluster and which gives you access to the job management system used for
+running analyses (see :ref:`page_running`)
 
-For information about connecting to the VPN, see the support pages on
-KUNet in Danish_ and English_.
+To connect to the cluster you will typically need to be connected to the
+KU VPN. For information about connecting to the VPN, see the support
+pages on KUNet in Danish_ and English_.
 
 *******************
  For Windows users
