@@ -1,3 +1,5 @@
+.. _filesystem_page:
+
 ################
  The filesystem
 ################
