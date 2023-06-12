@@ -12,4 +12,3 @@
    running_jobs
    batch_jobs
    modules
-   dos_and_donts
