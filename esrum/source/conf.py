@@ -31,5 +31,8 @@ html_show_sourcelink = False
 
 html_theme = "bizstyle"
 html_static_path = ["_static"]
-html_css_files = ["css/playback.css"]
+html_css_files = [
+    "css/playback.css",
+    "css/theme.css",
+]
 html_js_files = ["js/libgif.js"]
