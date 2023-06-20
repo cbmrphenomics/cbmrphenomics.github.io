@@ -5,8 +5,9 @@
 ##############################
 
 This page gives a very brief run-down of how to create your own
-environment modules. However, for most part you should be requesting
-modules from KU-IT (see :ref:`requesting_missing_modules`).
+`environment modules`_. For more information see the `official
+documentation`_. However, for most part you should be requesting modules
+from KU-IT (see :ref:`requesting_missing_modules`).
 
 To simplify things, this example makes use of a generalized template
 file (available for download :download:`here <moduletemplate.tcl>`) for
@@ -15,7 +16,7 @@ which only a handful of (highlighted) lines need to be changed:
 .. literalinclude:: moduletemplate.tcl
    :language: tcl
    :linenos:
-   :emphasize-lines: 7-10,25-26
+   :emphasize-lines: 7-10,12-13
 
 For the purpose of this example we will make our own module for
 ``seqtk`` version 1.4.
@@ -57,7 +58,7 @@ that the ``apps`` folder is therefore located at
       .. literalinclude:: moduletemplate.seqtk.tcl
          :language: tcl
          :linenos:
-         :emphasize-lines: 7-8,23
+         :emphasize-lines: 7-8,10
 
    As this is a very simple module we only need to set the ``PATH``
    environment variable.
@@ -109,9 +110,27 @@ that the ``apps`` folder is therefore located at
       ``.profile``, ``.bashrc``, or similar to automatically enable this
       module repository when you login.
 
-***************************
- More complicated software
-***************************
+****************************
+ Dependencies and conflicts
+****************************
+
+Software may depend on other software to run (e.g. java based software
+needing a Java Runtime Environment (JRE) to run) or may conflict with
+other software (e.g. mamba and conda both providing the same commands).
+
+The template above automatically conflicts with different versions of
+the same program via the ``conflict "${name}"`` line, but it is also
+possible to add additional conflicts.
+
+To add a requirement, instead use ``prereq module`` where ``module`` is
+the name of the module that your module depends on. For example, if your
+program depends on ``perl``, then you may add ``prereq perl``. You may
+optionally specify the version of said module, e.g. ``prereq
+perl/5.24.3``.
+
+************************************
+ Building more complicated software
+************************************
 
 For more complicated software it is recommended to use the functionality
 that is often built to install it directly in the target directory. An
@@ -154,6 +173,10 @@ Then all you need to do is to create a matching module file and save it
 as ``/projects/my-project/apps/modules/modulefiles/visidata/2.11``. The
 python module loaded above *does not* need to be loaded before using
 this software.
+
+.. _environment modules: https://modules.sourceforge.net/
+
+.. _official documentation: https://modules.readthedocs.io/en/v4.5.2/
 
 .. _seqtk: https://github.com/lh3/seqtk
 

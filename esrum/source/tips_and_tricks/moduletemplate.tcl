@@ -9,6 +9,12 @@ set description "description of software goes here"
 # FIXME: Update the project name/location of the modules
 set root /projects/my-project/apps/modules/software/${name}/${version}
 
+# FIXME: Update/add environment variables required by the software
+prepend-path PATH ${root}/bin
+
+# Prevent loading multiple versions of the same software
+conflict "${name}"
+
 proc ModulesHelp { } {
    global name version
    puts stderr "\tLoads the ${name} version ${version} environment"
@@ -21,6 +27,3 @@ proc ModulesDisplay { } {
 }
 
 module-whatis "${name} [file tail [module-info name]] - ${description}"
-
-# FIXME: Update/add environment variables required by the software
-prepend-path PATH ${root}/bin
