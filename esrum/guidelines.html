@@ -5,10 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Guidelines &#8212; Esrum Cluster  documentation</title>
+    <title>4. Guidelines &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/css/playback.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
     
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -18,8 +19,8 @@
     <script src="_static/js/libgif.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Using the cluster" href="usage/index.html" />
-    <link rel="prev" title="Overview" href="overview.html" />
+    <link rel="next" title="5. Using the cluster" href="usage/index.html" />
+    <link rel="prev" title="3. Overview" href="overview.html" />
     <script defer src="_static/js/playback.js"></script>
 
   </head><body>
@@ -27,10 +28,10 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="usage/index.html" title="Using the cluster"
+          <a href="usage/index.html" title="5. Using the cluster"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="overview.html" title="Overview"
+          <a href="overview.html" title="3. Overview"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>
@@ -39,20 +40,20 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Guidelines</a><ul>
-<li><a class="reference internal" href="#basic-security">Basic security</a></li>
-<li><a class="reference internal" href="#data-storage">Data storage</a></li>
-<li><a class="reference internal" href="#running-tasks">Running tasks</a></li>
+<li><a class="reference internal" href="#">4. Guidelines</a><ul>
+<li><a class="reference internal" href="#basic-security">4.1. Basic security</a></li>
+<li><a class="reference internal" href="#data-storage">4.2. Data storage</a></li>
+<li><a class="reference internal" href="#running-tasks">4.3. Running tasks</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="overview.html"
-                        title="previous chapter">Overview</a></p>
+                        title="previous chapter"><span class="section-number">3. </span>Overview</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="usage/index.html"
-                        title="next chapter">Using the cluster</a></p>
+                        title="next chapter"><span class="section-number">5. </span>Using the cluster</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -72,14 +73,14 @@
           <div class="body" role="main">
             
   <div class="section" id="guidelines">
-<h1>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">4. </span>Guidelines<a class="headerlink" href="#guidelines" title="Permalink to this headline">¶</a></h1>
 <p>The following describes the general guidelines for using the Esrum
 cluster.</p>
 <p>Failure to follow these guidelines may result in your tasks being
 terminated and may even result in your access to the cluster being
 revoked.</p>
 <div class="section" id="basic-security">
-<h2>Basic security<a class="headerlink" href="#basic-security" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.1. </span>Basic security<a class="headerlink" href="#basic-security" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Never leave your PC/laptop unsecured while logged onto the cluster.
 In general, you should <em>never</em> leave your PC/laptop unsecured. Your
@@ -88,13 +89,19 @@ PC/laptop <em>must</em> be locked or turned off whenever you leave it.</p></li>
 </ul>
 </div>
 <div class="section" id="data-storage">
-<h2>Data storage<a class="headerlink" href="#data-storage" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.2. </span>Data storage<a class="headerlink" href="#data-storage" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p>GDPR protected data <em>must</em> be stored in audited project folders.
-These can be recognized by the <cite>AUDIT</cite> suffix, for example
-<cite>/projects/denmark-AUDIT</cite>.</p></li>
-<li><p>Data <em>must not</em> be copied out of <cite>/datasets`</cite> folders. Instead use
-symbolic links if you need the data to be located in a more
+<li><p>GDPR protected data <em>must</em> be stored in audited folders. These can be
+recognized by the <cite>-AUDIT</cite> suffix, for example <cite>/projects/name-AUDIT</cite>
+or <cite>/datasets/name-AUDIT</cite>.</p></li>
+<li><p>Directory names and file names <em>must not</em> contain GDPR protected data
+or other confidential information, even if placed in an audited
+folder. This is because common operations expose this information to
+<em>all</em> users of the cluster. For the same reason, <em>do not</em> include
+such information in command-line arguments.</p></li>
+<li><p>Data <em>must not</em> be copied out of audited <cite>/datasets</cite> or <cite>/projects</cite>
+folders without permission from the relevant data controller. Instead
+use symbolic links if you need the data to be located in a more
 convenient location.</p></li>
 <li><p>Data must not leave the cluster without permission from the relevant
 data controllers.</p></li>
@@ -105,7 +112,7 @@ permission to KU IT.</p></li>
 <p>See <a class="reference internal" href="usage/filesystem.html#filesystem-page"><span class="std std-ref">The filesystem</span></a> for more information.</p>
 </div>
 <div class="section" id="running-tasks">
-<h2>Running tasks<a class="headerlink" href="#running-tasks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3. </span>Running tasks<a class="headerlink" href="#running-tasks" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Do not run big jobs on the head node (<cite>esrumhead01fl</cite>), as doing so
 may impact the ability of everyone to run jobs. However, we do permit
@@ -136,10 +143,10 @@ your tasks on the cluster.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="usage/index.html" title="Using the cluster"
+          <a href="usage/index.html" title="5. Using the cluster"
              >next</a></li>
         <li class="right" >
-          <a href="overview.html" title="Overview"
+          <a href="overview.html" title="3. Overview"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>

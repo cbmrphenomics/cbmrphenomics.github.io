@@ -23,12 +23,19 @@ revoked.
  Data storage
 **************
 
--  GDPR protected data *must* be stored in audited project folders.
-   These can be recognized by the `AUDIT` suffix, for example
-   `/projects/denmark-AUDIT`.
+-  GDPR protected data *must* be stored in audited folders. These can be
+   recognized by the `-AUDIT` suffix, for example `/projects/name-AUDIT`
+   or `/datasets/name-AUDIT`.
 
--  Data *must not* be copied out of `/datasets`` folders. Instead use
-   symbolic links if you need the data to be located in a more
+-  Directory names and file names *must not* contain GDPR protected data
+   or other confidential information, even if placed in an audited
+   folder. This is because common operations expose this information to
+   *all* users of the cluster. For the same reason, *do not* include
+   such information in command-line arguments.
+
+-  Data *must not* be copied out of audited `/datasets` or `/projects`
+   folders without permission from the relevant data controller. Instead
+   use symbolic links if you need the data to be located in a more
    convenient location.
 
 -  Data must not leave the cluster without permission from the relevant

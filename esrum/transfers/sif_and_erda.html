@@ -5,10 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Transferring data to/from SIF and ERDA &#8212; Esrum Cluster  documentation</title>
+    <title>6.2. Transferring data to/from SIF and ERDA &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
     
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -18,8 +19,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Transferring data to/from Computerome" href="computerome.html" />
-    <link rel="prev" title="Transferring data to/from localhost" href="localhost.html" />
+    <link rel="next" title="6.3. Transferring data to/from Computerome" href="computerome.html" />
+    <link rel="prev" title="6.1. Transferring data to/from localhost" href="localhost.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -27,33 +28,33 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="computerome.html" title="Transferring data to/from Computerome"
+          <a href="computerome.html" title="6.3. Transferring data to/from Computerome"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="localhost.html" title="Transferring data to/from localhost"
+          <a href="localhost.html" title="6.1. Transferring data to/from localhost"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Transferring data to/from Esrum</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">6. </span>Transferring data to/from Esrum</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Transferring data to/from SIF and ERDA</a><ul>
-<li><a class="reference internal" href="#two-factor-authentication">Two Factor Authentication</a></li>
-<li><a class="reference internal" href="#transferring-data-using-lftp">Transferring data using lftp</a></li>
-<li><a class="reference internal" href="#transferring-data-using-sshfs">Transferring data using sshfs</a></li>
+<li><a class="reference internal" href="#">6.2. Transferring data to/from SIF and ERDA</a><ul>
+<li><a class="reference internal" href="#two-factor-authentication">6.2.1. Two Factor Authentication</a></li>
+<li><a class="reference internal" href="#transferring-data-using-lftp">6.2.2. Transferring data using lftp</a></li>
+<li><a class="reference internal" href="#transferring-data-using-sshfs">6.2.3. Transferring data using sshfs</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="localhost.html"
-                        title="previous chapter">Transferring data to/from localhost</a></p>
+                        title="previous chapter"><span class="section-number">6.1. </span>Transferring data to/from localhost</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="computerome.html"
-                        title="next chapter">Transferring data to/from Computerome</a></p>
+                        title="next chapter"><span class="section-number">6.3. </span>Transferring data to/from Computerome</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -73,14 +74,14 @@
           <div class="body" role="main">
             
   <div class="section" id="transferring-data-to-from-sif-and-erda">
-<h1>Transferring data to/from SIF and ERDA<a class="headerlink" href="#transferring-data-to-from-sif-and-erda" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">6.2. </span>Transferring data to/from SIF and ERDA<a class="headerlink" href="#transferring-data-to-from-sif-and-erda" title="Permalink to this headline">¶</a></h1>
 <p>The following describes how to bulk transfer data from the Esrum cluster
 to <a class="reference external" href="https://sif.ku.dk/">SIF</a> (Sensitive Information Facility) or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> (Electronic Research
 Data Archive) and vice versa. For small amounts of data, it may be
 easier to use the web interfaces provided by the <a class="reference external" href="https://sif.ku.dk/">SIF</a> and <a class="reference external" href="https://erda.ku.dk/">ERDA</a>
 websites.</p>
 <div class="section" id="two-factor-authentication">
-<h2>Two Factor Authentication<a class="headerlink" href="#two-factor-authentication" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2.1. </span>Two Factor Authentication<a class="headerlink" href="#two-factor-authentication" title="Permalink to this headline">¶</a></h2>
 <p>Connecting to the <a class="reference external" href="https://sif.ku.dk/">SIF</a> or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> servers requires that the user has
 successfully authenticated using Two Factor Authentication. Futhermore,
 this must be done using the same IP from which the user intends to
@@ -91,10 +92,10 @@ authenticate to <a class="reference external" href="https://sif.ku.dk/">SIF</a> 
 available on the cluster (<a class="reference external" href="https://en.wikipedia.org/wiki/Lynx_(web_browser)">Lynx</a>).</p>
 </div>
 <div class="section" id="transferring-data-using-lftp">
-<h2>Transferring data using lftp<a class="headerlink" href="#transferring-data-using-lftp" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2.2. </span>Transferring data using lftp<a class="headerlink" href="#transferring-data-using-lftp" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="transferring-data-using-sshfs">
-<h2>Transferring data using sshfs<a class="headerlink" href="#transferring-data-using-sshfs" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.2.3. </span>Transferring data using sshfs<a class="headerlink" href="#transferring-data-using-sshfs" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The following assumes that you have successfully authenticated as
@@ -128,13 +129,13 @@ create mount-points in your home folder!</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="computerome.html" title="Transferring data to/from Computerome"
+          <a href="computerome.html" title="6.3. Transferring data to/from Computerome"
              >next</a></li>
         <li class="right" >
-          <a href="localhost.html" title="Transferring data to/from localhost"
+          <a href="localhost.html" title="6.1. Transferring data to/from localhost"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Transferring data to/from Esrum</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">6. </span>Transferring data to/from Esrum</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -51,8 +51,10 @@ these now and in the future:
 
 The majority of your work on Esrum should take place in the project
 folder corresponding either to your research group or an actual project.
-See the :ref:`applying_for_projects` section for information about
-applying for access to projects on Esrum.
+This ensures that people you are working with (group members or project
+members) can access your results and that nobody else can! See the
+:ref:`applying_for_projects` section for information about applying for
+access to projects on Esrum.
 
 Project folders are both are located in the ``/projects`` folder:
 
@@ -70,10 +72,11 @@ the name of your project.
 
 .. warning::
 
-   Projects configured for GDPR data are marked with the ``AUDIT``.
-   NEVER work on GDPR data in your home folder or in non-AUDIT projects!
+   Projects configured for GDPR data are marked with the ``-AUDIT``
+   suffix. NEVER work on GDPR data in your home folder or in non-AUDIT
+   projects!
 
-Projects folder contain four sub-folders, namely
+Projects folder always contain the following four sub-folders:
 
 -  ``/projects/<project-name>/people``
 

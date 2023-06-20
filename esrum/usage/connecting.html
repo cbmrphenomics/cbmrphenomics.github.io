@@ -5,10 +5,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Connecting to the cluster &#8212; Esrum Cluster  documentation</title>
+    <title>5.2. Connecting to the cluster &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
     
     <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
@@ -18,8 +19,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="The filesystem" href="filesystem.html" />
-    <link rel="prev" title="Applying for access" href="access.html" />
+    <link rel="next" title="5.3. The filesystem" href="filesystem.html" />
+    <link rel="prev" title="5.1. Applying for access" href="access.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -27,27 +28,27 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="filesystem.html" title="The filesystem"
+          <a href="filesystem.html" title="5.3. The filesystem"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="access.html" title="Applying for access"
+          <a href="access.html" title="5.1. Applying for access"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>Using the cluster</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Connecting to the cluster</a><ul>
-<li><a class="reference internal" href="#for-windows-users">For Windows users</a><ul>
-<li><a class="reference internal" href="#configuring-mobaxterm">Configuring MobaXterm</a></li>
+<li><a class="reference internal" href="#">5.2. Connecting to the cluster</a><ul>
+<li><a class="reference internal" href="#for-windows-users">5.2.1. For Windows users</a><ul>
+<li><a class="reference internal" href="#configuring-mobaxterm">5.2.1.1. Configuring MobaXterm</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#for-linux-and-osx-users">For Linux and OSX users</a></li>
-<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a><ul>
-<li><a class="reference internal" href="#timeout-while-connecting-to-the-cluster">Timeout while connecting to the cluster</a></li>
+<li><a class="reference internal" href="#for-linux-and-osx-users">5.2.2. For Linux and OSX users</a></li>
+<li><a class="reference internal" href="#troubleshooting">5.2.3. Troubleshooting</a><ul>
+<li><a class="reference internal" href="#timeout-while-connecting-to-the-cluster">5.2.3.1. Timeout while connecting to the cluster</a></li>
 </ul>
 </li>
 </ul>
@@ -56,10 +57,10 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="access.html"
-                        title="previous chapter">Applying for access</a></p>
+                        title="previous chapter"><span class="section-number">5.1. </span>Applying for access</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="filesystem.html"
-                        title="next chapter">The filesystem</a></p>
+                        title="next chapter"><span class="section-number">5.3. </span>The filesystem</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -79,7 +80,7 @@
           <div class="body" role="main">
             
   <div class="section" id="connecting-to-the-cluster">
-<span id="connecting"></span><h1>Connecting to the cluster<a class="headerlink" href="#connecting-to-the-cluster" title="Permalink to this headline">¶</a></h1>
+<span id="connecting"></span><h1><span class="section-number">5.2. </span>Connecting to the cluster<a class="headerlink" href="#connecting-to-the-cluster" title="Permalink to this headline">¶</a></h1>
 <p>If you have not already applied for and been granted access to the
 cluster, then please see the <a class="reference internal" href="access.html#applying-for-access"><span class="std std-ref">Applying for access</span></a> page before
 continuing.</p>
@@ -91,14 +92,14 @@ running analyses (see <a class="reference internal" href="running_jobs.html#page
 KU VPN. For information about connecting to the VPN, see the support
 pages on KUNet in <a class="reference external" href="https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx">Danish</a> and <a class="reference external" href="https://kunet.ku.dk/employee-guide/Pages/IT/Remote-access.aspx">English</a>.</p>
 <div class="section" id="for-windows-users">
-<h2>For Windows users<a class="headerlink" href="#for-windows-users" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.1. </span>For Windows users<a class="headerlink" href="#for-windows-users" title="Permalink to this headline">¶</a></h2>
 <p>Windows users will need to install a SSH client in order to be able to
 connect to the server. Options include <a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a>, <a class="reference external" href="https://www.putty.org/">Putty</a>, and Windows
 Subsystem for Linux (<a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>), and much more. The following demonstrates
 how to setup MobaXterm. Please refer to the <a class="reference internal" href="#for-linux-and-osx-users">For Linux and OSX users</a>
 section if using <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>.</p>
 <div class="section" id="configuring-mobaxterm">
-<h3>Configuring MobaXterm<a class="headerlink" href="#configuring-mobaxterm" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.1.1. </span>Configuring MobaXterm<a class="headerlink" href="#configuring-mobaxterm" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li><p>Install and open MobaXterm.</p></li>
 <li><p>Click left-most <code class="docutils literal notranslate"><span class="pre">Session</span></code> button on the toolbar.</p></li>
@@ -126,7 +127,7 @@ when clicking on the middle <code class="docutils literal notranslate"><span cla
 </div>
 </div>
 <div class="section" id="for-linux-and-osx-users">
-<h2>For Linux and OSX users<a class="headerlink" href="#for-linux-and-osx-users" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.2. </span>For Linux and OSX users<a class="headerlink" href="#for-linux-and-osx-users" title="Permalink to this headline">¶</a></h2>
 <p>Linux and OSX users can connect to the cluster using the following
 terminal command, replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with your KU username:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ssh abc123@esrumhead01fl.unicph.domain
@@ -165,9 +166,9 @@ when connecting to the server.</p>
 </div>
 </div>
 <div class="section" id="troubleshooting">
-<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.3. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="timeout-while-connecting-to-the-cluster">
-<h3>Timeout while connecting to the cluster<a class="headerlink" href="#timeout-while-connecting-to-the-cluster" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.3.1. </span>Timeout while connecting to the cluster<a class="headerlink" href="#timeout-while-connecting-to-the-cluster" title="Permalink to this headline">¶</a></h3>
 <p>You may experience timeout errors when you attempt to connect to the
 server:</p>
 <img alt="../_images/connecting_ssh_timeout.gif" class="gif" src="../_images/connecting_ssh_timeout.gif" />
@@ -216,13 +217,13 @@ problem (wired connection, VPN).</p></li>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="filesystem.html" title="The filesystem"
+          <a href="filesystem.html" title="5.3. The filesystem"
              >next</a></li>
         <li class="right" >
-          <a href="access.html" title="Applying for access"
+          <a href="access.html" title="5.1. Applying for access"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" >Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>Using the cluster</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
