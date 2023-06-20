@@ -17,19 +17,20 @@ which only a handful of (highlighted) lines need to be changed:
    :linenos:
    :emphasize-lines: 7-10,25-26
 
-For the purpose of this example we will make our own module for `seqtk`
-version 1.4.
+For the purpose of this example we will make our own module for
+``seqtk`` version 1.4.
 
 ***********************************
  Creating a repository for modules
 ***********************************
 
-The recommended location for custom modules is the `apps` folder in the
-project for which the modules are meant to be used. In the following
-examples, we will assume that the project is named `my-project` and that
-the `apps` folder is therefore located at `/projects/my-project/apps`.
+The recommended location for custom modules is the ``apps`` folder in
+the project for which the modules are meant to be used. In the following
+examples, we will assume that the project is named ``my-project`` and
+that the ``apps`` folder is therefore located at
+``/projects/my-project/apps``.
 
-#. Create a subfolder in the `apps` for your modules and create a
+#. Create a subfolder in the ``apps`` for your modules and create a
    subfolder for the module scripts and a subfolder for the actual
    software:
 
@@ -37,31 +38,31 @@ the `apps` folder is therefore located at `/projects/my-project/apps`.
 
       $ mkdir -p /projects/my-project/apps/modules
 
-#. Create a subfolder for the `seqtk` module scripts and a folder in
-   which we can build our own copy of `seqtk`:
+#. Create a subfolder for the ``seqtk`` module scripts and a folder in
+   which we can build our own copy of ``seqtk``:
 
    .. code:: shell
 
       $ mkdir -p /projects/my-project/apps/modules/modulefiles/seqtk
       $ mkdir -p /projects/my-project/apps/modules/software/seqtk/1.4
 
-   Note that we create a folder containing the version in `software` but
-   *not* in `modulefiles`!
+   Note that we create a folder containing the version in ``software``
+   but *not* in ``modulefiles``!
 
 #. Save the module template shown above as
-   `/projects/my-project/apps/modules/modulefiles/seqtk/1.23` and update
-   the root path, the description, and the PATH as shown below. Note
-   that this file does *not* have an extension.
+   ``/projects/my-project/apps/modules/modulefiles/seqtk/1.23`` and
+   update the root path, the description, and the PATH as shown below.
+   Note that this file does *not* have an extension.
 
       .. literalinclude:: moduletemplate.seqtk.tcl
          :language: tcl
          :linenos:
          :emphasize-lines: 7-8,23
 
-   As this is a very simple module we only need to set the `PATH`
+   As this is a very simple module we only need to set the ``PATH``
    environment variable.
 
-#. Next download and compile `seqtk 1.4`:
+#. Next download and compile ``seqtk 1.4``:
 
       .. code:: shell
 
@@ -72,7 +73,7 @@ the `apps` folder is therefore located at `/projects/my-project/apps`.
          $ module load gcc
          $ make
 
-#. Place a symlink to the executable in a separate `bin` folder:
+#. Place a symlink to the executable in a separate ``bin`` folder:
 
       .. code:: shell
 
@@ -81,16 +82,16 @@ the `apps` folder is therefore located at `/projects/my-project/apps`.
          $ cd bin
          $ ln -s ../seqtk-1.4/seqtk
 
-      You can also make a copy of the executable in the `bin` folder,
+      You can also make a copy of the executable in the ``bin`` folder,
       but using a symlink makes it easier simpler to recompile the
       software if needed.
 
-      The location of this `bin` folder is already specified in the
+      The location of this ``bin`` folder is already specified in the
       template above. While it *is* possible to specify the software
       directory directly, this is *not* recommended as it typically
       includes files that do not belong in your PATH.
 
-#. Finally, run `module use` to enable you to load the module:
+#. Finally, run ``module use`` to enable you to load the module:
 
          .. code:: shell
 
@@ -104,8 +105,8 @@ the `apps` folder is therefore located at `/projects/my-project/apps`.
             Usage:   seqtk <command> <arguments>
             Version: 1.4-r122
 
-      The `module use` command can optionally be added to your
-      `.profile`, `.bashrc`, or similar to automatically enable this
+      The ``module use`` command can optionally be added to your
+      ``.profile``, ``.bashrc``, or similar to automatically enable this
       module repository when you login.
 
 ***************************
@@ -150,7 +151,7 @@ typically be accomplished as follows (using visidata_ as an example):
    $ ln -s ../venv/bin/visidata
 
 Then all you need to do is to create a matching module file and save it
-as `/projects/my-project/apps/modules/modulefiles/visidata/2.11`. The
+as ``/projects/my-project/apps/modules/modulefiles/visidata/2.11``. The
 python module loaded above *does not* need to be loaded before using
 this software.
 

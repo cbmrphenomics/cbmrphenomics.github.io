@@ -25,7 +25,7 @@ Finding available modules
 =========================
 
 The first step is to determine what modules are available on the server.
-This is accomplished with the `module avail` command:
+This is accomplished with the ``module avail`` command:
 
 .. code:: shell
 
@@ -47,7 +47,7 @@ specifying one or more keywords:
    -------------------------- /opt/software/modules --------------------------
    samtools/1.12  samtools/1.17
 
-The modules are loaded using the `module load` command: This adds the
+The modules are loaded using the ``module load`` command: This adds the
 executable to your PATH and performs any other setup required to run the
 software.
 
@@ -64,7 +64,7 @@ Loading a module
    Version: 1.17 (using htslib 1.17)
    [...]
 
-Multiple modules may be specified per `module load` command and it i
+Multiple modules may be specified per ``module load`` command and it i
 also possible to specify the exact version that you need, provided that
 a module is available:
 
@@ -104,7 +104,7 @@ Or automatically:
 Listing and unloading loaded modules
 ====================================
 
-The modules you have loaded can be listed using the `module list`
+The modules you have loaded can be listed using the ``module list``
 command:
 
 .. code:: shell
@@ -113,8 +113,8 @@ command:
    Currently Loaded Modulefiles:
     1) perl/5.26.3   2) bcftools/1.16   3) samtools/1.12
 
-To remove a module that you no longer need, use the `module unload`
-command to unload a single module or the `module purge` command to
+To remove a module that you no longer need, use the ``module unload``
+command to unload a single module or the ``module purge`` command to
 unload all modules:
 
 .. code:: shell
@@ -140,11 +140,11 @@ the same versions of modules throughout a project.
    new versions of software are installed.
 
 There are two ways to ensure that you are using the same versions of
-modules: Either using the built-in `save/restore` functionality or using
-a script containing `module load` commands.
+modules: Either using the built-in ``save/restore`` functionality or
+using a script containing ``module load`` commands.
 
-Managing modules with `module save/restore`
-===========================================
+Managing modules with ``module save/restore``
+=============================================
 
 To use the built-in functionality, run the following commands:
 
@@ -153,16 +153,16 @@ To use the built-in functionality, run the following commands:
    $ module config collection_pin_version 1
    $ module save ./modules.txt
 
-There are two important points here: Firstly, the `module config
-collection_pin_version 1` command *must* be run first. If this is not
+There are two important points here: Firstly, the ``module config
+collection_pin_version 1`` command *must* be run first. If this is not
 done, then the specific versions of modules are not recorded!
 
-Secondly, the filename used in the second command (`./modules.txt`)
-*must* contain a directory component (e.g. `./`). If this is not done,
+Secondly, the filename used in the second command (``./modules.txt``)
+*must* contain a directory component (e.g. ``./``). If this is not done,
 then the list is saved in a database and won't be accessible to other
 users!
 
-If used correctly, the `./modules.txt` file will contain the currently
+If used correctly, the ``./modules.txt`` file will contain the currently
 loaded modules, e.g:
 
 .. code:: shell
@@ -179,7 +179,7 @@ loaded modules, e.g:
    module load perl/5.26.3
    module load bcftools/1.16
 
-To load the saved modules, simply run `module restore` with the same
+To load the saved modules, simply run ``module restore`` with the same
 filename (and a directory component):
 
 .. code:: shell
@@ -194,8 +194,8 @@ filename (and a directory component):
 Managing modules with a script
 ==============================
 
-The other solution is to write a script containing one or more `module
-load` commands:
+The other solution is to write a script containing one or more ``module
+load`` commands:
 
 .. code:: shell
 
@@ -205,8 +205,8 @@ load` commands:
    module load perl/5.26.3
    module load bcftools/1.16
 
-To load these modules use the command `. modules.sh` (dot space
-filename) or `source modules.sh`:
+To load these modules use the command ``. modules.sh`` (dot space
+filename) or ``source modules.sh``:
 
 .. code:: shell
 
@@ -217,9 +217,9 @@ filename) or `source modules.sh`:
    Currently Loaded Modulefiles:
    1) gcc/11.2.0   2) samtools/1.17   3) perl/5.26.3   4) bcftools/1.16
 
-Simply running the script with `bash modules.sh` will not work, as the
-`.` / `source` commands inject the `module` or other commands into your
-current shell.
+Simply running the script with ``bash modules.sh`` will not work, as the
+``.`` / ``source`` commands inject the ``module`` or other commands into
+your current shell.
 
 .. _requesting_missing_modules:
 
