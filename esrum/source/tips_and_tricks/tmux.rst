@@ -169,6 +169,12 @@ releasing those keys, and *then* pressing the specified button and
       terminals). Tmux keeps running after this along with your
       terminals.
 
+**Scrolling in a tmux window**
+
+   -  ``CTRL+b PageUp`` Enables scrolling with PageUp/PageDown and arrow
+      keys. Press ESC to exit scrolling mode. Current line-number is
+      indicated in yellow in the top right corner.
+
 **********************
  Additional resources
 **********************
