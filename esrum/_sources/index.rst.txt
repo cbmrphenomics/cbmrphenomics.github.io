@@ -30,7 +30,6 @@ documentation for the `UPCH computing/HPC Systems`_ on KUNet.
    overview
    guidelines
    usage/index.rst
-   transfers/index.rst
    tips_and_tricks/index.rst
 
 .. _cbmr: https://cbmr.ku.dk/
