@@ -39,6 +39,27 @@
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">5.5. Running batch jobs</a><ul>
+<li><a class="reference internal" href="#a-simple-example">5.5.1. A simple example</a></li>
+<li><a class="reference internal" href="#command-line-options-and-sbatch-comments">5.5.2. Command-line options and <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments</a><ul>
+<li><a class="reference internal" href="#common-options">5.5.2.1. Common options</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#monitoring-your-jobs">5.5.3. Monitoring your jobs</a></li>
+<li><a class="reference internal" href="#managing-jobs">5.5.4. Managing jobs</a></li>
+<li><a class="reference internal" href="#running-multiple-tasks-using-arrays">5.5.5. Running multiple tasks using arrays</a><ul>
+<li><a class="reference internal" href="#dependencies">5.5.5.1. Dependencies</a></li>
+<li><a class="reference internal" href="#mapping-task-id-to-data">5.5.5.2. Mapping task ID to data</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sbatch-template-script">5.5.6. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script</a></li>
+<li><a class="reference internal" href="#additional-resources">5.5.7. Additional resources</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Previous topic</h4>
   <p class="topless"><a href="running_jobs.html"
                         title="previous chapter"><span class="section-number">5.4. </span>Running jobs using Slurm</a></p>
@@ -65,6 +86,315 @@
             
   <div class="section" id="running-batch-jobs">
 <span id="page-batch-jobs"></span><h1><span class="section-number">5.5. </span>Running batch jobs<a class="headerlink" href="#running-batch-jobs" title="Permalink to this headline">¶</a></h1>
+<p>Unlike the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command, the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command is designed to run
+commands in batches and therefore does not wait for the queued command
+to terminate. Furthermore, the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command does not run commands
+directly but instead executes a script in which options for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
+may be specified using comments (see below).</p>
+<p>In other words, <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> is equivalent to the <code class="docutils literal notranslate"><span class="pre">qsub</span></code> command used on
+the old cluster, but note that command-line options are not the same!</p>
+<p>The following gives a brief overview of how to perform common tasks,
+with additional resources and templates provided at the end of the page.</p>
+<div class="section" id="a-simple-example">
+<h2><span class="section-number">5.5.1. </span>A simple example<a class="headerlink" href="#a-simple-example" title="Permalink to this headline">¶</a></h2>
+<p>The following <code class="docutils literal notranslate"><span class="pre">srun</span></code> command compresses a file using 8 cores using the
+parallel gzip alternative <code class="docutils literal notranslate"><span class="pre">pigz</span></code>, with a maximum runtime of 60
+minutes:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ srun --cpus-per-task <span class="m">8</span> --time<span class="o">=</span><span class="m">60</span> pigz --processes <span class="m">8</span> chr1.fasta
+</pre></div>
+</div>
+<p>This may be converted to the following bash script (<code class="docutils literal notranslate"><span class="pre">my_script.sh</span></code>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --cpus-per-task=8</span>
+<span class="c1">#SBATCH --time=60</span>
+
+pigz --processes <span class="m">8</span> chr1.fasta
+</pre></div>
+</div>
+<p>Note how options are supplied using <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments at the top of
+the file. The same options may alternatively be specified on the
+command-line, just like with <code class="docutils literal notranslate"><span class="pre">srun</span></code>, but it is often helpful to record
+your parameters in your batch script.</p>
+<p>This resulting script can in turn be run using the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command
+and it’s status checked using the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ls
+chr1.fasta my_script.sh
+$ sbatch my_script.sh
+Submitted batch job <span class="m">8503</span>
+$ squeue --me
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+ <span class="m">8503</span> standardq my_scrip   abc123  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+</pre></div>
+</div>
+<p>The ST column indicating the status of the job (R for running, PD for
+pending, <a class="reference external" href="https://slurm.schedmd.com/squeue.html#SECTION_JOB-STATE-CODES">and so on</a>).
+Completed jobs are removed from the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> list and can instead be
+listed using <code class="docutils literal notranslate"><span class="pre">sacct</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sacct
+JobID    JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+<span class="m">8503</span>         my_script+ standardq+                     <span class="m">8</span>  COMPLETED      <span class="m">0</span>:0
+<span class="m">8503</span>.batch        batch                                <span class="m">8</span>  COMPLETED      <span class="m">0</span>:0
+$ ls
+chr1.fasta.gz my_script.sh slurm-8503.out
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">slurm-8503.out</span></code> file contains any console output produced by your
+script/commands. In this case it is an empty file, but it is</p>
+</div>
+<div class="section" id="command-line-options-and-sbatch-comments">
+<h2><span class="section-number">5.5.2. </span>Command-line options and <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments<a class="headerlink" href="#command-line-options-and-sbatch-comments" title="Permalink to this headline">¶</a></h2>
+<p>As shown above it is possible to specify options for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> using
+either command-line options or <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments in your scripts.
+There are, however, a few caveats:</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> lines must be at the top of the file, before any
+other commands or the like. Moreover, there must be no spaces before
+or after the <code class="docutils literal notranslate"><span class="pre">#</span></code> in the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments. Other comments (lines
+starting with <code class="docutils literal notranslate"><span class="pre">#</span></code>) are allowed.</p></li>
+<li><p>It is also possible to embed <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments in for example
+Python scripts, if you want to run a Python script directly, but note
+that formatting tools like <code class="docutils literal notranslate"><span class="pre">black</span></code> may attempt to re-format the
+<code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments and break the script.</p></li>
+<li><p>Options specified on the command-line takes precedence: If you run
+<code class="docutils literal notranslate"><span class="pre">sbatch</span> <span class="pre">--cpus-per-task=4</span> <span class="pre">my_script.sh</span></code> and <code class="docutils literal notranslate"><span class="pre">my_script.sh</span></code>
+contains the line <code class="docutils literal notranslate"><span class="pre">#SBATCH</span> <span class="pre">--cpus-per-task=8</span></code>, then your job will
+be assigned 4 CPUs instead of 8.</p></li>
+<li><p>Finally, any command-line options meant for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> must be
+written <em>before</em> the filename of the batch script:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sbatch --option my_script.sh
+</pre></div>
+</div>
+<p>If the option is instead placed <em>after</em> <code class="docutils literal notranslate"><span class="pre">my_script.sh</span></code>, then it is
+passed to that script.</p>
+</li>
+</ul>
+<div class="section" id="common-options">
+<h3><span class="section-number">5.5.2.1. </span>Common options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
+<p>The following provides a brief overview of common options for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
+not mentioned above. There is a significant overlap between <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
+and <code class="docutils literal notranslate"><span class="pre">srun</span></code>, including for example how to request resources (see
+<a class="reference internal" href="running_jobs.html#reserving-resources"><span class="std std-ref">Reserving resources for your jobs</span></a>), and this section will not cover those
+options.</p>
+<p>All of these options may be specified using <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments.</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--name</span></code> option allows you to give a name to your job. This
+shows up when using <code class="docutils literal notranslate"><span class="pre">squeue</span></code>, <code class="docutils literal notranslate"><span class="pre">sacct</span></code> and more. If not specified,
+the name of your script is used instead.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--output</span></code> and <code class="docutils literal notranslate"><span class="pre">--error</span></code> options allow you to specify where
+Slurm writes your scripts STDOUT and STDERR. The filenames should
+always include the text <code class="docutils literal notranslate"><span class="pre">%j</span></code>, which is replaced with the job ID.
+See the manual page for usage. Note also that the destination folder
+<em>must</em> exist or no output will be saved!</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--time</span></code> can be used to limit the maximum running time of your
+script. We do not require that <code class="docutils literal notranslate"><span class="pre">--time</span></code> is set, but it may be
+useful to automatically stop jobs that unexpectedly take too long to
+run. See the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> manual page for how to specify time limits.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--test-only</span></code> can be used to test your batch scripts. Combine it
+with <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> to verify that your options are correctly set
+before queuing your job:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sbatch --test-only --verbose my_script.sh
+sbatch: defined options
+sbatch: -------------------- --------------------
+sbatch: cpus-per-task       : <span class="m">8</span>
+sbatch: test-only           : <span class="nb">set</span>
+sbatch: <span class="nb">time</span>                : <span class="m">01</span>:00:00
+sbatch: verbose             : <span class="m">1</span>
+sbatch: -------------------- --------------------
+sbatch: end of defined options
+<span class="o">[</span>...<span class="o">]</span>
+sbatch: Job <span class="m">8568</span> to start at <span class="m">2023</span>-06-28T12:15:32 using <span class="m">8</span> processors on nodes esrumcmpn02fl in partition standardqueue
+</pre></div>
+</div>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--wait</span></code> option can be used to make the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> block until
+the queued tasks have completed. This can be useful if you want to
+run sbatch from another script.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="monitoring-your-jobs">
+<h2><span class="section-number">5.5.3. </span>Monitoring your jobs<a class="headerlink" href="#monitoring-your-jobs" title="Permalink to this headline">¶</a></h2>
+<p>Slurm offers a number of ways in which you may monitor your jobs:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command allows you to list jobs that have not yet
+finished (or failed). The recommended use is either <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--me</span></code> to
+show all your jobs or <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--job</span> <span class="pre">${JOB_ID}</span></code>, where <code class="docutils literal notranslate"><span class="pre">${JOB_ID}</span></code> is
+the ID of the job whose status you want to inspect.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sacct</span></code> command allows you list jobs that have finished running
+(or failed).</p>
+<p>In addition to actively monitoring your jobs, it is possible to receive
+email notifications when your jobs are started, finish, fail, are
+requeued, or some combination. This is accomplished by using the
+<code class="docutils literal notranslate"><span class="pre">--mail-user</span></code> and <code class="docutils literal notranslate"><span class="pre">--mail-type</span></code> options:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sbatch my_script.sh --mail-user<span class="o">=</span>abc123@ku.dk --mail-type<span class="o">=</span>END,FAIL
+Submitted batch job <span class="m">8503</span>
+</pre></div>
+</div>
+<p>When run like this, you will receive notifications at <code class="docutils literal notranslate"><span class="pre">abc123&#64;ku.dk</span></code>
+(remember to use your account KU email address!) when the job is
+completed or fails. The possible options are <code class="docutils literal notranslate"><span class="pre">NONE</span></code> (the default),
+<code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">END</span></code>, <code class="docutils literal notranslate"><span class="pre">FAIL</span></code>, <code class="docutils literal notranslate"><span class="pre">REQUEUE</span></code>, <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, or some combination
+as shown above.</p>
+</div>
+<div class="section" id="managing-jobs">
+<h2><span class="section-number">5.5.4. </span>Managing jobs<a class="headerlink" href="#managing-jobs" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="running-multiple-tasks-using-arrays">
+<h2><span class="section-number">5.5.5. </span>Running multiple tasks using arrays<a class="headerlink" href="#running-multiple-tasks-using-arrays" title="Permalink to this headline">¶</a></h2>
+<p>As noted above the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command is meant to run jobs in batches.
+This is accomplished using “job arrays”, which allows you to
+automatically queue and run the same command on multiple inputs.</p>
+<p>For example, we could expand on the example above to gzip multiple
+chromosomes using a job array. To do so, we first need to update the
+script to make use of the <code class="docutils literal notranslate"><span class="pre">SLURM_ARRAY_TASK_ID</span></code> variable, which
+specifies the numbered ID of a task:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --cpus-per-task=8</span>
+<span class="c1">#SBATCH --time=60</span>
+<span class="c1">#SBATCH --array=1-3</span>
+
+pigz --processes <span class="m">8</span> chr<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.fasta
+</pre></div>
+</div>
+<p>Our script can then be run as before:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ $ ls
+chr1.fasta chr2.fasta chr3.fasta my_script.sh
+$ sbatch my_script.sh
+Submitted batch job <span class="m">8504</span>
+$ squeue --me
+ JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+8504_1 standardq my_scrip   zlc187  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+8504_2 standardq my_scrip   zlc187  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+8504_3 standardq my_scrip   zlc187  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+$ ls
+chr1.fasta.gz  chr3.fasta.gz  slurm-8507_1.out  slurm-8507_3.out
+chr2.fasta.gz  my_script.sh   slurm-8507_2.out
+</pre></div>
+</div>
+<p>An <cite>.out</cite> file is automatically created for each task.</p>
+<p>In this example there was a simple one-to-one mapping between the
+<code class="docutils literal notranslate"><span class="pre">SLURM_ARRAY_TASK_ID</span></code> and our data, but that is not always the case.
+The <a class="reference internal" href="#mapping-task-id-to-data">Mapping task ID to data</a> section below describes several ways you
+might use to map the <code class="docutils literal notranslate"><span class="pre">SLURM_ARRAY_TASK_ID</span></code> variable to more complex
+data/filenames.</p>
+<div class="section" id="dependencies">
+<h3><span class="section-number">5.5.5.1. </span>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="mapping-task-id-to-data">
+<h3><span class="section-number">5.5.5.2. </span>Mapping task ID to data<a class="headerlink" href="#mapping-task-id-to-data" title="Permalink to this headline">¶</a></h3>
+<p>Using <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> arrays requires that you map a number (the array task
+ID) to a file or similar. The above example assumed that filenames were
+numbered for simplicity, but that is not always the case.</p>
+<p>The following therefore describes a few ways in which you can map array
+task ID to more complicated data in a bash script.</p>
+<ol class="arabic simple">
+<li><p>Using numbered filenames:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple numbering (sample1.vcf, sample2.vcf, etc.)</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="s2">&quot;/path/to/data/sample</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="s2">.vcf&quot;</span>
+<span class="c1"># Formatted numbering (sample01.vcf, sample02.vcf, etc.)</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">printf</span> <span class="s2">&quot;/path/to/data/sample%02i.vcf&quot;</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="k">)</span>
+</pre></div>
+</div>
+<ol class="arabic" start="2">
+<li><p>Using a table of filenames:</p>
+<p>Given a text file <code class="docutils literal notranslate"><span class="pre">my_samples.txt</span></code> containing one filename per
+line:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 100%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>/path/to/fist_sample.vcf</p></td>
+</tr>
+<tr class="row-even"><td><p>/path/to/second_sample.vcf</p></td>
+</tr>
+<tr class="row-odd"><td><p>/path/to/third_sample.vcf</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prints the Nth line</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span>sed <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="s2">q;d&quot;</span> my_samples.txt<span class="k">)</span>
+</pre></div>
+</div>
+<ol class="arabic" start="3">
+<li><p>Using a table of numbered samples (<code class="docutils literal notranslate"><span class="pre">my_samples.tsv</span></code>):</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 19%" />
+<col style="width: 71%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p>ID</p></td>
+<td><p>Name</p></td>
+<td><p>Path</p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>first</p></td>
+<td><p>/path/to/fist_sample.vcf</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>second</p></td>
+<td><p>/path/to/second_sample.vcf</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>third</p></td>
+<td><p>/path/to/third_sample.vcf</p></td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span>awk -v <span class="nv">ID</span><span class="o">=</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span> <span class="s1">&#39;$1 == ID {print $3; exit}&#39;</span><span class="k">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="sbatch-template-script">
+<h2><span class="section-number">5.5.6. </span><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script<a class="headerlink" href="#sbatch-template-script" title="Permalink to this headline">¶</a></h2>
+<p>The following is a simple template for use with the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command.
+This script can also be downloaded <a class="reference download internal" download="" href="../_downloads/9f2b9cac5d8c2102123a5f6c29c66cd0/my_sbatch.sh"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="c1">##############################################################################</span>
+<span class="c1"># The following are commonly used options for running jobs. Remove one &quot;#&quot;</span>
+<span class="c1"># from the &quot;##SBATCH&quot; lines (changing it to &quot;#SBATCH&quot;) to enable an options.</span>
+
+<span class="c1"># The number of CPUs (cores) used by your task. Defaults to 1.</span>
+<span class="c1">##SBATCH --cpus-per-task=1</span>
+<span class="c1"># The amount of RAM used by your task. Tasks are automatically assigned 15G</span>
+<span class="c1"># per CPU (set above) if this option is not set.</span>
+<span class="c1">##SBATCH --mem=15G</span>
+<span class="c1"># Set a maximum runtime in hours:minutes:seconds. No default limit.</span>
+<span class="c1">##SBATCH --time=1:00:00</span>
+<span class="c1"># Request a GPU on the GPU code. Use `--gres=gpu:a100:2` to request both GPUs.</span>
+<span class="c1">##SBATCH --partition=gpuqueue --gres=gpu:a100:1</span>
+<span class="c1"># Run a set of tasks. For example --array=1-23, --array=1,5,10, and more.</span>
+<span class="c1"># The current task ID is available as the variable ${SLURM_ARRAY_TASK_ID}</span>
+<span class="c1">##SBATCH --array=</span>
+<span class="c1"># Avoid jobs with invalid dependencies hanging around forever (recommended)</span>
+<span class="c1">#SBATCH --kill-on-invalid-dep=yes</span>
+
+<span class="c1">########################</span>
+<span class="c1"># Your commands go here:</span>
+
+<span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="additional-resources">
+<h2><span class="section-number">5.5.7. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/overview.html">documentation</a></p></li>
+<li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">summary</a> (PDF)</p></li>
+<li><p>The <a class="reference external" href="https://slurm.schedmd.com/sbatch.html">sbatch manual page</a></p></li>
+<li><p>The <a class="reference external" href="https://slurm.schedmd.com/squeue.html">squeue manual page</a></p></li>
+</ul>
+</div>
 </div>
 
 

@@ -95,6 +95,8 @@ Once you are done, be sure to exit the interactive shell by using the
 ``exit`` command or pressing ``Ctrl+D``, so that the resources reserved
 for your shell is made available to other users!
 
+.. _reserving_resources:
+
 ***********************************
  Reserving resources for your jobs
 ***********************************
@@ -219,6 +221,8 @@ node:
  Additional resources
 **********************
 
+-  Slurm `documentation <https://slurm.schedmd.com/overview.html>`_
+-  Slurm `summary <https://slurm.schedmd.com/pdfs/summary.pdf>`_ (PDF)
 -  The ``srun`` `manual page <https://slurm.schedmd.com/srun.html>`_
 
 .. _slurm: https://slurm.schedmd.com/overview.html
