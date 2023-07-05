@@ -25,12 +25,12 @@ documentation for the `UPCH computing/HPC Systems`_ on KUNet.
    :titlesonly:
    :caption: Contents:
 
-   welcome
    contact
    overview
    guidelines
    usage/index.rst
    tips_and_tricks/index.rst
+   communications/index.rst
 
 .. _cbmr: https://cbmr.ku.dk/
 
