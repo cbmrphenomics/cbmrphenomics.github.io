@@ -26,6 +26,9 @@ html_use_index = False
 # Disable the "View source" link on every page
 html_show_sourcelink = False
 
+# Prevent conversion of -- to emdashes
+smartquotes = False
+
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
