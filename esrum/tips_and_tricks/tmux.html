@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>6.2. Persistent sessions with tmux &#8212; Esrum Cluster  documentation</title>
+    <title>5.2. Persistent sessions with tmux &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
@@ -19,7 +19,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="6.1. Creating environment modules" href="modules.html" />
+    <link rel="next" title="6. Communications" href="../communications/index.html" />
+    <link rel="prev" title="5.1. Creating environment modules" href="modules.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -27,32 +28,38 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="modules.html" title="6.1. Creating environment modules"
-             accesskey="P">previous</a></li>
+          <a href="../communications/index.html" title="6. Communications"
+             accesskey="N">next</a></li>
+        <li class="right" >
+          <a href="modules.html" title="5.1. Creating environment modules"
+             accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">6. </span>Tips and tricks</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>Tips and tricks</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">6.2. Persistent sessions with tmux</a><ul>
-<li><a class="reference internal" href="#getting-started">6.2.1. Getting started</a><ul>
-<li><a class="reference internal" href="#creating-and-navigating-between-terminals">6.2.1.1. Creating and navigating between terminals</a></li>
-<li><a class="reference internal" href="#detaching-from-and-re-attaching-to-your-sessions">6.2.1.2. Detaching from and re-attaching to your sessions</a></li>
-<li><a class="reference internal" href="#naming-your-sessions-and-windows">6.2.1.3. Naming your sessions and windows</a></li>
+<li><a class="reference internal" href="#">5.2. Persistent sessions with tmux</a><ul>
+<li><a class="reference internal" href="#getting-started">5.2.1. Getting started</a><ul>
+<li><a class="reference internal" href="#creating-and-navigating-between-terminals">5.2.1.1. Creating and navigating between terminals</a></li>
+<li><a class="reference internal" href="#detaching-from-and-re-attaching-to-your-sessions">5.2.1.2. Detaching from and re-attaching to your sessions</a></li>
+<li><a class="reference internal" href="#naming-your-sessions-and-windows">5.2.1.3. Naming your sessions and windows</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#basic-shortcuts">6.2.2. Basic shortcuts</a></li>
-<li><a class="reference internal" href="#additional-resources">6.2.3. Additional resources</a></li>
+<li><a class="reference internal" href="#basic-shortcuts">5.2.2. Basic shortcuts</a></li>
+<li><a class="reference internal" href="#additional-resources">5.2.3. Additional resources</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="modules.html"
-                        title="previous chapter"><span class="section-number">6.1. </span>Creating environment modules</a></p>
+                        title="previous chapter"><span class="section-number">5.1. </span>Creating environment modules</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../communications/index.html"
+                        title="next chapter"><span class="section-number">6. </span>Communications</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -72,7 +79,7 @@
           <div class="body" role="main">
             
   <div class="section" id="persistent-sessions-with-tmux">
-<span id="tmux-page"></span><h1><span class="section-number">6.2. </span>Persistent sessions with tmux<a class="headerlink" href="#persistent-sessions-with-tmux" title="Permalink to this headline">¶</a></h1>
+<span id="tmux-page"></span><h1><span class="section-number">5.2. </span>Persistent sessions with tmux<a class="headerlink" href="#persistent-sessions-with-tmux" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> is a so-called terminal multiplexer: It allows you to easily
 create and switch between multiple sets of terminals, it allows you to
 name them to remind yourself what you were working with, and it allows
@@ -86,7 +93,7 @@ having to worry about your internet connection staying up.</p>
 <a class="reference external" href="https://github.com/tmux/tmux/wiki/Getting-Started">getting started</a> guide can be found in the official <a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a>
 documentation.</p>
 <div class="section" id="getting-started">
-<h2><span class="section-number">6.2.1. </span>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.1. </span>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>To get started, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory you wish to work in and run
 <code class="docutils literal notranslate"><span class="pre">tmux</span></code> or the equivalent command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /projects/my_project/people/abc123
@@ -101,7 +108,7 @@ start with the current working directory set to
 working directory before starting tmux is that all terminals opened in
 that session will start in that directory.</p>
 <div class="section" id="creating-and-navigating-between-terminals">
-<h3><span class="section-number">6.2.1.1. </span>Creating and navigating between terminals<a class="headerlink" href="#creating-and-navigating-between-terminals" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.1.1. </span>Creating and navigating between terminals<a class="headerlink" href="#creating-and-navigating-between-terminals" title="Permalink to this headline">¶</a></h3>
 <p>You start your new session with a single, blank terminal, but you can
 create any number of additional terminals using the <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">c</span></code>
 keyboard shortcut. To use this shortcut first press <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then
@@ -127,7 +134,7 @@ last terminal has exited:</p>
 </div>
 </div>
 <div class="section" id="detaching-from-and-re-attaching-to-your-sessions">
-<h3><span class="section-number">6.2.1.2. </span>Detaching from and re-attaching to your sessions<a class="headerlink" href="#detaching-from-and-re-attaching-to-your-sessions" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.1.2. </span>Detaching from and re-attaching to your sessions<a class="headerlink" href="#detaching-from-and-re-attaching-to-your-sessions" title="Permalink to this headline">¶</a></h3>
 <p>When your jobs are running, or simply if you need to finish for the day,
 then you can detach your <a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> session and leave it running on the
 server until you connect again.</p>
@@ -148,7 +155,7 @@ name of the session you wish to open:</p>
 </pre></div>
 </div>
 <p>Alternatively, you can use the keyboard shortcut <code class="docutils literal notranslate"><span class="pre">CTRL+b</span> <span class="pre">s</span></code> to switch
-to the correct session after you’ve attached tmux.</p>
+to the correct session after you've attached tmux.</p>
 <p>To terminate a session, simply close the individual terminals by running
 the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command or pressing <code class="docutils literal notranslate"><span class="pre">CTRL+d</span></code> while on an empty line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span><span class="c1">## either</span>
@@ -161,7 +168,7 @@ the <code class="docutils literal notranslate"><span class="pre">exit</span></co
 the current session has been closed.</p>
 </div>
 <div class="section" id="naming-your-sessions-and-windows">
-<h3><span class="section-number">6.2.1.3. </span>Naming your sessions and windows<a class="headerlink" href="#naming-your-sessions-and-windows" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.1.3. </span>Naming your sessions and windows<a class="headerlink" href="#naming-your-sessions-and-windows" title="Permalink to this headline">¶</a></h3>
 <p>tmux allows you to give custom names to each session (group of
 terminals) and each window (terminal), in order to help you
 differentiate between them. This is not required, but is is recommended
@@ -179,7 +186,7 @@ the <a class="reference internal" href="#basic-shortcuts">basic shortcuts</a> de
 </div>
 </div>
 <div class="section" id="basic-shortcuts">
-<h2><span class="section-number">6.2.2. </span>Basic shortcuts<a class="headerlink" href="#basic-shortcuts" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.2. </span>Basic shortcuts<a class="headerlink" href="#basic-shortcuts" title="Permalink to this headline">¶</a></h2>
 <p>The following lists the basic shortcuts that you need to work with tmux.
 Additional shortcuts can be found in the tmux <a class="reference external" href="https://man.openbsd.org/OpenBSD-current/man1/tmux.1#DEFAULT_KEY_BINDINGS">manual page</a> (<code class="docutils literal notranslate"><span class="pre">man</span>
 <span class="pre">tmux</span></code>).</p>
@@ -225,7 +232,7 @@ indicated in yellow in the top right corner.</p></li>
 </div></blockquote>
 </div>
 <div class="section" id="additional-resources">
-<h2><span class="section-number">6.2.3. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.3. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
 <p>TODO</p>
 </div>
 </div>
@@ -240,10 +247,13 @@ indicated in yellow in the top right corner.</p></li>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="modules.html" title="6.1. Creating environment modules"
-             >previous</a></li>
+          <a href="../communications/index.html" title="6. Communications"
+             >next</a></li>
+        <li class="right" >
+          <a href="modules.html" title="5.1. Creating environment modules"
+             >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">6. </span>Tips and tricks</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>Tips and tricks</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

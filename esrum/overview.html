@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>3. Overview &#8212; Esrum Cluster  documentation</title>
+    <title>2. Overview &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/css/playback.css" />
@@ -19,8 +19,8 @@
     <script src="_static/js/libgif.js"></script>
     <script src="_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="4. Guidelines" href="guidelines.html" />
-    <link rel="prev" title="2. Contact" href="contact.html" />
+    <link rel="next" title="3. Guidelines" href="guidelines.html" />
+    <link rel="prev" title="1. Contact" href="contact.html" />
     <script defer src="_static/js/playback.js"></script>
 
   </head><body>
@@ -28,10 +28,10 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="guidelines.html" title="4. Guidelines"
+          <a href="guidelines.html" title="3. Guidelines"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="contact.html" title="2. Contact"
+          <a href="contact.html" title="1. Contact"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>
@@ -40,21 +40,21 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">3. Overview</a><ul>
-<li><a class="reference internal" href="#architecture">3.1. Architecture</a></li>
-<li><a class="reference internal" href="#projects-and-data-shares">3.2. Projects and data-shares</a></li>
-<li><a class="reference internal" href="#backup-policies-and-quotas">3.3. Backup policies and quotas</a></li>
-<li><a class="reference internal" href="#additional-resources">3.4. Additional resources</a></li>
+<li><a class="reference internal" href="#">2. Overview</a><ul>
+<li><a class="reference internal" href="#architecture">2.1. Architecture</a></li>
+<li><a class="reference internal" href="#projects-and-data-shares">2.2. Projects and data-shares</a></li>
+<li><a class="reference internal" href="#backup-policies-and-quotas">2.3. Backup policies and quotas</a></li>
+<li><a class="reference internal" href="#additional-resources">2.4. Additional resources</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="contact.html"
-                        title="previous chapter"><span class="section-number">2. </span>Contact</a></p>
+                        title="previous chapter"><span class="section-number">1. </span>Contact</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="guidelines.html"
-                        title="next chapter"><span class="section-number">4. </span>Guidelines</a></p>
+                        title="next chapter"><span class="section-number">3. </span>Guidelines</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -74,11 +74,11 @@
           <div class="body" role="main">
             
   <div class="section" id="overview">
-<span id="page-overview"></span><h1><span class="section-number">3. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
+<span id="page-overview"></span><h1><span class="section-number">2. </span>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
 <p>The Esrum cluster is a cluster managed by the <a class="reference external" href="https://cbmr.ku.dk/research-facilities/phenomics/">Phenomics Platform</a> at
 <a class="reference external" href="https://cbmr.ku.dk/">CBMR</a>. Technical support and administration is handled by KU-IT.</p>
 <div class="section" id="architecture">
-<h2><span class="section-number">3.1. </span>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.1. </span>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <p>The cluster consists of a head node, 8 compute nodes, and 1 GPU node:</p>
 <table class="docutils align-default">
 <colgroup>
@@ -117,7 +117,7 @@
 </tr>
 </tbody>
 </table>
-<p>Users connect to the “head” node, from which jobs can be submitted to
+<p>Users connect to the &quot;head&quot; node, from which jobs can be submitted to
 the individual nodes. In addition, a server for running container
 instances, an <a class="reference external" href="https://posit.co/products/open-source/rstudio/">RStudio</a> web server, and a <a class="reference external" href="https://shiny.rstudio.com/">Shiny</a> server are available.</p>
 <p>The nodes runs Red Hat Enterprise Linux 8, use the <a class="reference external" href="https://slurm.schedmd.com/">Slurm</a> management
@@ -125,7 +125,7 @@ system for running tasks, and use <a class="reference external" href="https://mo
 software.</p>
 </div>
 <div class="section" id="projects-and-data-shares">
-<h2><span class="section-number">3.2. </span>Projects and data-shares<a class="headerlink" href="#projects-and-data-shares" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2. </span>Projects and data-shares<a class="headerlink" href="#projects-and-data-shares" title="Permalink to this headline">¶</a></h2>
 <p>Access is managed on a per-project level, and is administrated by
 individual project owners, with each project folder containing a
 standard set of sub-folders (<code class="docutils literal notranslate"><span class="pre">apps</span></code>, <code class="docutils literal notranslate"><span class="pre">data</span></code>, <code class="docutils literal notranslate"><span class="pre">people</span></code>,
@@ -135,7 +135,7 @@ network shares. As with projects, access is administered by the data
 owner.</p>
 </div>
 <div class="section" id="backup-policies-and-quotas">
-<h2><span class="section-number">3.3. </span>Backup policies and quotas<a class="headerlink" href="#backup-policies-and-quotas" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.3. </span>Backup policies and quotas<a class="headerlink" href="#backup-policies-and-quotas" title="Permalink to this headline">¶</a></h2>
 <p>Your <code class="docutils literal notranslate"><span class="pre">/home</span></code> and the <code class="docutils literal notranslate"><span class="pre">apps</span></code>. <code class="docutils literal notranslate"><span class="pre">data</span></code>, and <code class="docutils literal notranslate"><span class="pre">people</span></code> folders in
 each projects are automatically backed up. The <code class="docutils literal notranslate"><span class="pre">scratch</span></code> folders are
 NOT backed up. The specific frequency and duration of backups differ for
@@ -146,7 +146,7 @@ backups. However, on-site backups are kept for a shorter time to prevent
 the unauthorized recovery of intentionally deleted data.</p>
 </div>
 <div class="section" id="additional-resources">
-<h2><span class="section-number">3.4. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.4. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><ul class="simple">
 <li><p>Official <a class="reference external" href="https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx">UPCH computing/HPC Systems</a> documentation on KUNet.</p></li>
@@ -165,10 +165,10 @@ the unauthorized recovery of intentionally deleted data.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="guidelines.html" title="4. Guidelines"
+          <a href="guidelines.html" title="3. Guidelines"
              >next</a></li>
         <li class="right" >
-          <a href="contact.html" title="2. Contact"
+          <a href="contact.html" title="1. Contact"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>

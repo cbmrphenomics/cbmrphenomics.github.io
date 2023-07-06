@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>5.6. The module system &#8212; Esrum Cluster  documentation</title>
+    <title>4.6. The module system &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
@@ -19,8 +19,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Tips and tricks" href="../tips_and_tricks/index.html" />
-    <link rel="prev" title="5.5. Running batch jobs" href="batch_jobs.html" />
+    <link rel="next" title="5. Tips and tricks" href="../tips_and_tricks/index.html" />
+    <link rel="prev" title="4.5. Running batch jobs" href="batch_jobs.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -28,42 +28,42 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../tips_and_tricks/index.html" title="6. Tips and tricks"
+          <a href="../tips_and_tricks/index.html" title="5. Tips and tricks"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="batch_jobs.html" title="5.5. Running batch jobs"
+          <a href="batch_jobs.html" title="4.5. Running batch jobs"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">5.6. The module system</a><ul>
-<li><a class="reference internal" href="#basic-usage">5.6.1. Basic usage</a><ul>
-<li><a class="reference internal" href="#finding-available-modules">5.6.1.1. Finding available modules</a></li>
-<li><a class="reference internal" href="#loading-a-module">5.6.1.2. Loading a module</a></li>
-<li><a class="reference internal" href="#listing-and-unloading-loaded-modules">5.6.1.3. Listing and unloading loaded modules</a></li>
+<li><a class="reference internal" href="#">4.6. The module system</a><ul>
+<li><a class="reference internal" href="#basic-usage">4.6.1. Basic usage</a><ul>
+<li><a class="reference internal" href="#finding-available-modules">4.6.1.1. Finding available modules</a></li>
+<li><a class="reference internal" href="#loading-a-module">4.6.1.2. Loading a module</a></li>
+<li><a class="reference internal" href="#listing-and-unloading-loaded-modules">4.6.1.3. Listing and unloading loaded modules</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#making-your-analyses-reproducible">5.6.2. Making your analyses reproducible</a><ul>
-<li><a class="reference internal" href="#managing-modules-with-module-save-restore">5.6.2.1. Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code></a></li>
-<li><a class="reference internal" href="#managing-modules-with-a-script">5.6.2.2. Managing modules with a script</a></li>
+<li><a class="reference internal" href="#making-your-analyses-reproducible">4.6.2. Making your analyses reproducible</a><ul>
+<li><a class="reference internal" href="#managing-modules-with-module-save-restore">4.6.2.1. Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code></a></li>
+<li><a class="reference internal" href="#managing-modules-with-a-script">4.6.2.2. Managing modules with a script</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#requesting-missing-modules">5.6.3. Requesting missing modules</a></li>
+<li><a class="reference internal" href="#requesting-missing-modules">4.6.3. Requesting missing modules</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="batch_jobs.html"
-                        title="previous chapter"><span class="section-number">5.5. </span>Running batch jobs</a></p>
+                        title="previous chapter"><span class="section-number">4.5. </span>Running batch jobs</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="../tips_and_tricks/index.html"
-                        title="next chapter"><span class="section-number">6. </span>Tips and tricks</a></p>
+                        title="next chapter"><span class="section-number">5. </span>Tips and tricks</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -83,7 +83,7 @@
           <div class="body" role="main">
             
   <div class="section" id="the-module-system">
-<span id="modules-page"></span><h1><span class="section-number">5.6. </span>The module system<a class="headerlink" href="#the-module-system" title="Permalink to this headline">¶</a></h1>
+<span id="modules-page"></span><h1><span class="section-number">4.6. </span>The module system<a class="headerlink" href="#the-module-system" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://modules.sourceforge.net/">Environment modules</a> provides a method by which users of the cluster
 can access a wide range of software, including different versions of the
 same software.</p>
@@ -91,13 +91,13 @@ same software.</p>
 may also set up their own private or shared environment modules. See the
 <a class="reference internal" href="../tips_and_tricks/modules.html#creating-modules-page"><span class="std std-ref">Creating environment modules</span></a></p>
 <div class="section" id="basic-usage">
-<h2><span class="section-number">5.6.1. </span>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.6.1. </span>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
 <p>This section briefly describe how to carry out common tasks using the
 module system: Finding what modules are available, loading a module, and
 unloading them again. For more information see the <a class="reference external" href="https://modules.readthedocs.io/en/v4.5.2/">official
 documentation</a>.</p>
 <div class="section" id="finding-available-modules">
-<h3><span class="section-number">5.6.1.1. </span>Finding available modules<a class="headerlink" href="#finding-available-modules" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.6.1.1. </span>Finding available modules<a class="headerlink" href="#finding-available-modules" title="Permalink to this headline">¶</a></h3>
 <p>The first step is to determine what modules are available on the server.
 This is accomplished with the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module avail
@@ -122,7 +122,7 @@ executable to your PATH and performs any other setup required to run the
 software.</p>
 </div>
 <div class="section" id="loading-a-module">
-<h3><span class="section-number">5.6.1.2. </span>Loading a module<a class="headerlink" href="#loading-a-module" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.6.1.2. </span>Loading a module<a class="headerlink" href="#loading-a-module" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ samtools
 -bash: samtools: <span class="nb">command</span> not found
 $ module load samtools
@@ -163,7 +163,7 @@ Loading bcftools/1.16
 </div>
 </div>
 <div class="section" id="listing-and-unloading-loaded-modules">
-<h3><span class="section-number">5.6.1.3. </span>Listing and unloading loaded modules<a class="headerlink" href="#listing-and-unloading-loaded-modules" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.6.1.3. </span>Listing and unloading loaded modules<a class="headerlink" href="#listing-and-unloading-loaded-modules" title="Permalink to this headline">¶</a></h3>
 <p>The modules you have loaded can be listed using the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">list</span></code>
 command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ modules list
@@ -185,7 +185,7 @@ No Modulefiles Currently Loaded.
 </div>
 </div>
 <div class="section" id="making-your-analyses-reproducible">
-<h2><span class="section-number">5.6.2. </span>Making your analyses reproducible<a class="headerlink" href="#making-your-analyses-reproducible" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.6.2. </span>Making your analyses reproducible<a class="headerlink" href="#making-your-analyses-reproducible" title="Permalink to this headline">¶</a></h2>
 <p>As described above you can load modules with or without specific
 versions. For a lot of software it is not very important that a specific
 version used, but even so it is highly recommended that you keep using
@@ -199,7 +199,7 @@ new versions of software are installed.</p></li>
 modules: Either using the built-in <code class="docutils literal notranslate"><span class="pre">save/restore</span></code> functionality or
 using a script containing <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands.</p>
 <div class="section" id="managing-modules-with-module-save-restore">
-<h3><span class="section-number">5.6.2.1. </span>Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code><a class="headerlink" href="#managing-modules-with-module-save-restore" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.6.2.1. </span>Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code><a class="headerlink" href="#managing-modules-with-module-save-restore" title="Permalink to this headline">¶</a></h3>
 <p>To use the built-in functionality, run the following commands:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module config collection_pin_version <span class="m">1</span>
 $ module save ./modules.txt
@@ -210,7 +210,7 @@ $ module save ./modules.txt
 done, then the specific versions of modules are not recorded!</p>
 <p>Secondly, the filename used in the second command (<code class="docutils literal notranslate"><span class="pre">./modules.txt</span></code>)
 <em>must</em> contain a directory component (e.g. <code class="docutils literal notranslate"><span class="pre">./</span></code>). If this is not done,
-then the list is saved in a database and won’t be accessible to other
+then the list is saved in a database and won't be accessible to other
 users!</p>
 <p>If used correctly, the <code class="docutils literal notranslate"><span class="pre">./modules.txt</span></code> file will contain the currently
 loaded modules, e.g:</p>
@@ -239,7 +239,7 @@ Currently Loaded Modulefiles:
 </div>
 </div>
 <div class="section" id="managing-modules-with-a-script">
-<h3><span class="section-number">5.6.2.2. </span>Managing modules with a script<a class="headerlink" href="#managing-modules-with-a-script" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.6.2.2. </span>Managing modules with a script<a class="headerlink" href="#managing-modules-with-a-script" title="Permalink to this headline">¶</a></h3>
 <p>The other solution is to write a script containing one or more <code class="docutils literal notranslate"><span class="pre">module</span>
 <span class="pre">load</span></code> commands:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ cat modules.txt
@@ -265,7 +265,7 @@ your current shell.</p>
 </div>
 </div>
 <div class="section" id="requesting-missing-modules">
-<span id="id1"></span><h2><span class="section-number">5.6.3. </span>Requesting missing modules<a class="headerlink" href="#requesting-missing-modules" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><span class="section-number">4.6.3. </span>Requesting missing modules<a class="headerlink" href="#requesting-missing-modules" title="Permalink to this headline">¶</a></h2>
 <p>If software you are missing is not available as a module, you may
 request this software through KU-IT as described below. You are welcome
 to <a class="reference internal" href="../contact.html#page-contact"><span class="std std-ref">Contact</span></a> if you need help determining which exact software
@@ -277,9 +277,9 @@ and/or versions you need to request.</p>
 <li><p>Select the <code class="docutils literal notranslate"><span class="pre">Research</span> <span class="pre">IT</span></code> category.</p></li>
 <li><p>Then select the <code class="docutils literal notranslate"><span class="pre">Research</span> <span class="pre">Applications</span> <span class="pre">and</span> <span class="pre">Services</span></code> subcategory.</p></li>
 <li><p>Finally, select <code class="docutils literal notranslate"><span class="pre">Consultancy</span> <span class="pre">and</span> <span class="pre">Support</span></code>.</p></li>
-<li><p>List what software you wish to have installed in the “Please
-describe” text-box (see below).</p></li>
-<li><p>Write “esrumhead01fl.unicph.domain” in the System name text-box.</p></li>
+<li><p>List what software you wish to have installed in the &quot;Please
+describe&quot; text-box (see below).</p></li>
+<li><p>Write &quot;esrumhead01fl.unicph.domain&quot; in the System name text-box.</p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">Add</span> <span class="pre">to</span> <span class="pre">cart</span></code> button.</p></li>
 <li><p>Click the <code class="docutils literal notranslate"><span class="pre">SUBMIT</span> <span class="pre">ORDER</span></code> button.</p></li>
 </ol>
@@ -310,13 +310,13 @@ describe” text-box (see below).</p></li>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../tips_and_tricks/index.html" title="6. Tips and tricks"
+          <a href="../tips_and_tricks/index.html" title="5. Tips and tricks"
              >next</a></li>
         <li class="right" >
-          <a href="batch_jobs.html" title="5.5. Running batch jobs"
+          <a href="batch_jobs.html" title="4.5. Running batch jobs"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">
