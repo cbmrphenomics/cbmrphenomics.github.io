@@ -4,8 +4,8 @@
 
 Welcome to the Esrum HPC cluster at The Novo Nordisk Foundation Center
 for Basic Metabolic Research (CBMR_). The Esrum cluster is managed by
-the `Phenomics Platform`_ and is available to employees at CBMR and
-collaborators visiting CBMR.
+the `Phenomics Platform`_ and is available to employees at CBMR as well
+as collaborators visiting CBMR.
 
 -  See the :ref:`page_contact` page for information about how and where
    to contact us.
@@ -13,10 +13,10 @@ collaborators visiting CBMR.
    :ref:`page_overview` page.
 -  To get access to the cluster and to run simple jobs, see the
    :ref:`page_usage` pages.
--  For ways to make working on the cluster easier, ways to make your
-   analyses more reliable, and more, see the :ref:`tips` page.
+-  For ways to make working on the cluster easier, see the :ref:`tips`
+   page.
 
-In addition to the documentation provided here, KU IT also provides
+In addition to the documentation provided here, KU-IT also provides
 documentation for the `UPCH computing/HPC Systems`_ on KUNet.
 
 .. toctree::

@@ -24,7 +24,7 @@ documentation.
 *****************
 
 To get started, ``cd`` to the directory you wish to work in and run
-``tmux`` or the equivalent command ``tmux new``:
+``tmux`` or the longer (but equivalent) command ``tmux new``:
 
 .. code::
 
@@ -46,37 +46,48 @@ Creating and navigating between terminals
 
 You start your new session with a single, blank terminal, but you can
 create any number of additional terminals using the ``Ctrl+b c``
-keyboard shortcut. To use this shortcut first press ``Ctrl+b``, then
-release the buttons and press ``c`` and *only* ``c``.
+keyboard shortcut.
 
-Notice how each terminal gets listed on the tmux bar:
+To use this shortcut first press ``Ctrl+b``, then release the buttons
+and press ``c`` and *only* ``c``. Notice how each terminal gets listed
+on the tmux bar.
 
-.. warning::
+..
 
    TODO: Screenshot
 
 When you have more than one terminal in a session, you can switch
-between them using ``Ctrl+b c`` to switch to the next terminal and
-``Ctrl+b p`` to switch to the previous terminal:
+between them using ``Ctrl+b n`` to switch to the next terminal and
+``Ctrl+b p`` to switch to the previous terminal.
 
-.. warning::
+..
 
    TODO: Screenshot
 
-To close the terminals, either use the ``exit`` command or type
-``Ctrl+d`` on an empty command-line. tmux automatically closes once the
-last terminal has exited:
+To close the terminals you've created, use either the ``exit`` command
+or press ``CTRL+d`` while on an empty line:
 
-.. warning::
+.. code::
+
+   ### either
+   $ exit
+   ### or
+   $ <press CTRL+d>
+
+tmux_ will exit with the message ``[exited]`` once the last terminal in
+the current session has been closed.
+
+..
 
    TODO: Screenshot
 
 Detaching from and re-attaching to your sessions
 ================================================
 
-When your jobs are running, or simply if you need to finish for the day,
-then you can detach your tmux_ session and leave it running on the
-server until you connect again.
+Instead of existing your terminal, tmux gives you the option of
+"detaching" from the session. This leaves everything running on the
+server until you re-attach to the session. You will typically detach
+once your jobs are running or simply if you need to leave for the day.
 
 To disconnect from the current session, use the keyboard shortcut
 ``CTRL+b d``. This returns you to your regular terminal and you can
@@ -84,7 +95,11 @@ safely disconnect from the server. You can also simply close your
 terminal window and tmux will keep running on the server, but note that
 this may have undesirable side-effects (such as the terminal windows
 being stuck at a certain size), since it takes tmux a while to register
-that the connection has been lost.
+that the connection has been lost:
+
+..
+
+   TODO: Screenshot
 
 Once you wish to resume your work, you can use the ``tmux attach``
 (command to re-open your running sessions, optionally specifying the
@@ -100,18 +115,9 @@ name of the session you wish to open:
 Alternatively, you can use the keyboard shortcut ``CTRL+b s`` to switch
 to the correct session after you've attached tmux.
 
-To terminate a session, simply close the individual terminals by running
-the ``exit`` command or pressing ``CTRL+d`` while on an empty line:
+..
 
-.. code::
-
-   ### either
-   $ exit
-   ### or
-   $ <press CTRL+d>
-
-tmux_ will exit with the message ``[exited]`` once the last terminal in
-the current session has been closed.
+   TODO: Screenshot
 
 Naming your sessions and windows
 ================================
@@ -178,8 +184,6 @@ releasing those keys, and *then* pressing the specified button and
 **********************
  Additional resources
 **********************
-
-TODO
 
 .. _getting started: https://github.com/tmux/tmux/wiki/Getting-Started
 
