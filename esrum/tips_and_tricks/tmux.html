@@ -95,7 +95,7 @@ documentation.</p>
 <div class="section" id="getting-started">
 <h2><span class="section-number">5.2.1. </span>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
 <p>To get started, <code class="docutils literal notranslate"><span class="pre">cd</span></code> to the directory you wish to work in and run
-<code class="docutils literal notranslate"><span class="pre">tmux</span></code> or the equivalent command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span></code>:</p>
+<code class="docutils literal notranslate"><span class="pre">tmux</span></code> or the longer (but equivalent) command <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">new</span></code>:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">cd</span> /projects/my_project/people/abc123
 <span class="gp">$</span> tmux
 </pre></div>
@@ -111,40 +111,49 @@ that session will start in that directory.</p>
 <h3><span class="section-number">5.2.1.1. </span>Creating and navigating between terminals<a class="headerlink" href="#creating-and-navigating-between-terminals" title="Permalink to this headline">¶</a></h3>
 <p>You start your new session with a single, blank terminal, but you can
 create any number of additional terminals using the <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">c</span></code>
-keyboard shortcut. To use this shortcut first press <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then
-release the buttons and press <code class="docutils literal notranslate"><span class="pre">c</span></code> and <em>only</em> <code class="docutils literal notranslate"><span class="pre">c</span></code>.</p>
-<p>Notice how each terminal gets listed on the tmux bar:</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO: Screenshot</p>
-</div>
+keyboard shortcut.</p>
+<p>To use this shortcut first press <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then release the buttons
+and press <code class="docutils literal notranslate"><span class="pre">c</span></code> and <em>only</em> <code class="docutils literal notranslate"><span class="pre">c</span></code>. Notice how each terminal gets listed
+on the tmux bar.</p>
+<blockquote>
+<div><p>TODO: Screenshot</p>
+</div></blockquote>
 <p>When you have more than one terminal in a session, you can switch
-between them using <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">c</span></code> to switch to the next terminal and
-<code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">p</span></code> to switch to the previous terminal:</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO: Screenshot</p>
+between them using <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">n</span></code> to switch to the next terminal and
+<code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">p</span></code> to switch to the previous terminal.</p>
+<blockquote>
+<div><p>TODO: Screenshot</p>
+</div></blockquote>
+<p>To close the terminals you've created, use either the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command
+or press <code class="docutils literal notranslate"><span class="pre">CTRL+d</span></code> while on an empty line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span><span class="c1">## either</span>
+<span class="gp">$</span> <span class="nb">exit</span>
+<span class="gp">#</span><span class="c1">## or</span>
+<span class="gp">$</span> &lt;press CTRL+d&gt;
+</pre></div>
 </div>
-<p>To close the terminals, either use the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command or type
-<code class="docutils literal notranslate"><span class="pre">Ctrl+d</span></code> on an empty command-line. tmux automatically closes once the
-last terminal has exited:</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>TODO: Screenshot</p>
-</div>
+<p><a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> will exit with the message <code class="docutils literal notranslate"><span class="pre">[exited]</span></code> once the last terminal in
+the current session has been closed.</p>
+<blockquote>
+<div><p>TODO: Screenshot</p>
+</div></blockquote>
 </div>
 <div class="section" id="detaching-from-and-re-attaching-to-your-sessions">
 <h3><span class="section-number">5.2.1.2. </span>Detaching from and re-attaching to your sessions<a class="headerlink" href="#detaching-from-and-re-attaching-to-your-sessions" title="Permalink to this headline">¶</a></h3>
-<p>When your jobs are running, or simply if you need to finish for the day,
-then you can detach your <a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> session and leave it running on the
-server until you connect again.</p>
+<p>Instead of existing your terminal, tmux gives you the option of
+&quot;detaching&quot; from the session. This leaves everything running on the
+server until you re-attach to the session. You will typically detach
+once your jobs are running or simply if you need to leave for the day.</p>
 <p>To disconnect from the current session, use the keyboard shortcut
 <code class="docutils literal notranslate"><span class="pre">CTRL+b</span> <span class="pre">d</span></code>. This returns you to your regular terminal and you can
 safely disconnect from the server. You can also simply close your
 terminal window and tmux will keep running on the server, but note that
 this may have undesirable side-effects (such as the terminal windows
 being stuck at a certain size), since it takes tmux a while to register
-that the connection has been lost.</p>
+that the connection has been lost:</p>
+<blockquote>
+<div><p>TODO: Screenshot</p>
+</div></blockquote>
 <p>Once you wish to resume your work, you can use the <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">attach</span></code>
 (command to re-open your running sessions, optionally specifying the
 name of the session you wish to open:</p>
@@ -156,16 +165,9 @@ name of the session you wish to open:</p>
 </div>
 <p>Alternatively, you can use the keyboard shortcut <code class="docutils literal notranslate"><span class="pre">CTRL+b</span> <span class="pre">s</span></code> to switch
 to the correct session after you've attached tmux.</p>
-<p>To terminate a session, simply close the individual terminals by running
-the <code class="docutils literal notranslate"><span class="pre">exit</span></code> command or pressing <code class="docutils literal notranslate"><span class="pre">CTRL+d</span></code> while on an empty line:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span><span class="c1">## either</span>
-<span class="gp">$</span> <span class="nb">exit</span>
-<span class="gp">#</span><span class="c1">## or</span>
-<span class="gp">$</span> &lt;press CTRL+d&gt;
-</pre></div>
-</div>
-<p><a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> will exit with the message <code class="docutils literal notranslate"><span class="pre">[exited]</span></code> once the last terminal in
-the current session has been closed.</p>
+<blockquote>
+<div><p>TODO: Screenshot</p>
+</div></blockquote>
 </div>
 <div class="section" id="naming-your-sessions-and-windows">
 <h3><span class="section-number">5.2.1.3. </span>Naming your sessions and windows<a class="headerlink" href="#naming-your-sessions-and-windows" title="Permalink to this headline">¶</a></h3>
@@ -233,7 +235,6 @@ indicated in yellow in the top right corner.</p></li>
 </div>
 <div class="section" id="additional-resources">
 <h2><span class="section-number">5.2.3. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
-<p>TODO</p>
 </div>
 </div>
 

@@ -5,17 +5,17 @@
 #####################
 
 The following describes how to apply for access to the Esrum cluster and
-related related services, projects, and datasets. An official guide to
-the identity system used is available here_.
+related services, projects, and datasets. You are always welcome to
+:ref:`page_contact` us if you have any questions or run into any
+problems applying for access to the cluster.
 
-You are always welcome to :ref:`page_contact` us if you have any
-questions or run into any problems applying for access to the cluster.
+An official guide to the identity system used is available here_.
 
 ************************************
  Applying for access to the cluster
 ************************************
 
-#. Visit identity.ku.dk_.
+#. Login at identity.ku.dk_.
 
 #. Click on the ``Manage My Access`` button or the ``Manage User
    Access`` button. Which of the two buttons you'll see depends on your
@@ -41,16 +41,16 @@ Once you have been granted access you will receive an email that
 ``Changes to your Identity were processed``. This process may take up to
 a day.
 
+Once you have been granted access and your account is ready (see below),
+you may refer to the :ref:`connecting` page for instructions on how to
+connect to the cluster.
+
 .. warning::
 
    Please note that your account may not be ready by the time you
    receive the email described above. In that case, logging in will
    result in a warning that your home folder does not exist. If so, then
    simply wait a few hours before trying again.
-
-Once you have been granted access and your account is ready, you may
-refer to the :ref:`connecting` page for instructions on how to connect
-to the cluster.
 
 .. _applying_for_projects:
 
@@ -60,8 +60,8 @@ to the cluster.
 
 You can apply for access to projects using the same method as described
 in `Applying for access to the cluster`_. Alternatively, the project
-owner(s) can add you to projects directly. However, the Phenomics group
-cannot add you to projects owned by a third party.
+owner(s) can add you to their projects directly. However, the Phenomics
+group cannot add you to projects owned by a third party.
 
 See :ref:`section_projects` for a description of the location and
 file-structure of projects on Esrum.

@@ -9,28 +9,20 @@ node and queue them using the Slurm_ job management system. Slurm_ takes
 care of automatically queuing and distribute jobs on the compute and GPU
 nodes when the required resources are available.
 
-This section describes how to run basic jobs, how to start an
-interactive shell on a compute node, and how to reserve the resources
-needed for your tasks.
+This section describes how to run basic jobs using the ``srun`` command,
+how to start an interactive shell on a compute node, and how to reserve
+the resources needed for your tasks.
 
 If you need to run a number of similar jobs in parallel, for example
 genotyping a set of samples or mapping FASTQ files to a reference
-genome, then the ``sbatch`` can be used to automatically queue multiple
-jobs. See the :ref:`page_batch_jobs` for more information.
+genome, then the ``sbatch`` command can be used to automatically queue
+multiple jobs. See the :ref:`page_batch_jobs` for more information.
 
 .. warning::
 
    Resource intensive jobs *must* be run using Slurm_. Tasks running on
    the head node *will* be terminated without prior warning, in order to
    prevent any impact on other users of the cluster.
-
-.. warning::
-
-   Show consideration towards other users of the cluster. If you need to
-   run very intensive jobs then please :ref:`page_contact` Phenomics
-   first so that we can help ensure that the cluster will still be
-   usable by other users while your jobs are running. Failure to do so
-   may result in your jobs being terminated without prior warning.
 
 ******************************
  Running commands using Slurm
@@ -60,9 +52,6 @@ bash (or similar) script. The script can then be run using ``srun``:
 
 .. image:: images/srun_wrapped.gif
    :class: gif
-
-For tips to make your bash scripts more robust, see the :ref:`page_bash`
-page.
 
 By default task are allocated one CPU and 15 GB of RAM. If you need to
 use additional resources, then see `Reserving resources for your jobs`_
@@ -104,7 +93,8 @@ for your shell is made available to other users!
 By default a ``srun`` will reserve 1 CPU and just under 15 GB of ram per
 CPU. Should your job require more CPUs, then you can request them using
 the ``-c`` or ``--cpus-per-task`` options. The following runs a task
-with 8 CPUs and 8 * 15 = 120 gigabytes of RAM:
+with 8 CPUs, and is automatically assigned 8 * 15 ~= 120 gigabytes of
+RAM:
 
 .. code::
 
@@ -120,13 +110,14 @@ CPUs and 512 gigabytes of RAM:
    $ srun -c 8 --mem 512G -- my-command
 
 As described in the :ref:`page_overview`, each node has 128 CPUs
-available and 2048 GB of RAM, of which about 1993 GB can be reserved in
-total.
+available and 2 TB of RAM, of which 1993 GB can be reserved by Slurm.
 
-The GPU node has 4096 GB of RAM, of which 3920 is reservable, but since
-we only have one GPU node we ask that you use the regular nodes unless
-your analyses actually requires that much RAM at once. See the next
-section for how to use the GPU node with or without reserving a GPU.
+The GPU node has 4 TB of RAM available, of which 3920 GB can be reserved
+by Slurm, and may be used for jobs that have very high memory
+requirements. However, since we only have one GPU node we ask that you
+use the regular nodes unless your jobs actually require that much RAM.
+See the next section for how to use the GPU node with or without
+reserving a GPU.
 
 Reserving the GPU node
 ======================
@@ -136,39 +127,46 @@ node is intended for tasks that need to use GPUs and for tasks that have
 very high memory requirements (more than 2 TB).
 
 To schedule a task on the GPU node you need to select the GPU queue and
-(optionally) specify the number of Nvidia A100 GPUs (1 or 2) needed. The
-following command queues command ``my-gpu-command`` and requests a
-single A100 GPU:
+(optionally) specify the number of Nvidia A100 GPUs needed (1 or 2). For
+example, the following command queues the command ``my-gpu-command`` and
+requests a single A100 GPU:
 
 .. code::
 
    $ srun --partition=gpuqueue --gres=gpu:a100:1 -- my-gpu-command
 
-Alternatively you may reserve both CPUs:
+Alternatively you may reserve both GPUs:
 
 .. code::
 
    $ srun --partition=gpuqueue --gres=gpu:a100:2 -- my-gpu-command
 
-If you on not need to use a GPU, then you can omit the `--gres` option:
+If you on not need to use a GPU, then you can omit the ``--gres``
+option:
 
 .. code::
 
    $ srun --partition=gpuqueue -- my-command
 
 As above you must also specify your CPU and RAM requirements using
+``--cpus-per-task`` and ``--mem``.
+
+Monitoring GPU utilization
+==========================
+
+Slurm does not provide any means of monitoring the actual GPU
+utilization, but tools such as ``nvidia-smi`` can be used to monitor
+performance metrics. And since we are not going to actually *use* the
+GPU, we can simply omit the ``--gres`` option.
 
 .. warning::
 
-   If you need to make use of GPU resources (monitoring excluded), then
-   you *must* also specify the appropriate `--gres` option. Failure to
-   do so will result in your jobs being terminated!
+   If you need to make use of GPU resources (passive monitoring
+   excluded), then you *must* also specify the appropriate ``--gres``
+   option. Failure to do so will result in your jobs being terminated!
 
-Slurm does not provide any means of monitoring the actual GPU usage, but
-tool such as `nvidia-smi` can be used to monitor performance metrics.
-Since we are not going to actually *use* the GPU, we can simply omit the
-`--gres` option. This allows slurm to run the task even when the GPUs
-are reserved.
+This allows slurm to run the monitoring task even when the GPUs are
+reserved:
 
 .. code::
 
@@ -198,8 +196,12 @@ are reserved.
    |  No running processes found                                                 |
    +-----------------------------------------------------------------------------+
 
-The `gpustat` tool provides a more convenient overview but must be
-installed via `pip`:
+The ``gpustat`` tool provides a more convenient overview but must be
+installed via ``pip``:
+
+..
+
+   TODO: Update when gpustats has been added as a module
 
 .. code::
 
@@ -209,13 +211,60 @@ installed via `pip`:
    [0] NVIDIA A100 80GB PCIe | 43°C,   0 % |     0 / 81920 MB |
    [1] NVIDIA A100 80GB PCIe | 43°C,   0 % |     0 / 81920 MB |
 
-The `--pty` option is used in order to support colored, full-screen
-output despite not running an interactive actual shell.
+The ``--pty`` option is used in order to support colored, full-screen
+output despite not running an interactive actual shell. As an
+alternative, you can also start an interactive shell on the GPU node and
+run ``gpustats`` or ``nvidia-smi`` that way:
 
-As an alternative, you can also start an interactive shell on the GPU
-node:
+.. code::
 
    $ srun --partition=gpuqueue --pty -- /bin/bash
+   $ gpustat -i 5
+
+*****************
+ Troubleshooting
+*****************
+
+Error: Requested node configuration is not available
+====================================================
+
+If you request too many CPUs (more than 128), or too much RAM (more than
+1993 GB for compute nodes and more than 3920 GB for the GPU node), then
+Slurm will report that the request cannot be satisfied:
+
+.. code:: shell
+
+   # More than 128 CPUs requested
+   $ srun --cpus-per-task 200 -- echo "Hello world!"
+   srun: error: CPU count per node can not be satisfied
+   srun: error: Unable to allocate resources: Requested node configuration is not available
+
+   # More than 1993 GB RAM requested on compute node
+   $ srun --mem 2000G -- echo "Hello world!"
+   srun: error: Memory specification can not be satisfied
+   srun: error: Unable to allocate resources: Requested node configuration is not available
+
+To solve this, simply reduce the number of CPUs and/or the amount of RAM
+requested to fit within the limits described above. If your task does
+require more than 1993 GB of RAM, then you also need to add the
+``--partition=gpuqueue``, so that your task gets scheduled on the GPU
+node.
+
+Additionally, you may receive this message if you request GPUs without
+specifying the correct queue or if you request too many GPUs:
+
+.. code:: shell
+
+   # --partition=gpuqueue not specified
+   $ srun --gres=gpu:a100:2 -- echo "Hello world!"
+   srun: error: Unable to allocate resources: Requested node configuration is not available
+
+   # More than 2 GPUs requested
+   $ srun --partition=gpuqueue --gres=gpu:a100:3 -- echo "Hello world!"
+   srun: error: Unable to allocate resources: Requested node configuration is not available
+
+To solve this error, simply avoid requesting more than 2 GPUs, and
+remember to include the ``--partition=gpuqueue`` option.
 
 **********************
  Additional resources

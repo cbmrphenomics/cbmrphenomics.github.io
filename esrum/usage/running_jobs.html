@@ -20,7 +20,7 @@
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4.5. Running batch jobs" href="batch_jobs.html" />
-    <link rel="prev" title="4.3. The filesystem" href="filesystem.html" />
+    <link rel="prev" title="4.3. Files and folders" href="filesystem.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -31,7 +31,7 @@
           <a href="batch_jobs.html" title="4.5. Running batch jobs"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="filesystem.html" title="4.3. The filesystem"
+          <a href="filesystem.html" title="4.3. Files and folders"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
@@ -46,16 +46,21 @@
 <li><a class="reference internal" href="#running-an-interactive-shell">4.4.2. Running an interactive shell</a></li>
 <li><a class="reference internal" href="#reserving-resources-for-your-jobs">4.4.3. Reserving resources for your jobs</a><ul>
 <li><a class="reference internal" href="#reserving-the-gpu-node">4.4.3.1. Reserving the GPU node</a></li>
+<li><a class="reference internal" href="#monitoring-gpu-utilization">4.4.3.2. Monitoring GPU utilization</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#additional-resources">4.4.4. Additional resources</a></li>
+<li><a class="reference internal" href="#troubleshooting">4.4.4. Troubleshooting</a><ul>
+<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.4.4.1. Error: Requested node configuration is not available</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#additional-resources">4.4.5. Additional resources</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="filesystem.html"
-                        title="previous chapter"><span class="section-number">4.3. </span>The filesystem</a></p>
+                        title="previous chapter"><span class="section-number">4.3. </span>Files and folders</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="batch_jobs.html"
                         title="next chapter"><span class="section-number">4.5. </span>Running batch jobs</a></p>
@@ -83,26 +88,18 @@
 node and queue them using the <a class="reference external" href="https://slurm.schedmd.com/overview.html">Slurm</a> job management system. <a class="reference external" href="https://slurm.schedmd.com/overview.html">Slurm</a> takes
 care of automatically queuing and distribute jobs on the compute and GPU
 nodes when the required resources are available.</p>
-<p>This section describes how to run basic jobs, how to start an
-interactive shell on a compute node, and how to reserve the resources
-needed for your tasks.</p>
+<p>This section describes how to run basic jobs using the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command,
+how to start an interactive shell on a compute node, and how to reserve
+the resources needed for your tasks.</p>
 <p>If you need to run a number of similar jobs in parallel, for example
 genotyping a set of samples or mapping FASTQ files to a reference
-genome, then the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> can be used to automatically queue multiple
-jobs. See the <a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a> for more information.</p>
+genome, then the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command can be used to automatically queue
+multiple jobs. See the <a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a> for more information.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Resource intensive jobs <em>must</em> be run using <a class="reference external" href="https://slurm.schedmd.com/overview.html">Slurm</a>. Tasks running on
 the head node <em>will</em> be terminated without prior warning, in order to
 prevent any impact on other users of the cluster.</p>
-</div>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Show consideration towards other users of the cluster. If you need to
-run very intensive jobs then please <a class="reference internal" href="../contact.html#page-contact"><span class="std std-ref">Contact</span></a> Phenomics
-first so that we can help ensure that the cluster will still be
-usable by other users while your jobs are running. Failure to do so
-may result in your jobs being terminated without prior warning.</p>
 </div>
 <div class="section" id="running-commands-using-slurm">
 <h2><span class="section-number">4.4.1. </span>Running commands using Slurm<a class="headerlink" href="#running-commands-using-slurm" title="Permalink to this headline">¶</a></h2>
@@ -123,8 +120,6 @@ bash (or similar) script. The script can then be run using <code class="docutils
 </pre></div>
 </div>
 <img alt="../_images/srun_wrapped.gif" class="gif" src="../_images/srun_wrapped.gif" />
-<p>For tips to make your bash scripts more robust, see the <a class="reference internal" href="../tips_and_tricks/safer_bash_scripts.html#page-bash"><span class="std std-ref">Writing reliable bash scripts</span></a>
-page.</p>
 <p>By default task are allocated one CPU and 15 GB of RAM. If you need to
 use additional resources, then see <a class="reference internal" href="#reserving-resources-for-your-jobs">Reserving resources for your jobs</a>
 and <a class="reference internal" href="#reserving-the-gpu-node">Reserving the GPU node</a> below.</p>
@@ -155,7 +150,8 @@ for your shell is made available to other users!</p>
 <p>By default a <code class="docutils literal notranslate"><span class="pre">srun</span></code> will reserve 1 CPU and just under 15 GB of ram per
 CPU. Should your job require more CPUs, then you can request them using
 the <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> options. The following runs a task
-with 8 CPUs and 8 * 15 = 120 gigabytes of RAM:</p>
+with 8 CPUs, and is automatically assigned 8 * 15 ~= 120 gigabytes of
+RAM:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun -c <span class="m">8</span> -- my-command
 </pre></div>
 </div>
@@ -167,44 +163,51 @@ CPUs and 512 gigabytes of RAM:</p>
 </pre></div>
 </div>
 <p>As described in the <a class="reference internal" href="../overview.html#page-overview"><span class="std std-ref">Overview</span></a>, each node has 128 CPUs
-available and 2048 GB of RAM, of which about 1993 GB can be reserved in
-total.</p>
-<p>The GPU node has 4096 GB of RAM, of which 3920 is reservable, but since
-we only have one GPU node we ask that you use the regular nodes unless
-your analyses actually requires that much RAM at once. See the next
-section for how to use the GPU node with or without reserving a GPU.</p>
+available and 2 TB of RAM, of which 1993 GB can be reserved by Slurm.</p>
+<p>The GPU node has 4 TB of RAM available, of which 3920 GB can be reserved
+by Slurm, and may be used for jobs that have very high memory
+requirements. However, since we only have one GPU node we ask that you
+use the regular nodes unless your jobs actually require that much RAM.
+See the next section for how to use the GPU node with or without
+reserving a GPU.</p>
 <div class="section" id="reserving-the-gpu-node">
 <h3><span class="section-number">4.4.3.1. </span>Reserving the GPU node<a class="headerlink" href="#reserving-the-gpu-node" title="Permalink to this headline">¶</a></h3>
 <p>This section describes how to schedule a task on the GPU node. The GPU
 node is intended for tasks that need to use GPUs and for tasks that have
 very high memory requirements (more than 2 TB).</p>
 <p>To schedule a task on the GPU node you need to select the GPU queue and
-(optionally) specify the number of Nvidia A100 GPUs (1 or 2) needed. The
-following command queues command <code class="docutils literal notranslate"><span class="pre">my-gpu-command</span></code> and requests a
-single A100 GPU:</p>
+(optionally) specify the number of Nvidia A100 GPUs needed (1 or 2). For
+example, the following command queues the command <code class="docutils literal notranslate"><span class="pre">my-gpu-command</span></code> and
+requests a single A100 GPU:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun --partition<span class="o">=</span>gpuqueue --gres<span class="o">=</span>gpu:a100:1 -- my-gpu-command
 </pre></div>
 </div>
-<p>Alternatively you may reserve both CPUs:</p>
+<p>Alternatively you may reserve both GPUs:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun --partition<span class="o">=</span>gpuqueue --gres<span class="o">=</span>gpu:a100:2 -- my-gpu-command
 </pre></div>
 </div>
-<p>If you on not need to use a GPU, then you can omit the <cite>--gres</cite> option:</p>
+<p>If you on not need to use a GPU, then you can omit the <code class="docutils literal notranslate"><span class="pre">--gres</span></code>
+option:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun --partition<span class="o">=</span>gpuqueue -- my-command
 </pre></div>
 </div>
-<p>As above you must also specify your CPU and RAM requirements using</p>
+<p>As above you must also specify your CPU and RAM requirements using
+<code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code>.</p>
+</div>
+<div class="section" id="monitoring-gpu-utilization">
+<h3><span class="section-number">4.4.3.2. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h3>
+<p>Slurm does not provide any means of monitoring the actual GPU
+utilization, but tools such as <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> can be used to monitor
+performance metrics. And since we are not going to actually <em>use</em> the
+GPU, we can simply omit the <code class="docutils literal notranslate"><span class="pre">--gres</span></code> option.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>If you need to make use of GPU resources (monitoring excluded), then
-you <em>must</em> also specify the appropriate <cite>--gres</cite> option. Failure to
-do so will result in your jobs being terminated!</p>
+<p>If you need to make use of GPU resources (passive monitoring
+excluded), then you <em>must</em> also specify the appropriate <code class="docutils literal notranslate"><span class="pre">--gres</span></code>
+option. Failure to do so will result in your jobs being terminated!</p>
 </div>
-<p>Slurm does not provide any means of monitoring the actual GPU usage, but
-tool such as <cite>nvidia-smi</cite> can be used to monitor performance metrics.
-Since we are not going to actually <em>use</em> the GPU, we can simply omit the
-<cite>--gres</cite> option. This allows slurm to run the task even when the GPUs
-are reserved.</p>
+<p>This allows slurm to run the monitoring task even when the GPUs are
+reserved:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun --partition<span class="o">=</span>gpuqueue -- nvidia-smi -l <span class="m">5</span>
 <span class="go">Thu Jun  8 12:18:15 2023</span>
 <span class="go">+-----------------------------------------------------------------------------+</span>
@@ -232,8 +235,11 @@ are reserved.</p>
 <span class="go">+-----------------------------------------------------------------------------+</span>
 </pre></div>
 </div>
-<p>The <cite>gpustat</cite> tool provides a more convenient overview but must be
-installed via <cite>pip</cite>:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">gpustat</span></code> tool provides a more convenient overview but must be
+installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<blockquote>
+<div><p>TODO: Update when gpustats has been added as a module</p>
+</div></blockquote>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install gpustat
 <span class="gp">$</span> srun --partition<span class="o">=</span>gpuqueue --pty -- gpustat -i <span class="m">5</span>
 <span class="go">esrumgpun01fl.unicph.domain  Thu Jun  8 12:20:24 2023  525.60.13</span>
@@ -241,17 +247,56 @@ installed via <cite>pip</cite>:</p>
 <span class="go">[1] NVIDIA A100 80GB PCIe | 43°C,   0 % |     0 / 81920 MB |</span>
 </pre></div>
 </div>
-<p>The <cite>--pty</cite> option is used in order to support colored, full-screen
-output despite not running an interactive actual shell.</p>
-<p>As an alternative, you can also start an interactive shell on the GPU
-node:</p>
-<blockquote>
-<div><p>$ srun --partition=gpuqueue --pty -- /bin/bash</p>
-</div></blockquote>
+<p>The <code class="docutils literal notranslate"><span class="pre">--pty</span></code> option is used in order to support colored, full-screen
+output despite not running an interactive actual shell. As an
+alternative, you can also start an interactive shell on the GPU node and
+run <code class="docutils literal notranslate"><span class="pre">gpustats</span></code> or <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> that way:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun --partition<span class="o">=</span>gpuqueue --pty -- /bin/bash
+<span class="gp">$</span> gpustat -i <span class="m">5</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="troubleshooting">
+<h2><span class="section-number">4.4.4. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="error-requested-node-configuration-is-not-available">
+<h3><span class="section-number">4.4.4.1. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h3>
+<p>If you request too many CPUs (more than 128), or too much RAM (more than
+1993 GB for compute nodes and more than 3920 GB for the GPU node), then
+Slurm will report that the request cannot be satisfied:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># More than 128 CPUs requested</span>
+$ srun --cpus-per-task <span class="m">200</span> -- <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
+srun: error: CPU count per node can not be satisfied
+srun: error: Unable to allocate resources: Requested node configuration is not available
+
+<span class="c1"># More than 1993 GB RAM requested on compute node</span>
+$ srun --mem 2000G -- <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
+srun: error: Memory specification can not be satisfied
+srun: error: Unable to allocate resources: Requested node configuration is not available
+</pre></div>
+</div>
+<p>To solve this, simply reduce the number of CPUs and/or the amount of RAM
+requested to fit within the limits described above. If your task does
+require more than 1993 GB of RAM, then you also need to add the
+<code class="docutils literal notranslate"><span class="pre">--partition=gpuqueue</span></code>, so that your task gets scheduled on the GPU
+node.</p>
+<p>Additionally, you may receive this message if you request GPUs without
+specifying the correct queue or if you request too many GPUs:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># --partition=gpuqueue not specified</span>
+$ srun --gres<span class="o">=</span>gpu:a100:2 -- <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
+srun: error: Unable to allocate resources: Requested node configuration is not available
+
+<span class="c1"># More than 2 GPUs requested</span>
+$ srun --partition<span class="o">=</span>gpuqueue --gres<span class="o">=</span>gpu:a100:3 -- <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
+srun: error: Unable to allocate resources: Requested node configuration is not available
+</pre></div>
+</div>
+<p>To solve this error, simply avoid requesting more than 2 GPUs, and
+remember to include the <code class="docutils literal notranslate"><span class="pre">--partition=gpuqueue</span></code> option.</p>
 </div>
 </div>
 <div class="section" id="additional-resources">
-<h2><span class="section-number">4.4.4. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4.5. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/overview.html">documentation</a></p></li>
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">summary</a> (PDF)</p></li>
@@ -273,7 +318,7 @@ node:</p>
           <a href="batch_jobs.html" title="4.5. Running batch jobs"
              >next</a></li>
         <li class="right" >
-          <a href="filesystem.html" title="4.3. The filesystem"
+          <a href="filesystem.html" title="4.3. Files and folders"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 

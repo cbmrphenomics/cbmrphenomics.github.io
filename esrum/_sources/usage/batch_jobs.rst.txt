@@ -7,11 +7,10 @@
 Unlike the ``srun`` command, the ``sbatch`` command is designed to run
 commands in batches and therefore does not wait for the queued command
 to terminate. Furthermore, the ``sbatch`` command does not run commands
-directly but instead executes a script in which options for ``sbatch``
-may be specified using comments (see below).
-
-In other words, ``sbatch`` is equivalent to the ``qsub`` command used on
-the old cluster, but note that command-line options are not the same!
+directly, but instead executes a script in which options for ``sbatch``
+may optionally be specified using comments (see below). In other words,
+``sbatch`` is roughly equivalent to the ``qsub`` command used on
+``porus``.
 
 The following gives a brief overview of how to perform common tasks,
 with additional resources and templates provided at the end of the page.
@@ -28,7 +27,8 @@ minutes:
 
    $ srun --cpus-per-task 8 --time=60 pigz --processes 8 chr1.fasta
 
-This may be converted to the following bash script (``my_script.sh``):
+This command may be converted into the following bash script (named
+``my_script.sh``):
 
 .. code:: bash
 
@@ -73,7 +73,8 @@ listed using ``sacct``:
    chr1.fasta.gz my_script.sh slurm-8503.out
 
 The ``slurm-8503.out`` file contains any console output produced by your
-script/commands. In this case it is an empty file, but it is
+script/commands. This includes both STDOUT and STDERR by default, but
+see `Common options`_.
 
 ***********************************************
  Command-line options and ``#SBATCH`` comments
@@ -103,10 +104,14 @@ There are, however, a few caveats:
 
    .. code:: shell
 
-      $ sbatch --option my_script.sh
+      $ sbatch --mem 512G my_script.sh
 
    If the option is instead placed *after* ``my_script.sh``, then it is
-   passed to that script.
+   passed to that script:
+
+   .. code:: shell
+
+      $ sbatch my_script.sh --my-script-option
 
 Common options
 ==============
@@ -162,33 +167,46 @@ All of these options may be specified using ``#SBATCH`` comments.
 
 Slurm offers a number of ways in which you may monitor your jobs:
 
-The ``squeue`` command allows you to list jobs that have not yet
-finished (or failed). The recommended use is either ``squeue --me`` to
-show all your jobs or ``squeue --job ${JOB_ID}``, where ``${JOB_ID}`` is
-the ID of the job whose status you want to inspect.
+-  The ``squeue`` command allows you to list jobs that have not yet
+   finished (or failed). The recommended use is either ``squeue --me``
+   to show all your jobs or ``squeue --job ${JOB_ID}``, where
+   ``${JOB_ID}`` is the ID of the job whose status you want to inspect.
 
-The ``sacct`` command allows you list jobs that have finished running
-(or failed).
+-  The ``sacct`` command allows you list jobs that have finished running
+   (or failed).
 
-In addition to actively monitoring your jobs, it is possible to receive
-email notifications when your jobs are started, finish, fail, are
-requeued, or some combination. This is accomplished by using the
-``--mail-user`` and ``--mail-type`` options:
+-  In addition to actively monitoring your jobs, it is possible to
+   receive email notifications when your jobs are started, finish, fail,
+   are requeued, or some combination. This is accomplished by using the
+   ``--mail-user`` and ``--mail-type`` options:
 
-.. code:: shell
+   .. code:: shell
 
-   $ sbatch my_script.sh --mail-user=abc123@ku.dk --mail-type=END,FAIL
-   Submitted batch job 8503
+      $ sbatch my_script.sh --mail-user=abc123@ku.dk --mail-type=END,FAIL
+      Submitted batch job 8503
 
-When run like this, you will receive notifications at ``abc123@ku.dk``
-(remember to use your account KU email address!) when the job is
-completed or fails. The possible options are ``NONE`` (the default),
-``BEGIN``, ``END``, ``FAIL``, ``REQUEUE``, ``ALL``, or some combination
-as shown above.
+   When run like this, you will receive notifications at
+   ``abc123@ku.dk`` (remember to use your account KU email address!)
+   when the job is completed or fails. The possible options are ``NONE``
+   (the default), ``BEGIN``, ``END``, ``FAIL``, ``REQUEUE``, ``ALL``, or
+   some combination as shown above.
 
 ***************
  Managing jobs
 ***************
+
+..
+
+   TODO: scancel and others
+
+   .. code:: shell
+
+      # To cancel everything
+      scancel -u ${USER}
+      # TO cancel by name
+      scancel -n "name"
+      # To cancel specific job? Or task for job?
+      scancel ?
 
 *************************************
  Running multiple tasks using arrays
@@ -201,7 +219,7 @@ automatically queue and run the same command on multiple inputs.
 For example, we could expand on the example above to gzip multiple
 chromosomes using a job array. To do so, we first need to update the
 script to make use of the ``SLURM_ARRAY_TASK_ID`` variable, which
-specifies the numbered ID of a task:
+specifies the numerical ID of a task:
 
 .. code:: bash
 
@@ -211,6 +229,10 @@ specifies the numbered ID of a task:
    #SBATCH --array=1-3
 
    pigz --processes 8 chr${SLURM_ARRAY_TASK_ID}.fasta
+
+The ``--array=1-3`` option specifies that we want to run tasks 1, 2, and
+3. See the ``sbatch`` manual page for a description of ways in which to
+specify lists of task IDs.
 
 Our script can then be run as before:
 
@@ -229,37 +251,50 @@ Our script can then be run as before:
    chr1.fasta.gz  chr3.fasta.gz  slurm-8507_1.out  slurm-8507_3.out
    chr2.fasta.gz  my_script.sh   slurm-8507_2.out
 
-An `.out` file is automatically created for each task.
+An ``.out`` file is automatically created for each task.
 
 In this example there was a simple one-to-one mapping between the
 ``SLURM_ARRAY_TASK_ID`` and our data, but that is not always the case.
-The `Mapping task ID to data`_ section below describes several ways you
+The `Mapping task IDs to data`_ section below describes several ways you
 might use to map the ``SLURM_ARRAY_TASK_ID`` variable to more complex
 data/filenames.
 
 Dependencies
 ============
 
-Mapping task ID to data
-=======================
+..
+
+   TODO: --kill-on-invalid-dep=
+
+Mapping task IDs to data
+========================
 
 Using ``sbatch`` arrays requires that you map a number (the array task
-ID) to a file or similar. The above example assumed that filenames were
-numbered for simplicity, but that is not always the case.
+ID) to a filename or similar. The above example assumed that filenames
+were numbered for simplicity, but that is not always the case.
 
 The following therefore describes a few ways in which you can map array
-task ID to more complicated data in a bash script.
+task ID to filenames in a bash script.
 
 #. Using numbered filenames:
 
-.. code:: bash
+   The example showed how to handle filenames where the numbers were
+   simply written as 1, 2, etc:
 
-   # Simple numbering (sample1.vcf, sample2.vcf, etc.)
-   FILENAME="/path/to/data/sample${SLURM_ARRAY_TASK_ID}.vcf"
-   # Formatted numbering (sample01.vcf, sample02.vcf, etc.)
-   FILENAME=$(printf "/path/to/data/sample%02i.vcf" ${SLURM_ARRAY_TASK_ID})
+   .. code:: bash
 
-2. Using a table of filenames:
+      # Simple numbering: sample1.vcf, sample2.vcf, etc.
+      FILENAME="sample${SLURM_ARRAY_TASK_ID}.vcf"
+
+   However, it is also possible to format numbers in a more complicated
+   manner (e.g. 001, 002, etc.), using for example the printf command:
+
+   .. code:: bash
+
+      # Formatted numbering: sample001.vcf, sample002.vcf, etc.
+      FILENAME=$(printf "sample%03i.vcf" ${SLURM_ARRAY_TASK_ID})
+
+#. Using a table of filenames:
 
    Given a text file ``my_samples.txt`` containing one filename per
    line:
@@ -272,12 +307,12 @@ task ID to more complicated data in a bash script.
    | /path/to/third_sample.vcf          |
    +------------------------------------+
 
-.. code:: bash
+   .. code:: bash
 
-   # Prints the Nth line
-   FILENAME=$(sed "${SLURM_ARRAY_TASK_ID}q;d" my_samples.txt)
+      # Prints the Nth line
+      FILENAME=$(sed "${SLURM_ARRAY_TASK_ID}q;d" my_samples.txt)
 
-3. Using a table of numbered samples (``my_samples.tsv``):
+#. Using a table of numbered samples (``my_samples.tsv``):
 
    +----+--------+------------------------------+
    | ID | Name   | Path                         |
@@ -289,10 +324,22 @@ task ID to more complicated data in a bash script.
    | 3  | third  | /path/to/third_sample.vcf    |
    +----+--------+------------------------------+
 
-.. code:: bash
+   .. code:: bash
 
-   # Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column
-   FILENAME=$(awk -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}')
+      # Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column
+      FILENAME=$(awk -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
+
+   By default ``awk`` will split columns by any whitespace, but if you
+   have a tab separated file (``.tsv``) file it is worthwhile to specify
+   this using the ``FS`` (field separator) option:
+
+   .. code:: bash
+
+      # Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column
+      FILENAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
+
+   This ensures that ``awk`` returns the correct cell even if other
+   cells contain whitespace.
 
 ****************************
  ``sbatch`` template script
@@ -303,6 +350,10 @@ This script can also be downloaded :download:`here <my_sbatch.sh>`.
 
 .. literalinclude:: my_sbatch.sh
    :language: sh
+
+See also the :ref:`page_bash` page for tips on how to write more robust
+bash scripts. A template using those recommendations is available for
+download :download:`here <robust_sbatch.sh>`.
 
 **********************
  Additional resources

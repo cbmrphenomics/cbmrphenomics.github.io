@@ -51,7 +51,7 @@
 <li><a class="reference internal" href="#managing-jobs">4.5.4. Managing jobs</a></li>
 <li><a class="reference internal" href="#running-multiple-tasks-using-arrays">4.5.5. Running multiple tasks using arrays</a><ul>
 <li><a class="reference internal" href="#dependencies">4.5.5.1. Dependencies</a></li>
-<li><a class="reference internal" href="#mapping-task-id-to-data">4.5.5.2. Mapping task ID to data</a></li>
+<li><a class="reference internal" href="#mapping-task-ids-to-data">4.5.5.2. Mapping task IDs to data</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#sbatch-template-script">4.5.6. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script</a></li>
@@ -89,10 +89,10 @@
 <p>Unlike the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command, the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command is designed to run
 commands in batches and therefore does not wait for the queued command
 to terminate. Furthermore, the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command does not run commands
-directly but instead executes a script in which options for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
-may be specified using comments (see below).</p>
-<p>In other words, <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> is equivalent to the <code class="docutils literal notranslate"><span class="pre">qsub</span></code> command used on
-the old cluster, but note that command-line options are not the same!</p>
+directly, but instead executes a script in which options for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
+may optionally be specified using comments (see below). In other words,
+<code class="docutils literal notranslate"><span class="pre">sbatch</span></code> is roughly equivalent to the <code class="docutils literal notranslate"><span class="pre">qsub</span></code> command used on
+<code class="docutils literal notranslate"><span class="pre">porus</span></code>.</p>
 <p>The following gives a brief overview of how to perform common tasks,
 with additional resources and templates provided at the end of the page.</p>
 <div class="section" id="a-simple-example">
@@ -103,7 +103,8 @@ minutes:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ srun --cpus-per-task <span class="m">8</span> --time<span class="o">=</span><span class="m">60</span> pigz --processes <span class="m">8</span> chr1.fasta
 </pre></div>
 </div>
-<p>This may be converted to the following bash script (<code class="docutils literal notranslate"><span class="pre">my_script.sh</span></code>):</p>
+<p>This command may be converted into the following bash script (named
+<code class="docutils literal notranslate"><span class="pre">my_script.sh</span></code>):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --cpus-per-task=8</span>
 <span class="c1">#SBATCH --time=60</span>
@@ -140,7 +141,8 @@ chr1.fasta.gz my_script.sh slurm-8503.out
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">slurm-8503.out</span></code> file contains any console output produced by your
-script/commands. In this case it is an empty file, but it is</p>
+script/commands. This includes both STDOUT and STDERR by default, but
+see <a class="reference internal" href="#common-options">Common options</a>.</p>
 </div>
 <div class="section" id="command-line-options-and-sbatch-comments">
 <h2><span class="section-number">4.5.2. </span>Command-line options and <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments<a class="headerlink" href="#command-line-options-and-sbatch-comments" title="Permalink to this headline">¶</a></h2>
@@ -162,11 +164,14 @@ contains the line <code class="docutils literal notranslate"><span class="pre">#
 be assigned 4 CPUs instead of 8.</p></li>
 <li><p>Finally, any command-line options meant for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> must be
 written <em>before</em> the filename of the batch script:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sbatch --option my_script.sh
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sbatch --mem 512G my_script.sh
 </pre></div>
 </div>
 <p>If the option is instead placed <em>after</em> <code class="docutils literal notranslate"><span class="pre">my_script.sh</span></code>, then it is
-passed to that script.</p>
+passed to that script:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sbatch my_script.sh --my-script-option
+</pre></div>
+</div>
 </li>
 </ul>
 <div class="section" id="common-options">
@@ -216,28 +221,42 @@ run sbatch from another script.</p></li>
 <div class="section" id="monitoring-your-jobs">
 <h2><span class="section-number">4.5.3. </span>Monitoring your jobs<a class="headerlink" href="#monitoring-your-jobs" title="Permalink to this headline">¶</a></h2>
 <p>Slurm offers a number of ways in which you may monitor your jobs:</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command allows you to list jobs that have not yet
-finished (or failed). The recommended use is either <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--me</span></code> to
-show all your jobs or <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--job</span> <span class="pre">${JOB_ID}</span></code>, where <code class="docutils literal notranslate"><span class="pre">${JOB_ID}</span></code> is
-the ID of the job whose status you want to inspect.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">sacct</span></code> command allows you list jobs that have finished running
-(or failed).</p>
-<p>In addition to actively monitoring your jobs, it is possible to receive
-email notifications when your jobs are started, finish, fail, are
-requeued, or some combination. This is accomplished by using the
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command allows you to list jobs that have not yet
+finished (or failed). The recommended use is either <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--me</span></code>
+to show all your jobs or <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--job</span> <span class="pre">${JOB_ID}</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">${JOB_ID}</span></code> is the ID of the job whose status you want to inspect.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">sacct</span></code> command allows you list jobs that have finished running
+(or failed).</p></li>
+<li><p>In addition to actively monitoring your jobs, it is possible to
+receive email notifications when your jobs are started, finish, fail,
+are requeued, or some combination. This is accomplished by using the
 <code class="docutils literal notranslate"><span class="pre">--mail-user</span></code> and <code class="docutils literal notranslate"><span class="pre">--mail-type</span></code> options:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sbatch my_script.sh --mail-user<span class="o">=</span>abc123@ku.dk --mail-type<span class="o">=</span>END,FAIL
 Submitted batch job <span class="m">8503</span>
 </pre></div>
 </div>
-<p>When run like this, you will receive notifications at <code class="docutils literal notranslate"><span class="pre">abc123&#64;ku.dk</span></code>
-(remember to use your account KU email address!) when the job is
-completed or fails. The possible options are <code class="docutils literal notranslate"><span class="pre">NONE</span></code> (the default),
-<code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">END</span></code>, <code class="docutils literal notranslate"><span class="pre">FAIL</span></code>, <code class="docutils literal notranslate"><span class="pre">REQUEUE</span></code>, <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, or some combination
-as shown above.</p>
+<p>When run like this, you will receive notifications at
+<code class="docutils literal notranslate"><span class="pre">abc123&#64;ku.dk</span></code> (remember to use your account KU email address!)
+when the job is completed or fails. The possible options are <code class="docutils literal notranslate"><span class="pre">NONE</span></code>
+(the default), <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">END</span></code>, <code class="docutils literal notranslate"><span class="pre">FAIL</span></code>, <code class="docutils literal notranslate"><span class="pre">REQUEUE</span></code>, <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, or
+some combination as shown above.</p>
+</li>
+</ul>
 </div>
 <div class="section" id="managing-jobs">
 <h2><span class="section-number">4.5.4. </span>Managing jobs<a class="headerlink" href="#managing-jobs" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>TODO: scancel and others</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># To cancel everything</span>
+scancel -u <span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+<span class="c1"># TO cancel by name</span>
+scancel -n <span class="s2">&quot;name&quot;</span>
+<span class="c1"># To cancel specific job? Or task for job?</span>
+scancel ?
+</pre></div>
+</div>
+</div></blockquote>
 </div>
 <div class="section" id="running-multiple-tasks-using-arrays">
 <h2><span class="section-number">4.5.5. </span>Running multiple tasks using arrays<a class="headerlink" href="#running-multiple-tasks-using-arrays" title="Permalink to this headline">¶</a></h2>
@@ -247,7 +266,7 @@ automatically queue and run the same command on multiple inputs.</p>
 <p>For example, we could expand on the example above to gzip multiple
 chromosomes using a job array. To do so, we first need to update the
 script to make use of the <code class="docutils literal notranslate"><span class="pre">SLURM_ARRAY_TASK_ID</span></code> variable, which
-specifies the numbered ID of a task:</p>
+specifies the numerical ID of a task:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
 <span class="c1">#SBATCH --cpus-per-task=8</span>
 <span class="c1">#SBATCH --time=60</span>
@@ -256,6 +275,9 @@ specifies the numbered ID of a task:</p>
 pigz --processes <span class="m">8</span> chr<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.fasta
 </pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--array=1-3</span></code> option specifies that we want to run tasks 1, 2, and
+3. See the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> manual page for a description of ways in which to
+specify lists of task IDs.</p>
 <p>Our script can then be run as before:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ $ ls
 chr1.fasta chr2.fasta chr3.fasta my_script.sh
@@ -271,32 +293,40 @@ chr1.fasta.gz  chr3.fasta.gz  slurm-8507_1.out  slurm-8507_3.out
 chr2.fasta.gz  my_script.sh   slurm-8507_2.out
 </pre></div>
 </div>
-<p>An <cite>.out</cite> file is automatically created for each task.</p>
+<p>An <code class="docutils literal notranslate"><span class="pre">.out</span></code> file is automatically created for each task.</p>
 <p>In this example there was a simple one-to-one mapping between the
 <code class="docutils literal notranslate"><span class="pre">SLURM_ARRAY_TASK_ID</span></code> and our data, but that is not always the case.
-The <a class="reference internal" href="#mapping-task-id-to-data">Mapping task ID to data</a> section below describes several ways you
+The <a class="reference internal" href="#mapping-task-ids-to-data">Mapping task IDs to data</a> section below describes several ways you
 might use to map the <code class="docutils literal notranslate"><span class="pre">SLURM_ARRAY_TASK_ID</span></code> variable to more complex
 data/filenames.</p>
 <div class="section" id="dependencies">
 <h3><span class="section-number">4.5.5.1. </span>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><p>TODO: --kill-on-invalid-dep=</p>
+</div></blockquote>
 </div>
-<div class="section" id="mapping-task-id-to-data">
-<h3><span class="section-number">4.5.5.2. </span>Mapping task ID to data<a class="headerlink" href="#mapping-task-id-to-data" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="mapping-task-ids-to-data">
+<h3><span class="section-number">4.5.5.2. </span>Mapping task IDs to data<a class="headerlink" href="#mapping-task-ids-to-data" title="Permalink to this headline">¶</a></h3>
 <p>Using <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> arrays requires that you map a number (the array task
-ID) to a file or similar. The above example assumed that filenames were
-numbered for simplicity, but that is not always the case.</p>
+ID) to a filename or similar. The above example assumed that filenames
+were numbered for simplicity, but that is not always the case.</p>
 <p>The following therefore describes a few ways in which you can map array
-task ID to more complicated data in a bash script.</p>
-<ol class="arabic simple">
-<li><p>Using numbered filenames:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple numbering (sample1.vcf, sample2.vcf, etc.)</span>
-<span class="nv">FILENAME</span><span class="o">=</span><span class="s2">&quot;/path/to/data/sample</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="s2">.vcf&quot;</span>
-<span class="c1"># Formatted numbering (sample01.vcf, sample02.vcf, etc.)</span>
-<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">printf</span> <span class="s2">&quot;/path/to/data/sample%02i.vcf&quot;</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="k">)</span>
+task ID to filenames in a bash script.</p>
+<ol class="arabic">
+<li><p>Using numbered filenames:</p>
+<p>The example showed how to handle filenames where the numbers were
+simply written as 1, 2, etc:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Simple numbering: sample1.vcf, sample2.vcf, etc.</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="s2">&quot;sample</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="s2">.vcf&quot;</span>
 </pre></div>
 </div>
-<ol class="arabic" start="2">
+<p>However, it is also possible to format numbers in a more complicated
+manner (e.g. 001, 002, etc.), using for example the printf command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Formatted numbering: sample001.vcf, sample002.vcf, etc.</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span><span class="nb">printf</span> <span class="s2">&quot;sample%03i.vcf&quot;</span> <span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="k">)</span>
+</pre></div>
+</div>
+</li>
 <li><p>Using a table of filenames:</p>
 <p>Given a text file <code class="docutils literal notranslate"><span class="pre">my_samples.txt</span></code> containing one filename per
 line:</p>
@@ -313,13 +343,11 @@ line:</p>
 </tr>
 </tbody>
 </table>
-</li>
-</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prints the Nth line</span>
 <span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span>sed <span class="s2">&quot;</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span><span class="s2">q;d&quot;</span> my_samples.txt<span class="k">)</span>
 </pre></div>
 </div>
-<ol class="arabic" start="3">
+</li>
 <li><p>Using a table of numbered samples (<code class="docutils literal notranslate"><span class="pre">my_samples.tsv</span></code>):</p>
 <table class="docutils align-default">
 <colgroup>
@@ -346,12 +374,21 @@ line:</p>
 </tr>
 </tbody>
 </table>
-</li>
-</ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column</span>
-<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span>awk -v <span class="nv">ID</span><span class="o">=</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span> <span class="s1">&#39;$1 == ID {print $3; exit}&#39;</span><span class="k">)</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span>awk -v <span class="nv">ID</span><span class="o">=</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span> <span class="s1">&#39;$1 == ID {print $3; exit}&#39;</span> my_samples.tsv<span class="k">)</span>
 </pre></div>
 </div>
+<p>By default <code class="docutils literal notranslate"><span class="pre">awk</span></code> will split columns by any whitespace, but if you
+have a tab separated file (<code class="docutils literal notranslate"><span class="pre">.tsv</span></code>) file it is worthwhile to specify
+this using the <code class="docutils literal notranslate"><span class="pre">FS</span></code> (field separator) option:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column</span>
+<span class="nv">FILENAME</span><span class="o">=</span><span class="k">$(</span>awk -v <span class="nv">FS</span><span class="o">=</span><span class="s2">&quot;\t&quot;</span> -v <span class="nv">ID</span><span class="o">=</span><span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span> <span class="s1">&#39;$1 == ID {print $3; exit}&#39;</span> my_samples.tsv<span class="k">)</span>
+</pre></div>
+</div>
+<p>This ensures that <code class="docutils literal notranslate"><span class="pre">awk</span></code> returns the correct cell even if other
+cells contain whitespace.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="section" id="sbatch-template-script">
@@ -385,6 +422,9 @@ This script can also be downloaded <a class="reference download internal" downlo
 <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
 </pre></div>
 </div>
+<p>See also the <a class="reference internal" href="../tips_and_tricks/safer_bash_scripts.html#page-bash"><span class="std std-ref">Writing reliable bash scripts</span></a> page for tips on how to write more robust
+bash scripts. A template using those recommendations is available for
+download <a class="reference download internal" download="" href="../_downloads/a544460cecba2a9d6d25a477694cba3b/robust_sbatch.sh"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 </div>
 <div class="section" id="additional-resources">
 <h2><span class="section-number">4.5.7. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>

@@ -11,7 +11,7 @@ continuing.
 The cluster's is accessible via SSH at ``esrumhead01fl.unicph.domain``.
 This is the Esrum "head" node, which serves as the entry-point for the
 cluster and which gives you access to the job management system used for
-running analyses (see :ref:`page_running`)
+running software (see :ref:`page_running`)
 
 To connect to the cluster you will typically need to be connected to the
 KU VPN. For information about connecting to the VPN, see the support
@@ -51,8 +51,7 @@ Configuring MobaXterm
    button. This will create a shortcut on your desktop that connects to
    Esrum.
 
-#. Click OK and you should connect to the server. Note that this will
-   likely fail if you are not connected to the KU VPN.
+#. Click OK and you should connect to the server.
 
 To connect again another time, either use the desktop shortcut (if you
 created it), double click on ``Esrum`` in the list of sessions on the
@@ -111,6 +110,9 @@ This allows you connect to the server using the abbreviated name
  Troubleshooting
 *****************
 
+If have not already been granted access to the server, then please see
+the :ref:`applying_for_access` page before continuing!
+
 Timeout while connecting to the cluster
 =======================================
 
@@ -120,18 +122,15 @@ server:
 .. image:: images/connecting_ssh_timeout.gif
    :class: gif
 
-If have not already been granted access to the server, then please see
-the :ref:`applying_for_access` page before continuing!
+#. Firstly verify that you are correctly connected to the KU network:
 
-#. Firstly verify that you are either connected using a wired connection
-   at CBMR (you must be physically located at CBMR). You cannot connect
-   to the server from outside of CBMR or while using a wireless
-   connection.
+   #. You must either use a wired connection while physically at CBMR.
+   #. Or you must connect via the KU VPN.
 
-#. If that does not help or if you are located outside of CBMR, you will
-   need to connect to the KU VPN before attempting to connect to the
-   Esrum cluster. Please see the official documentation in Danish_ or
-   English_.
+   It is not possible to connect to using WIFI at CBMR nor is it
+   possible to from outside of CBMR without the use of the VPN. See the
+   official VPN documentation in Danish_ or English_ for more
+   information.
 
 #. If neither using a wired connection nor connecting the the KU VPN
    fixes the problem, you may need to create a support ticket to have KU
@@ -151,7 +150,7 @@ the :ref:`applying_for_access` page before continuing!
    #. Write something like "SSH connection times out when attempting to
       connect to esrumhead01fl.unicph.domain" in the "Please describe"
       text-box and describe the steps you have taken to try to fix this
-      problem (wired connection, VPN).
+      problem: Tried wired connection at CBMR, tried VPN, etc.
 
    #. Write "esrumhead01fl.unicph.domain" in the System name text-box.
 
