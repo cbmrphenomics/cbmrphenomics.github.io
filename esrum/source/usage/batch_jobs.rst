@@ -260,6 +260,13 @@ The `Mapping task IDs to data`_ section below describes several ways you
 might use to map the ``SLURM_ARRAY_TASK_ID`` variable to more complex
 data/filenames.
 
+.. warning::
+
+   While it is possible to use ``sbatch`` with jobs of any size, it
+   should be remembered that Slurm imposes some overhead on jobs. It is
+   therefore preferable to run jobs consisting of a large number of
+   tasks in batches, instead of running each task individually.
+
 Dependencies
 ============
 

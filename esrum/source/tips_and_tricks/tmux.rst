@@ -4,11 +4,11 @@
  Persistent sessions with tmux
 ###############################
 
-tmux_ is a so-called terminal multiplexer: It allows you to easily
-create and switch between multiple sets of terminals, it allows you to
-name them to remind yourself what you were working with, and it allows
-you to leave them running in the background when you disconnect from the
-server (whether intentionally or unintentionally).
+This section describes how to use tmux_ to manage multiple sets of
+terminals, to name your terminals to remind yourself what you were
+working with, and to leave your terminals running in the background when
+you disconnect from the server (whether intentionally or
+unintentionally).
 
 Using tmux_ is therefore highly recommended when you are working on the
 cluster, since it lets you work uninterrupted over multiple days,
@@ -37,7 +37,7 @@ To get started, ``cd`` to the directory you wish to work in and run
 This will start tmux and create a new session (group of terminals) with
 a single window (terminal) to begin with, and will make new terminal
 start with the current working directory set to
-``/projects/my_project/people/abc123``. The benefit of setting your
+``/projects/my_project/people/abc123``. The benefit of changing your
 working directory before starting tmux is that all terminals opened in
 that session will start in that directory.
 
@@ -46,11 +46,9 @@ Creating and navigating between terminals
 
 You start your new session with a single, blank terminal, but you can
 create any number of additional terminals using the ``Ctrl+b c``
-keyboard shortcut.
-
-To use this shortcut first press ``Ctrl+b``, then release the buttons
-and press ``c`` and *only* ``c``. Notice how each terminal gets listed
-on the tmux bar.
+keyboard shortcut. To use this shortcut first press ``Ctrl+b``, then
+release the buttons and press ``c`` and *only* ``c``. Notice how each
+terminal gets listed on the tmux bar.
 
 ..
    TODO: Screenshot
@@ -88,18 +86,14 @@ once your jobs are running or simply if you need to leave for the day.
 
 To disconnect from the current session, use the keyboard shortcut
 ``CTRL+b d``. This returns you to your regular terminal and you can
-safely disconnect from the server. You can also simply close your
-terminal window and tmux will keep running on the server, but note that
-this may have undesirable side-effects (such as the terminal windows
-being stuck at a certain size), since it takes tmux a while to register
-that the connection has been lost:
+safely disconnect from the server:
 
 ..
    TODO: Screenshot
 
 Once you wish to resume your work, you can use the ``tmux attach``
 (command to re-open your running sessions, optionally specifying the
-name of the session you wish to open:
+name of the session you wish to open (see also below):
 
 .. code::
 
