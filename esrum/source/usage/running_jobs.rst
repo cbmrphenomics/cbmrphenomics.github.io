@@ -57,6 +57,23 @@ By default task are allocated one CPU and 15 GB of RAM. If you need to
 use additional resources, then see `Reserving resources for your jobs`_
 and `Reserving the GPU node`_ below.
 
+*****************
+ Cancelling jobs
+*****************
+
+To cancel a job running with srun, simply press `Ctrl + c` twice:
+
+.. code:: shell
+
+   $ srun gzip chr20.fasta
+   <ctrl+c> srun: interrupt (one more within 1 sec to abort)
+   srun: StepId=8717.0 task 0: running
+   <ctrl+c> srun: sending Ctrl-C to StepId=8717.0
+   srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+
+See also the :ref:`managing_jobs` section on the :ref:`page_batch_jobs`
+page.
+
 ******************************
  Running an interactive shell
 ******************************
@@ -200,7 +217,6 @@ The ``gpustat`` tool provides a more convenient overview but must be
 installed via ``pip``:
 
 ..
-
    TODO: Update when gpustats has been added as a module
 
 .. code::

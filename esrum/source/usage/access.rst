@@ -1,4 +1,4 @@
-.. _applying_for_access:
+.. _page_applying_for_access:
 
 #####################
  Applying for access
@@ -11,20 +11,16 @@ problems applying for access to the cluster.
 
 An official guide to the identity system used is available here_.
 
+.. _applying_for_access:
+
 ************************************
  Applying for access to the cluster
 ************************************
 
 #. Login at identity.ku.dk_.
 
-#. Click on the ``Manage My Access`` button or the ``Manage User
-   Access`` button. Which of the two buttons you'll see depends on your
-   existing roles.
-
-   #. If you clicked on the ``Manage user Access`` button, first search
-      for your KU username (e.g. ``abc123``) and then click on the check
-      mark to the left of the search result *once*. Wait for the check
-      mark to turn green and then click the ``Next`` button.
+#. Click on the ``Manage My Access`` button. See below if you instead
+   have a ``Manage User Access`` button.
 
 #. Search for ``SRV-esrumhead-users``.
 
@@ -36,6 +32,16 @@ An official guide to the identity system used is available here_.
    and then click the ``Submit`` button.
 
 #. Wait for your request to be processed.
+
+.. note::
+
+   Users with project/group ownership will see a ``Manage User Access``
+   button instead of the ``Manage User Access`` mentioned above.
+
+   In that case, start by searching for your own KU username (e.g.
+   ``abc123``) and then click on the check mark to the left your name
+   *once*. Wait for the check mark to turn green, click the ``Next``
+   button, and then proceed with the steps described above.
 
 Once you have been granted access you will receive an email that
 ``Changes to your Identity were processed``. This process may take up to

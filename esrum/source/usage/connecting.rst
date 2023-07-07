@@ -5,7 +5,7 @@
 ###########################
 
 If you have not already applied for and been granted access to the
-cluster, then please see the :ref:`applying_for_access` page before
+cluster, then please see the :ref:`page_applying_for_access` page before
 continuing.
 
 The cluster's is accessible via SSH at ``esrumhead01fl.unicph.domain``.
@@ -27,6 +27,8 @@ Subsystem for Linux (WSL_), and much more. The following demonstrates
 how to setup MobaXterm. Please refer to the `For Linux and OSX users`_
 section if using WSL_.
 
+.. _configure_mobaxterm:
+
 Configuring MobaXterm
 =====================
 
@@ -34,8 +36,14 @@ Configuring MobaXterm
 
 #. Click left-most ``Session`` button on the toolbar.
 
+   .. image:: images/mobaxterm_01.png
+      :align: center
+
 #. Click on the left-most ``SSH`` button on the resulting ``Session
    settings`` dialog
+
+   .. image:: images/mobaxterm_02.png
+      :align: center
 
 #. Under ``Basic SSH settings``
 
@@ -43,20 +51,48 @@ Configuring MobaXterm
    #. Click the checkbox next to ``Specify username`` and enter your KU
       username (in the form ``abc123``)
 
+   .. image:: images/mobaxterm_03.png
+      :align: center
+
 #. Click on the ``Bookmark settings`` tab and
 
-#. Write ``Esrum`` or a name you prefer under ``Session Name``
+   #. Write ``Esrum`` or a name you prefer under ``Session Name``
 
-#. Optionally click the ``Create a desktop shortcut to this session``
-   button. This will create a shortcut on your desktop that connects to
-   Esrum.
+   #. Optionally click the ``Create a desktop shortcut to this session``
+      button. This will create a shortcut on your desktop that connects
+      to Esrum.
 
-#. Click OK and you should connect to the server.
+   .. image:: images/mobaxterm_04.png
+      :align: center
+
+#. Click OK and you should connect to the server. The first time you
+   connect a new server you if you want to proceed. As this is the first
+   time we are connecting to Esrum, simply press Accept:
+
+   .. image:: images/mobaxterm_05.png
+      :align: center
+
+   .. warning::
+
+      If you receive this question again later, then stop and
+      double-check that you are connected via the KU VPN, as the message
+      could indicate that you are not actually connecting to Esrum!
+
+#. You should now be able to login to the server:
+
+   .. image:: images/mobaxterm_06.png
+      :align: center
+
+#. For security reasons we recommend that you decline if asked if you
+   want to save your password.
 
 To connect again another time, either use the desktop shortcut (if you
 created it), double click on ``Esrum`` in the list of sessions on the
 left side of MobaXterm, or select ``Esrum`` from the list that appears
 when clicking on the middle ``Sessions`` button on the main menu.
+
+   .. image:: images/mobaxterm_07.png
+      :align: center
 
 *************************
  For Linux and OSX users
@@ -78,12 +114,13 @@ It is recommended to add an entry for the cluster to your
 .. code::
 
    $ cat ~/.ssh/config
-   Host esrum esrumhead01fl.unicph.domain
+   Host esrum esrumhead01fl esrumhead01fl.unicph.domain
        HostName esrumhead01fl.unicph.domain
        User abc123
 
-This allows you connect to the server using the abbreviated name
-``esrum`` and without having to specify your username:
+This allows you connect to the server using the names ``esrum``,
+``esrumhead01fl``, or ``esrumhead01fl.unicph.domain``, and without
+having to specify your username:
 
 .. code::
 
@@ -111,7 +148,7 @@ This allows you connect to the server using the abbreviated name
 *****************
 
 If have not already been granted access to the server, then please see
-the :ref:`applying_for_access` page before continuing!
+the :ref:`page_applying_for_access` page before continuing!
 
 Timeout while connecting to the cluster
 =======================================
