@@ -38,4 +38,7 @@ html_css_files = [
     "css/playback.css",
     "css/theme.css",
 ]
-html_js_files = ["js/libgif.js"]
+html_js_files = [
+    "js/custom.js",
+    "js/libgif.js",
+]
