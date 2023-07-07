@@ -19,7 +19,7 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.6. The module system" href="modules.html" />
+    <link rel="next" title="4.6. RStudio and Jupyter Notebooks" href="rstudio.html" />
     <link rel="prev" title="4.4. Running jobs using Slurm" href="running_jobs.html" />
     <script defer src="../_static/js/playback.js"></script>
 
@@ -28,7 +28,7 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="modules.html" title="4.6. The module system"
+          <a href="rstudio.html" title="4.6. RStudio and Jupyter Notebooks"
              accesskey="N">next</a></li>
         <li class="right" >
           <a href="running_jobs.html" title="4.4. Running jobs using Slurm"
@@ -64,8 +64,8 @@
   <p class="topless"><a href="running_jobs.html"
                         title="previous chapter"><span class="section-number">4.4. </span>Running jobs using Slurm</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="modules.html"
-                        title="next chapter"><span class="section-number">4.6. </span>The module system</a></p>
+  <p class="topless"><a href="rstudio.html"
+                        title="next chapter"><span class="section-number">4.6. </span>RStudio and Jupyter Notebooks</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -245,18 +245,7 @@ some combination as shown above.</p>
 </ul>
 </div>
 <div class="section" id="managing-jobs">
-<h2><span class="section-number">4.5.4. </span>Managing jobs<a class="headerlink" href="#managing-jobs" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>TODO: scancel and others</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># To cancel everything</span>
-scancel -u <span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
-<span class="c1"># TO cancel by name</span>
-scancel -n <span class="s2">&quot;name&quot;</span>
-<span class="c1"># To cancel specific job? Or task for job?</span>
-scancel ?
-</pre></div>
-</div>
-</div></blockquote>
+<span id="id1"></span><h2><span class="section-number">4.5.4. </span>Managing jobs<a class="headerlink" href="#managing-jobs" title="Permalink to this headline">¶</a></h2>
 </div>
 <div class="section" id="running-multiple-tasks-using-arrays">
 <h2><span class="section-number">4.5.5. </span>Running multiple tasks using arrays<a class="headerlink" href="#running-multiple-tasks-using-arrays" title="Permalink to this headline">¶</a></h2>
@@ -301,9 +290,6 @@ might use to map the <code class="docutils literal notranslate"><span class="pre
 data/filenames.</p>
 <div class="section" id="dependencies">
 <h3><span class="section-number">4.5.5.1. </span>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
-<blockquote>
-<div><p>TODO: --kill-on-invalid-dep=</p>
-</div></blockquote>
 </div>
 <div class="section" id="mapping-task-ids-to-data">
 <h3><span class="section-number">4.5.5.2. </span>Mapping task IDs to data<a class="headerlink" href="#mapping-task-ids-to-data" title="Permalink to this headline">¶</a></h3>
@@ -447,7 +433,7 @@ download <a class="reference download internal" download="" href="../_downloads/
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="modules.html" title="4.6. The module system"
+          <a href="rstudio.html" title="4.6. RStudio and Jupyter Notebooks"
              >next</a></li>
         <li class="right" >
           <a href="running_jobs.html" title="4.4. Running jobs using Slurm"

@@ -69,10 +69,10 @@ configured for work on GDPR data. All work on GDPR data should take
 place in project or data-shares (see below) marked with ``-AUDIT`` and
 *nowhere else*!
 
-To apply for access to a specific project follow the instructions in
-:ref:`applying_for_access`, using the name of the project in the
-following form ``COMP-PRJ-genotyping``, replacing ``genotyping`` with
-the name of your project.
+To apply for access to a specific project follow the instructions in the
+:ref:`applying_for_access` section, using the name of the project in the
+form ``COMP-PRJ-genotyping``, replacing ``genotyping`` with the name of
+your project.
 
 Projects folder always contain the following four sub-folders:
 
@@ -112,7 +112,6 @@ in these folders.
 *****************
 
 ..
-
    TODO: Briefly describe backup policies
 
 .. _red hat enterprise linux: https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux

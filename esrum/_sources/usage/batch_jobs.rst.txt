@@ -191,12 +191,13 @@ Slurm offers a number of ways in which you may monitor your jobs:
    (the default), ``BEGIN``, ``END``, ``FAIL``, ``REQUEUE``, ``ALL``, or
    some combination as shown above.
 
+.. _managing_jobs:
+
 ***************
  Managing jobs
 ***************
 
 ..
-
    TODO: scancel and others
 
    .. code:: shell
@@ -263,7 +264,6 @@ Dependencies
 ============
 
 ..
-
    TODO: --kill-on-invalid-dep=
 
 Mapping task IDs to data

@@ -11,4 +11,5 @@
    filesystem
    running_jobs
    batch_jobs
+   rstudio
    modules

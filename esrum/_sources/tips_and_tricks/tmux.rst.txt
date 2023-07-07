@@ -53,7 +53,6 @@ and press ``c`` and *only* ``c``. Notice how each terminal gets listed
 on the tmux bar.
 
 ..
-
    TODO: Screenshot
 
 When you have more than one terminal in a session, you can switch
@@ -61,7 +60,6 @@ between them using ``Ctrl+b n`` to switch to the next terminal and
 ``Ctrl+b p`` to switch to the previous terminal.
 
 ..
-
    TODO: Screenshot
 
 To close the terminals you've created, use either the ``exit`` command
@@ -78,7 +76,6 @@ tmux_ will exit with the message ``[exited]`` once the last terminal in
 the current session has been closed.
 
 ..
-
    TODO: Screenshot
 
 Detaching from and re-attaching to your sessions
@@ -98,7 +95,6 @@ being stuck at a certain size), since it takes tmux a while to register
 that the connection has been lost:
 
 ..
-
    TODO: Screenshot
 
 Once you wish to resume your work, you can use the ``tmux attach``
@@ -116,7 +112,6 @@ Alternatively, you can use the keyboard shortcut ``CTRL+b s`` to switch
 to the correct session after you've attached tmux.
 
 ..
-
    TODO: Screenshot
 
 Naming your sessions and windows

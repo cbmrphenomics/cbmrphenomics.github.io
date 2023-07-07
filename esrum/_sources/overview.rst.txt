@@ -29,8 +29,8 @@ and 1 GPU node:
 
 Users connect to the "head" node, from which jobs can be submitted to
 the individual compute nodes using the :ref:`Slurm management system
-<page_running>` for running tasks. An RStudio_ web server and a Shiny_
-server are also available.
+<page_running>` for running tasks. An :ref:`page_rstudio` web server and
+a Shiny_ server are also available.
 
 **********
  Software
@@ -53,9 +53,9 @@ Datasets used by several projects may made available via read-only
 network shares. As with projects, access is administered by the data
 owner.
 
-See the respective pages for :ref:`accessing <applying_for_access>`
+See the respective pages for :ref:`accessing <page_applying_for_access>`
 existing projects/data-shared and for :ref:`creating
-<creating_projects>` enw projects/data-shared.
+<creating_projects>` new projects/data-shared.
 
 ****************************
  Backup policies and quotas
@@ -86,8 +86,6 @@ See :ref:`filesystem_page` for more information.
 .. _ku-it service portal: https://serviceportal.ku.dk/
 
 .. _phenomics platform: https://cbmr.ku.dk/research-facilities/phenomics/
-
-.. _rstudio: https://posit.co/products/open-source/rstudio/
 
 .. _shiny: https://shiny.rstudio.com/
 

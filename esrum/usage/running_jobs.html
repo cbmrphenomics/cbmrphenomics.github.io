@@ -43,17 +43,18 @@
   <ul>
 <li><a class="reference internal" href="#">4.4. Running jobs using Slurm</a><ul>
 <li><a class="reference internal" href="#running-commands-using-slurm">4.4.1. Running commands using Slurm</a></li>
-<li><a class="reference internal" href="#running-an-interactive-shell">4.4.2. Running an interactive shell</a></li>
-<li><a class="reference internal" href="#reserving-resources-for-your-jobs">4.4.3. Reserving resources for your jobs</a><ul>
-<li><a class="reference internal" href="#reserving-the-gpu-node">4.4.3.1. Reserving the GPU node</a></li>
-<li><a class="reference internal" href="#monitoring-gpu-utilization">4.4.3.2. Monitoring GPU utilization</a></li>
+<li><a class="reference internal" href="#cancelling-jobs">4.4.2. Cancelling jobs</a></li>
+<li><a class="reference internal" href="#running-an-interactive-shell">4.4.3. Running an interactive shell</a></li>
+<li><a class="reference internal" href="#reserving-resources-for-your-jobs">4.4.4. Reserving resources for your jobs</a><ul>
+<li><a class="reference internal" href="#reserving-the-gpu-node">4.4.4.1. Reserving the GPU node</a></li>
+<li><a class="reference internal" href="#monitoring-gpu-utilization">4.4.4.2. Monitoring GPU utilization</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#troubleshooting">4.4.4. Troubleshooting</a><ul>
-<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.4.4.1. Error: Requested node configuration is not available</a></li>
+<li><a class="reference internal" href="#troubleshooting">4.4.5. Troubleshooting</a><ul>
+<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.4.5.1. Error: Requested node configuration is not available</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#additional-resources">4.4.5. Additional resources</a></li>
+<li><a class="reference internal" href="#additional-resources">4.4.6. Additional resources</a></li>
 </ul>
 </li>
 </ul>
@@ -124,8 +125,21 @@ bash (or similar) script. The script can then be run using <code class="docutils
 use additional resources, then see <a class="reference internal" href="#reserving-resources-for-your-jobs">Reserving resources for your jobs</a>
 and <a class="reference internal" href="#reserving-the-gpu-node">Reserving the GPU node</a> below.</p>
 </div>
+<div class="section" id="cancelling-jobs">
+<h2><span class="section-number">4.4.2. </span>Cancelling jobs<a class="headerlink" href="#cancelling-jobs" title="Permalink to this headline">¶</a></h2>
+<p>To cancel a job running with srun, simply press <cite>Ctrl + c</cite> twice:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ srun gzip chr20.fasta
+&lt;ctrl+c&gt; srun: interrupt <span class="o">(</span>one more within <span class="m">1</span> sec to abort<span class="o">)</span>
+srun: <span class="nv">StepId</span><span class="o">=</span><span class="m">8717</span>.0 task <span class="m">0</span>: running
+&lt;ctrl+c&gt; srun: sending Ctrl-C to <span class="nv">StepId</span><span class="o">=</span><span class="m">8717</span>.0
+srun: Job step aborted: Waiting up to <span class="m">32</span> seconds <span class="k">for</span> job step to finish.
+</pre></div>
+</div>
+<p>See also the <a class="reference internal" href="batch_jobs.html#managing-jobs"><span class="std std-ref">Managing jobs</span></a> section on the <a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a>
+page.</p>
+</div>
 <div class="section" id="running-an-interactive-shell">
-<h2><span class="section-number">4.4.2. </span>Running an interactive shell<a class="headerlink" href="#running-an-interactive-shell" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4.3. </span>Running an interactive shell<a class="headerlink" href="#running-an-interactive-shell" title="Permalink to this headline">¶</a></h2>
 <p>If you need to run an interactive process, for example if you need to
 use an interactive R shell to process a large dataset, or if you just
 need to experiment with running an computationally heavy process, then
@@ -146,7 +160,7 @@ be started from the head node.</p>
 for your shell is made available to other users!</p>
 </div>
 <div class="section" id="reserving-resources-for-your-jobs">
-<span id="reserving-resources"></span><h2><span class="section-number">4.4.3. </span>Reserving resources for your jobs<a class="headerlink" href="#reserving-resources-for-your-jobs" title="Permalink to this headline">¶</a></h2>
+<span id="reserving-resources"></span><h2><span class="section-number">4.4.4. </span>Reserving resources for your jobs<a class="headerlink" href="#reserving-resources-for-your-jobs" title="Permalink to this headline">¶</a></h2>
 <p>By default a <code class="docutils literal notranslate"><span class="pre">srun</span></code> will reserve 1 CPU and just under 15 GB of ram per
 CPU. Should your job require more CPUs, then you can request them using
 the <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> options. The following runs a task
@@ -171,7 +185,7 @@ use the regular nodes unless your jobs actually require that much RAM.
 See the next section for how to use the GPU node with or without
 reserving a GPU.</p>
 <div class="section" id="reserving-the-gpu-node">
-<h3><span class="section-number">4.4.3.1. </span>Reserving the GPU node<a class="headerlink" href="#reserving-the-gpu-node" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.4.1. </span>Reserving the GPU node<a class="headerlink" href="#reserving-the-gpu-node" title="Permalink to this headline">¶</a></h3>
 <p>This section describes how to schedule a task on the GPU node. The GPU
 node is intended for tasks that need to use GPUs and for tasks that have
 very high memory requirements (more than 2 TB).</p>
@@ -195,7 +209,7 @@ option:</p>
 <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code>.</p>
 </div>
 <div class="section" id="monitoring-gpu-utilization">
-<h3><span class="section-number">4.4.3.2. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.4.2. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h3>
 <p>Slurm does not provide any means of monitoring the actual GPU
 utilization, but tools such as <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> can be used to monitor
 performance metrics. And since we are not going to actually <em>use</em> the
@@ -237,9 +251,6 @@ reserved:</p>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">gpustat</span></code> tool provides a more convenient overview but must be
 installed via <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
-<blockquote>
-<div><p>TODO: Update when gpustats has been added as a module</p>
-</div></blockquote>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> pip install gpustat
 <span class="gp">$</span> srun --partition<span class="o">=</span>gpuqueue --pty -- gpustat -i <span class="m">5</span>
 <span class="go">esrumgpun01fl.unicph.domain  Thu Jun  8 12:20:24 2023  525.60.13</span>
@@ -258,9 +269,9 @@ run <code class="docutils literal notranslate"><span class="pre">gpustats</span>
 </div>
 </div>
 <div class="section" id="troubleshooting">
-<h2><span class="section-number">4.4.4. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4.5. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="error-requested-node-configuration-is-not-available">
-<h3><span class="section-number">4.4.4.1. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.5.1. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h3>
 <p>If you request too many CPUs (more than 128), or too much RAM (more than
 1993 GB for compute nodes and more than 3920 GB for the GPU node), then
 Slurm will report that the request cannot be satisfied:</p>
@@ -296,7 +307,7 @@ remember to include the <code class="docutils literal notranslate"><span class="
 </div>
 </div>
 <div class="section" id="additional-resources">
-<h2><span class="section-number">4.4.5. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4.6. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/overview.html">documentation</a></p></li>
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">summary</a> (PDF)</p></li>
