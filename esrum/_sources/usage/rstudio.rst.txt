@@ -68,19 +68,19 @@ then please refer to the documentation for your tool of choice.
 #. Install and configure MobaXterm as described in
    :ref:`configure_mobaxterm`.
 
-#. Click middle ``Tunneling`` button on the toolbar.
+#. Click the middle ``Tunneling`` button on the toolbar.
 
    .. image:: images/mobaxterm_tunnel_01.png
       :align: center
 
-#. Click bottom-left ``New SSH Tunnel`` button.
+#. Click the bottom-left ``New SSH Tunnel`` button.
 
    .. image:: images/mobaxterm_tunnel_02.png
       :align: center
 
 #. Fill out the tunnel dialogue as indicated, replacing ``12356`` with
-   your chosen port number and replacing ``abc123`` with your KU
-   username. Finally click ``Save``:
+   your chosen port number (e.g. XXXXX) and replacing ``abc123`` with
+   your KU username. Finally click ``Save``:
 
    .. image:: images/mobaxterm_tunnel_03.png
       :align: center
@@ -102,8 +102,9 @@ Port forwarding on Linux/OSX
 ============================
 
 It is recommended to enable port forwarding using your ``~/.ssh/config``
-file. This is accomplished by adding a ``RemoteForward`` line as shown
-below:
+file. This is accomplished by adding a ``RemoteForward`` line to your
+entry for Esrum as shown below (see also the section about
+:ref:`connecting_linux`):
 
 .. code:: text
 

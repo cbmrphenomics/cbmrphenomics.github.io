@@ -152,10 +152,12 @@ the project for which the modules are meant to be used. In the following
 examples, we will assume that the project is named <code class="docutils literal notranslate"><span class="pre">my-project</span></code> and
 that the <code class="docutils literal notranslate"><span class="pre">apps</span></code> folder is therefore located at
 <code class="docutils literal notranslate"><span class="pre">/projects/my-project/apps</span></code>.</p>
+<p>The module repository will consist of two folders: A <code class="docutils literal notranslate"><span class="pre">modulefiles</span></code>
+folder containing the scripts needed to load software, and a
+<code class="docutils literal notranslate"><span class="pre">software</span></code> folder in which we will place the actual software loaded by
+the module files. This organization is designed to simplify maintenance.</p>
 <ol class="arabic">
-<li><p>Create a subfolder in the <code class="docutils literal notranslate"><span class="pre">apps</span></code> for your modules and create a
-subfolder for the module scripts and a subfolder for the actual
-software:</p>
+<li><p>Create a subfolder in the <code class="docutils literal notranslate"><span class="pre">apps</span></code> for your modules:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /projects/my-project/apps/modules
 </pre></div>
 </div>
@@ -252,15 +254,17 @@ $ ln -s ../seqtk-1.4/seqtk
 </pre></div>
 </div>
 <p>You can also make a copy of the executable in the <code class="docutils literal notranslate"><span class="pre">bin</span></code> folder,
-but using a symlink makes it easier simpler to recompile the
-software if needed.</p>
+but using a symlink makes it simpler to recompile the software if
+needed.</p>
 <p>The location of this <code class="docutils literal notranslate"><span class="pre">bin</span></code> folder is already specified in the
 template above. While it <em>is</em> possible to specify the software
-directory directly, this is <em>not</em> recommended as it typically
-includes files that do not belong in your PATH.</p>
+directory directly (e.g. <code class="docutils literal notranslate"><span class="pre">software/seqtk/1.4/seqtk-1.4/</span></code>), this
+is <em>not</em> recommended as it often includes files that do not belong
+in your PATH.</p>
 </div></blockquote>
 </li>
-<li><p>Finally, run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> to enable you to load the module:</p>
+<li><p>Finally, run <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> to registers your module repository so
+that you can load your modules:</p>
 <blockquote>
 <div><blockquote>
 <div><div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module use --prepend /projects/my-project/apps/modules/modulefiles/
@@ -333,6 +337,12 @@ $ ln -s ../venv/bin/visidata
 as <code class="docutils literal notranslate"><span class="pre">/projects/my-project/apps/modules/modulefiles/visidata/2.11</span></code>. The
 python module loaded above <em>does not</em> need to be loaded before using
 this software.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not add the <code class="docutils literal notranslate"><span class="pre">venv/bin</span></code> folder to your PATH. This will override
+your default Python version and may result in accidental changes to
+the virtual environment, if you run <code class="docutils literal notranslate"><span class="pre">pip</span></code> or similar tools.</p>
+</div>
 </div>
 </div>
 

@@ -43,11 +43,11 @@
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
 <li><a class="reference internal" href="#">4.2. Connecting to the cluster</a><ul>
-<li><a class="reference internal" href="#for-windows-users">4.2.1. For Windows users</a><ul>
+<li><a class="reference internal" href="#connecting-on-windows">4.2.1. Connecting on Windows</a><ul>
 <li><a class="reference internal" href="#configuring-mobaxterm">4.2.1.1. Configuring MobaXterm</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#for-linux-and-osx-users">4.2.2. For Linux and OSX users</a></li>
+<li><a class="reference internal" href="#connecting-on-linux-or-osx">4.2.2. Connecting on Linux or OSX</a></li>
 <li><a class="reference internal" href="#troubleshooting">4.2.3. Troubleshooting</a><ul>
 <li><a class="reference internal" href="#timeout-while-connecting-to-the-cluster">4.2.3.1. Timeout while connecting to the cluster</a></li>
 </ul>
@@ -92,13 +92,13 @@ running software (see <a class="reference internal" href="running_jobs.html#page
 <p>To connect to the cluster you will typically need to be connected to the
 KU VPN. For information about connecting to the VPN, see the support
 pages on KUNet in <a class="reference external" href="https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx">Danish</a> and <a class="reference external" href="https://kunet.ku.dk/employee-guide/Pages/IT/Remote-access.aspx">English</a>.</p>
-<div class="section" id="for-windows-users">
-<h2><span class="section-number">4.2.1. </span>For Windows users<a class="headerlink" href="#for-windows-users" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="connecting-on-windows">
+<h2><span class="section-number">4.2.1. </span>Connecting on Windows<a class="headerlink" href="#connecting-on-windows" title="Permalink to this headline">¶</a></h2>
 <p>Windows users will need to install a SSH client in order to be able to
 connect to the server. Options include <a class="reference external" href="https://mobaxterm.mobatek.net/">MobaXterm</a>, <a class="reference external" href="https://www.putty.org/">Putty</a>, and Windows
 Subsystem for Linux (<a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>), and much more. The following demonstrates
-how to setup MobaXterm. Please refer to the <a class="reference internal" href="#for-linux-and-osx-users">For Linux and OSX users</a>
-section if using <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>.</p>
+how to setup MobaXterm. Please refer to the <a class="reference internal" href="#connecting-on-linux-or-osx">Connecting On Linux or
+OSX</a> section if using <a class="reference external" href="https://learn.microsoft.com/en-us/windows/wsl/about">WSL</a>.</p>
 <div class="section" id="configuring-mobaxterm">
 <span id="configure-mobaxterm"></span><h3><span class="section-number">4.2.1.1. </span>Configuring MobaXterm<a class="headerlink" href="#configuring-mobaxterm" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
@@ -153,8 +153,8 @@ when clicking on the middle <code class="docutils literal notranslate"><span cla
 </div></blockquote>
 </div>
 </div>
-<div class="section" id="for-linux-and-osx-users">
-<h2><span class="section-number">4.2.2. </span>For Linux and OSX users<a class="headerlink" href="#for-linux-and-osx-users" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="connecting-on-linux-or-osx">
+<span id="connecting-linux"></span><h2><span class="section-number">4.2.2. </span>Connecting on Linux or OSX<a class="headerlink" href="#connecting-on-linux-or-osx" title="Permalink to this headline">¶</a></h2>
 <p>Linux and OSX users can connect to the cluster using the following
 terminal command, replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with your KU username:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> ssh abc123@esrumhead01fl.unicph.domain

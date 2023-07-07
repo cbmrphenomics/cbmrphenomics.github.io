@@ -85,9 +85,11 @@
             
   <div class="section" id="the-module-system">
 <span id="modules-page"></span><h1><span class="section-number">4.7. </span>The module system<a class="headerlink" href="#the-module-system" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://modules.sourceforge.net/">Environment modules</a> provides a method by which users of the cluster
-can access a wide range of software, including different versions of the
-same software.</p>
+<p>A wide range of scientific (and other) software is made available on
+Esrum via so-called <a class="reference external" href="https://modules.sourceforge.net/">Environment modules</a>. While environment modules
+add some complexity, they allow both different versions of software as
+well as mutually exclusive pieces of software to coexist, and simplify
+making your analyses reproducible.</p>
 <p>Modules on Esrum are primarily provided by KU-IT (see below), but users
 may also set up their own private or shared environment modules. See the
 <a class="reference internal" href="../tips_and_tricks/modules.html#creating-modules-page"><span class="std std-ref">Creating environment modules</span></a></p>
@@ -100,7 +102,8 @@ documentation</a>.</p>
 <div class="section" id="finding-available-modules">
 <h3><span class="section-number">4.7.1.1. </span>Finding available modules<a class="headerlink" href="#finding-available-modules" title="Permalink to this headline">¶</a></h3>
 <p>The first step is to determine what modules are available on the server.
-This is accomplished with the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> command:</p>
+This is accomplished with the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">avail</span></code> command, that lists all
+available modules by default:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module avail
 -------------------------- /opt/software/modules --------------------------
 anaconda2/4.0.0            libpng/1.6.39               texlive/2023
@@ -111,19 +114,19 @@ anaconda3/2021.05          libxscrnsaver/1.0.0         trnascan-se/2.0.11
 <span class="o">[</span>...<span class="o">]</span>
 </pre></div>
 </div>
-<p>The command can also be used to search for specific modules by
+<p>The <code class="docutils literal notranslate"><span class="pre">avail</span></code> command can also be used to search for specific modules by
 specifying one or more keywords:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module avail sam
 -------------------------- /opt/software/modules --------------------------
 samtools/1.12  samtools/1.17
 </pre></div>
 </div>
-<p>The modules are loaded using the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command: This adds the
-executable to your PATH and performs any other setup required to run the
-software.</p>
 </div>
 <div class="section" id="loading-a-module">
 <h3><span class="section-number">4.7.1.2. </span>Loading a module<a class="headerlink" href="#loading-a-module" title="Permalink to this headline">¶</a></h3>
+<p>The modules are loaded using the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command. This command
+adds the executable to your PATH and performs any other setup required
+to run the software.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ samtools
 -bash: samtools: <span class="nb">command</span> not found
 $ module load samtools
@@ -133,9 +136,9 @@ Version: <span class="m">1</span>.17 <span class="o">(</span>using htslib <span 
 <span class="o">[</span>...<span class="o">]</span>
 </pre></div>
 </div>
-<p>Multiple modules may be specified per <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command and it i
+<p>Multiple modules may be specified per <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> command and it is
 also possible to specify the exact version that you need, provided that
-a module is available:</p>
+a module is available for that version:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module load samtools/1.12
 $ samtools
 Program: samtools <span class="o">(</span>Tools <span class="k">for</span> alignments in the SAM format<span class="o">)</span>
@@ -190,15 +193,14 @@ No Modulefiles Currently Loaded.
 <p>As described above you can load modules with or without specific
 versions. For a lot of software it is not very important that a specific
 version used, but even so it is highly recommended that you keep using
-the same versions of modules throughout a project.</p>
-<ul class="simple">
-<li><p>It documents what software you used to run your analyses.</p></li>
-<li><p>It ensures that your results do not change (subtly or greatly) when
-new versions of software are installed.</p></li>
-</ul>
+the same versions of modules throughout a project. Pinning your software
+versions ensures that your results do not change (subtly or greatly)
+when new versions of software are made available on the cluster.</p>
 <p>There are two ways to ensure that you are using the same versions of
 modules: Either using the built-in <code class="docutils literal notranslate"><span class="pre">save/restore</span></code> functionality or
-using a script containing <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands.</p>
+using a script containing <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands. These commands also
+have the advantage of documenting what software you used to run your
+analyses.</p>
 <div class="section" id="managing-modules-with-module-save-restore">
 <h3><span class="section-number">4.7.2.1. </span>Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code><a class="headerlink" href="#managing-modules-with-module-save-restore" title="Permalink to this headline">¶</a></h3>
 <p>To use the built-in functionality, run the following commands:</p>
@@ -232,7 +234,7 @@ module load bcftools/1.16
 filename (and a directory component):</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module list
 No Modulefiles Currently Loaded.
-$ module save ./modules.txt
+$ module restore ./modules.txt
 $ module list
 Currently Loaded Modulefiles:
 <span class="m">1</span><span class="o">)</span> gcc/11.2.0   <span class="m">2</span><span class="o">)</span> samtools/1.17   <span class="m">3</span><span class="o">)</span> perl/5.26.3   <span class="m">4</span><span class="o">)</span> bcftools/1.16

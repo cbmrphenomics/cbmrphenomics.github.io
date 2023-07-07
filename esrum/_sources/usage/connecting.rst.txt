@@ -17,15 +17,15 @@ To connect to the cluster you will typically need to be connected to the
 KU VPN. For information about connecting to the VPN, see the support
 pages on KUNet in Danish_ and English_.
 
-*******************
- For Windows users
-*******************
+***********************
+ Connecting on Windows
+***********************
 
 Windows users will need to install a SSH client in order to be able to
 connect to the server. Options include MobaXterm_, Putty_, and Windows
 Subsystem for Linux (WSL_), and much more. The following demonstrates
-how to setup MobaXterm. Please refer to the `For Linux and OSX users`_
-section if using WSL_.
+how to setup MobaXterm. Please refer to the `Connecting On Linux or
+OSX`_ section if using WSL_.
 
 .. _configure_mobaxterm:
 
@@ -94,9 +94,11 @@ when clicking on the middle ``Sessions`` button on the main menu.
    .. image:: images/mobaxterm_07.png
       :align: center
 
-*************************
- For Linux and OSX users
-*************************
+.. _connecting_linux:
+
+****************************
+ Connecting on Linux or OSX
+****************************
 
 Linux and OSX users can connect to the cluster using the following
 terminal command, replacing ``abc123`` with your KU username:

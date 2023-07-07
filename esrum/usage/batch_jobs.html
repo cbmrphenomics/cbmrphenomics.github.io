@@ -289,6 +289,13 @@ chr2.fasta.gz  my_script.sh   slurm-8507_2.out
 The <a class="reference internal" href="#mapping-task-ids-to-data">Mapping task IDs to data</a> section below describes several ways you
 might use to map the <code class="docutils literal notranslate"><span class="pre">SLURM_ARRAY_TASK_ID</span></code> variable to more complex
 data/filenames.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>While it is possible to use <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> with jobs of any size, it
+should be remembered that Slurm imposes some overhead on jobs. It is
+therefore preferable to run jobs consisting of a large number of
+tasks in batches, instead of running each task individually.</p>
+</div>
 <div class="section" id="dependencies">
 <h3><span class="section-number">4.5.5.1. </span>Dependencies<a class="headerlink" href="#dependencies" title="Permalink to this headline">¶</a></h3>
 </div>

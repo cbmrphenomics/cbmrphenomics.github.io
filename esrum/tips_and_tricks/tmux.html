@@ -81,11 +81,11 @@
             
   <div class="section" id="persistent-sessions-with-tmux">
 <span id="tmux-page"></span><h1><span class="section-number">5.2. </span>Persistent sessions with tmux<a class="headerlink" href="#persistent-sessions-with-tmux" title="Permalink to this headline">¶</a></h1>
-<p><a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> is a so-called terminal multiplexer: It allows you to easily
-create and switch between multiple sets of terminals, it allows you to
-name them to remind yourself what you were working with, and it allows
-you to leave them running in the background when you disconnect from the
-server (whether intentionally or unintentionally).</p>
+<p>This section describes how to use <a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> to manage multiple sets of
+terminals, to name your terminals to remind yourself what you were
+working with, and to leave your terminals running in the background when
+you disconnect from the server (whether intentionally or
+unintentionally).</p>
 <p>Using <a class="reference external" href="https://github.com/tmux/tmux/wiki">tmux</a> is therefore highly recommended when you are working on the
 cluster, since it lets you work uninterrupted over multiple days,
 without having to leave your computer running at all time and without
@@ -105,17 +105,16 @@ documentation.</p>
 <p>This will start tmux and create a new session (group of terminals) with
 a single window (terminal) to begin with, and will make new terminal
 start with the current working directory set to
-<code class="docutils literal notranslate"><span class="pre">/projects/my_project/people/abc123</span></code>. The benefit of setting your
+<code class="docutils literal notranslate"><span class="pre">/projects/my_project/people/abc123</span></code>. The benefit of changing your
 working directory before starting tmux is that all terminals opened in
 that session will start in that directory.</p>
 <div class="section" id="creating-and-navigating-between-terminals">
 <h3><span class="section-number">5.2.1.1. </span>Creating and navigating between terminals<a class="headerlink" href="#creating-and-navigating-between-terminals" title="Permalink to this headline">¶</a></h3>
 <p>You start your new session with a single, blank terminal, but you can
 create any number of additional terminals using the <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">c</span></code>
-keyboard shortcut.</p>
-<p>To use this shortcut first press <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then release the buttons
-and press <code class="docutils literal notranslate"><span class="pre">c</span></code> and <em>only</em> <code class="docutils literal notranslate"><span class="pre">c</span></code>. Notice how each terminal gets listed
-on the tmux bar.</p>
+keyboard shortcut. To use this shortcut first press <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span></code>, then
+release the buttons and press <code class="docutils literal notranslate"><span class="pre">c</span></code> and <em>only</em> <code class="docutils literal notranslate"><span class="pre">c</span></code>. Notice how each
+terminal gets listed on the tmux bar.</p>
 <p>When you have more than one terminal in a session, you can switch
 between them using <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">n</span></code> to switch to the next terminal and
 <code class="docutils literal notranslate"><span class="pre">Ctrl+b</span> <span class="pre">p</span></code> to switch to the previous terminal.</p>
@@ -138,14 +137,10 @@ server until you re-attach to the session. You will typically detach
 once your jobs are running or simply if you need to leave for the day.</p>
 <p>To disconnect from the current session, use the keyboard shortcut
 <code class="docutils literal notranslate"><span class="pre">CTRL+b</span> <span class="pre">d</span></code>. This returns you to your regular terminal and you can
-safely disconnect from the server. You can also simply close your
-terminal window and tmux will keep running on the server, but note that
-this may have undesirable side-effects (such as the terminal windows
-being stuck at a certain size), since it takes tmux a while to register
-that the connection has been lost:</p>
+safely disconnect from the server:</p>
 <p>Once you wish to resume your work, you can use the <code class="docutils literal notranslate"><span class="pre">tmux</span> <span class="pre">attach</span></code>
 (command to re-open your running sessions, optionally specifying the
-name of the session you wish to open:</p>
+name of the session you wish to open (see also below):</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span><span class="c1">## either</span>
 <span class="gp">$</span> tmux attach
 <span class="gp">#</span><span class="c1">## or</span>

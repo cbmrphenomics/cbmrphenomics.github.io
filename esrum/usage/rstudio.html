@@ -130,15 +130,15 @@ then please refer to the documentation for your tool of choice.</p>
 <ol class="arabic">
 <li><p>Install and configure MobaXterm as described in
 <a class="reference internal" href="connecting.html#configure-mobaxterm"><span class="std std-ref">Configuring MobaXterm</span></a>.</p></li>
-<li><p>Click middle <code class="docutils literal notranslate"><span class="pre">Tunneling</span></code> button on the toolbar.</p>
+<li><p>Click the middle <code class="docutils literal notranslate"><span class="pre">Tunneling</span></code> button on the toolbar.</p>
 <img alt="../_images/mobaxterm_tunnel_01.png" class="align-center" src="../_images/mobaxterm_tunnel_01.png" />
 </li>
-<li><p>Click bottom-left <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">Tunnel</span></code> button.</p>
+<li><p>Click the bottom-left <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">SSH</span> <span class="pre">Tunnel</span></code> button.</p>
 <img alt="../_images/mobaxterm_tunnel_02.png" class="align-center" src="../_images/mobaxterm_tunnel_02.png" />
 </li>
 <li><p>Fill out the tunnel dialogue as indicated, replacing <code class="docutils literal notranslate"><span class="pre">12356</span></code> with
-your chosen port number and replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with your KU
-username. Finally click <code class="docutils literal notranslate"><span class="pre">Save</span></code>:</p>
+your chosen port number (e.g. XXXXX) and replacing <code class="docutils literal notranslate"><span class="pre">abc123</span></code> with
+your KU username. Finally click <code class="docutils literal notranslate"><span class="pre">Save</span></code>:</p>
 <img alt="../_images/mobaxterm_tunnel_03.png" class="align-center" src="../_images/mobaxterm_tunnel_03.png" />
 </li>
 <li><p>If the tunnel does not start automatically, press either the &quot;Play&quot;
@@ -155,8 +155,9 @@ Notebook printed in your terminal.</p>
 <div class="section" id="port-forwarding-on-linux-osx">
 <h3><span class="section-number">4.6.2.2. </span>Port forwarding on Linux/OSX<a class="headerlink" href="#port-forwarding-on-linux-osx" title="Permalink to this headline">¶</a></h3>
 <p>It is recommended to enable port forwarding using your <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>
-file. This is accomplished by adding a <code class="docutils literal notranslate"><span class="pre">RemoteForward</span></code> line as shown
-below:</p>
+file. This is accomplished by adding a <code class="docutils literal notranslate"><span class="pre">RemoteForward</span></code> line to your
+entry for Esrum as shown below (see also the section about
+<a class="reference internal" href="connecting.html#connecting-linux"><span class="std std-ref">Connecting on Linux or OSX</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host esrum esrumhead01fl esrumhead01fl.unicph.domain
     HostName esrumhead01fl.unicph.domain
     User abc123

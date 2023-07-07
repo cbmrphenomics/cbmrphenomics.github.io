@@ -4,9 +4,11 @@
  The module system
 ###################
 
-`Environment modules`_ provides a method by which users of the cluster
-can access a wide range of software, including different versions of the
-same software.
+A wide range of scientific (and other) software is made available on
+Esrum via so-called `Environment modules`_. While environment modules
+add some complexity, they allow both different versions of software as
+well as mutually exclusive pieces of software to coexist, and simplify
+making your analyses reproducible.
 
 Modules on Esrum are primarily provided by KU-IT (see below), but users
 may also set up their own private or shared environment modules. See the
@@ -25,7 +27,8 @@ Finding available modules
 =========================
 
 The first step is to determine what modules are available on the server.
-This is accomplished with the ``module avail`` command:
+This is accomplished with the ``module avail`` command, that lists all
+available modules by default:
 
 .. code:: shell
 
@@ -38,7 +41,7 @@ This is accomplished with the ``module avail`` command:
    anaconda3/2021.05          libxscrnsaver/1.0.0         trnascan-se/2.0.11
    [...]
 
-The command can also be used to search for specific modules by
+The ``avail`` command can also be used to search for specific modules by
 specifying one or more keywords:
 
 .. code:: shell
@@ -47,12 +50,12 @@ specifying one or more keywords:
    -------------------------- /opt/software/modules --------------------------
    samtools/1.12  samtools/1.17
 
-The modules are loaded using the ``module load`` command: This adds the
-executable to your PATH and performs any other setup required to run the
-software.
-
 Loading a module
 ================
+
+The modules are loaded using the ``module load`` command. This command
+adds the executable to your PATH and performs any other setup required
+to run the software.
 
 .. code:: shell
 
@@ -64,9 +67,9 @@ Loading a module
    Version: 1.17 (using htslib 1.17)
    [...]
 
-Multiple modules may be specified per ``module load`` command and it i
+Multiple modules may be specified per ``module load`` command and it is
 also possible to specify the exact version that you need, provided that
-a module is available:
+a module is available for that version:
 
 .. code:: shell
 
@@ -133,15 +136,15 @@ unload all modules:
 As described above you can load modules with or without specific
 versions. For a lot of software it is not very important that a specific
 version used, but even so it is highly recommended that you keep using
-the same versions of modules throughout a project.
-
--  It documents what software you used to run your analyses.
--  It ensures that your results do not change (subtly or greatly) when
-   new versions of software are installed.
+the same versions of modules throughout a project. Pinning your software
+versions ensures that your results do not change (subtly or greatly)
+when new versions of software are made available on the cluster.
 
 There are two ways to ensure that you are using the same versions of
 modules: Either using the built-in ``save/restore`` functionality or
-using a script containing ``module load`` commands.
+using a script containing ``module load`` commands. These commands also
+have the advantage of documenting what software you used to run your
+analyses.
 
 Managing modules with ``module save/restore``
 =============================================
@@ -186,7 +189,7 @@ filename (and a directory component):
 
    $ module list
    No Modulefiles Currently Loaded.
-   $ module save ./modules.txt
+   $ module restore ./modules.txt
    $ module list
    Currently Loaded Modulefiles:
    1) gcc/11.2.0   2) samtools/1.17   3) perl/5.26.3   4) bcftools/1.16

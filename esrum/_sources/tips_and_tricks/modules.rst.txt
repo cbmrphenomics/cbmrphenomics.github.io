@@ -31,9 +31,12 @@ examples, we will assume that the project is named ``my-project`` and
 that the ``apps`` folder is therefore located at
 ``/projects/my-project/apps``.
 
-#. Create a subfolder in the ``apps`` for your modules and create a
-   subfolder for the module scripts and a subfolder for the actual
-   software:
+The module repository will consist of two folders: A ``modulefiles``
+folder containing the scripts needed to load software, and a
+``software`` folder in which we will place the actual software loaded by
+the module files. This organization is designed to simplify maintenance.
+
+#. Create a subfolder in the ``apps`` for your modules:
 
    .. code:: shell
 
@@ -84,15 +87,17 @@ that the ``apps`` folder is therefore located at
          $ ln -s ../seqtk-1.4/seqtk
 
       You can also make a copy of the executable in the ``bin`` folder,
-      but using a symlink makes it easier simpler to recompile the
-      software if needed.
+      but using a symlink makes it simpler to recompile the software if
+      needed.
 
       The location of this ``bin`` folder is already specified in the
       template above. While it *is* possible to specify the software
-      directory directly, this is *not* recommended as it typically
-      includes files that do not belong in your PATH.
+      directory directly (e.g. ``software/seqtk/1.4/seqtk-1.4/``), this
+      is *not* recommended as it often includes files that do not belong
+      in your PATH.
 
-#. Finally, run ``module use`` to enable you to load the module:
+#. Finally, run ``module use`` to registers your module repository so
+   that you can load your modules:
 
          .. code:: shell
 
@@ -173,6 +178,12 @@ Then all you need to do is to create a matching module file and save it
 as ``/projects/my-project/apps/modules/modulefiles/visidata/2.11``. The
 python module loaded above *does not* need to be loaded before using
 this software.
+
+.. warning::
+
+   Do not add the ``venv/bin`` folder to your PATH. This will override
+   your default Python version and may result in accidental changes to
+   the virtual environment, if you run ``pip`` or similar tools.
 
 .. _environment modules: https://modules.sourceforge.net/
 
