@@ -155,14 +155,14 @@ Notebook printed in your terminal.</p>
 <div class="section" id="port-forwarding-on-linux-osx">
 <h3><span class="section-number">4.6.2.2. </span>Port forwarding on Linux/OSX<a class="headerlink" href="#port-forwarding-on-linux-osx" title="Permalink to this headline">¶</a></h3>
 <p>It is recommended to enable port forwarding using your <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>
-file. This is accomplished by adding a <code class="docutils literal notranslate"><span class="pre">RemoteForward</span></code> line to your
+file. This is accomplished by adding a <code class="docutils literal notranslate"><span class="pre">LocalForward</span></code> line to your
 entry for Esrum as shown below (see also the section about
 <a class="reference internal" href="connecting.html#connecting-linux"><span class="std std-ref">Connecting on Linux or OSX</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host esrum esrumhead01fl esrumhead01fl.unicph.domain
     HostName esrumhead01fl.unicph.domain
     User abc123
 
-    RemoteForward XXXXX localhost:XXXXX
+    LocalForward XXXXX localhost:XXXXX
 </pre></div>
 </div>
 <p>The command costs of two parts: The port used by the notebook on Esrum
