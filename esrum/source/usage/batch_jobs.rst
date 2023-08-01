@@ -124,7 +124,7 @@ options.
 
 All of these options may be specified using ``#SBATCH`` comments.
 
--  The ``--name`` option allows you to give a name to your job. This
+-  The ``--job-name`` option allows you to give a name to your job. This
    shows up when using ``squeue``, ``sacct`` and more. If not specified,
    the name of your script is used instead.
 
