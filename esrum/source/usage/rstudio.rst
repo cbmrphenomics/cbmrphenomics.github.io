@@ -102,7 +102,7 @@ Port forwarding on Linux/OSX
 ============================
 
 It is recommended to enable port forwarding using your ``~/.ssh/config``
-file. This is accomplished by adding a ``RemoteForward`` line to your
+file. This is accomplished by adding a ``LocalForward`` line to your
 entry for Esrum as shown below (see also the section about
 :ref:`connecting_linux`):
 
@@ -112,7 +112,7 @@ entry for Esrum as shown below (see also the section about
        HostName esrumhead01fl.unicph.domain
        User abc123
 
-       RemoteForward XXXXX localhost:XXXXX
+       LocalForward XXXXX localhost:XXXXX
 
 The command costs of two parts: The port used by the notebook on Esrum
 (XXXXX), and the address via which the notebook on Esrum should be
