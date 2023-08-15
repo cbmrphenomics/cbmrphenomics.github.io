@@ -22,7 +22,7 @@ and 1 GPU node:
 +---+-----------+------+-------------------------+---------------------+
 | 8 | Compute   | 2 TB | 2x32 core AMD EPYC 7543 |                     |
 +---+-----------+------+-------------------------+---------------------+
-| 1 | Container | 2 TB | 2x32 core AMD EPYC 75F3 |                     |
+| 1 | Container | 2 TB | 2x32 core AMD EPYC 7543 |                     |
 +---+-----------+------+-------------------------+---------------------+
 | 1 | GPU       | 4 TB | 2x32 core AMD EPYC 75F3 | 2x NVIDIA A100 80GB |
 +---+-----------+------+-------------------------+---------------------+
@@ -30,7 +30,7 @@ and 1 GPU node:
 Users connect to the "head" node, from which jobs can be submitted to
 the individual compute nodes using the :ref:`Slurm management system
 <page_running>` for running tasks. An :ref:`page_rstudio` web server and
-a Shiny_ server are also available.
+a Shiny_ server, both managed by KU-IT, are also available.
 
 **********
  Software

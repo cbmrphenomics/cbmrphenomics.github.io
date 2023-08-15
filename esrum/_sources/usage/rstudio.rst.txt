@@ -31,6 +31,11 @@ For your username you should use the short form:
 .. image:: images/rstudio_login.png
    :align: center
 
+.. note::
+
+   The RStudio server is managed entirely by KU-IT and we can only
+   provide basic basic support for using this service.
+
 ******************
  Jupyter notebook
 ******************
@@ -80,7 +85,9 @@ then please refer to the documentation for your tool of choice.
 
 #. Fill out the tunnel dialogue as indicated, replacing ``12356`` with
    your chosen port number (e.g. XXXXX) and replacing ``abc123`` with
-   your KU username. Finally click ``Save``:
+   your KU username. The full name of the SSH server (written in the top
+   row on bottom right) is ``esrumhead01fl.unicph.domain``. Finally
+   click ``Save``:
 
    .. image:: images/mobaxterm_tunnel_03.png
       :align: center
