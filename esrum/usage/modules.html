@@ -51,7 +51,6 @@
 </li>
 <li><a class="reference internal" href="#making-your-analyses-reproducible">4.7.2. Making your analyses reproducible</a><ul>
 <li><a class="reference internal" href="#managing-modules-with-module-save-restore">4.7.2.1. Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code></a></li>
-<li><a class="reference internal" href="#managing-modules-with-a-script">4.7.2.2. Managing modules with a script</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#requesting-missing-modules">4.7.3. Requesting missing modules</a></li>
@@ -190,31 +189,35 @@ No Modulefiles Currently Loaded.
 </div>
 <div class="section" id="making-your-analyses-reproducible">
 <h2><span class="section-number">4.7.2. </span>Making your analyses reproducible<a class="headerlink" href="#making-your-analyses-reproducible" title="Permalink to this headline">¶</a></h2>
-<p>As described above you can load modules with or without specific
-versions. For a lot of software it is not very important that a specific
-version used, but even so it is highly recommended that you keep using
-the same versions of modules throughout a project. Pinning your software
-versions ensures that your results do not change (subtly or greatly)
-when new versions of software are made available on the cluster.</p>
-<p>There are two ways to ensure that you are using the same versions of
-modules: Either using the built-in <code class="docutils literal notranslate"><span class="pre">save/restore</span></code> functionality or
-using a script containing <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span></code> commands. These commands also
-have the advantage of documenting what software you used to run your
-analyses.</p>
+<p>As described above you can load modules with or without versions
+specified. For a lot of software it is not very important that a
+specific version used, but even so it is highly recommended that you
+keep using the same versions of modules throughout a project.</p>
+<ol class="arabic simple">
+<li><p>This ensures that your results do not suddenly change if a new
+version of a piece of software is installed.</p></li>
+<li><p>It ensures that you can accurately report what versions of software
+were used when it is time to publish your results.</p></li>
+</ol>
+<p>The following section describes using the built-in <code class="docutils literal notranslate"><span class="pre">save/restore</span></code>
+commands to record and restoring your used modules, but it is also
+possible to do this by hand.</p>
 <div class="section" id="managing-modules-with-module-save-restore">
 <h3><span class="section-number">4.7.2.1. </span>Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code><a class="headerlink" href="#managing-modules-with-module-save-restore" title="Permalink to this headline">¶</a></h3>
-<p>To use the built-in functionality, run the following commands:</p>
+<p>To export a list of your currently used models, use the following
+command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module config collection_pin_version <span class="m">1</span>
 $ module save ./modules.txt
 </pre></div>
 </div>
 <p>There are two important points here: Firstly, the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">config</span>
 <span class="pre">collection_pin_version</span> <span class="pre">1</span></code> command <em>must</em> be run first. If this is not
-done, then the specific versions of modules are not recorded!</p>
+done, then the specific versions of modules are not recorded.</p>
 <p>Secondly, the filename used in the second command (<code class="docutils literal notranslate"><span class="pre">./modules.txt</span></code>)
 <em>must</em> contain a directory component (e.g. <code class="docutils literal notranslate"><span class="pre">./</span></code>). If this is not done,
-then the list is saved in a database and won't be accessible to other
-users!</p>
+then the list is saved in a local database rather than as a file. Saving
+the list as a local file is recommended as it allows other users to see
+what software you used.</p>
 <p>If used correctly, the <code class="docutils literal notranslate"><span class="pre">./modules.txt</span></code> file will contain the currently
 loaded modules, e.g:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module list
@@ -240,31 +243,17 @@ Currently Loaded Modulefiles:
 <span class="m">1</span><span class="o">)</span> gcc/11.2.0   <span class="m">2</span><span class="o">)</span> samtools/1.17   <span class="m">3</span><span class="o">)</span> perl/5.26.3   <span class="m">4</span><span class="o">)</span> bcftools/1.16
 </pre></div>
 </div>
-</div>
-<div class="section" id="managing-modules-with-a-script">
-<h3><span class="section-number">4.7.2.2. </span>Managing modules with a script<a class="headerlink" href="#managing-modules-with-a-script" title="Permalink to this headline">¶</a></h3>
-<p>The other solution is to write a script containing one or more <code class="docutils literal notranslate"><span class="pre">module</span>
-<span class="pre">load</span></code> commands:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ cat modules.txt
-module load gcc/11.2.0
-module load samtools/1.17
-module load perl/5.26.3
-module load bcftools/1.16
+<p>Alternative, use the <code class="docutils literal notranslate"><span class="pre">.</span></code> or <code class="docutils literal notranslate"><span class="pre">source</span></code> command to execute the content
+of the file in your current shell. This has the same effect as running
+<code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">restore</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> ./modules.txt
 </pre></div>
 </div>
-<p>To load these modules use the command <code class="docutils literal notranslate"><span class="pre">.</span> <span class="pre">modules.sh</span></code> (dot space
-filename) or <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">modules.sh</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module list
-No Modulefiles Currently Loaded.
-$ . modules.sh
-$ module list
-Currently Loaded Modulefiles:
-<span class="m">1</span><span class="o">)</span> gcc/11.2.0   <span class="m">2</span><span class="o">)</span> samtools/1.17   <span class="m">3</span><span class="o">)</span> perl/5.26.3   <span class="m">4</span><span class="o">)</span> bcftools/1.16
+<p>or</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ . ./modules.txt
 </pre></div>
 </div>
-<p>Simply running the script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">modules.sh</span></code> will not work, as the
-<code class="docutils literal notranslate"><span class="pre">.</span></code> / <code class="docutils literal notranslate"><span class="pre">source</span></code> commands inject the <code class="docutils literal notranslate"><span class="pre">module</span></code> or other commands into
-your current shell.</p>
+<p>Simply running the script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">modules.sh</span></code> will not work.</p>
 </div>
 </div>
 <div class="section" id="requesting-missing-modules">

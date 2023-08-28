@@ -66,8 +66,8 @@ connect to the cluster.
 
 You can apply for access to projects using the same method as described
 in `Applying for access to the cluster`_. Alternatively, the project
-owner(s) can add you to their projects directly. However, the Phenomics
-group cannot add you to projects owned by a third party.
+owner(s) can add you to their projects directly. However, the Data
+Analytics Platform cannot add you to projects owned by a third party.
 
 See :ref:`section_projects` for a description of the location and
 file-structure of projects on Esrum.
@@ -95,11 +95,12 @@ substitute ``SRV-esrumhead-users`` with the name of your project.
 
 .. note::
 
-   Access to datasets managed by the Phenomics group requires permission
-   from the data-manager responsible for that data. The Phenomics group
-   will verify that you are permitted to access the data before granting
-   access. You may speed up this process by having the data manager
-   :ref:`page_contact` us in advance with a written approval.
+   Access to datasets managed by the Data Analytics Platform requires
+   permission from the data-manager responsible for that data. The Data
+   Analytics Platform will verify that you are permitted to access the
+   data before granting access. You may speed up this process by having
+   the data manager :ref:`page_contact` us in advance with a written
+   approval.
 
 .. _here: https://kunet.ku.dk/medarbejderguide/ITvejl/KU%20IdM%20-%20S%C3%A5dan%20anmodes%20om%20funktionsrolle.pdf
 

@@ -133,23 +133,25 @@ unload all modules:
  Making your analyses reproducible
 ***********************************
 
-As described above you can load modules with or without specific
-versions. For a lot of software it is not very important that a specific
-version used, but even so it is highly recommended that you keep using
-the same versions of modules throughout a project. Pinning your software
-versions ensures that your results do not change (subtly or greatly)
-when new versions of software are made available on the cluster.
+As described above you can load modules with or without versions
+specified. For a lot of software it is not very important that a
+specific version used, but even so it is highly recommended that you
+keep using the same versions of modules throughout a project.
 
-There are two ways to ensure that you are using the same versions of
-modules: Either using the built-in ``save/restore`` functionality or
-using a script containing ``module load`` commands. These commands also
-have the advantage of documenting what software you used to run your
-analyses.
+#. This ensures that your results do not suddenly change if a new
+   version of a piece of software is installed.
+#. It ensures that you can accurately report what versions of software
+   were used when it is time to publish your results.
+
+The following section describes using the built-in ``save/restore``
+commands to record and restoring your used modules, but it is also
+possible to do this by hand.
 
 Managing modules with ``module save/restore``
 =============================================
 
-To use the built-in functionality, run the following commands:
+To export a list of your currently used models, use the following
+command:
 
 .. code:: shell
 
@@ -158,12 +160,13 @@ To use the built-in functionality, run the following commands:
 
 There are two important points here: Firstly, the ``module config
 collection_pin_version 1`` command *must* be run first. If this is not
-done, then the specific versions of modules are not recorded!
+done, then the specific versions of modules are not recorded.
 
 Secondly, the filename used in the second command (``./modules.txt``)
 *must* contain a directory component (e.g. ``./``). If this is not done,
-then the list is saved in a database and won't be accessible to other
-users!
+then the list is saved in a local database rather than as a file. Saving
+the list as a local file is recommended as it allows other users to see
+what software you used.
 
 If used correctly, the ``./modules.txt`` file will contain the currently
 loaded modules, e.g:
@@ -194,35 +197,21 @@ filename (and a directory component):
    Currently Loaded Modulefiles:
    1) gcc/11.2.0   2) samtools/1.17   3) perl/5.26.3   4) bcftools/1.16
 
-Managing modules with a script
-==============================
-
-The other solution is to write a script containing one or more ``module
-load`` commands:
+Alternative, use the ``.`` or ``source`` command to execute the content
+of the file in your current shell. This has the same effect as running
+``module restore``:
 
 .. code:: shell
 
-   $ cat modules.txt
-   module load gcc/11.2.0
-   module load samtools/1.17
-   module load perl/5.26.3
-   module load bcftools/1.16
+   $ source ./modules.txt
 
-To load these modules use the command ``. modules.sh`` (dot space
-filename) or ``source modules.sh``:
+or
 
 .. code:: shell
 
-   $ module list
-   No Modulefiles Currently Loaded.
-   $ . modules.sh
-   $ module list
-   Currently Loaded Modulefiles:
-   1) gcc/11.2.0   2) samtools/1.17   3) perl/5.26.3   4) bcftools/1.16
+   $ . ./modules.txt
 
-Simply running the script with ``bash modules.sh`` will not work, as the
-``.`` / ``source`` commands inject the ``module`` or other commands into
-your current shell.
+Simply running the script with ``bash modules.sh`` will not work.
 
 .. _requesting_missing_modules:
 
