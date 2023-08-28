@@ -4,8 +4,8 @@
 
 Welcome to the Esrum HPC cluster at The Novo Nordisk Foundation Center
 for Basic Metabolic Research (CBMR_). The Esrum cluster is managed by
-the `Phenomics Platform`_ and is available to employees at CBMR as well
-as collaborators visiting CBMR.
+the Data Analytics Platform (formerly the `Phenomics Platform`_) and is
+available to employees at CBMR as well as collaborators visiting CBMR.
 
 You are always welcome to contact us if you have questions or problems
 relating to the cluster. See the :ref:`page_contact` page for
