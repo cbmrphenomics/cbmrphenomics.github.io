@@ -177,14 +177,15 @@ server:
 
    #. Login to the KU `IT Serviceportal`_.
 
-   #. Click the ``Create Ticket`` button.
+   #. Click the ``Create Ticket`` / ``Opret Sag`` button.
 
-   #. Select the ``Research IT`` category.
+   #. Select the ``Research IT`` / ``Forsknings-IT`` category.
 
-   #. Then select the ``Research Applications and Services``
-      subcategory.
+   #. Then select the ``Research Applications and Services`` /
+      ``Forskningsapplikationer og Services`` subcategory.
 
-   #. Finally, select ``Consultancy and Support``.
+   #. Finally, select ``Consultancy and Support`` / ``Rådgivning og
+      support``.
 
    #. Write something like "SSH connection times out when attempting to
       connect to esrumhead01fl.unicph.domain" in the "Please describe"
