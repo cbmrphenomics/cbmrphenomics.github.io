@@ -1,12 +1,50 @@
 .. _page_rstudio:
 
-###############################
- RStudio and Jupyter Notebooks
-###############################
+###################################
+ R, RStudio, and Jupyter Notebooks
+###################################
 
-Users of the Esrum cluster have the option of using RStudio or Jupyter
-Notebooks to run their analyses. This section describes steps required
-to use these tools.
+Users of the Esrum cluster have the option of using R, RStudio or
+Jupyter Notebooks to run their analyses. This section describes steps
+required to use these tools.
+
+***
+ R
+***
+
+R is available via the module system and modules may be installed in
+your home folder using the ``install.packages`` command:
+
+.. code:: console
+
+   $ module load  --auto R/4.3.1
+   Loading R/4.3.1
+     Loading requirement: gcc/11.2.0
+   $ R
+   > install.packages("ggplot2")
+   Warning in install.packages("ggplot2") :
+     'lib = "/opt/software/R/4.3.1/lib64/R/library"' is not writable
+   Would you like to use a personal library instead? (yes/No/cancel) yes
+   Would you like to create a personal library
+   ‘/home/abc123/R/x86_64-pc-linux-gnu-library/4.3’
+   to install packages into? (yes/No/cancel) yes
+
+When asked to pick a mirror, either pick ``0-Cloud`` by entering ``1``
+and pressing enter, or enter the number corresponding to a location near
+you and press enter:
+
+.. code:: console
+
+   --- Please select a CRAN mirror for use in this session ---
+   Secure CRAN mirrors
+
+   1: 0-Cloud [https]
+   [...]
+
+   Selection: 1
+
+See below if you get an ``libtk8.6.so: cannot open shared object file:
+No such file or directory`` or similar error.
 
 *********
  RStudio
@@ -140,6 +178,37 @@ Notebook printed in your terminal.
 *****************
  Troubleshooting
 *****************
+
+R: libtk8.6.so: cannot open shared object file
+==============================================
+
+Users connecting to Esrum with X11 forwarding enabled, for example using
+mobaXterm with default settings, may observe the following error when
+running the ``install.packages``:
+
+.. code:: console
+
+   --- Please select a CRAN mirror for use in this session ---
+   Error: .onLoad failed in loadNamespace() for 'tcltk', details:
+     call: dyn.load(file, DLLpath = DLLpath, ...)
+     error: unable to load shared object '/opt/software/R/4.3.1/lib64/R/library/tcltk/libs/tcltk.so':
+     libtk8.6.so: cannot open shared object file: No such file or directory
+
+If so, then you must disable graphical menus before running
+``install.packages`` by first entering the following command:
+
+.. code:: console
+
+   > options(menu.graphics=FALSE)
+
+Then simply run ``install.packages`` again.
+
+You can also set the R option permanently by running the following in
+your (bash) terminal:
+
+.. code:: console
+
+   $ echo 'options(menu.graphics=FALSE)' | tee -a ~/.Rprofile
 
 RStudio: Incorrect or invalid username/password
 ===============================================
