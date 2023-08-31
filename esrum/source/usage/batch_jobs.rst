@@ -307,7 +307,7 @@ task ID to filenames in a bash script.
    line:
 
    +------------------------------------+
-   | /path/to/fist_sample.vcf           |
+   | /path/to/first_sample.vcf          |
    +------------------------------------+
    | /path/to/second_sample.vcf         |
    +------------------------------------+
@@ -324,7 +324,7 @@ task ID to filenames in a bash script.
    +----+--------+------------------------------+
    | ID | Name   | Path                         |
    +----+--------+------------------------------+
-   | 1  | first  | /path/to/fist_sample.vcf     |
+   | 1  | first  | /path/to/first_sample.vcf    |
    +----+--------+------------------------------+
    | 2  | second | /path/to/second_sample.vcf   |
    +----+--------+------------------------------+
