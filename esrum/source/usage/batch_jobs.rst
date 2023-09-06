@@ -229,11 +229,17 @@ specifies the numerical ID of a task:
    #SBATCH --time=60
    #SBATCH --array=1-3
 
-   pigz --processes 8 chr${SLURM_ARRAY_TASK_ID}.fasta
+   pigz --processes ${SLURM_CPUS_PER_TASK} chr${SLURM_ARRAY_TASK_ID}.fasta
 
 The ``--array=1-3`` option specifies that we want to run tasks 1, 2, and
-3. See the ``sbatch`` manual page for a description of ways in which to
-specify lists of task IDs.
+3, each of which is assigned 8 CPUs and each of which is given 60
+minutes to run. See the ``sbatch`` manual page for a description of ways
+in which to specify lists of task IDs.
+
+Note also the use of the ``${SLURM_CPUS_PER_TASK}`` variable. This
+variable is automatically set to the number of CPUs you requested, in
+this example ``8``. That way you don't have to update two numbers if you
+want to change the number of CPUs.
 
 Our script can then be run as before:
 
