@@ -50,8 +50,8 @@ No such file or directory`` or similar error.
  RStudio
 *********
 
-An RStudio_ server is made available at http://esrumweb01fl:8787. To use
-this server, you must
+An RStudio_ server is made available at http://esrumcont01fl:8787/. To
+use this server, you must
 
 #. Be a member of the ``SRV-esrumweb-users`` group. Simply follow the
    steps in the :ref:`applying_for_access` section, and enter the above
@@ -60,9 +60,9 @@ this server, you must
 #. Be connected via the KU VPN or using a wired connection at CBMR. See
    :ref:`connecting` for more information.
 
-Once you have been been made a member of the ``SRV-esrumweb-users`` and
+Once you have been been made a member of the ``SRV-esrumcont-users`` and
 connected using the VPN or a wired connection at CBMR, simply visit
-http://esrumweb01fl:8787 and login using your KU credentials.
+http://esrumcont01fl:8787/ and login using your KU credentials.
 
 For your username you should use the short form:
 
@@ -71,8 +71,8 @@ For your username you should use the short form:
 
 .. note::
 
-   The RStudio server is managed entirely by KU-IT and we can only
-   provide basic basic support for using this service.
+   The RStudio server is managed by KU-IT and we can only provide basic
+   basic support for using this service.
 
 ******************
  Jupyter notebook
