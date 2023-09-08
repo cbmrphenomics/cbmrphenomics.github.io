@@ -85,13 +85,14 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="filesystem.html">4.3. Files and folders</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="filesystem.html">4.3. Projects, data, and home folders</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="filesystem.html#your-home-folder">4.3.1. Your home folder</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="filesystem.html#ku-network-drives">4.3.1.1. KU network drives</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="filesystem.html#your-project-folders">4.3.2. Your project folders</a></li>
-<li class="toctree-l2"><a class="reference internal" href="filesystem.html#backup-policies">4.3.3. Backup policies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filesystem.html#scratch-folders">4.3.3. Scratch folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filesystem.html#backup-policies">4.3.4. Backup policies</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="running_jobs.html">4.4. Running jobs using Slurm</a><ul>
@@ -99,8 +100,9 @@
 <li class="toctree-l2"><a class="reference internal" href="running_jobs.html#cancelling-jobs">4.4.2. Cancelling jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="running_jobs.html#running-an-interactive-shell">4.4.3. Running an interactive shell</a></li>
 <li class="toctree-l2"><a class="reference internal" href="running_jobs.html#reserving-resources-for-your-jobs">4.4.4. Reserving resources for your jobs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs.html#reserving-the-gpu-node">4.4.4.1. Reserving the GPU node</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs.html#monitoring-gpu-utilization">4.4.4.2. Monitoring GPU utilization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_jobs.html#best-practice-for-reserving-resources">4.4.4.1. Best practice for reserving resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_jobs.html#reserving-the-gpu-node">4.4.4.2. Reserving the GPU node</a></li>
+<li class="toctree-l3"><a class="reference internal" href="running_jobs.html#monitoring-gpu-utilization">4.4.4.3. Monitoring GPU utilization</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="running_jobs.html#troubleshooting">4.4.5. Troubleshooting</a><ul>
@@ -127,17 +129,19 @@
 <li class="toctree-l2"><a class="reference internal" href="batch_jobs.html#additional-resources">4.5.7. Additional resources</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="rstudio.html">4.6. RStudio and Jupyter Notebooks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="rstudio.html#rstudio">4.6.1. RStudio</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rstudio.html#jupyter-notebook">4.6.2. Jupyter notebook</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rstudio.html#port-forwarding-in-windows-mobaxterm">4.6.2.1. Port forwarding in Windows (MobaXterm)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rstudio.html#port-forwarding-on-linux-osx">4.6.2.2. Port forwarding on Linux/OSX</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rstudio.html">4.6. R, RStudio, and Jupyter Notebooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="rstudio.html#r">4.6.1. R</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rstudio.html#rstudio">4.6.2. RStudio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rstudio.html#jupyter-notebook">4.6.3. Jupyter notebook</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rstudio.html#port-forwarding-in-windows-mobaxterm">4.6.3.1. Port forwarding in Windows (MobaXterm)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rstudio.html#port-forwarding-on-linux-osx">4.6.3.2. Port forwarding on Linux/OSX</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="rstudio.html#troubleshooting">4.6.3. Troubleshooting</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="rstudio.html#rstudio-incorrect-or-invalid-username-password">4.6.3.1. RStudio: Incorrect or invalid username/password</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rstudio.html#jupyter-notebooks-browser-error-when-opening-url">4.6.3.2. Jupyter Notebooks: Browser error when opening URL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="rstudio.html#browser-timeout">4.6.3.3. Browser: Timeout</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rstudio.html#troubleshooting">4.6.4. Troubleshooting</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rstudio.html#r-libtk8-6-so-cannot-open-shared-object-file">4.6.4.1. R: libtk8.6.so: cannot open shared object file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rstudio.html#rstudio-incorrect-or-invalid-username-password">4.6.4.2. RStudio: Incorrect or invalid username/password</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rstudio.html#jupyter-notebooks-browser-error-when-opening-url">4.6.4.3. Jupyter Notebooks: Browser error when opening URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rstudio.html#browser-timeout">4.6.4.4. Browser: Timeout</a></li>
 </ul>
 </li>
 </ul>

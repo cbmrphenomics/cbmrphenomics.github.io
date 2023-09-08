@@ -1,8 +1,8 @@
 .. _filesystem_page:
 
-###################
- Files and folders
-###################
+##################################
+ Projects, data, and home folders
+##################################
 
 This section describes the layout of your home folder on Esrum, as well
 as the location and layout of projects and data-shares.
@@ -106,6 +106,42 @@ Projects folder always contain the following four sub-folders:
 
 Unlike your ``/home`` folder, there are no limits on how much you store
 in these folders.
+
+*****************
+ Scratch folders
+*****************
+
+Every node on esrum (including the head node) has a 3 TB scratch drive
+available at ``/scratch``. This is intended for short-lived temporary
+files generated as part of jobs running on the cluster, and can provide
+a significant performance benefit if a job for example writes a lot of
+small temporary files.
+
+.. note::
+
+   Note that unlike home folders and ``/projects``, the ``/scratch``
+   drives are physically located on each node. Files written to
+   ``/scratch`` on one node are therefore *not* accessible on other
+   nodes.
+
+It is recommended that you create a sub-folder containing your KU-IT
+username when using the scratch-drive as part of your scripts:
+
+.. code:: console
+
+   # Create temporary folder in the form /scratch/abc123
+   mkdir -p "/scratch/${USER}"
+   # Some software use the TMPDIR to place temporary files
+   export TMPDIR="/scratch/${USER}"
+   # Other software has options for where to place temporary files
+   mysoftware --in "mydata" --out "myresults" --temp "/scratch/${USER}"
+
+.. warning::
+
+   The scratch-drives have limited capacity and are *only* intended for
+   short-lived, temporary files. Do not use it to store results and
+   please remember to clean up after your jobs. Files left on the
+   scratch-drive *will* be deleted.
 
 *****************
  Backup policies

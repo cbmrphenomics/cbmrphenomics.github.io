@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.3. Files and folders &#8212; Esrum Cluster  documentation</title>
+    <title>4.3. Projects, data, and home folders &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
@@ -42,13 +42,14 @@
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4.3. Files and folders</a><ul>
+<li><a class="reference internal" href="#">4.3. Projects, data, and home folders</a><ul>
 <li><a class="reference internal" href="#your-home-folder">4.3.1. Your home folder</a><ul>
 <li><a class="reference internal" href="#ku-network-drives">4.3.1.1. KU network drives</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#your-project-folders">4.3.2. Your project folders</a></li>
-<li><a class="reference internal" href="#backup-policies">4.3.3. Backup policies</a></li>
+<li><a class="reference internal" href="#scratch-folders">4.3.3. Scratch folders</a></li>
+<li><a class="reference internal" href="#backup-policies">4.3.4. Backup policies</a></li>
 </ul>
 </li>
 </ul>
@@ -77,8 +78,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="files-and-folders">
-<span id="filesystem-page"></span><h1><span class="section-number">4.3. </span>Files and folders<a class="headerlink" href="#files-and-folders" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="projects-data-and-home-folders">
+<span id="filesystem-page"></span><h1><span class="section-number">4.3. </span>Projects, data, and home folders<a class="headerlink" href="#projects-data-and-home-folders" title="Permalink to this headline">¶</a></h1>
 <p>This section describes the layout of your home folder on Esrum, as well
 as the location and layout of projects and data-shares.</p>
 <div class="section" id="your-home-folder">
@@ -161,8 +162,40 @@ large index files, and such.</p>
 <p>Unlike your <code class="docutils literal notranslate"><span class="pre">/home</span></code> folder, there are no limits on how much you store
 in these folders.</p>
 </div>
+<div class="section" id="scratch-folders">
+<h2><span class="section-number">4.3.3. </span>Scratch folders<a class="headerlink" href="#scratch-folders" title="Permalink to this headline">¶</a></h2>
+<p>Every node on esrum (including the head node) has a 3 TB scratch drive
+available at <code class="docutils literal notranslate"><span class="pre">/scratch</span></code>. This is intended for short-lived temporary
+files generated as part of jobs running on the cluster, and can provide
+a significant performance benefit if a job for example writes a lot of
+small temporary files.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that unlike home folders and <code class="docutils literal notranslate"><span class="pre">/projects</span></code>, the <code class="docutils literal notranslate"><span class="pre">/scratch</span></code>
+drives are physically located on each node. Files written to
+<code class="docutils literal notranslate"><span class="pre">/scratch</span></code> on one node are therefore <em>not</em> accessible on other
+nodes.</p>
+</div>
+<p>It is recommended that you create a sub-folder containing your KU-IT
+username when using the scratch-drive as part of your scripts:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> Create temporary folder in the form /scratch/abc123
+<span class="go">mkdir -p &quot;/scratch/${USER}&quot;</span>
+<span class="gp">#</span> Some software use the TMPDIR to place temporary files
+<span class="go">export TMPDIR=&quot;/scratch/${USER}&quot;</span>
+<span class="gp">#</span> Other software has options <span class="k">for</span> where to place temporary files
+<span class="go">mysoftware --in &quot;mydata&quot; --out &quot;myresults&quot; --temp &quot;/scratch/${USER}&quot;</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The scratch-drives have limited capacity and are <em>only</em> intended for
+short-lived, temporary files. Do not use it to store results and
+please remember to clean up after your jobs. Files left on the
+scratch-drive <em>will</em> be deleted.</p>
+</div>
+</div>
 <div class="section" id="backup-policies">
-<h2><span class="section-number">4.3.3. </span>Backup policies<a class="headerlink" href="#backup-policies" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.4. </span>Backup policies<a class="headerlink" href="#backup-policies" title="Permalink to this headline">¶</a></h2>
 </div>
 </div>
 

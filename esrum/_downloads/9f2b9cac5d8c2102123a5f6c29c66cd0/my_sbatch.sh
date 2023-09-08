@@ -18,6 +18,8 @@
 ##SBATCH --array=
 # Avoid jobs with invalid dependencies hanging around forever (recommended)
 #SBATCH --kill-on-invalid-dep=yes
+# Send notifications when job ends. Remember to update the email address!
+##SBATCH --mail-user=abc123@ku.dk --mail-type=END,FAIL
 
 ########################
 # Your commands go here:

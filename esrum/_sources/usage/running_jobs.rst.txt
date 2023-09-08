@@ -115,7 +115,7 @@ RAM:
 
 .. code::
 
-   $ srun -c 8 -- my-command
+   $ srun -c 8 -- my-command --threads 8
 
 The amount of RAM allocated by default should be sufficient for most
 tasks, but when needed you can request additional RAM using the
@@ -124,7 +124,7 @@ CPUs and 512 gigabytes of RAM:
 
 .. code::
 
-   $ srun -c 8 --mem 512G -- my-command
+   $ srun -c 8 --mem 512G -- my-command --threads 8
 
 As described in the :ref:`page_overview`, each node has 128 CPUs
 available and 2 TB of RAM, of which 1993 GB can be reserved by Slurm.
@@ -135,6 +135,57 @@ requirements. However, since we only have one GPU node we ask that you
 use the regular nodes unless your jobs actually require that much RAM.
 See the next section for how to use the GPU node with or without
 reserving a GPU.
+
+.. note::
+
+   Remember that reserving CPUs only makes them available to your jobs,
+   it does not automatically make use of them! Check the documentation
+   for the software you are using to determine how to tell the software
+   to use additional threads (corresponding to the ``--threads 8``
+   arguments in the above example).
+
+Best practice for reserving resources
+=====================================
+
+Few programs benefit from using a lot of threads (CPUs) used due to
+added overhead and due to limits to how much of a given process can be
+parallelized. Maximum throughput is typically also limited by how fast
+the software can read/write data. In some cases too many threads can
+even increase the amount of time it takes to run the software, sometimes
+drastically so!
+
+We therefore recommended that you
+
+   -  Always refer to the documentation and recommendations for the
+      specific software you are using!
+
+   -  Test the effect of the number of threads you are using before
+      starting a lot of jobs.
+
+   -  Start with fewer CPUs and increase it only when there is a benefit
+      to doing so. You can for example 2, 4, or 8 CPUs per task, and
+      only increasing the number after it has been determined that the
+      software benefits from it.
+
+Determining how many threads are necessary can be difficult, but the
+``/usr/bin/time -f "CPU = %P"`` command can be used to estimate the
+efficiency from using multiple threads:
+
+.. code:: console
+
+   $ /usr/bin/time -f "CPU = %P my-command --threads 1 ...
+   CPU = 99%
+   $ /usr/bin/time -f "CPU = %P my-command --threads 4 ...
+   CPU = 345%
+
+In this example increasing the number of threads/CPUs to 4 did not
+result in a 4x increase in CPU usage, but only a 3.5x increase. And this
+difference tends to increase the more threads are used.
+
+A consequence of this is that it is often more efficient to split your
+job into multiple sub-jobs (for example one job per chromosome) than
+increasing the number of threads used for the individual jobs. See the
+:ref:`_page_batch_jobs` page for more information.
 
 Reserving the GPU node
 ======================

@@ -20,7 +20,7 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.6. RStudio and Jupyter Notebooks" href="rstudio.html" />
+    <link rel="next" title="4.6. R, RStudio, and Jupyter Notebooks" href="rstudio.html" />
     <link rel="prev" title="4.4. Running jobs using Slurm" href="running_jobs.html" />
     <script defer src="../_static/js/playback.js"></script>
 
@@ -29,7 +29,7 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="rstudio.html" title="4.6. RStudio and Jupyter Notebooks"
+          <a href="rstudio.html" title="4.6. R, RStudio, and Jupyter Notebooks"
              accesskey="N">next</a></li>
         <li class="right" >
           <a href="running_jobs.html" title="4.4. Running jobs using Slurm"
@@ -66,7 +66,7 @@
                         title="previous chapter"><span class="section-number">4.4. </span>Running jobs using Slurm</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="rstudio.html"
-                        title="next chapter"><span class="section-number">4.6. </span>RStudio and Jupyter Notebooks</a></p>
+                        title="next chapter"><span class="section-number">4.6. </span>R, RStudio, and Jupyter Notebooks</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -262,12 +262,17 @@ specifies the numerical ID of a task:</p>
 <span class="c1">#SBATCH --time=60</span>
 <span class="c1">#SBATCH --array=1-3</span>
 
-pigz --processes <span class="m">8</span> chr<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.fasta
+pigz --processes <span class="si">${</span><span class="nv">SLURM_CPUS_PER_TASK</span><span class="si">}</span> chr<span class="si">${</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="si">}</span>.fasta
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">--array=1-3</span></code> option specifies that we want to run tasks 1, 2, and
-3. See the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> manual page for a description of ways in which to
-specify lists of task IDs.</p>
+3, each of which is assigned 8 CPUs and each of which is given 60
+minutes to run. See the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> manual page for a description of ways
+in which to specify lists of task IDs.</p>
+<p>Note also the use of the <code class="docutils literal notranslate"><span class="pre">${SLURM_CPUS_PER_TASK}</span></code> variable. This
+variable is automatically set to the number of CPUs you requested, in
+this example <code class="docutils literal notranslate"><span class="pre">8</span></code>. That way you don't have to update two numbers if you
+want to change the number of CPUs.</p>
 <p>Our script can then be run as before:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ $ ls
 chr1.fasta chr2.fasta chr3.fasta my_script.sh
@@ -329,7 +334,7 @@ line:</p>
 <col style="width: 100%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p>/path/to/fist_sample.vcf</p></td>
+<tr class="row-odd"><td><p>/path/to/first_sample.vcf</p></td>
 </tr>
 <tr class="row-even"><td><p>/path/to/second_sample.vcf</p></td>
 </tr>
@@ -356,7 +361,7 @@ line:</p>
 </tr>
 <tr class="row-even"><td><p>1</p></td>
 <td><p>first</p></td>
-<td><p>/path/to/fist_sample.vcf</p></td>
+<td><p>/path/to/first_sample.vcf</p></td>
 </tr>
 <tr class="row-odd"><td><p>2</p></td>
 <td><p>second</p></td>
@@ -409,6 +414,8 @@ This script can also be downloaded <a class="reference download internal" downlo
 <span class="c1">##SBATCH --array=</span>
 <span class="c1"># Avoid jobs with invalid dependencies hanging around forever (recommended)</span>
 <span class="c1">#SBATCH --kill-on-invalid-dep=yes</span>
+<span class="c1"># Send notifications when job ends. Remember to update the email address!</span>
+<span class="c1">##SBATCH --mail-user=abc123@ku.dk --mail-type=END,FAIL</span>
 
 <span class="c1">########################</span>
 <span class="c1"># Your commands go here:</span>
@@ -441,7 +448,7 @@ download <a class="reference download internal" download="" href="../_downloads/
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="rstudio.html" title="4.6. RStudio and Jupyter Notebooks"
+          <a href="rstudio.html" title="4.6. R, RStudio, and Jupyter Notebooks"
              >next</a></li>
         <li class="right" >
           <a href="running_jobs.html" title="4.4. Running jobs using Slurm"

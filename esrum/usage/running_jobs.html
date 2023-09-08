@@ -21,7 +21,7 @@
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="4.5. Running batch jobs" href="batch_jobs.html" />
-    <link rel="prev" title="4.3. Files and folders" href="filesystem.html" />
+    <link rel="prev" title="4.3. Projects, data, and home folders" href="filesystem.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -32,7 +32,7 @@
           <a href="batch_jobs.html" title="4.5. Running batch jobs"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="filesystem.html" title="4.3. Files and folders"
+          <a href="filesystem.html" title="4.3. Projects, data, and home folders"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
@@ -47,8 +47,9 @@
 <li><a class="reference internal" href="#cancelling-jobs">4.4.2. Cancelling jobs</a></li>
 <li><a class="reference internal" href="#running-an-interactive-shell">4.4.3. Running an interactive shell</a></li>
 <li><a class="reference internal" href="#reserving-resources-for-your-jobs">4.4.4. Reserving resources for your jobs</a><ul>
-<li><a class="reference internal" href="#reserving-the-gpu-node">4.4.4.1. Reserving the GPU node</a></li>
-<li><a class="reference internal" href="#monitoring-gpu-utilization">4.4.4.2. Monitoring GPU utilization</a></li>
+<li><a class="reference internal" href="#best-practice-for-reserving-resources">4.4.4.1. Best practice for reserving resources</a></li>
+<li><a class="reference internal" href="#reserving-the-gpu-node">4.4.4.2. Reserving the GPU node</a></li>
+<li><a class="reference internal" href="#monitoring-gpu-utilization">4.4.4.3. Monitoring GPU utilization</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#troubleshooting">4.4.5. Troubleshooting</a><ul>
@@ -62,7 +63,7 @@
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="filesystem.html"
-                        title="previous chapter"><span class="section-number">4.3. </span>Files and folders</a></p>
+                        title="previous chapter"><span class="section-number">4.3. </span>Projects, data, and home folders</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="batch_jobs.html"
                         title="next chapter"><span class="section-number">4.5. </span>Running batch jobs</a></p>
@@ -167,14 +168,14 @@ CPU. Should your job require more CPUs, then you can request them using
 the <code class="docutils literal notranslate"><span class="pre">-c</span></code> or <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> options. The following runs a task
 with 8 CPUs, and is automatically assigned 8 * 15 ~= 120 gigabytes of
 RAM:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun -c <span class="m">8</span> -- my-command
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun -c <span class="m">8</span> -- my-command --threads <span class="m">8</span>
 </pre></div>
 </div>
 <p>The amount of RAM allocated by default should be sufficient for most
 tasks, but when needed you can request additional RAM using the
 <code class="docutils literal notranslate"><span class="pre">--mem</span></code> or <code class="docutils literal notranslate"><span class="pre">--mem-per-cpu</span></code> options. The following runs a task with 8
 CPUs and 512 gigabytes of RAM:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun -c <span class="m">8</span> --mem 512G -- my-command
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> srun -c <span class="m">8</span> --mem 512G -- my-command --threads <span class="m">8</span>
 </pre></div>
 </div>
 <p>As described in the <a class="reference internal" href="../overview.html#page-overview"><span class="std std-ref">Overview</span></a>, each node has 128 CPUs
@@ -185,8 +186,54 @@ requirements. However, since we only have one GPU node we ask that you
 use the regular nodes unless your jobs actually require that much RAM.
 See the next section for how to use the GPU node with or without
 reserving a GPU.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Remember that reserving CPUs only makes them available to your jobs,
+it does not automatically make use of them! Check the documentation
+for the software you are using to determine how to tell the software
+to use additional threads (corresponding to the <code class="docutils literal notranslate"><span class="pre">--threads</span> <span class="pre">8</span></code>
+arguments in the above example).</p>
+</div>
+<div class="section" id="best-practice-for-reserving-resources">
+<h3><span class="section-number">4.4.4.1. </span>Best practice for reserving resources<a class="headerlink" href="#best-practice-for-reserving-resources" title="Permalink to this headline">¶</a></h3>
+<p>Few programs benefit from using a lot of threads (CPUs) used due to
+added overhead and due to limits to how much of a given process can be
+parallelized. Maximum throughput is typically also limited by how fast
+the software can read/write data. In some cases too many threads can
+even increase the amount of time it takes to run the software, sometimes
+drastically so!</p>
+<p>We therefore recommended that you</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Always refer to the documentation and recommendations for the
+specific software you are using!</p></li>
+<li><p>Test the effect of the number of threads you are using before
+starting a lot of jobs.</p></li>
+<li><p>Start with fewer CPUs and increase it only when there is a benefit
+to doing so. You can for example 2, 4, or 8 CPUs per task, and
+only increasing the number after it has been determined that the
+software benefits from it.</p></li>
+</ul>
+</div></blockquote>
+<p>Determining how many threads are necessary can be difficult, but the
+<code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span> <span class="pre">-f</span> <span class="pre">&quot;CPU</span> <span class="pre">=</span> <span class="pre">%P&quot;</span></code> command can be used to estimate the
+efficiency from using multiple threads:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P my-command --threads 1 ...</span>
+<span class="go">CPU = 99%</span>
+<span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P my-command --threads 4 ...</span>
+<span class="go">CPU = 345%</span>
+</pre></div>
+</div>
+<p>In this example increasing the number of threads/CPUs to 4 did not
+result in a 4x increase in CPU usage, but only a 3.5x increase. And this
+difference tends to increase the more threads are used.</p>
+<p>A consequence of this is that it is often more efficient to split your
+job into multiple sub-jobs (for example one job per chromosome) than
+increasing the number of threads used for the individual jobs. See the
+<span class="xref std std-ref">_page_batch_jobs</span> page for more information.</p>
+</div>
 <div class="section" id="reserving-the-gpu-node">
-<h3><span class="section-number">4.4.4.1. </span>Reserving the GPU node<a class="headerlink" href="#reserving-the-gpu-node" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.4.2. </span>Reserving the GPU node<a class="headerlink" href="#reserving-the-gpu-node" title="Permalink to this headline">¶</a></h3>
 <p>This section describes how to schedule a task on the GPU node. The GPU
 node is intended for tasks that need to use GPUs and for tasks that have
 very high memory requirements (more than 2 TB).</p>
@@ -210,7 +257,7 @@ option:</p>
 <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code>.</p>
 </div>
 <div class="section" id="monitoring-gpu-utilization">
-<h3><span class="section-number">4.4.4.2. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.4.3. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h3>
 <p>Slurm does not provide any means of monitoring the actual GPU
 utilization, but tools such as <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> can be used to monitor
 performance metrics. And since we are not going to actually <em>use</em> the
@@ -330,7 +377,7 @@ remember to include the <code class="docutils literal notranslate"><span class="
           <a href="batch_jobs.html" title="4.5. Running batch jobs"
              >next</a></li>
         <li class="right" >
-          <a href="filesystem.html" title="4.3. Files and folders"
+          <a href="filesystem.html" title="4.3. Projects, data, and home folders"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
