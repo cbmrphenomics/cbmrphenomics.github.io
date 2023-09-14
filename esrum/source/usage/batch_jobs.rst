@@ -36,12 +36,17 @@ This command may be converted into the following bash script (named
    #SBATCH --cpus-per-task=8
    #SBATCH --time=60
 
-   pigz --processes 8 chr1.fasta
+   pigz --processes ${SLURM_CPUS_PER_TASK} chr1.fasta
 
 Note how options are supplied using ``#SBATCH`` comments at the top of
 the file. The same options may alternatively be specified on the
 command-line, just like with ``srun``, but it is often helpful to record
 your parameters in your batch script.
+
+Note also the use of the ``${SLURM_CPUS_PER_TASK}`` variable. This
+variable is automatically set to the number of CPUs you requested, in
+this example ``8``. That way you don't have to update two numbers if you
+want to change the number of CPUs.
 
 This resulting script can in turn be run using the ``sbatch`` command
 and it's status checked using the ``squeue`` command:
@@ -235,11 +240,6 @@ The ``--array=1-3`` option specifies that we want to run tasks 1, 2, and
 3, each of which is assigned 8 CPUs and each of which is given 60
 minutes to run. See the ``sbatch`` manual page for a description of ways
 in which to specify lists of task IDs.
-
-Note also the use of the ``${SLURM_CPUS_PER_TASK}`` variable. This
-variable is automatically set to the number of CPUs you requested, in
-this example ``8``. That way you don't have to update two numbers if you
-want to change the number of CPUs.
 
 Our script can then be run as before:
 
