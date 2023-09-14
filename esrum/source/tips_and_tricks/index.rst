@@ -8,3 +8,4 @@
 
    modules
    tmux
+   reliable_scripts
