@@ -137,7 +137,7 @@ srun: <span class="nv">StepId</span><span class="o">=</span><span class="m">8717
 srun: Job step aborted: Waiting up to <span class="m">32</span> seconds <span class="k">for</span> job step to finish.
 </pre></div>
 </div>
-<p>See also the <a class="reference internal" href="batch_jobs.html#managing-jobs"><span class="std std-ref">Managing jobs</span></a> section on the <a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a>
+<p>See also the <a class="reference internal" href="batch_jobs.html#managing-jobs"><span class="std std-ref">Cancelling jobs</span></a> section on the <a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a>
 page.</p>
 </div>
 <div class="section" id="running-an-interactive-shell">
@@ -210,17 +210,17 @@ specific software you are using!</p></li>
 <li><p>Test the effect of the number of threads you are using before
 starting a lot of jobs.</p></li>
 <li><p>Start with fewer CPUs and increase it only when there is a benefit
-to doing so. You can for example 2, 4, or 8 CPUs per task, and
-only increasing the number after it has been determined that the
-software benefits from it.</p></li>
+to doing so. You can for example start with 2, 4, or 8 CPUs per
+task, and only increasing the number after it has been determined
+that the software benefits from it.</p></li>
 </ul>
 </div></blockquote>
 <p>Determining how many threads are necessary can be difficult, but the
 <code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span> <span class="pre">-f</span> <span class="pre">&quot;CPU</span> <span class="pre">=</span> <span class="pre">%P&quot;</span></code> command can be used to estimate the
 efficiency from using multiple threads:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P my-command --threads 1 ...</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P&quot;</span> my-command --threads <span class="m">1</span> ...
 <span class="go">CPU = 99%</span>
-<span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P my-command --threads 4 ...</span>
+<span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P&quot;</span> my-command --threads <span class="m">4</span> ...
 <span class="go">CPU = 345%</span>
 </pre></div>
 </div>
@@ -230,7 +230,7 @@ difference tends to increase the more threads are used.</p>
 <p>A consequence of this is that it is often more efficient to split your
 job into multiple sub-jobs (for example one job per chromosome) than
 increasing the number of threads used for the individual jobs. See the
-<span class="xref std std-ref">_page_batch_jobs</span> page for more information.</p>
+<a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a> page for more information.</p>
 </div>
 <div class="section" id="reserving-the-gpu-node">
 <h3><span class="section-number">4.4.4.2. </span>Reserving the GPU node<a class="headerlink" href="#reserving-the-gpu-node" title="Permalink to this headline">¶</a></h3>

@@ -143,12 +143,35 @@ username when using the scratch-drive as part of your scripts:
    please remember to clean up after your jobs. Files left on the
    scratch-drive *will* be deleted.
 
-*****************
- Backup policies
-*****************
+*********
+ Backups
+*********
 
-..
-   TODO: Briefly describe backup policies
+Backups are available your home folder and in project folders ``/apps``,
+``/data``, and ``/people`` via special hidden ``.snapshot`` folders in
+the root of each of these folders. For example, to access the snapshots
+of the ``/data`` folder in the project ``phenomics``:
+
+.. code:: shell
+
+   $ cd /projects/phenomics/data/.snapshot
+   $ ls
+   42-Research-hourly-7D-2023-09-01_02:00
+   42-Research-daily-30D-2023-09-02_02:00
+   42-Research-weekly-104W-2023-09-03_02:00
+
+Each timestamped folder contains a full snapshot of the parent folder
+(``/home``, ``/apps``, etc.) and you can copy data from these snapshots
+should you need to restore deleted or modified files.
+
+Snapshots of audited projects are only accessible for a limited time and
+you may therefore need to contact KU-IT to restore deleted data for such
+projects.
+
+.. warning::
+
+   Please contact KU-IT should you need to restore a large amount of
+   deleted data.
 
 .. _red hat enterprise linux: https://en.wikipedia.org/wiki/Red_Hat_Enterprise_Linux
 

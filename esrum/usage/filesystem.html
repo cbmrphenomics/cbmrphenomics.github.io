@@ -49,7 +49,7 @@
 </li>
 <li><a class="reference internal" href="#your-project-folders">4.3.2. Your project folders</a></li>
 <li><a class="reference internal" href="#scratch-folders">4.3.3. Scratch folders</a></li>
-<li><a class="reference internal" href="#backup-policies">4.3.4. Backup policies</a></li>
+<li><a class="reference internal" href="#backups">4.3.4. Backups</a></li>
 </ul>
 </li>
 </ul>
@@ -194,8 +194,30 @@ please remember to clean up after your jobs. Files left on the
 scratch-drive <em>will</em> be deleted.</p>
 </div>
 </div>
-<div class="section" id="backup-policies">
-<h2><span class="section-number">4.3.4. </span>Backup policies<a class="headerlink" href="#backup-policies" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="backups">
+<h2><span class="section-number">4.3.4. </span>Backups<a class="headerlink" href="#backups" title="Permalink to this headline">¶</a></h2>
+<p>Backups are available your home folder and in project folders <code class="docutils literal notranslate"><span class="pre">/apps</span></code>,
+<code class="docutils literal notranslate"><span class="pre">/data</span></code>, and <code class="docutils literal notranslate"><span class="pre">/people</span></code> via special hidden <code class="docutils literal notranslate"><span class="pre">.snapshot</span></code> folders in
+the root of each of these folders. For example, to access the snapshots
+of the <code class="docutils literal notranslate"><span class="pre">/data</span></code> folder in the project <code class="docutils literal notranslate"><span class="pre">phenomics</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> /projects/phenomics/data/.snapshot
+$ ls
+<span class="m">42</span>-Research-hourly-7D-2023-09-01_02:00
+<span class="m">42</span>-Research-daily-30D-2023-09-02_02:00
+<span class="m">42</span>-Research-weekly-104W-2023-09-03_02:00
+</pre></div>
+</div>
+<p>Each timestamped folder contains a full snapshot of the parent folder
+(<code class="docutils literal notranslate"><span class="pre">/home</span></code>, <code class="docutils literal notranslate"><span class="pre">/apps</span></code>, etc.) and you can copy data from these snapshots
+should you need to restore deleted or modified files.</p>
+<p>Snapshots of audited projects are only accessible for a limited time and
+you may therefore need to contact KU-IT to restore deleted data for such
+projects.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please contact KU-IT should you need to restore a large amount of
+deleted data.</p>
+</div>
 </div>
 </div>
 

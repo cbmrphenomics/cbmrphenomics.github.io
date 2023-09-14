@@ -49,7 +49,7 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#monitoring-your-jobs">4.5.3. Monitoring your jobs</a></li>
-<li><a class="reference internal" href="#managing-jobs">4.5.4. Managing jobs</a></li>
+<li><a class="reference internal" href="#cancelling-jobs">4.5.4. Cancelling jobs</a></li>
 <li><a class="reference internal" href="#running-multiple-tasks-using-arrays">4.5.5. Running multiple tasks using arrays</a><ul>
 <li><a class="reference internal" href="#dependencies">4.5.5.1. Dependencies</a></li>
 <li><a class="reference internal" href="#mapping-task-ids-to-data">4.5.5.2. Mapping task IDs to data</a></li>
@@ -110,13 +110,17 @@ minutes:</p>
 <span class="c1">#SBATCH --cpus-per-task=8</span>
 <span class="c1">#SBATCH --time=60</span>
 
-pigz --processes <span class="m">8</span> chr1.fasta
+pigz --processes <span class="si">${</span><span class="nv">SLURM_CPUS_PER_TASK</span><span class="si">}</span> chr1.fasta
 </pre></div>
 </div>
 <p>Note how options are supplied using <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments at the top of
 the file. The same options may alternatively be specified on the
 command-line, just like with <code class="docutils literal notranslate"><span class="pre">srun</span></code>, but it is often helpful to record
 your parameters in your batch script.</p>
+<p>Note also the use of the <code class="docutils literal notranslate"><span class="pre">${SLURM_CPUS_PER_TASK}</span></code> variable. This
+variable is automatically set to the number of CPUs you requested, in
+this example <code class="docutils literal notranslate"><span class="pre">8</span></code>. That way you don't have to update two numbers if you
+want to change the number of CPUs.</p>
 <p>This resulting script can in turn be run using the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command
 and it's status checked using the <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ls
@@ -245,8 +249,40 @@ some combination as shown above.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="managing-jobs">
-<span id="id1"></span><h2><span class="section-number">4.5.4. </span>Managing jobs<a class="headerlink" href="#managing-jobs" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="cancelling-jobs">
+<span id="managing-jobs"></span><h2><span class="section-number">4.5.4. </span>Cancelling jobs<a class="headerlink" href="#cancelling-jobs" title="Permalink to this headline">¶</a></h2>
+<p>Already running jobs can be cancelled using the <code class="docutils literal notranslate"><span class="pre">scancel</span></code> command and
+the ID of the job you want to cancel:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ squeue --me
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+ <span class="m">8503</span> standardq my_scrip   abc123  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+$ scancel <span class="m">8503</span>
+</pre></div>
+</div>
+<p>When running batch jobs you can either cancel the entire job (array, see
+below) or individual sub-tasks:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ squeue --me
+ JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+8504_1 standardq my_scrip   zlc187  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+8504_2 standardq my_scrip   zlc187  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+8504_3 standardq my_scrip   zlc187  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn01fl
+</pre></div>
+</div>
+<p>To cancel the entire job (all tasks in the array) simply use the primary
+job ID before the underscore/dot:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ scancel <span class="m">8504</span>
+</pre></div>
+</div>
+<p>To cancel part of a batch job/array, instead specify the ID of the
+sub-task after the ID of the batch job, using a dot (<code class="docutils literal notranslate"><span class="pre">.</span></code>) to separate
+the two IDs:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ scancel <span class="m">8504</span>.1
+</pre></div>
+</div>
+<p>Should you wish to cancel <em>all</em> your jobs, use the <code class="docutils literal notranslate"><span class="pre">-u</span></code> option:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ scancel -u <span class="si">${</span><span class="nv">USER</span><span class="si">}</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="running-multiple-tasks-using-arrays">
 <h2><span class="section-number">4.5.5. </span>Running multiple tasks using arrays<a class="headerlink" href="#running-multiple-tasks-using-arrays" title="Permalink to this headline">¶</a></h2>
@@ -269,12 +305,8 @@ pigz --processes <span class="si">${</span><span class="nv">SLURM_CPUS_PER_TASK<
 3, each of which is assigned 8 CPUs and each of which is given 60
 minutes to run. See the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> manual page for a description of ways
 in which to specify lists of task IDs.</p>
-<p>Note also the use of the <code class="docutils literal notranslate"><span class="pre">${SLURM_CPUS_PER_TASK}</span></code> variable. This
-variable is automatically set to the number of CPUs you requested, in
-this example <code class="docutils literal notranslate"><span class="pre">8</span></code>. That way you don't have to update two numbers if you
-want to change the number of CPUs.</p>
 <p>Our script can then be run as before:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ $ ls
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ls
 chr1.fasta chr2.fasta chr3.fasta my_script.sh
 $ sbatch my_script.sh
 Submitted batch job <span class="m">8504</span>
@@ -423,7 +455,7 @@ This script can also be downloaded <a class="reference download internal" downlo
 <span class="nb">echo</span> <span class="s2">&quot;Hello world!&quot;</span>
 </pre></div>
 </div>
-<p>See also the <a class="reference internal" href="../tips_and_tricks/safer_bash_scripts.html#page-bash"><span class="std std-ref">Writing reliable bash scripts</span></a> page for tips on how to write more robust
+<p>See also the <a class="reference internal" href="../tips_and_tricks/reliable_scripts.html#page-bash"><span class="std std-ref">Writing reliable bash scripts</span></a> page for tips on how to write more robust
 bash scripts. A template using those recommendations is available for
 download <a class="reference download internal" download="" href="../_downloads/a544460cecba2a9d6d25a477694cba3b/robust_sbatch.sh"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 </div>
