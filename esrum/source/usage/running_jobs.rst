@@ -163,9 +163,9 @@ We therefore recommended that you
       starting a lot of jobs.
 
    -  Start with fewer CPUs and increase it only when there is a benefit
-      to doing so. You can for example 2, 4, or 8 CPUs per task, and
-      only increasing the number after it has been determined that the
-      software benefits from it.
+      to doing so. You can for example start with 2, 4, or 8 CPUs per
+      task, and only increasing the number after it has been determined
+      that the software benefits from it.
 
 Determining how many threads are necessary can be difficult, but the
 ``/usr/bin/time -f "CPU = %P"`` command can be used to estimate the
@@ -173,9 +173,9 @@ efficiency from using multiple threads:
 
 .. code:: console
 
-   $ /usr/bin/time -f "CPU = %P my-command --threads 1 ...
+   $ /usr/bin/time -f "CPU = %P" my-command --threads 1 ...
    CPU = 99%
-   $ /usr/bin/time -f "CPU = %P my-command --threads 4 ...
+   $ /usr/bin/time -f "CPU = %P" my-command --threads 4 ...
    CPU = 345%
 
 In this example increasing the number of threads/CPUs to 4 did not
@@ -185,7 +185,7 @@ difference tends to increase the more threads are used.
 A consequence of this is that it is often more efficient to split your
 job into multiple sub-jobs (for example one job per chromosome) than
 increasing the number of threads used for the individual jobs. See the
-:ref:`_page_batch_jobs` page for more information.
+:ref:`page_batch_jobs` page for more information.
 
 Reserving the GPU node
 ======================
