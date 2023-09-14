@@ -198,21 +198,51 @@ Slurm offers a number of ways in which you may monitor your jobs:
 
 .. _managing_jobs:
 
-***************
- Managing jobs
-***************
+*****************
+ Cancelling jobs
+*****************
 
-..
-   TODO: scancel and others
+Already running jobs can be cancelled using the ``scancel`` command and
+the ID of the job you want to cancel:
 
-   .. code:: shell
+.. code:: shell
 
-      # To cancel everything
-      scancel -u ${USER}
-      # TO cancel by name
-      scancel -n "name"
-      # To cancel specific job? Or task for job?
-      scancel ?
+   $ squeue --me
+   JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+    8503 standardq my_scrip   abc123  R       0:02      1 esrumcmpn01fl
+   $ scancel 8503
+
+When running batch jobs you can either cancel the entire job (array, see
+below) or individual sub-tasks:
+
+.. code:: shell
+
+   $ squeue --me
+    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+   8504_1 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
+   8504_2 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
+   8504_3 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
+
+To cancel the entire job (all tasks in the array) simply use the primary
+job ID before the underscore/dot:
+
+.. code:: shell
+
+   $ scancel 8504
+
+To cancel part of a batch job/array, instead specify the ID of the
+sub-task after the ID of the batch job, using a dot (``.``) to separate
+the two IDs:
+
+.. code:: shell
+
+   $ scancel 8504.1
+
+Should you wish to cancel *all* your jobs, use the ``-u`` option:
+
+.. code:: shell
+
+   $ scancel -u ${USER}
 
 *************************************
  Running multiple tasks using arrays
@@ -245,7 +275,7 @@ Our script can then be run as before:
 
 .. code:: shell
 
-   $ $ ls
+   $ ls
    chr1.fasta chr2.fasta chr3.fasta my_script.sh
    $ sbatch my_script.sh
    Submitted batch job 8504
