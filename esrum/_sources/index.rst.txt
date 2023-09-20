@@ -19,7 +19,7 @@ information about how and where to contact us.
    page.
 
 In addition to the documentation provided here, KU-IT also provides
-documentation for the `UPCH computing/HPC Systems`_ on KUNet.
+documentation for the `UCPH computing/HPC Systems`_ on KUNet.
 
 .. toctree::
    :numbered:
@@ -38,4 +38,4 @@ documentation for the `UPCH computing/HPC Systems`_ on KUNet.
 
 .. _phenomics platform: https://cbmr.ku.dk/research-facilities/phenomics/
 
-.. _upch computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx
+.. _ucph computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/ucph-computing-hpc-systems/Pages/default.aspx

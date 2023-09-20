@@ -77,7 +77,7 @@ See :ref:`filesystem_page` for more information.
  Additional resources
 **********************
 
--  Official `UPCH computing/HPC Systems`_ documentation on KUNet.
+-  Official `UCPH computing/HPC Systems`_ documentation on KUNet.
 
 .. _cbmr: https://cbmr.ku.dk/
 
@@ -91,4 +91,4 @@ See :ref:`filesystem_page` for more information.
 
 .. _slurm: https://slurm.schedmd.com/
 
-.. _upch computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/upch-computing-hpc-systems/Pages/default.aspx
+.. _ucph computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/ucph-computing-hpc-systems/Pages/default.aspx

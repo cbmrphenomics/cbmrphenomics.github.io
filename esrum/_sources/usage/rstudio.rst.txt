@@ -53,9 +53,9 @@ No such file or directory`` or similar error.
 An RStudio_ server is made available at http://esrumcont01fl:8787/. To
 use this server, you must
 
-#. Be a member of the ``SRV-esrumweb-users`` group. Simply follow the
-   steps in the :ref:`applying_for_access` section, and enter the above
-   group name.
+#. Be a member of the ``SRV-esrumcont-users`` group. Simply follow the
+   steps in the :ref:`applying_for_access` section, and apply for access
+   to this group.
 
 #. Be connected via the KU VPN or using a wired connection at CBMR. See
    :ref:`connecting` for more information.
@@ -214,7 +214,7 @@ RStudio: Incorrect or invalid username/password
 ===============================================
 
 Please make sure that you are entering your username in the short form
-and that you have been added as a member of the ``SRV-esrumweb-users``
+and that you have been added as a member of the ``SRV-esrumcont-users``
 group (see above). If the problem persists, please :ref:`page_contact`
 us for assistance.
 
@@ -243,7 +243,7 @@ says "This site can't be reached".
    port forwarding is active and that you are using the correct port
    number in the ``localhost`` URL.
 
--  "Check if there is a typo in esrumweb01fl" or "We’re having trouble
+-  "Check if there is a typo in esrumcont01fl" or "We're having trouble
    finding that site"
 
    You are must likely connecting from a network outside of KU. Make
