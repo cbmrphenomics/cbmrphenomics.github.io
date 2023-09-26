@@ -57,8 +57,8 @@ use this server, you must
    steps in the :ref:`applying_for_access` section, and apply for access
    to this group.
 
-#. Be connected via the KU VPN or using a wired connection at CBMR. See
-   :ref:`connecting` for more information.
+#. Be connected via the KU VPN (a wired connection at CBMR is *not*
+   sufficient). See :ref:`connecting` for more information.
 
 Once you have been been made a member of the ``SRV-esrumcont-users`` and
 connected using the VPN or a wired connection at CBMR, simply visit
