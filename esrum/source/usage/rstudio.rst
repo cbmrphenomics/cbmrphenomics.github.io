@@ -297,12 +297,6 @@ says "This site can't be reached".
    sure that you are using a wired connection at CBMR and/or that the
    VPN is activated and try again.
 
-Browser: Timeout
-================
-
-..
-   TODO: messages from chrome/firefox
-
 .. raw:: html
 
    <script defer>
