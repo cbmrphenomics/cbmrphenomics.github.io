@@ -218,6 +218,53 @@ and that you have been added as a member of the ``SRV-esrumcont-users``
 group (see above). If the problem persists, please :ref:`page_contact`
 us for assistance.
 
+RStudio: Logging in takes a very long time
+==========================================
+
+Similar to regular R, RStudio will automatically save the data you have
+loaded into your R session and will restore it when you return later, so
+that you can continue your work. However, this many result in large
+amounts of data being saved and loading this data may result in a large
+delay when you attempt to login at a later date.
+
+It is therefore recommended that you regularly clean up your workspace
+using the built in tools, when you no longer need to have the data
+loaded in R.
+
+You can remove individual bits of data using the `rm` function in R. The
+following gives two examples of using the `rm` function, one removing a
+single variable and the other removing *all* variables in the current
+session:
+
+.. code:: r
+
+   # 1. Remove the variable `my_variable`
+   rm(my_variable)
+
+   # 2. Remove all variables from your R session
+   rm(list = ls())
+
+Alternatively you can remove all data saved in your R session using the
+broom icon on the ``Environment`` tab:
+
+.. image:: images/rstudio_gc_01.png
+   :align: center
+
+.. image:: images/rstudio_gc_02.png
+   :align: center
+
+If you wish to prevent this issue in the first case, then you can also
+turn off saving the data in your session on exit and/or turn off loading
+the saved data on startup. This is accomplished via the ``Global
+Options...`` accessible from the ``Tools`` menu:
+
+.. image:: images/rstudio_gc_03.png
+   :align: center
+
+Should your R session have grown to such a size that you simply cannot
+login and clean it up, then please contact us and we can help you reset
+your R session.
+
 Jupyter Notebooks: Browser error when opening URL
 =================================================
 
