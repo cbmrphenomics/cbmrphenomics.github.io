@@ -159,9 +159,9 @@ entry for Esrum as shown below (see also the section about
 
        LocalForward XXXXX localhost:XXXXX
 
-The command costs of two parts: The port used by the notebook on Esrum
-(XXXXX), and the address via which the notebook on Esrum should be
-accessible on your PC (localhost:XXXXX).
+The ``LocalForward`` option consists of two parts: The port used by the
+notebook on Esrum (XXXXX), and the address via which the notebook on
+Esrum should be accessible on your PC (localhost:XXXXX).
 
 Alternatively, you can start start/stop port forwarding on demand by
 using an explicit SSH command. The ``-N`` option is optional and stops
