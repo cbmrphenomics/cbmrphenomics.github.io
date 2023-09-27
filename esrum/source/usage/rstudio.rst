@@ -17,7 +17,7 @@ your home folder using the ``install.packages`` command:
 
 .. code:: console
 
-   $ module load  --auto R/4.3.1
+   $ module load --auto R/4.3.1
    Loading R/4.3.1
      Loading requirement: gcc/11.2.0
    $ R
