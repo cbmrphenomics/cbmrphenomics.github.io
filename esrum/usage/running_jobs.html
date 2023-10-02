@@ -196,11 +196,13 @@ arguments in the above example).</p>
 </div>
 <div class="section" id="best-practice-for-reserving-resources">
 <h3><span class="section-number">4.4.4.1. </span>Best practice for reserving resources<a class="headerlink" href="#best-practice-for-reserving-resources" title="Permalink to this headline">¶</a></h3>
+<p>Determining how many CPUs and how much memory you need to reserve for
+your jobs can be difficult.</p>
 <p>Few programs benefit from using a lot of threads (CPUs) used due to
 added overhead and due to limits to how much of a given process can be
-parallelized. Maximum throughput is typically also limited by how fast
-the software can read/write data. In some cases too many threads can
-even increase the amount of time it takes to run the software, sometimes
+parallelized. Maximum throughput is also often limited by how fast the
+software can read/write data. In some cases too many threads can even
+increase the amount of time it takes to run the software, sometimes
 drastically so!</p>
 <p>We therefore recommended that you</p>
 <blockquote>
@@ -215,22 +217,27 @@ task, and only increasing the number after it has been determined
 that the software benefits from it.</p></li>
 </ul>
 </div></blockquote>
-<p>Determining how many threads are necessary can be difficult, but the
-<code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span> <span class="pre">-f</span> <span class="pre">&quot;CPU</span> <span class="pre">=</span> <span class="pre">%P&quot;</span></code> command can be used to estimate the
-efficiency from using multiple threads:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P&quot;</span> my-command --threads <span class="m">1</span> ...
-<span class="go">CPU = 99%</span>
-<span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P&quot;</span> my-command --threads <span class="m">4</span> ...
-<span class="go">CPU = 345%</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span> <span class="pre">-f</span> <span class="pre">&quot;CPU</span> <span class="pre">=</span> <span class="pre">%P,</span> <span class="pre">MEM</span> <span class="pre">=</span> <span class="pre">%MKB&quot;</span></code> command can be used to
+estimate the efficiency from using multiple threads and to show how much
+memory a program used:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P, MEM = %M&quot;</span> my-command --threads <span class="m">1</span> ...
+<span class="go">CPU = 99%, MEM = 840563KB</span>
+<span class="gp">$</span> /usr/bin/time -f <span class="s2">&quot;CPU = %P, MEM = %M&quot;</span> my-command --threads <span class="m">4</span> ...
+<span class="go">CPU = 345%, MEM = 892341KB</span>
 </pre></div>
 </div>
 <p>In this example increasing the number of threads/CPUs to 4 did not
 result in a 4x increase in CPU usage, but only a 3.5x increase. And this
 difference tends to increase the more threads are used.</p>
-<p>A consequence of this is that it is often more efficient to split your
-job into multiple sub-jobs (for example one job per chromosome) than
-increasing the number of threads used for the individual jobs. See the
-<a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a> page for more information.</p>
+<p>Because performance does not grow linearly with the number of threads it
+is often more efficient to split your job into multiple sub-jobs (for
+example one job per chromosome) rather than increasing the number of
+threads used for the individual jobs. See the <a class="reference internal" href="batch_jobs.html#page-batch-jobs"><span class="std std-ref">Running batch jobs</span></a>
+page for more information.</p>
+<p>Increasing the number of threads only increased slightly the amount of
+memory used (820MB to 871MB) in this example. In other words this
+software probably did not load additional data per thread, however that
+may be the case for other software.</p>
 </div>
 <div class="section" id="reserving-the-gpu-node">
 <h3><span class="section-number">4.4.4.2. </span>Reserving the GPU node<a class="headerlink" href="#reserving-the-gpu-node" title="Permalink to this headline">¶</a></h3>

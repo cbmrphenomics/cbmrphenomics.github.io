@@ -147,11 +147,14 @@ reserving a GPU.
 Best practice for reserving resources
 =====================================
 
+Determining how many CPUs and how much memory you need to reserve for
+your jobs can be difficult.
+
 Few programs benefit from using a lot of threads (CPUs) used due to
 added overhead and due to limits to how much of a given process can be
-parallelized. Maximum throughput is typically also limited by how fast
-the software can read/write data. In some cases too many threads can
-even increase the amount of time it takes to run the software, sometimes
+parallelized. Maximum throughput is also often limited by how fast the
+software can read/write data. In some cases too many threads can even
+increase the amount of time it takes to run the software, sometimes
 drastically so!
 
 We therefore recommended that you
@@ -167,25 +170,31 @@ We therefore recommended that you
       task, and only increasing the number after it has been determined
       that the software benefits from it.
 
-Determining how many threads are necessary can be difficult, but the
-``/usr/bin/time -f "CPU = %P"`` command can be used to estimate the
-efficiency from using multiple threads:
+The ``/usr/bin/time -f "CPU = %P, MEM = %MKB"`` command can be used to
+estimate the efficiency from using multiple threads and to show how much
+memory a program used:
 
 .. code:: console
 
-   $ /usr/bin/time -f "CPU = %P" my-command --threads 1 ...
-   CPU = 99%
-   $ /usr/bin/time -f "CPU = %P" my-command --threads 4 ...
-   CPU = 345%
+   $ /usr/bin/time -f "CPU = %P, MEM = %M" my-command --threads 1 ...
+   CPU = 99%, MEM = 840563KB
+   $ /usr/bin/time -f "CPU = %P, MEM = %M" my-command --threads 4 ...
+   CPU = 345%, MEM = 892341KB
 
 In this example increasing the number of threads/CPUs to 4 did not
 result in a 4x increase in CPU usage, but only a 3.5x increase. And this
 difference tends to increase the more threads are used.
 
-A consequence of this is that it is often more efficient to split your
-job into multiple sub-jobs (for example one job per chromosome) than
-increasing the number of threads used for the individual jobs. See the
-:ref:`page_batch_jobs` page for more information.
+Because performance does not grow linearly with the number of threads it
+is often more efficient to split your job into multiple sub-jobs (for
+example one job per chromosome) rather than increasing the number of
+threads used for the individual jobs. See the :ref:`page_batch_jobs`
+page for more information.
+
+Increasing the number of threads only increased slightly the amount of
+memory used (820MB to 871MB) in this example. In other words this
+software probably did not load additional data per thread, however that
+may be the case for other software.
 
 Reserving the GPU node
 ======================
