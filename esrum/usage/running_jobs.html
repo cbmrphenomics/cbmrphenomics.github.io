@@ -265,6 +265,15 @@ option:</p>
 </div>
 <div class="section" id="monitoring-gpu-utilization">
 <h3><span class="section-number">4.4.4.3. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Due to changes to SLURM settings, to ensure that jobs cannot
+access resources that were not reserved for them, it is currently
+not possible to monitor GPUs usage from a different job using the
+instructions below. The documentation will be updates shortly.</p>
+</div>
+</div></blockquote>
 <p>Slurm does not provide any means of monitoring the actual GPU
 utilization, but tools such as <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> can be used to monitor
 performance metrics. And since we are not going to actually <em>use</em> the
