@@ -231,6 +231,13 @@ As above you must also specify your CPU and RAM requirements using
 Monitoring GPU utilization
 ==========================
 
+   .. warning::
+
+      Due to changes to SLURM settings, to ensure that jobs cannot
+      access resources that were not reserved for them, it is currently
+      not possible to monitor GPUs usage from a different job using the
+      instructions below. The documentation will be updates shortly.
+
 Slurm does not provide any means of monitoring the actual GPU
 utilization, but tools such as ``nvidia-smi`` can be used to monitor
 performance metrics. And since we are not going to actually *use* the
