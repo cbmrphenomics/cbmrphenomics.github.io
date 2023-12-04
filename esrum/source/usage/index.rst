@@ -9,7 +9,6 @@
    access
    connecting
    filesystem
-   running_jobs
-   batch_jobs
+   running_jobs/index
    rstudio
    modules

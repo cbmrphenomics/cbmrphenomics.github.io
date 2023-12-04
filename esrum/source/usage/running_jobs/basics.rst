@@ -308,6 +308,8 @@ run ``gpustats`` or ``nvidia-smi`` that way:
  Troubleshooting
 *****************
 
+.. _configuration_not_available:
+
 Error: Requested node configuration is not available
 ====================================================
 
