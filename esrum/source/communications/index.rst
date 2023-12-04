@@ -1,4 +1,4 @@
-.. _page_communications:
+.. _p_communications:
 
 ################
  Communications

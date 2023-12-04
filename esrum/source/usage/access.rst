@@ -1,4 +1,4 @@
-.. _page_applying_for_access:
+.. _p_usage_access:
 
 #####################
  Applying for access
@@ -6,12 +6,12 @@
 
 The following describes how to apply for access to the Esrum cluster and
 related services, projects, and datasets. You are always welcome to
-:ref:`page_contact` us if you have any questions or run into any
-problems applying for access to the cluster.
+:ref:`p_contact` us if you have any questions or run into any problems
+applying for access to the cluster.
 
 An official guide to the identity system used is available here_.
 
-.. _applying_for_access:
+.. _s_applying_for_access:
 
 ************************************
  Applying for access to the cluster
@@ -48,8 +48,8 @@ Once you have been granted access you will receive an email that
 a day.
 
 Once you have been granted access and your account is ready (see below),
-you may refer to the :ref:`connecting` page for instructions on how to
-connect to the cluster.
+you may refer to the :ref:`p_usage_connecting` page for instructions on
+how to connect to the cluster.
 
 .. warning::
 
@@ -58,7 +58,7 @@ connect to the cluster.
    result in a warning that your home folder does not exist. If so, then
    simply wait a few hours before trying again.
 
-.. _applying_for_projects:
+.. _s_applying_for_projects:
 
 *********************************
  Applying for access to projects
@@ -69,7 +69,7 @@ in `Applying for access to the cluster`_. Alternatively, the project
 owner(s) can add you to their projects directly. However, the Data
 Analytics Platform cannot add you to projects owned by a third party.
 
-See :ref:`section_projects` for a description of the location and
+See :ref:`s_project_folders` for a description of the location and
 file-structure of projects on Esrum.
 
 *****************************************
@@ -99,7 +99,7 @@ substitute ``SRV-esrumhead-users`` with the name of your project.
    permission from the data-manager responsible for that data. The Data
    Analytics Platform will verify that you are permitted to access the
    data before granting access. You may speed up this process by having
-   the data manager :ref:`page_contact` us in advance with a written
+   the data manager :ref:`p_contact` us in advance with a written
    approval.
 
 .. _here: https://kunet.ku.dk/medarbejderguide/ITvejl/KU%20IdM%20-%20S%C3%A5dan%20anmodes%20om%20funktionsrolle.pdf

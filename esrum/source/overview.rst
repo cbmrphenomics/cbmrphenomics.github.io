@@ -1,4 +1,4 @@
-.. _page_overview:
+.. _p_overview:
 
 ##########
  Overview
@@ -28,9 +28,9 @@ and 1 GPU node:
 +---+-----------+------+-------------------------+---------------------+
 
 Users connect to the "head" node, from which jobs can be submitted to
-the individual compute nodes using the :ref:`Slurm management system
-<page_running>` for running tasks. An :ref:`page_rstudio` web server and
-a Shiny_ server, both managed by KU-IT, are also available.
+the individual compute nodes using the Slurm_ Workload Manager for
+running tasks. An :ref:`p_usage_rstudio` web server and a Shiny_ server,
+both managed by KU-IT, are also available.
 
 **********
  Software
@@ -38,7 +38,7 @@ a Shiny_ server, both managed by KU-IT, are also available.
 
 The nodes all run Red Hat Enterprise Linux 8 and a range of scientific
 and other software is made available using :ref:`environment modules
-<modules_page>`. Missing software can be requested via KU-IT.
+<p_usage_modules>`. Missing software can be requested via KU-IT.
 
 **************************
  Projects and data-shares
@@ -53,9 +53,9 @@ Datasets used by several projects may made available via read-only
 network shares. As with projects, access is administered by the data
 owner.
 
-See the respective pages for :ref:`accessing <page_applying_for_access>`
-existing projects/data-shared and for :ref:`creating
-<creating_projects>` new projects/data-shared.
+See the respective pages for :ref:`accessing <p_usage_access>` existing
+projects/data-shared and for :ref:`creating <p_usage_projects>` new
+projects/data-shared.
 
 ****************************
  Backup policies and quotas
@@ -71,7 +71,7 @@ by the project name ending with ``-AUDIT``) is subject to more frequent
 backups. However, on-site backups are kept for a shorter time to prevent
 the unauthorized recovery of intentionally deleted data.
 
-See :ref:`filesystem_page` for more information.
+See :ref:`p_usage_filesystem` for more information.
 
 **********************
  Additional resources

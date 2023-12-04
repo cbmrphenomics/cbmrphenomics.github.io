@@ -1,3 +1,5 @@
+.. _p_communications_workshop:
+
 ###########
  Workshops
 ###########

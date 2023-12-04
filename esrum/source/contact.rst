@@ -1,4 +1,4 @@
-.. _page_contact:
+.. _p_contact:
 
 #########
  Contact

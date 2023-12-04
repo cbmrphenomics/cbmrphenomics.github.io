@@ -1,4 +1,4 @@
-.. _page_running:
+.. _p_usage_jobs_basics:
 
 ##########################
  Running jobs using Slurm
@@ -16,7 +16,8 @@ the resources needed for your tasks.
 If you need to run a number of similar jobs in parallel, for example
 genotyping a set of samples or mapping FASTQ files to a reference
 genome, then the ``sbatch`` command can be used to automatically queue
-multiple jobs. See the :ref:`page_batch_jobs` for more information.
+multiple jobs. See the :ref:`p_usage_jobs_advanced` for more
+information.
 
 .. warning::
 
@@ -71,8 +72,8 @@ To cancel a job running with srun, simply press `Ctrl + c` twice:
    <ctrl+c> srun: sending Ctrl-C to StepId=8717.0
    srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
 
-See also the :ref:`managing_jobs` section on the :ref:`page_batch_jobs`
-page.
+See also the :ref:`s_cancelling_jobs` section on the
+:ref:`p_usage_jobs_advanced` page.
 
 ******************************
  Running an interactive shell
@@ -101,7 +102,7 @@ Once you are done, be sure to exit the interactive shell by using the
 ``exit`` command or pressing ``Ctrl+D``, so that the resources reserved
 for your shell is made available to other users!
 
-.. _reserving_resources:
+.. _s_reserving_resources:
 
 ***********************************
  Reserving resources for your jobs
@@ -126,8 +127,8 @@ CPUs and 512 gigabytes of RAM:
 
    $ srun -c 8 --mem 512G -- my-command --threads 8
 
-As described in the :ref:`page_overview`, each node has 128 CPUs
-available and 2 TB of RAM, of which 1993 GB can be reserved by Slurm.
+As described in the :ref:`p_overview`, each node has 128 CPUs available
+and 2 TB of RAM, of which 1993 GB can be reserved by Slurm.
 
 The GPU node has 4 TB of RAM available, of which 3920 GB can be reserved
 by Slurm, and may be used for jobs that have very high memory
@@ -188,8 +189,8 @@ difference tends to increase the more threads are used.
 Because performance does not grow linearly with the number of threads it
 is often more efficient to split your job into multiple sub-jobs (for
 example one job per chromosome) rather than increasing the number of
-threads used for the individual jobs. See the :ref:`page_batch_jobs`
-page for more information.
+threads used for the individual jobs. See the
+:ref:`p_usage_jobs_advanced` page for more information.
 
 Increasing the number of threads only increased slightly the amount of
 memory used (820MB to 871MB) in this example. In other words this
@@ -308,7 +309,7 @@ run ``gpustats`` or ``nvidia-smi`` that way:
  Troubleshooting
 *****************
 
-.. _configuration_not_available:
+.. _s_configuration_not_available:
 
 Error: Requested node configuration is not available
 ====================================================

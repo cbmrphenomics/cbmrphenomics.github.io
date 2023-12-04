@@ -1,4 +1,4 @@
-.. _page_batch_jobs:
+.. _p_usage_jobs_advanced:
 
 ####################
  Running batch jobs
@@ -124,7 +124,7 @@ Common options
 The following provides a brief overview of common options for ``sbatch``
 not mentioned above. There is a significant overlap between ``sbatch``
 and ``srun``, including for example how to request resources (see
-:ref:`reserving_resources`), and this section will not cover those
+:ref:`s_reserving_resources`), and this section will not cover those
 options.
 
 All of these options may be specified using ``#SBATCH`` comments.
@@ -196,7 +196,7 @@ Slurm offers a number of ways in which you may monitor your jobs:
    (the default), ``BEGIN``, ``END``, ``FAIL``, ``REQUEUE``, ``ALL``, or
    some combination as shown above.
 
-.. _managing_jobs:
+.. _s_cancelling_jobs:
 
 *****************
  Cancelling jobs
@@ -394,9 +394,9 @@ This script can also be downloaded :download:`here <my_sbatch.sh>`.
 .. literalinclude:: my_sbatch.sh
    :language: sh
 
-See also the :ref:`page_bash` page for tips on how to write more robust
-bash scripts. A template using those recommendations is available for
-download :download:`here <robust_sbatch.sh>`.
+See also the :ref:`p_tips_robustscripts` page for tips on how to write
+more robust bash scripts. A template using those recommendations is
+available for download :download:`here <robust_sbatch.sh>`.
 
 **********************
  Additional resources

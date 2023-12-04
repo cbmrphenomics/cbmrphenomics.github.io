@@ -1,3 +1,5 @@
+.. _p_usage_jobs_gpu:
+
 #################################
  Reserving the GPU/high-MEM node
 #################################
@@ -115,4 +117,5 @@ Troubleshooting
  Error: Requested node configuration is not available
 ******************************************************
 
-See :ref:`configuration_not_available` on the :ref:`page_running` page.
+See :ref:`s_configuration_not_available` on the
+:ref:`p_usage_jobs_basics` page.

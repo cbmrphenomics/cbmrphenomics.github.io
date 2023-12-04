@@ -1,4 +1,4 @@
-.. _page_usage:
+.. _p_usage:
 
 ###################
  Using the cluster

@@ -1,4 +1,4 @@
-.. _page_running_jobs:
+.. _p_usage_jobs:
 
 ##########################
  Running jobs using Slurm

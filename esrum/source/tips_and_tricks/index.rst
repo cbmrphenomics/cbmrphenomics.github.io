@@ -1,4 +1,4 @@
-.. _tips:
+.. _p_tips:
 
 #################
  Tips and tricks
@@ -8,4 +8,4 @@
 
    modules
    tmux
-   reliable_scripts
+   robust_scripts

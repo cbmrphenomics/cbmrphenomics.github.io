@@ -1,4 +1,4 @@
-.. _page_rstudio:
+.. _p_usage_rstudio:
 
 ###################################
  R, RStudio, and Jupyter Notebooks
@@ -54,11 +54,11 @@ An RStudio_ server is made available at http://esrumcont01fl:8787/. To
 use this server, you must
 
 #. Be a member of the ``SRV-esrumcont-users`` group. Simply follow the
-   steps in the :ref:`applying_for_access` section, and apply for access
-   to this group.
+   steps in the :ref:`s_applying_for_access` section, and apply for
+   access to this group.
 
 #. Be connected via the KU VPN (a wired connection at CBMR is *not*
-   sufficient). See :ref:`connecting` for more information.
+   sufficient). See :ref:`p_usage_connecting` for more information.
 
 Once you have been been made a member of the ``SRV-esrumcont-users`` and
 connected using the VPN or a wired connection at CBMR, simply visit
@@ -97,7 +97,7 @@ may be started as follows:
 
 It is also recommended that you run your notebook in a tmux session or
 similar, to avoid the notebook shutting down if you lose connection to
-the server. See :ref:`tmux_page` for more information.
+the server. See :ref:`p_tips_tmux` for more information.
 
 To actually connect to the notebook server, you will need to setup port
 forwarding using the port-number from your command.
@@ -109,7 +109,7 @@ The following instructions assume that you are using MobaXterm. If not,
 then please refer to the documentation for your tool of choice.
 
 #. Install and configure MobaXterm as described in
-   :ref:`configure_mobaxterm`.
+   :ref:`s_configure_mobaxterm`.
 
 #. Click the middle ``Tunneling`` button on the toolbar.
 
@@ -149,7 +149,7 @@ Port forwarding on Linux/OSX
 It is recommended to enable port forwarding using your ``~/.ssh/config``
 file. This is accomplished by adding a ``LocalForward`` line to your
 entry for Esrum as shown below (see also the section about
-:ref:`connecting_linux`):
+:ref:`s_connecting_linux`):
 
 .. code:: text
 
@@ -215,8 +215,8 @@ RStudio: Incorrect or invalid username/password
 
 Please make sure that you are entering your username in the short form
 and that you have been added as a member of the ``SRV-esrumcont-users``
-group (see above). If the problem persists, please :ref:`page_contact`
-us for assistance.
+group (see above). If the problem persists, please :ref:`p_contact` us
+for assistance.
 
 RStudio: Logging in takes a very long time
 ==========================================

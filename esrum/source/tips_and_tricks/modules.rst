@@ -1,4 +1,4 @@
-.. _creating_modules_page:
+.. _p_tips_modules:
 
 ##############################
  Creating environment modules
@@ -7,7 +7,7 @@
 This page gives a very brief run-down of how to create your own
 `environment modules`_. For more information see the `official
 documentation`_. However, for most part you should be requesting modules
-from KU-IT (see :ref:`requesting_missing_modules`).
+from KU-IT (see :ref:`s_requesting_missing_modules`).
 
 To simplify things, this example makes use of a generalized template
 file (available for download :download:`here <moduletemplate.tcl>`) for
