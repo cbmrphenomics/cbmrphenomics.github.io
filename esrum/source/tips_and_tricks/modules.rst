@@ -16,7 +16,7 @@ which only a handful of (highlighted) lines need to be changed:
 .. literalinclude:: moduletemplate.tcl
    :language: tcl
    :linenos:
-   :emphasize-lines: 7-10,12-13
+   :emphasize-lines: 7-10,13-16
 
 For the purpose of this example we will make our own module for
 ``seqtk`` version 1.4.
