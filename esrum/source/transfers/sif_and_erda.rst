@@ -22,7 +22,20 @@ connect, in this case from the Esrum IP.
 This poses some challenges, as running a full-fledged browser over SSH
 performs extremely poorly. This section therefore describes how to
 authenticate to SIF_ or ERDA_ using a purely text-based browser
-available on the cluster (Lynx_).
+available on the cluster (Lynx_):
+
+.. code:: shell
+
+   lynx -accept_all_cookies "https://sif.ku.dk"
+
+#. Use the up/down arrow keys to select the ``log in`` link under ``I'm
+   already signed up to SIF`` and press Enter:
+#. Press enter to confirm that you wish to try login:
+#. Enter your KU username and password. Use ``Tab`` to jump to the next
+   field and ``Shift+Tab`` to jump to the next field:
+#. Use ``Tab`` to select the TODO button and press Enter
+#. Enter the SIF two-factor code, press tab to select the ``Submit``
+   button, and press enter
 
 ******************************
  Transferring data using lftp
