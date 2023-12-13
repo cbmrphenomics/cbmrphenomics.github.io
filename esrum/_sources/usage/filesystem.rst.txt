@@ -1,4 +1,4 @@
-.. _filesystem_page:
+.. _p_usage_filesystem:
 
 ##################################
  Projects, data, and home folders
@@ -7,7 +7,7 @@
 This section describes the layout of your home folder on Esrum, as well
 as the location and layout of projects and data-shares.
 
-.. _section_home:
+.. _s_home_folder:
 
 ******************
  Your home folder
@@ -44,7 +44,7 @@ Note that these drives are only accessible from the head node. If you
 need to analyze data located on either of these shared drives, then you
 will need to copy it an appropriate projects folder.
 
-.. _section_projects:
+.. _s_project_folders:
 
 **********************
  Your project folders
@@ -70,9 +70,9 @@ place in project or data-shares (see below) marked with ``-AUDIT`` and
 *nowhere else*!
 
 To apply for access to a specific project follow the instructions in the
-:ref:`applying_for_access` section, using the name of the project in the
-form ``COMP-PRJ-genotyping``, replacing ``genotyping`` with the name of
-your project.
+:ref:`s_applying_for_access` section, using the name of the project in
+the form ``COMP-PRJ-genotyping``, replacing ``genotyping`` with the name
+of your project.
 
 Projects folder always contain the following four sub-folders:
 
@@ -86,7 +86,7 @@ Projects folder always contain the following four sub-folders:
 -  ``/projects/<project-name>/apps``
 
    The apps folder is intended for storing software shared between
-   project members. See :ref:`modules_page` for how to setup a shared
+   project members. See :ref:`p_tips_modules` for how to setup a shared
    repository of software that can be used with the module system. The
    ``apps`` folder is automatically backed up every day.
 

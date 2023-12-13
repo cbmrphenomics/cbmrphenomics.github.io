@@ -1,4 +1,4 @@
-.. _modules_page:
+.. _p_usage_modules:
 
 ###################
  The module system
@@ -12,7 +12,7 @@ making your analyses reproducible.
 
 Modules on Esrum are primarily provided by KU-IT (see below), but users
 may also set up their own private or shared environment modules. See the
-:ref:`creating_modules_page`
+:ref:`p_tips_modules`
 
 *************
  Basic usage
@@ -213,7 +213,7 @@ or
 
 Simply running the script with ``bash modules.sh`` will not work.
 
-.. _requesting_missing_modules:
+.. _s_requesting_missing_modules:
 
 ****************************
  Requesting missing modules
@@ -221,7 +221,7 @@ Simply running the script with ``bash modules.sh`` will not work.
 
 If software you are missing is not available as a module, you may
 request this software through KU-IT as described below. You are welcome
-to :ref:`page_contact` if you need help determining which exact software
+to :ref:`p_contact` if you need help determining which exact software
 and/or versions you need to request.
 
 To request software,

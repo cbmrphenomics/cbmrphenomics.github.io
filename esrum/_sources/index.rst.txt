@@ -8,14 +8,14 @@ the Data Analytics Platform (formerly the `Phenomics Platform`_) and is
 available to employees at CBMR as well as collaborators visiting CBMR.
 
 You are always welcome to contact us if you have questions or problems
-relating to the cluster. See the :ref:`page_contact` page for
-information about how and where to contact us.
+relating to the cluster. See the :ref:`p_contact` page for information
+about how and where to contact us.
 
 -  For an overview of the cluster architecture and features, see the
-   :ref:`page_overview` page.
+   :ref:`p_overview` page.
 -  To get access to the cluster and to run simple jobs, see the
-   :ref:`page_usage` pages.
--  For ways to make working on the cluster easier, see the :ref:`tips`
+   :ref:`p_usage` pages.
+-  For ways to make working on the cluster easier, see the :ref:`p_tips`
    page.
 
 In addition to the documentation provided here, KU-IT also provides

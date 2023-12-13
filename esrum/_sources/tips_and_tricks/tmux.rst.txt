@@ -1,4 +1,4 @@
-.. _tmux_page:
+.. _p_tips_tmux:
 
 ###############################
  Persistent sessions with tmux

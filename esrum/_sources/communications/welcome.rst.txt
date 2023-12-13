@@ -1,3 +1,5 @@
+.. _p_communications_welcome:
+
 #########################################
  Welcome to CBMRs Compute Cluster Esrum!
 #########################################

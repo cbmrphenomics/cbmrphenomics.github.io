@@ -1,3 +1,5 @@
+.. _p_guidelines:
+
 ############
  Guidelines
 ############
@@ -44,7 +46,7 @@ data`_.
    folder. Your home folder is accessible only to you, unless you have
    provided written consent to KU-IT.
 
-See :ref:`filesystem_page` for more information.
+See :ref:`p_usage_filesystem` for more information.
 
 ***************
  Running tasks
@@ -68,7 +70,7 @@ See :ref:`filesystem_page` for more information.
    system. Resources that you have reserved are not made available for
    other users until your tasks have finished.
 
-See the :ref:`page_running` page for more information about how to run
+See the :ref:`p_usage_jobs` page for more information about how to run
 your tasks on the cluster.
 
 .. _gdpr sensitive data: https://kunet.ku.dk/work-areas/research/data/personal-data/Pages/default.aspx

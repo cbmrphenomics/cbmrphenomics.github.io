@@ -1,17 +1,17 @@
-.. _connecting:
+.. _p_usage_connecting:
 
 ###########################
  Connecting to the cluster
 ###########################
 
 If you have not already applied for and been granted access to the
-cluster, then please see the :ref:`page_applying_for_access` page before
+cluster, then please see the :ref:`p_usage_access` page before
 continuing.
 
 The cluster's is accessible via SSH at ``esrumhead01fl.unicph.domain``.
 This is the Esrum "head" node, which serves as the entry-point for the
 cluster and which gives you access to the job management system used for
-running software (see :ref:`page_running`)
+running software (see :ref:`p_usage_jobs`)
 
 To connect to the cluster you will typically need to be connected to the
 KU VPN. For information about connecting to the VPN, see the support
@@ -27,7 +27,7 @@ Subsystem for Linux (WSL_), and much more. The following demonstrates
 how to setup MobaXterm. Please refer to the `Connecting On Linux or
 OSX`_ section if using WSL_.
 
-.. _configure_mobaxterm:
+.. _s_configure_mobaxterm:
 
 Configuring MobaXterm
 =====================
@@ -94,7 +94,7 @@ when clicking on the middle ``Sessions`` button on the main menu.
    .. image:: images/mobaxterm_07.png
       :align: center
 
-.. _connecting_linux:
+.. _s_connecting_linux:
 
 ****************************
  Connecting on Linux or OSX
@@ -150,7 +150,7 @@ having to specify your username:
 *****************
 
 If have not already been granted access to the server, then please see
-the :ref:`page_applying_for_access` page before continuing!
+the :ref:`p_usage_access` page before continuing!
 
 Timeout while connecting to the cluster
 =======================================

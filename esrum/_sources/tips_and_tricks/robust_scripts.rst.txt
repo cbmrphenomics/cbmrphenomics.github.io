@@ -1,8 +1,8 @@
-.. _page_bash:
+.. _p_tips_robustscripts:
 
-###############################
- Writing reliable bash scripts
-###############################
+#############################
+ Writing robust bash scripts
+#############################
 
 Bash scripts are useful for automating tasks and for running batch jobs.
 However the default behavior of bash is to keep running when errors

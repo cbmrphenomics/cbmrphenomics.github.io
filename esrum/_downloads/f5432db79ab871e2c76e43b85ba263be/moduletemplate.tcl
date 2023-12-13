@@ -6,11 +6,14 @@ set version [file tail [module-info name]]
 
 # FIXME: Update this line with a description of the software
 set description "description of software goes here"
-# FIXME: Update the project name/location of the modules
+# FIXME: Replace `my-project` with the actual project name
 set root /projects/my-project/apps/modules/software/${name}/${version}
 
-# FIXME: Update/add environment variables required by the software
 prepend-path PATH ${root}/bin
+# FIXME: If you need to export additional environment variables, then
+#        add them here using `append-path`, `prepend-path` or `setenv`:
+#        https://modules.readthedocs.io/en/latest/modulefile.html#mfcmd-prepend-path
+#        https://modules.readthedocs.io/en/latest/modulefile.html#mfcmd-setenv
 
 # Prevent loading multiple versions of the same software
 conflict "${name}"

@@ -60,7 +60,7 @@
           <div class="body" role="main">
             
   <div class="section" id="transferring-data-to-from-sif-and-erda">
-<h1>Transferring data to/from SIF and ERDA<a class="headerlink" href="#transferring-data-to-from-sif-and-erda" title="Permalink to this headline">¶</a></h1>
+<span id="p-tranfers-sifanderda"></span><h1>Transferring data to/from SIF and ERDA<a class="headerlink" href="#transferring-data-to-from-sif-and-erda" title="Permalink to this headline">¶</a></h1>
 <p>The following describes how to bulk transfer data from the Esrum cluster
 to <a class="reference external" href="https://sif.ku.dk/">SIF</a> (Sensitive Information Facility) or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> (Electronic Research
 Data Archive) and vice versa. For small amounts of data, it may be
@@ -75,7 +75,20 @@ connect, in this case from the Esrum IP.</p>
 <p>This poses some challenges, as running a full-fledged browser over SSH
 performs extremely poorly. This section therefore describes how to
 authenticate to <a class="reference external" href="https://sif.ku.dk/">SIF</a> or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> using a purely text-based browser
-available on the cluster (<a class="reference external" href="https://en.wikipedia.org/wiki/Lynx_(web_browser)">Lynx</a>).</p>
+available on the cluster (<a class="reference external" href="https://en.wikipedia.org/wiki/Lynx_(web_browser)">Lynx</a>):</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>lynx -accept_all_cookies <span class="s2">&quot;https://sif.ku.dk&quot;</span>
+</pre></div>
+</div>
+<ol class="arabic simple">
+<li><p>Use the up/down arrow keys to select the <code class="docutils literal notranslate"><span class="pre">log</span> <span class="pre">in</span></code> link under <code class="docutils literal notranslate"><span class="pre">I'm</span>
+<span class="pre">already</span> <span class="pre">signed</span> <span class="pre">up</span> <span class="pre">to</span> <span class="pre">SIF</span></code> and press Enter:</p></li>
+<li><p>Press enter to confirm that you wish to try login:</p></li>
+<li><p>Enter your KU username and password. Use <code class="docutils literal notranslate"><span class="pre">Tab</span></code> to jump to the next
+field and <code class="docutils literal notranslate"><span class="pre">Shift+Tab</span></code> to jump to the next field:</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">Tab</span></code> to select the TODO button and press Enter</p></li>
+<li><p>Enter the SIF two-factor code, press tab to select the <code class="docutils literal notranslate"><span class="pre">Submit</span></code>
+button, and press enter</p></li>
+</ol>
 </div>
 <div class="section" id="transferring-data-using-lftp">
 <h2>Transferring data using lftp<a class="headerlink" href="#transferring-data-using-lftp" title="Permalink to this headline">¶</a></h2>
