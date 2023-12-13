@@ -111,8 +111,11 @@ specifies the numerical ID of a task:
 
 The ``--array=1-3`` option specifies that we want to run tasks 1, 2, and
 3, each of which is assigned 8 CPUs and each of which is given 60
-minutes to run. See the ``sbatch`` manual page for a description of ways
-in which to specify lists or ranges of task IDs.
+minutes to run.
+
+See the ``sbatch`` manual page for a description of ways in which to
+specify lists or ranges of task IDs. Values used with ``--array`` must
+be in the range 0 to 1000.
 
 Our script can then be run as before:
 
