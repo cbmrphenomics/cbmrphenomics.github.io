@@ -1,365 +1,497 @@
 .. _p_usage_jobs_basics:
 
-##########################
- Running jobs using Slurm
-##########################
+Basic Slurm jobs
+================
 
-In order to run jobs on the Esrum cluster, you must connect to the head
-node and queue them using the Slurm_ job management system. Slurm_ takes
-care of automatically queuing and distribute jobs on the compute and GPU
-nodes when the required resources are available.
+This section describes the basics of queuing jobs using on the Esrum
+cluster using the Slurm Workload Manager. This includes queuing tasks
+with the ``sbatch`` command , monitoring jobs with ``squeue`` and
+``saccact``, cancelling jobs with ``scancel``, and reserving resources
+for jobs that need more CPUs or more RAM.
 
-This section describes how to run basic jobs using the ``srun`` command,
-how to start an interactive shell on a compute node, and how to reserve
-the resources needed for your tasks.
+Users of the PBS (``qsub``) queuing system on e.g. ``porus`` or
+``computerome`` can use this `PBS to Slurm translation-sheet`_ to
+migrate ``qsub`` scripts/commands to ``sbatch``.
 
-If you need to run a number of similar jobs in parallel, for example
-genotyping a set of samples or mapping FASTQ files to a reference
-genome, then the ``sbatch`` command can be used to automatically queue
-multiple jobs. See the :ref:`p_usage_jobs_advanced` for more
-information.
+A basic job script
+------------------
 
-.. warning::
+In order to run a job using the Slurm workload manager, you must first
+write a shell script containing the commands that you want to execute.
+In the following example we just run a single command, ``echo "Hello,
+slurm!"``, but scripts can contain any number of commands.
 
-   Resource intensive jobs *must* be run using Slurm_. Tasks running on
-   the head node *will* be terminated without prior warning, in order to
-   prevent any impact on other users of the cluster.
+.. code-block:: bash
 
-******************************
- Running commands using Slurm
-******************************
+    #!/bin/bash
 
-The ``srun`` command is used to queue and execute commands on the
-compute nodes, and for most part it should feel no different than
-running a command without Slurm_. Simply prefix your command with
-``srun`` and the queuing system takes care of running it on the first
-available compute node:
+    echo "Hello, slurm!"
 
-.. code::
+The script can be named anything you like and does not need to be
+executable (via ``chmod +x``), but the first line *must* contain a
+shebang_ (the line starting with ``#!``) to indicate how slurm should
+execute it.
 
-   $ srun gzip chr20.fasta
+We use ``#!/bin/bash`` for the examples in this section, to indicate
+that they are bash scripts, but it is also possible to use other
+scripting languages by using the appropriate shebang (highlighted):
 
-.. image:: images/srun_minimal.gif
-   :class: gif
+.. code-block:: python
+    :emphasize-lines: 1
 
-Except for the ``srun`` prefix, this is exactly as if you ran the
-``gzip`` command on the head node. However, if you need to pipe output
-to a file or to another command, then you *must* wrap your commands in a
-bash (or similar) script. The script can then be run using ``srun``:
+    #!/usr/bin/env python3
 
-.. code::
+    print("Hello, slurm!")
 
-   $ srun bash my_script.sh
+Slurm scripts function like regular scripts for most part, meaning that
+the current directory corresponds to the directory in which you executed
+the script, that you can access environment variables set outside of the
+script, and that it is possible to pass command-line arguments to your
+scripts.
 
-.. image:: images/srun_wrapped.gif
-   :class: gif
+Queuing a job
+-------------
 
-By default task are allocated one CPU and 15 GB of RAM. If you need to
-use additional resources, then see `Reserving resources for your jobs`_
-and `Reserving the GPU node`_ below.
+In the following examples we will use the ``igzip`` command to compress
+a file. The ``igzip`` command is similar to ``gzip`` except that it is
+only available via a module, that it sacrifices compression ratio for
+speed, and that it supports multiple threads. This allows us to test
+those features with Slurm.
 
-*****************
- Cancelling jobs
-*****************
+We start with a simple script, with which we will compress the FASTA
+file ``chr1.fasta``. This script is saved as ``my_script.sh``:
 
-To cancel a job running with srun, simply press `Ctrl + c` twice:
+.. code-block:: shell
 
-.. code:: shell
+    #!/bin/bash
 
-   $ srun gzip chr20.fasta
-   <ctrl+c> srun: interrupt (one more within 1 sec to abort)
-   srun: StepId=8717.0 task 0: running
-   <ctrl+c> srun: sending Ctrl-C to StepId=8717.0
-   srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+    module load igzip/2.30.0
+    igzip --keep "chr1.fasta"
 
-See also the :ref:`s_cancelling_jobs` section on the
-:ref:`p_usage_jobs_advanced` page.
+The ``module`` command is used load the required software. This could
+also be done on the command-line before queuing the command, but it is
+recommended to load all required software *in* your job scripts. The
+``--keep`` option is used to prevent igzip from deleting our input file
+when it is done.
 
-******************************
- Running an interactive shell
-******************************
+To queue this script, run the ``sbatch`` command with the filename of
+the script as an argument:
+
+.. code-block:: shell
+
+    $ ls
+    chr1.fasta  my_script.sh
+    $ sbatch my_script.sh
+    Submitted batch job 8503
+
+Notice that we do not need to set the current working directory in our
+script (unlike PBS). As noted above, this defaults to the directory in
+which you queued the script. The number reported by sbatch is the job ID
+of your job (``JOBID``), which you will need should you want to cancel,
+pause, or otherwise manipulate your job (see below).
+
+You can check the status of your queued and running jobs using the
+``squeue --me`` command. The ``--me`` option ensures that only *your*
+jobs are shown, rather than everyone's jobs:
+
+.. code-block:: shell
+
+    $ squeue --me
+    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+     8503 standardq my_scrip   abc123  R       0:02      1 esrumcmpn01fl
+
+The ST column indicating the status of the job (R for running, PD for
+pending, `and so on
+<https://slurm.schedmd.com/squeue.html#SECTION_JOB-STATE-CODES>`_).
+
+Completed jobs are removed from the ``squeue`` list and can instead be
+listed using ``sacct``:
+
+.. code-block:: shell
+
+    $ sacct
+           JobID    JobName  Partition    Account  AllocCPUS      State ExitCode
+    ------------ ---------- ---------- ---------- ---------- ---------- --------
+    8503         my_script+ standardq+                     1  COMPLETED      0:0
+    8503.batch        batch                                1  COMPLETED      0:0
+
+Once the job has started running (or has completed running), you will
+also find a file named ``slurm-${JOBID}.out`` in the current folder,
+where ``${JOBID}`` is the ID reported by ``sbatch`` (``8503`` in this
+example):
+
+.. code-block:: shell
+
+    $ ls
+    chr1.fasta  chr1.fasta.gz  my_script.sh  slurm-8503.out
+
+The ``slurm-8503.out`` file contains any console output produced by your
+script/commands. This includes both STDOUT and STDERR by default, but
+this can be changed (see :ref:`s_common_options`). So if we had
+misspelled the filename in our command then the resulting error message
+would be found in the ``out`` file:
+
+.. code-block:: shell
+
+    $ cat slurm-8503.out
+    igzip: chr1.fast does not exist
+
+.. _s_cancelling_jobs:
+
+Cancelling jobs
+---------------
+
+Already running jobs can be cancelled using the ``scancel`` command and
+the ID of the job you want to cancel:
+
+.. code-block:: shell
+
+    $ squeue --me
+    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+     8503 standardq my_scrip   abc123  R       0:02      1 esrumcmpn01fl
+    $ scancel 8503
+
+Should you wish to cancel *all* your jobs, use the ``-u`` option:
+
+.. code-block:: shell
+
+    $ scancel -u ${USER}
+
+When running batch jobs you can either cancel the entire job (array, see
+below) or individual sub-tasks. See the :ref:`s_job_arrays` section.
+
+Setting options
+---------------
+
+The ``sbatch`` command offers two methods for setting options, such as
+resource requirements, notifications, etc (see e.g.
+:ref:`s_common_options`). The first option is simply to specify the
+options on the command line (e.g. ``sbatch --my-option my_script.sh``).
+
+Note that options for ``sbatch`` *must* be placed before the filename
+for your script. Options placed *after* the filename for your script
+(e.g. ``sbatch my_script.sh --my-option``) will instead be passed
+directly to that script. This makes it simple to generalize scripts
+using standard scripting techniques.
+
+The second option, which we recommend for resource requirements and the
+like, is to use ``#SBATCH`` comments.
+
+For example, instead of queuing our job with the command
+
+.. code-block:: shell
+
+    $ sbatch --my-option my_script.sh
+
+We could instead modify ``my_script.sh`` by adding a line containing
+``#SBATCH --my-option`` near the top of the file:
+
+.. code-block:: bash
+    :emphasize-lines: 2
+
+    #!/bin/bash
+    #SBATCH --my-option
+
+    module load igzip/2.30.0
+    igzip --keep "chr1.fasta"
+
+If we do so, then running ``sbatch my_script.sh`` becomes the equivalent
+of running ``sbatch --my-option my_script.sh``. This had the advantage
+that our options are recorded along with the commands, and that we do
+not have to remember to specify those options every time we run ``sbatch
+my_script.sh``.
+
+This documentation will make use of ``#SBATCH`` comments, but remember
+that you can also specify them directly on the command-line. If you
+specify options on the command-line, then they take precedence above
+options specified using ``#SBATCH`` comments.
+
+.. note::
+
+    The ``#SBATCH`` lines must be at the top of the file, before any
+    other commands or the like. Moreover, there must be no spaces before
+    or after the ``#`` in the ``#SBATCH`` comments. Other comments
+    (lines starting with ``#``) are allowed before and after the
+    ``#SBATCH`` comments.
+
+    ``#SBATCH`` comments can also be used with other scripting
+    languages, provided that you follow the rules described above, but
+    note that source-code formatters like ``black`` may add spaces after
+    the ``#`` and thereby break the ``#SBATCH`` comments.
+
+.. _reserving_resources:
+
+Reserving resources
+-------------------
+
+By default a ``sbatch`` will request 1 CPU and just under 15 GB of ram
+per reserved CPU. Jobs will not be executed before the requested
+resources are available on a node and your jobs cannot exceed the amount
+of resources you've requested.
+
+Should your job require more CPUs, then you can request them using the
+``-c`` or ``--cpus-per-task`` option. The following script runs a job
+with 8 CPUs, and is therefore automatically assigned 8 * 15 ~= 120
+gigabytes of RAM:
+
+.. code-block:: bash
+    :emphasize-lines: 2,5
+
+    #!/bin/bash
+    #SBATCH --cpus-per-task 8
+
+    module load igzip/2.30.0
+    igzip --keep --threads 8 "chr1.fasta"
+
+Notice that we need to not only reserve the CPUs, but we in almost all
+cases also need tell to our programs to actually use those CPUs. With
+``igzip`` this is accomplished by using the ``--threads`` option as
+shown above. If this is not done then the reserved CPUs will have no
+effect on how long it takes for your program to run!
+
+To avoid having to write the same number of threads multiple times, we
+can instead use hte ``${SLURM_CPUS_PER_TASK}`` variable, which is
+automatically set to the number of CPUs we've requested:
+
+.. code-block:: bash
+    :emphasize-lines: 5
+
+    #!/bin/bash
+    #SBATCH --cpus-per-task 8
+
+    module load igzip/2.30.0
+    igzip --keep --threads ${SLURM_CPUS_PER_TASK} "chr1.fasta"
+
+The amount of RAM allocated by default should be sufficient for most
+tasks, but when needed you can request additional RAM using either the
+``--mem-per-cpu`` or the ``--mem`` options. The ``--mem-per-cpu`` option
+allow you to request an amount of memory that depends on the number of
+CPUs you request (defaulting to just under 15 GB per CPU), while the
+``--mem`` option allows you to request a specific amount of memory
+regardless of how many (or how few) CPUs you reserve.
+
+The following script a task with 8 CPUs and 512 gigabytes of RAM:
+
+.. code-block:: bash
+    :emphasize-lines: 3
+
+    #!/bin/bash
+    #SBATCH --cpus-per-task 8
+    #SBATCH --mem 512G
+
+    module load igzip/2.30.0
+    igzip --keep --threads ${SLURM_CPUS_PER_TASK} "chr1.fasta"
+
+The same total could have been requested by using ``#SBATCH
+--mem-per-cpu 64G`` instead of ``#SBATCH --mem 512G``.
+
+As described in the :ref:`p_overview`, each node has 128 CPUs available
+and 2 TB of RAM, of which 1993 GB can be reserved by Slurm. The GPU node
+has 4 TB of RAM available, of which 3920 GB can be reserved by Slurm,
+and may be used for jobs that have very high memory requirements.
+However, since we only have one GPU node we ask that you use the regular
+nodes unless your jobs actually require that much RAM. See the
+:ref:`p_usage_jobs_gpu` section for how to use the GPU node with or
+without reserving a GPU.
+
+Best practice for reserving resources
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Determining how many CPUs and how much memory you need to reserve for
+your jobs can be difficult.
+
+Few programs benefit from using a lot of threads (CPUs) due to overhead
+and due to limits to how much of a given process can be parallelized
+(see `Amdahl's law <https://en.wikipedia.org/wiki/Amdahl%27s_law>`_).
+Maximum throughput is often limited by how fast the software can
+read/write data.
+
+We therefore recommended that you
+
+    - Always refer to the documentation and recommendations for the
+      specific software you are using!
+    - Test the effect of the number of threads you are using before
+      starting a lot of jobs.
+    - Start with fewer CPUs and increase it only when there is a benefit
+      to doing so. You can for example start with 2, 4, or 8 CPUs per
+      task, and only increasing the number after it has been determined
+      that the software benefits from the additional CPUs.
+
+The ``/usr/bin/time -f "CPU = %P, MEM = %MKB"`` command can be used to
+estimate the efficiency from using multiple threads and to show how much
+memory a program used:
+
+.. code-block:: console
+
+    $ /usr/bin/time -f "CPU = %P, MEM = %M" my-command --threads 1 ...
+    CPU = 99%, MEM = 840563KB
+    $ /usr/bin/time -f "CPU = %P, MEM = %M" my-command --threads 4 ...
+    CPU = 345%, MEM = 892341KB
+    $ /usr/bin/time -f "CPU = %P, MEM = %M" my-command --threads 8 ...
+    CPU = 605%, MEM = 936324KB
+
+In this example increasing the number of threads/CPUs to 4 did not
+result in a 4x increase in CPU usage, but only an 3.5x increase with 4
+CPUs and only a 6x increase with 8 CPUs. Here it would be more efficient
+to run to tasks with 4 CPUs rather than one task with 8 CPUs.
+
+Because of this it is often more efficient to split your job into
+multiple sub-jobs (for example one job per chromosome) rather than
+increasing the number of threads used for the individual jobs. See the
+:ref:`p_usage_jobs_advanced` page for more information about batching
+jobs.
+
+.. _s_common_options:
+
+Common options
+~~~~~~~~~~~~~~
+
+The following provides a brief overview of common options for ``sbatch``
+not mentioned above. All of these options may be specified using
+``#SBATCH`` comments.
+
+- The ``--job-name`` option allows you to give a name to your job. This
+  shows up when using ``squeue``, ``sacct`` and more. If not specified,
+  the name of your script is used instead.
+- The ``--output`` and ``--error`` options allow you to specify where
+  Slurm writes your scripts STDOUT and STDERR. The filenames should
+  always include the text ``%j``, which is replaced with the job ID. See
+  the manual page for usage. Note also that the destination folder
+  *must* exist or no output will be saved!
+- ``--time`` can be used to limit the maximum running time of your
+  script. We do not require that ``--time`` is set, but it may be useful
+  to automatically stop jobs that unexpectedly take too long to run. See
+  the ``sbatch`` manual page for how to specify time limits.
+- ``--test-only`` can be used to test your batch scripts. Combine it
+  with ``--verbose`` to verify that your options are correctly set
+  before queuing your job:
+
+  .. code-block:: shell
+
+      $ sbatch --test-only --verbose my_script.sh
+      sbatch: defined options
+      sbatch: -------------------- --------------------
+      sbatch: cpus-per-task       : 8
+      sbatch: test-only           : set
+      sbatch: time                : 01:00:00
+      sbatch: verbose             : 1
+      sbatch: -------------------- --------------------
+      sbatch: end of defined options
+      [...]
+      sbatch: Job 8568 to start at 2023-06-28T12:15:32 using 8 processors on nodes esrumcmpn02fl in partition standardqueue
+
+- The ``--wait`` option can be used to make the ``sbatch`` block until
+  the queued tasks have completed. This can be useful if you want to run
+  sbatch from another script.
+
+Interactive sessions
+--------------------
 
 If you need to run an interactive process, for example if you need to
 use an interactive R shell to process a large dataset, or if you just
 need to experiment with running an computationally heavy process, then
 you can start a shell on one of the compute nodes as follows:
 
-.. code::
+.. code-block::
 
-   [abc123@esrumhead01fl ~] $ srun --pty -- /bin/bash
-   [abc123@esrumcmpn07fl ~] $
+    [abc123@esrumhead01fl ~] $ srun --pty -- /bin/bash
+    [abc123@esrumcmpn07fl ~] $
 
-Note that the hostname displayed changes from ``esrumhead01fl`` to
-``esrumcmpn07fl``, where ``esrumcmpn07fl`` is one of the eight Esrum
+Note how the hostname displayed changes from ``esrumhead01fl`` to
+``esrumcmpn07fl``, where ``esrumcmpn07fl`` may be any one of the Esrum
 compute nodes.
 
-You can now run interactive jobs, for example running an R shell, or
-test computationally expensive tools or scripts. However, note that you
+You can now run interactive programs, for example an R shell, or test
+computationally expensive tools or scripts. However, note that you
 *cannot* start jobs using Slurm in an interactive shell; jobs can only
 be started from the head node.
 
+``srun`` takes most of the same arguments as ``sbatch``, including those
+used for reserving additional resources if you need more than the
+default 1 CPU and 15 GB of RAM:
+
+.. code-block::
+
+    $ srun --cpus-per-task 4 --mem 128G --pty -- /bin/bash
+
+It is also possible to start an interactive session on the GPU/High-MEM
+nodes. See the :ref:`p_usage_jobs_gpu` page for more information. See
+the :ref:`p_usage_jobs_advanced` page for more information about the
+``srun`` command.
+
 Once you are done, be sure to exit the interactive shell by using the
 ``exit`` command or pressing ``Ctrl+D``, so that the resources reserved
-for your shell is made available to other users!
+for your shell are made available to other users!
 
-.. _s_reserving_resources:
+``sbatch`` template script
+--------------------------
 
-***********************************
- Reserving resources for your jobs
-***********************************
+The following is a simple template for use with the ``sbatch`` command.
+This script can also be downloaded :download:`here <my_sbatch.sh>`.
 
-By default a ``srun`` will reserve 1 CPU and just under 15 GB of ram per
-CPU. Should your job require more CPUs, then you can request them using
-the ``-c`` or ``--cpus-per-task`` options. The following runs a task
-with 8 CPUs, and is automatically assigned 8 * 15 ~= 120 gigabytes of
-RAM:
+.. literalinclude:: my_sbatch.sh
+    :language: sh
 
-.. code::
+See also the :ref:`p_tips_robustscripts` page for tips on how to write
+more robust bash scripts. A template using those recommendations is
+available for download :download:`here <robust_sbatch.sh>`.
 
-   $ srun -c 8 -- my-command --threads 8
-
-The amount of RAM allocated by default should be sufficient for most
-tasks, but when needed you can request additional RAM using the
-``--mem`` or ``--mem-per-cpu`` options. The following runs a task with 8
-CPUs and 512 gigabytes of RAM:
-
-.. code::
-
-   $ srun -c 8 --mem 512G -- my-command --threads 8
-
-As described in the :ref:`p_overview`, each node has 128 CPUs available
-and 2 TB of RAM, of which 1993 GB can be reserved by Slurm.
-
-The GPU node has 4 TB of RAM available, of which 3920 GB can be reserved
-by Slurm, and may be used for jobs that have very high memory
-requirements. However, since we only have one GPU node we ask that you
-use the regular nodes unless your jobs actually require that much RAM.
-See the next section for how to use the GPU node with or without
-reserving a GPU.
-
-.. note::
-
-   Remember that reserving CPUs only makes them available to your jobs,
-   it does not automatically make use of them! Check the documentation
-   for the software you are using to determine how to tell the software
-   to use additional threads (corresponding to the ``--threads 8``
-   arguments in the above example).
-
-Best practice for reserving resources
-=====================================
-
-Determining how many CPUs and how much memory you need to reserve for
-your jobs can be difficult.
-
-Few programs benefit from using a lot of threads (CPUs) used due to
-added overhead and due to limits to how much of a given process can be
-parallelized. Maximum throughput is also often limited by how fast the
-software can read/write data. In some cases too many threads can even
-increase the amount of time it takes to run the software, sometimes
-drastically so!
-
-We therefore recommended that you
-
-   -  Always refer to the documentation and recommendations for the
-      specific software you are using!
-
-   -  Test the effect of the number of threads you are using before
-      starting a lot of jobs.
-
-   -  Start with fewer CPUs and increase it only when there is a benefit
-      to doing so. You can for example start with 2, 4, or 8 CPUs per
-      task, and only increasing the number after it has been determined
-      that the software benefits from it.
-
-The ``/usr/bin/time -f "CPU = %P, MEM = %MKB"`` command can be used to
-estimate the efficiency from using multiple threads and to show how much
-memory a program used:
-
-.. code:: console
-
-   $ /usr/bin/time -f "CPU = %P, MEM = %M" my-command --threads 1 ...
-   CPU = 99%, MEM = 840563KB
-   $ /usr/bin/time -f "CPU = %P, MEM = %M" my-command --threads 4 ...
-   CPU = 345%, MEM = 892341KB
-
-In this example increasing the number of threads/CPUs to 4 did not
-result in a 4x increase in CPU usage, but only a 3.5x increase. And this
-difference tends to increase the more threads are used.
-
-Because performance does not grow linearly with the number of threads it
-is often more efficient to split your job into multiple sub-jobs (for
-example one job per chromosome) rather than increasing the number of
-threads used for the individual jobs. See the
-:ref:`p_usage_jobs_advanced` page for more information.
-
-Increasing the number of threads only increased slightly the amount of
-memory used (820MB to 871MB) in this example. In other words this
-software probably did not load additional data per thread, however that
-may be the case for other software.
-
-Reserving the GPU node
-======================
-
-This section describes how to schedule a task on the GPU node. The GPU
-node is intended for tasks that need to use GPUs and for tasks that have
-very high memory requirements (more than 2 TB).
-
-To schedule a task on the GPU node you need to select the GPU queue and
-(optionally) specify the number of Nvidia A100 GPUs needed (1 or 2). For
-example, the following command queues the command ``my-gpu-command`` and
-requests a single A100 GPU:
-
-.. code::
-
-   $ srun --partition=gpuqueue --gres=gpu:a100:1 -- my-gpu-command
-
-Alternatively you may reserve both GPUs:
-
-.. code::
-
-   $ srun --partition=gpuqueue --gres=gpu:a100:2 -- my-gpu-command
-
-If you on not need to use a GPU, then you can omit the ``--gres``
-option:
-
-.. code::
-
-   $ srun --partition=gpuqueue -- my-command
-
-As above you must also specify your CPU and RAM requirements using
-``--cpus-per-task`` and ``--mem``.
-
-Monitoring GPU utilization
-==========================
-
-   .. warning::
-
-      Due to changes to SLURM settings, to ensure that jobs cannot
-      access resources that were not reserved for them, it is currently
-      not possible to monitor GPUs usage from a different job using the
-      instructions below. The documentation will be updates shortly.
-
-Slurm does not provide any means of monitoring the actual GPU
-utilization, but tools such as ``nvidia-smi`` can be used to monitor
-performance metrics. And since we are not going to actually *use* the
-GPU, we can simply omit the ``--gres`` option.
-
-.. warning::
-
-   If you need to make use of GPU resources (passive monitoring
-   excluded), then you *must* also specify the appropriate ``--gres``
-   option. Failure to do so will result in your jobs being terminated!
-
-This allows slurm to run the monitoring task even when the GPUs are
-reserved:
-
-.. code::
-
-   $ srun --partition=gpuqueue -- nvidia-smi -l 5
-   Thu Jun  8 12:18:15 2023
-   +-----------------------------------------------------------------------------+
-   | NVIDIA-SMI 525.60.13    Driver Version: 525.60.13    CUDA Version: 12.0     |
-   |-------------------------------+----------------------+----------------------+
-   | GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-   | Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-   |                               |                      |               MIG M. |
-   |===============================+======================+======================|
-   |   0  NVIDIA A100 80G...  On   | 00000000:27:00.0 Off |                    0 |
-   | N/A   43C    P0    47W / 300W |      0MiB / 81920MiB |      0%      Default |
-   |                               |                      |             Disabled |
-   +-------------------------------+----------------------+----------------------+
-   |   1  NVIDIA A100 80G...  On   | 00000000:A3:00.0 Off |                    0 |
-   | N/A   43C    P0    45W / 300W |      0MiB / 81920MiB |      0%      Default |
-   |                               |                      |             Disabled |
-   +-------------------------------+----------------------+----------------------+
-
-   +-----------------------------------------------------------------------------+
-   | Processes:                                                                  |
-   |  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-   |        ID   ID                                                   Usage      |
-   |=============================================================================|
-   |  No running processes found                                                 |
-   +-----------------------------------------------------------------------------+
-
-The ``gpustat`` tool provides a more convenient overview but must be
-installed via ``pip``:
-
-..
-   TODO: Update when gpustats has been added as a module
-
-.. code::
-
-   $ pip install gpustat
-   $ srun --partition=gpuqueue --pty -- gpustat -i 5
-   esrumgpun01fl.unicph.domain  Thu Jun  8 12:20:24 2023  525.60.13
-   [0] NVIDIA A100 80GB PCIe | 43°C,   0 % |     0 / 81920 MB |
-   [1] NVIDIA A100 80GB PCIe | 43°C,   0 % |     0 / 81920 MB |
-
-The ``--pty`` option is used in order to support colored, full-screen
-output despite not running an interactive actual shell. As an
-alternative, you can also start an interactive shell on the GPU node and
-run ``gpustats`` or ``nvidia-smi`` that way:
-
-.. code::
-
-   $ srun --partition=gpuqueue --pty -- /bin/bash
-   $ gpustat -i 5
-
-*****************
- Troubleshooting
-*****************
+Troubleshooting
+---------------
 
 .. _s_configuration_not_available:
 
 Error: Requested node configuration is not available
-====================================================
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 If you request too many CPUs (more than 128), or too much RAM (more than
 1993 GB for compute nodes and more than 3920 GB for the GPU node), then
 Slurm will report that the request cannot be satisfied:
 
-.. code:: shell
+.. code-block:: shell
 
-   # More than 128 CPUs requested
-   $ srun --cpus-per-task 200 -- echo "Hello world!"
-   srun: error: CPU count per node can not be satisfied
-   srun: error: Unable to allocate resources: Requested node configuration is not available
+    # More than 128 CPUs requested
+    $ sbatch --cpus-per-task 200 my_script.sh
+    sbatch: error: CPU count per node can not be satisfied
+    sbatch: error: Batch job submission failed: Requested node configuration is not available
 
-   # More than 1993 GB RAM requested on compute node
-   $ srun --mem 2000G -- echo "Hello world!"
-   srun: error: Memory specification can not be satisfied
-   srun: error: Unable to allocate resources: Requested node configuration is not available
+    # More than 1993 GB RAM requested on compute node
+    $ sbatch --mem 2000G my_script.sh
+    sbatch: error: Memory specification can not be satisfied
+    sbatch: error: Batch job submission failed: Requested node configuration is not available
 
 To solve this, simply reduce the number of CPUs and/or the amount of RAM
 requested to fit within the limits described above. If your task does
 require more than 1993 GB of RAM, then you also need to add the
-``--partition=gpuqueue``, so that your task gets scheduled on the GPU
-node.
+``--partition=gpuqueue``, so that your task gets scheduled on the
+GPU/High-MEM node.
 
 Additionally, you may receive this message if you request GPUs without
 specifying the correct queue or if you request too many GPUs:
 
-.. code:: shell
+.. code-block:: shell
 
-   # --partition=gpuqueue not specified
-   $ srun --gres=gpu:a100:2 -- echo "Hello world!"
-   srun: error: Unable to allocate resources: Requested node configuration is not available
+    # --partition=gpuqueue not specified
+    $ srun --gres=gpu:a100:2 -- echo "Hello world!"
+    srun: error: Unable to allocate resources: Requested node configuration is not available
 
-   # More than 2 GPUs requested
-   $ srun --partition=gpuqueue --gres=gpu:a100:3 -- echo "Hello world!"
-   srun: error: Unable to allocate resources: Requested node configuration is not available
+    # More than 2 GPUs requested
+    $ srun --partition=gpuqueue --gres=gpu:a100:3 -- echo "Hello world!"
+    srun: error: Unable to allocate resources: Requested node configuration is not available
 
 To solve this error, simply avoid requesting more than 2 GPUs, and
 remember to include the ``--partition=gpuqueue`` option.
 
-**********************
- Additional resources
-**********************
+See also the :ref:`p_usage_jobs_gpu` section.
 
--  Slurm `documentation <https://slurm.schedmd.com/overview.html>`_
--  Slurm `summary <https://slurm.schedmd.com/pdfs/summary.pdf>`_ (PDF)
--  The ``srun`` `manual page <https://slurm.schedmd.com/srun.html>`_
+Additional resources
+--------------------
 
-.. _slurm: https://slurm.schedmd.com/overview.html
+- Slurm `documentation <https://slurm.schedmd.com/overview.html>`_
+- Slurm `summary <https://slurm.schedmd.com/pdfs/summary.pdf>`_ (PDF)
+- The `sbatch manual page <https://slurm.schedmd.com/sbatch.html>`_
+- The `srun manual page <https://slurm.schedmd.com/srun.html>`_
 
-.. _tmux: https://github.com/tmux/tmux/wiki
+.. _pbs to slurm translation-sheet: https://www.nrel.gov/hpc/assets/pdfs/pbs-to-slurm-translation-sheet.pdf
+
+.. _shebang: https://en.wikipedia.org/wiki/Shebang_(Unix)
