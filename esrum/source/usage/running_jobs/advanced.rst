@@ -139,6 +139,34 @@ The `Mapping task IDs to data`_ section below describes several ways you
 might use to map the ``SLURM_ARRAY_TASK_ID`` variable to more complex
 data/filenames.
 
+Limiting simultaneous jobs
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+By default Slurm will attempt to run every job in an array at the same
+time, provided that there are resources available. Since Esrum is a
+shared resource we ask that you consider how much of the cluster you'll
+be using and limit the number of simultaneous jobs.
+
+Limiting the number of simultaneous jobs is done by appending a ``%``
+and a number at the end of the ``--array`` value. For example, in the
+following script we queue a job array containing 100 jobs, each
+requesting 8 CPUs. However, the ``%16`` appended to the ``--array``
+ensures that at most 16 of these jobs are running at the same time:
+
+.. code-block:: bash
+
+    #!/bin/bash
+    #SBATCH --cpus-per-task=8
+    #SBATCH --array=1-100%16
+
+This ensures that we use no more than 1 compute node's worth of CPUs
+(128 CPUs per node) and thereby leave plenty of capacity available for
+other users. Please reach out if you are running a large number of (job
+array) jobs and are in doubt about how many to run at the same time.
+
+Managing job arrays
+~~~~~~~~~~~~~~~~~~~
+
 Job arrays can either be cancelled as a whole or in part. To cancel the
 entire job (all tasks in the array) simply use the primary job ID before
 the underscore/dot:
