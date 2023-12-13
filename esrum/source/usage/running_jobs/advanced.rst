@@ -296,9 +296,13 @@ filenames in a bash script.
        #!/bin/bash
        #SBATCH --array=1-3
 
+       # Grab second column where the first column equals SLURM_ARRAY_TASK_ID
+       NAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $2; exit}' my_samples.tsv)
+       # Grab third column where the first column equals SLURM_ARRAY_TASK_ID
        FILENAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
 
        module load htslib/1.18
+       echo "Now processing sample '${NAME}'"
        bgzip "${FILENAME}"
 
 Additional resources
