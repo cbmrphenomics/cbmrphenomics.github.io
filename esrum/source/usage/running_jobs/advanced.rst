@@ -161,8 +161,23 @@ ensures that at most 16 of these jobs are running at the same time:
 
 This ensures that we use no more than 1 compute node's worth of CPUs
 (128 CPUs per node) and thereby leave plenty of capacity available for
-other users. Please reach out if you are running a large number of (job
-array) jobs and are in doubt about how many to run at the same time.
+other users.
+
+In addition to limiting the number of simultaneously running jobs, you
+can also give your jobs a lower priority using the ``--nice`` option:
+
+.. code-block:: bash
+
+    #SBATCH --nice
+
+This ensures that other users' jobs, if any, will be run before jobs in
+your array and thereby prevent your job array from always using the
+maximum number of resources possible. Combined with a reasonable ``%``
+limit this allows you to run more jobs simultaneously, than if you just
+used a ``%`` limit, without negatively impacting other users.
+
+Please reach out if you are running a large number of (job array) jobs
+and are in doubt about how many to run at the same time.
 
 Managing job arrays
 ~~~~~~~~~~~~~~~~~~~
