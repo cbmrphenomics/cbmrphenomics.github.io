@@ -1,4 +1,4 @@
-.. _p_usage_jobs_advanced:
+.. _p_usage_slurm_advanced:
 
 #####################
  Advanced Slurm jobs
@@ -55,7 +55,7 @@ To cancel a job running with srun, simply press `Ctrl + c` twice within
    srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
 
 See also the :ref:`s_cancelling_jobs` section on the
-:ref:`p_usage_jobs_basics` page.
+:ref:`p_usage_slurm_basics` page.
 
 .. _s_job_arrays:
 

@@ -11,7 +11,7 @@ continuing.
 The cluster's is accessible via SSH at ``esrumhead01fl.unicph.domain``.
 This is the Esrum "head" node, which serves as the entry-point for the
 cluster and which gives you access to the job management system used for
-running software (see :ref:`p_usage_jobs`)
+running software (see :ref:`p_usage_slurm`)
 
 To connect to the cluster you will typically need to be connected to the
 KU VPN. For information about connecting to the VPN, see the support

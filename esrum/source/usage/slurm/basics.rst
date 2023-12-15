@@ -1,4 +1,4 @@
-.. _p_usage_jobs_basics:
+.. _p_usage_slurm_basics:
 
 ##################
  Basic Slurm jobs
@@ -297,7 +297,7 @@ has 4 TB of RAM available, of which 3920 GB can be reserved by Slurm,
 and may be used for jobs that have very high memory requirements.
 However, since we only have one GPU node we ask that you use the regular
 nodes unless your jobs actually require that much RAM. See the
-:ref:`p_usage_jobs_gpu` section for how to use the GPU node with or
+:ref:`p_usage_slurm_gpu` section for how to use the GPU node with or
 without reserving a GPU.
 
 Best practice for reserving resources
@@ -346,7 +346,7 @@ to run to tasks with 4 CPUs rather than one task with 8 CPUs.
 Because of this it is often more efficient to split your job into
 multiple sub-jobs (for example one job per chromosome) rather than
 increasing the number of threads used for the individual jobs. See the
-:ref:`p_usage_jobs_advanced` page for more information about batching
+:ref:`p_usage_slurm_advanced` page for more information about batching
 jobs.
 
 .. _s_common_options:
@@ -427,8 +427,8 @@ default 1 CPU and 15 GB of RAM:
    $ srun --cpus-per-task 4 --mem 128G --pty -- /bin/bash
 
 It is also possible to start an interactive session on the GPU/High-MEM
-nodes. See the :ref:`p_usage_jobs_gpu` page for more information. See
-the :ref:`p_usage_jobs_advanced` page for more information about the
+nodes. See the :ref:`p_usage_slurm_gpu` page for more information. See
+the :ref:`p_usage_slurm_advanced` page for more information about the
 ``srun`` command.
 
 Once you are done, be sure to exit the interactive shell by using the
@@ -496,7 +496,7 @@ specifying the correct queue or if you request too many GPUs:
 To solve this error, simply avoid requesting more than 2 GPUs, and
 remember to include the ``--partition=gpuqueue`` option.
 
-See also the :ref:`p_usage_jobs_gpu` section.
+See also the :ref:`p_usage_slurm_gpu` section.
 
 **********************
  Additional resources

@@ -1,4 +1,4 @@
-.. _p_usage_jobs_gpu:
+.. _p_usage_slurm_gpu:
 
 ###########################
  Using the GPU/hi-MEM node
@@ -118,4 +118,4 @@ Troubleshooting
 ******************************************************
 
 See :ref:`s_configuration_not_available` on the
-:ref:`p_usage_jobs_basics` page.
+:ref:`p_usage_slurm_basics` page.
