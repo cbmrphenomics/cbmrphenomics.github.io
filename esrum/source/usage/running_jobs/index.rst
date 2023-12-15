@@ -1,7 +1,8 @@
 .. _p_usage_jobs:
 
-Running jobs using Slurm
-========================
+##########################
+ Running jobs using Slurm
+##########################
 
 In order to run jobs on the Esrum cluster, you must connect to the head
 node (see :ref:`p_usage_connecting`) and queue them using the Slurm_ job
@@ -16,22 +17,24 @@ necessary to prevent them from impacting users of the cluster.
 
 The documentation for running jobs is split into three sections:
 
-1. The :ref:`p_usage_jobs_basics` section describes the basic procedure
+#. The :ref:`p_usage_jobs_basics` section describes the basic procedure
    of queuing jobs using the ``sbatch`` command, requesting resources,
    monitoring your jobs, and running an interactive session.
-2. The :ref:`p_usage_jobs_advanced` section describes additional ways to
+
+#. The :ref:`p_usage_jobs_advanced` section describes additional ways to
    monitor your jobs, how to batch multiple, similar jobs using
    ``sbatch``, how to use ``srun`` for executing singular commands, and
    more.
-3. The :ref:`p_usage_jobs_gpu` section describes how to run jobs on the
+
+#. The :ref:`p_usage_jobs_gpu` section describes how to run jobs on the
    GPU/High-MEM node.
 
 .. toctree::
-    :maxdepth: 2
-    :titlesonly:
+   :maxdepth: 2
+   :titlesonly:
 
-    basics
-    advanced
-    gpu
+   basics
+   advanced
+   gpu
 
 .. _slurm: https://slurm.schedmd.com/overview.html

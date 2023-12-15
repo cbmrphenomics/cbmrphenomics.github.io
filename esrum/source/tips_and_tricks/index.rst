@@ -1,11 +1,12 @@
 .. _p_tips:
 
-Tips and tricks
-===============
+#################
+ Tips and tricks
+#################
 
 .. toctree::
 
-    modules
-    tmux
-    batching_commands
-    robust_scripts
+   modules
+   tmux
+   batching_commands
+   robust_scripts

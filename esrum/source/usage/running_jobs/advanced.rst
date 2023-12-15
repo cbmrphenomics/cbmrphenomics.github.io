@@ -1,14 +1,16 @@
 .. _p_usage_jobs_advanced:
 
-Advanced Slurm jobs
-===================
+#####################
+ Advanced Slurm jobs
+#####################
 
 The following page describes how to use the ``srun`` command to run
 simple commands on the cluster, how to queue batches of jobs using
 ``sbatch``, including how to manage these jobs and how to map
 
-Running commands using srun
----------------------------
+*****************************
+ Running commands using srun
+*****************************
 
 The ``srun`` command can be used to queue and execute simple commands on
 the compute nodes, and for most part it should feel no different than
@@ -18,10 +20,10 @@ available compute node:
 
 .. code-block::
 
-    $ srun gzip chr20.fasta
+   $ srun gzip chr20.fasta
 
 .. image:: images/srun_minimal.gif
-    :class: gif
+   :class: gif
 
 Except for the ``srun`` prefix, this is exactly as if you ran the
 ``gzip`` command on the head node. However, if you need to pipe output
@@ -30,65 +32,71 @@ bash (or similar) script:
 
 .. code-block::
 
-    $ srun bash my_script.sh
+   $ srun bash my_script.sh
 
 .. image:: images/srun_wrapped.gif
-    :class: gif
+   :class: gif
 
 But at that point you might as well use ``sbatch`` with the ``--wait``
 option if simply you want to be able to wait for your script to finish.
 
 Cancelling srun
-~~~~~~~~~~~~~~~
+===============
 
 To cancel a job running with srun, simply press `Ctrl + c` twice within
 1 second:
 
 .. code-block:: shell
 
-    $ srun gzip chr20.fasta
-    <ctrl+c> srun: interrupt (one more within 1 sec to abort)
-    srun: StepId=8717.0 task 0: running
-    <ctrl+c> srun: sending Ctrl-C to StepId=8717.0
-    srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+   $ srun gzip chr20.fasta
+   <ctrl+c> srun: interrupt (one more within 1 sec to abort)
+   srun: StepId=8717.0 task 0: running
+   <ctrl+c> srun: sending Ctrl-C to StepId=8717.0
+   srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
 
 See also the :ref:`s_cancelling_jobs` section on the
 :ref:`p_usage_jobs_basics` page.
 
 .. _s_job_arrays:
 
-Monitoring your jobs
---------------------
+**********************
+ Monitoring your jobs
+**********************
 
 Slurm offers a number of ways in which you may monitor your jobs:
 
-- The ``squeue`` command allows you to list jobs that have not yet
-  finished (or failed). The recommended use is either ``squeue --me`` to
-  show all your jobs or ``squeue --job ${JOB_ID}``, where ``${JOB_ID}``
-  is the ID of the job whose status you want to inspect.
-- The ``sacct`` command allows you list jobs that have finished running
-  (or failed).
-- The ``--wait`` option makes ``sbatch`` wait until your job has
-  completed before returning (similar to how ``srun`` works). This is
-  for example useful if you want to queue and wait for jobs in a script.
-- In addition to actively monitoring your jobs, it is possible to
-  receive email notifications when your jobs are started, finish, fail,
-  are requeued, or some combination. This is accomplished by using the
-  ``--mail-user`` and ``--mail-type`` options:
+-  The ``squeue`` command allows you to list jobs that have not yet
+   finished (or failed). The recommended use is either ``squeue --me``
+   to show all your jobs or ``squeue --job ${JOB_ID}``, where
+   ``${JOB_ID}`` is the ID of the job whose status you want to inspect.
 
-  .. code-block:: shell
+-  The ``sacct`` command allows you list jobs that have finished running
+   (or failed).
+
+-  The ``--wait`` option makes ``sbatch`` wait until your job has
+   completed before returning (similar to how ``srun`` works). This is
+   for example useful if you want to queue and wait for jobs in a
+   script.
+
+-  In addition to actively monitoring your jobs, it is possible to
+   receive email notifications when your jobs are started, finish, fail,
+   are requeued, or some combination. This is accomplished by using the
+   ``--mail-user`` and ``--mail-type`` options:
+
+   .. code-block:: shell
 
       $ sbatch my_script.sh --mail-user=abc123@ku.dk --mail-type=END,FAIL
       Submitted batch job 8503
 
-  When run like this, you will receive notifications at ``abc123@ku.dk``
-  (remember to use your account KU email address!) when the job is
-  completed or fails. The possible options are ``NONE`` (the default),
-  ``BEGIN``, ``END``, ``FAIL``, ``REQUEUE``, ``ALL``, or some
-  combination as shown above.
+   When run like this, you will receive notifications at
+   ``abc123@ku.dk`` (remember to use your account KU email address!)
+   when the job is completed or fails. The possible options are ``NONE``
+   (the default), ``BEGIN``, ``END``, ``FAIL``, ``REQUEUE``, ``ALL``, or
+   some combination as shown above.
 
-Running multiple tasks using arrays
------------------------------------
+*************************************
+ Running multiple tasks using arrays
+*************************************
 
 As suggested by the name, the ``sbatch`` command is able to run jobs in
 batches. This is accomplished using "job arrays", which allows you to
@@ -101,13 +109,13 @@ specifies the numerical ID of a task:
 
 .. code-block:: bash
 
-    #!/bin/bash
-    #SBATCH --cpus-per-task=8
-    #SBATCH --time=60
-    #SBATCH --array=1-3
+   #!/bin/bash
+   #SBATCH --cpus-per-task=8
+   #SBATCH --time=60
+   #SBATCH --array=1-3
 
-    module load igzip/2.30.0
-    igzip --threads ${SLURM_CPUS_PER_TASK} "chr${SLURM_ARRAY_TASK_ID}.fasta"
+   module load igzip/2.30.0
+   igzip --threads ${SLURM_CPUS_PER_TASK} "chr${SLURM_ARRAY_TASK_ID}.fasta"
 
 The ``--array=1-3`` option specifies that we want to run tasks 1, 2, and
 3, each of which is assigned 8 CPUs and each of which is given 60
@@ -121,18 +129,18 @@ Our script can then be run as before:
 
 .. code-block:: shell
 
-    $ ls
-    chr1.fasta chr2.fasta chr3.fasta my_script.sh
-    $ sbatch my_script.sh
-    Submitted batch job 8504
-    $ squeue --me
-     JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
-    8504_1 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
-    8504_2 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
-    8504_3 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
-    $ ls
-    chr1.fasta.gz  chr3.fasta.gz  slurm-8507_1.out  slurm-8507_3.out
-    chr2.fasta.gz  my_script.sh   slurm-8507_2.out
+   $ ls
+   chr1.fasta chr2.fasta chr3.fasta my_script.sh
+   $ sbatch my_script.sh
+   Submitted batch job 8504
+   $ squeue --me
+    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+   8504_1 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
+   8504_2 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
+   8504_3 standardq my_scrip   zlc187  R       0:02      1 esrumcmpn01fl
+   $ ls
+   chr1.fasta.gz  chr3.fasta.gz  slurm-8507_1.out  slurm-8507_3.out
+   chr2.fasta.gz  my_script.sh   slurm-8507_2.out
 
 An ``.out`` file is automatically created for each task.
 
@@ -143,7 +151,7 @@ might use to map the ``SLURM_ARRAY_TASK_ID`` variable to more complex
 data/filenames.
 
 Limiting simultaneous jobs
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+==========================
 
 By default Slurm will attempt to run every job in an array at the same
 time, provided that there are resources available. Since Esrum is a
@@ -158,9 +166,9 @@ ensures that at most 16 of these jobs are running at the same time:
 
 .. code-block:: bash
 
-    #!/bin/bash
-    #SBATCH --cpus-per-task=8
-    #SBATCH --array=1-100%16
+   #!/bin/bash
+   #SBATCH --cpus-per-task=8
+   #SBATCH --array=1-100%16
 
 This ensures that we use no more than 1 compute node's worth of CPUs
 (128 CPUs per node) and thereby leave plenty of capacity available for
@@ -171,7 +179,7 @@ can also give your jobs a lower priority using the ``--nice`` option:
 
 .. code-block:: bash
 
-    #SBATCH --nice
+   #SBATCH --nice
 
 This ensures that other users' jobs, if any, will be run before jobs in
 your array and thereby prevent your job array from always using the
@@ -183,7 +191,7 @@ Please reach out if you are running a large number of (job array) jobs
 and are in doubt about how many to run at the same time.
 
 Managing job arrays
-~~~~~~~~~~~~~~~~~~~
+===================
 
 Job arrays can either be cancelled as a whole or in part. To cancel the
 entire job (all tasks in the array) simply use the primary job ID before
@@ -191,7 +199,7 @@ the underscore/dot:
 
 .. code-block:: shell
 
-    $ scancel 8504
+   $ scancel 8504
 
 To cancel part of a batch job/array, instead specify the ID of the
 sub-task after the ID of the batch job, using a dot (``.``) to separate
@@ -199,17 +207,17 @@ the two IDs instead of an underscore (``_``):
 
 .. code-block:: shell
 
-    $ scancel 8504.1
+   $ scancel 8504.1
 
 .. warning::
 
-    While it is possible to use ``sbatch`` with jobs of any size, it
-    should be remembered that Slurm imposes some overhead on jobs. It is
-    therefore preferable to run jobs consisting of a large number of
-    tasks in batches, instead of running each task individually.
+   While it is possible to use ``sbatch`` with jobs of any size, it
+   should be remembered that Slurm imposes some overhead on jobs. It is
+   therefore preferable to run jobs consisting of a large number of
+   tasks in batches, instead of running each task individually.
 
 Mapping task IDs to data
-~~~~~~~~~~~~~~~~~~~~~~~~
+========================
 
 Using ``sbatch`` arrays requires that you map a number (the array task
 ID) to a filename or similar. The above example assumed that filenames
@@ -218,67 +226,70 @@ were numbered, but that is not always the case.
 The following describes a few ways in which you can map array task ID to
 filenames in a bash script.
 
-1. Using numbered filenames:
+#. Using numbered filenames:
 
    The example showed how to handle filenames where the numbers were
    simply written as 1, 2, etc:
 
    .. code-block:: bash
 
-       # Simple numbering: sample1.vcf, sample2.vcf, etc.
-       FILENAME="sample${SLURM_ARRAY_TASK_ID}.vcf"
+      # Simple numbering: sample1.vcf, sample2.vcf, etc.
+      FILENAME="sample${SLURM_ARRAY_TASK_ID}.vcf"
 
    However, it is also possible to format numbers in a more complicated
    manner (e.g. 001, 002, etc.), using for example the printf command:
 
    .. code-block:: bash
 
-       # Formatted numbering: sample001.vcf, sample002.vcf, etc.
-       FILENAME=$(printf "sample%03i.vcf" ${SLURM_ARRAY_TASK_ID})
+      # Formatted numbering: sample001.vcf, sample002.vcf, etc.
+      FILENAME=$(printf "sample%03i.vcf" ${SLURM_ARRAY_TASK_ID})
 
    See above for an example script and the expected output.
 
-2. Using a table of filenames:
+#. Using a table of filenames:
 
    Given a text file ``my_samples.txt`` containing one filename per
    line:
 
    .. code-block::
 
-       /path/to/first_sample.vcf
-       /path/to/second_sample.vcf
-       /path/to/third_sample.vcf
+      /path/to/first_sample.vcf
+      /path/to/second_sample.vcf
+      /path/to/third_sample.vcf
 
    .. code-block:: bash
 
-       # Prints the Nth line
-       FILENAME=$(sed "${SLURM_ARRAY_TASK_ID}q;d" my_samples.txt)
+      # Prints the Nth line
+      FILENAME=$(sed "${SLURM_ARRAY_TASK_ID}q;d" my_samples.txt)
 
    A sbatch script could look as follows:
 
    .. code-block:: bash
 
-       #!/bin/bash
-       #SBATCH --array=1-3
+      #!/bin/bash
+      #SBATCH --array=1-3
 
-       FILENAME=$(sed "${SLURM_ARRAY_TASK_ID}q;d" my_samples.txt)
+      FILENAME=$(sed "${SLURM_ARRAY_TASK_ID}q;d" my_samples.txt)
 
-       module load htslib/1.18
-       bgzip "${FILENAME}"
+      module load htslib/1.18
+      bgzip "${FILENAME}"
 
-3. Using a table of numbered samples (``my_samples.tsv``):
+#. Using a table of numbered samples (``my_samples.tsv``):
 
-   == ====== ==========================
-   ID Name   Path
-   1  first  /path/to/first_sample.vcf
-   2  second /path/to/second_sample.vcf
-   3  third  /path/to/third_sample.vcf
-   == ====== ==========================
+   +----+--------+------------------------------+
+   | ID | Name   | Path                         |
+   +----+--------+------------------------------+
+   | 1  | first  | /path/to/first_sample.vcf    |
+   +----+--------+------------------------------+
+   | 2  | second | /path/to/second_sample.vcf   |
+   +----+--------+------------------------------+
+   | 3  | third  | /path/to/third_sample.vcf    |
+   +----+--------+------------------------------+
 
    .. code-block:: bash
 
-       # Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column
-       FILENAME=$(awk -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
+      # Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column
+      FILENAME=$(awk -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
 
    By default ``awk`` will split columns by any whitespace, but if you
    have a tab separated file (``.tsv``) file it is worthwhile to specify
@@ -286,8 +297,8 @@ filenames in a bash script.
 
    .. code-block:: bash
 
-       # Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column
-       FILENAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
+      # Find row where 1. column matches SLURM_ARRAY_TASK_ID and print 3. column
+      FILENAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
 
    This ensures that ``awk`` returns the correct cell even if other
    cells contain whitespace.
@@ -296,22 +307,23 @@ filenames in a bash script.
 
    .. code-block:: bash
 
-       #!/bin/bash
-       #SBATCH --array=1-3
+      #!/bin/bash
+      #SBATCH --array=1-3
 
-       # Grab second column where the first column equals SLURM_ARRAY_TASK_ID
-       NAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $2; exit}' my_samples.tsv)
-       # Grab third column where the first column equals SLURM_ARRAY_TASK_ID
-       FILENAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
+      # Grab second column where the first column equals SLURM_ARRAY_TASK_ID
+      NAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $2; exit}' my_samples.tsv)
+      # Grab third column where the first column equals SLURM_ARRAY_TASK_ID
+      FILENAME=$(awk -v FS="\t" -v ID=${SLURM_ARRAY_TASK_ID} '$1 == ID {print $3; exit}' my_samples.tsv)
 
-       module load htslib/1.18
-       echo "Now processing sample '${NAME}'"
-       bgzip "${FILENAME}"
+      module load htslib/1.18
+      echo "Now processing sample '${NAME}'"
+      bgzip "${FILENAME}"
 
-Additional resources
---------------------
+**********************
+ Additional resources
+**********************
 
-- Slurm `documentation <https://slurm.schedmd.com/overview.html>`_
-- Slurm `summary <https://slurm.schedmd.com/pdfs/summary.pdf>`_ (PDF)
-- The `sbatch manual page <https://slurm.schedmd.com/sbatch.html>`_
-- The `squeue manual page <https://slurm.schedmd.com/squeue.html>`_
+-  Slurm `documentation <https://slurm.schedmd.com/overview.html>`_
+-  Slurm `summary <https://slurm.schedmd.com/pdfs/summary.pdf>`_ (PDF)
+-  The `sbatch manual page <https://slurm.schedmd.com/sbatch.html>`_
+-  The `squeue manual page <https://slurm.schedmd.com/squeue.html>`_
