@@ -50,6 +50,8 @@ Configuring MobaXterm
    #. Write ``esrumhead01fl.unicph.domain`` under ``Remote Host``
    #. Click the checkbox next to ``Specify username`` and enter your KU
       username (in the form ``abc123``)
+   #. Select ``SCP (enhanced speed)`` on the ``SSH-browser`` type
+      drop-down menu. This is required for file-uploads to work.
 
    .. image:: images/mobaxterm_03.png
       :align: center
@@ -92,6 +94,19 @@ left side of MobaXterm, or select ``Esrum`` from the list that appears
 when clicking on the middle ``Sessions`` button on the main menu.
 
    .. image:: images/mobaxterm_07.png
+      :align: center
+
+Note that you must disable login using Kerberos (GSSAPI) if you wish to
+access the KU network drives (``H:`` and ``N:``) via Esrum. To do so,
+open the ``Configuration`` dialog as shown:
+
+   .. image:: images/mobaxterm_08.png
+      :align: center
+
+Then untick the ``GSSAPI Kerberos`` checkbox as shown and click the
+``OK`` button:
+
+   .. image:: images/mobaxterm_09.png
       :align: center
 
 .. _s_connecting_linux:
@@ -197,6 +212,18 @@ server:
    #. Click the ``Add to cart`` button.
 
    #. Click the ``SUBMIT ORDER`` button.
+
+File uploads using MobaXterm never start
+========================================
+
+Please make sure that your session is configured to use the ``SCP
+(enchanced speed)`` browser type. See step 4 in the above instructions.
+
+KU network-folders in ``~/ucph`` are not available when using MobaXterm
+=======================================================================
+
+Please make sure that you have disabled use of ``GSSAPI Kerberos`` as
+described above.
 
 .. _danish: https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx
 

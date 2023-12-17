@@ -40,9 +40,16 @@ When you login to Esrum for the first time, your home folder should
 contain a single folder named ``ucph``. This folder in turn contains
 your KU network drives (formerly ``H:`` and ``N:``).
 
+.. warning::
+
 Note that these drives are only accessible from the head node. If you
-need to analyze data located on either of these shared drives, then you
-will need to copy it an appropriate projects folder.
+   need to analyze data located on either of these shared drives, then
+   you will need to copy it an appropriate projects folder.
+
+   Note furthermore that access to these folders will not be available
+   if you login using Kerberos (GSSAPI). See the
+   :ref:`p_usage_connecting` page for instructions for how to disable
+   this feature if you are using MobaXterm.
 
 .. _s_project_folders:
 
