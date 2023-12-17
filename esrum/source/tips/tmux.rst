@@ -13,7 +13,9 @@ unintentionally).
 Using tmux_ is therefore highly recommended when you are working on the
 cluster, since it lets you work uninterrupted over multiple days,
 without having to leave your computer running at all time and without
-having to worry about your internet connection staying up.
+having to worry about your internet connection staying up. Anyone
+already using GNU screen_ or one of the other alternatives can of course
+keep using those.
 
 The following gives brief introduction to using tmux_. A more detailed
 `getting started`_ guide can be found in the official tmux_
@@ -177,5 +179,7 @@ releasing those keys, and *then* pressing the specified button and
 .. _getting started: https://github.com/tmux/tmux/wiki/Getting-Started
 
 .. _manual page: https://man.openbsd.org/OpenBSD-current/man1/tmux.1#DEFAULT_KEY_BINDINGS
+
+.. _screen: https://www.gnu.org/software/screen/
 
 .. _tmux: https://github.com/tmux/tmux/wiki
