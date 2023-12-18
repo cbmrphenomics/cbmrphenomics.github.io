@@ -42,7 +42,7 @@ your KU network drives (formerly ``H:`` and ``N:``).
 
 .. warning::
 
-Note that these drives are only accessible from the head node. If you
+   Note that these drives are only accessible from the head node. If you
    need to analyze data located on either of these shared drives, then
    you will need to copy it an appropriate projects folder.
 
@@ -126,10 +126,10 @@ small temporary files.
 
 .. note::
 
-   Note that unlike home folders and ``/projects``, the ``/scratch``
-   drives are physically located on each node. Files written to
-   ``/scratch`` on one node are therefore *not* accessible on other
-   nodes.
+   Note that unlike your home folder, ``/projects``, and ``/datasets``,
+   the ``/scratch`` folders are physically located on each node. Files
+   written to ``/scratch`` on one node are therefore *not* accessible on
+   other nodes.
 
 It is recommended that you create a sub-folder containing your KU-IT
 username when using the scratch-drive as part of your scripts:
