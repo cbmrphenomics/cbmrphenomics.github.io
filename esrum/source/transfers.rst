@@ -1,4 +1,58 @@
+:orphan:
+
+.. _p_transfers:
+
+#################################
+ Transferring data to/from Esrum
+#################################
+
+This section describes how to bulk transfer data between Esrum, your PC,
+and services such as SIF/Erda and Computerome.
+
+.. _s_transferring_within_cbmr:
+
+************************************
+ Transferring data from within CBMR
+************************************
+
+Users on a wired connection within CBMR or using the VPN can transfer
+files to/from their PCs using any of the standard tools that connect via
+SSH, including but not limited to ``scp``, ``sftp``, and ``rsync``.
+Windows users may also consider graphical tools such as FileZilla_ or
+MobaXterm (see the :ref:`p_usage_connecting` page).
+
+.. _s_transferring_outside_cbmr:
+
+*************************************
+ Transferring data from outside CBMR
+*************************************
+
+If using the VPN is an option, then see the
+:ref:`s_transferring_within_cbmr` section above.
+
+When outside CBMR and using the VPN is not feasible, one may instead use
+the SSH/SFTP server at ``sftp.ku.dk``. Official documentation provided
+is provided on the `UCPH computing/HPC Systems`_ pages on KUNet.
+
+Briefly
+
+.. code-block:: shell
+
+   $ sftp sftp://abc123@sftp.ku.dk
+   (abc123@sftp.ku.dk) Enter password
+   Password: ******
+   (abc123@sftp.ku.dk) Enter one-time password
+   Enter one-time password: ******
+   Connected to sftp.ku.dk.
+   sftp> ls
+   ucph
+   sftp> cd ucph/
+   sftp> ls
+   datasets  hdir      ndir      projects
+
 .. _p_tranfers_sifanderda:
+
+.. _p_transfers_computerome:
 
 ########################################
  Transferring data to/from SIF and ERDA
@@ -71,3 +125,15 @@ wish to explore the content of a SIF_ or ERDA_ project,
 .. _lynx: https://en.wikipedia.org/wiki/Lynx_(web_browser)
 
 .. _sif: https://sif.ku.dk/
+
+***************************************
+ Transferring data to/from Computerome
+***************************************
+
+*****************
+ Troubleshooting
+*****************
+
+.. _filezilla: https://filezilla-project.org/
+
+.. _ucph computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/ucph-computing-hpc-systems/Pages/default.aspx
