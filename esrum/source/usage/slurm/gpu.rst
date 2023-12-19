@@ -117,5 +117,4 @@ Troubleshooting
  Error: Requested node configuration is not available
 ******************************************************
 
-See :ref:`s_configuration_not_available` on the
-:ref:`p_usage_slurm_basics` page.
+See the Slurm Basics :ref:`s_slurm_basics_troubleshooting` section.

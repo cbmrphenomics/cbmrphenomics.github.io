@@ -30,9 +30,10 @@ documentation for the `UCPH computing/HPC Systems`_ on KUNet.
    contact
    overview
    guidelines
-   usage/index.rst
-   tips/index.rst
-   communications/index.rst
+   usage/index
+   troubleshooting
+   tips/index
+   communications/index
 
 .. _cbmr: https://cbmr.ku.dk/
 
