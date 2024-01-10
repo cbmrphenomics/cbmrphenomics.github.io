@@ -94,6 +94,60 @@ Slurm offers a number of ways in which you may monitor your jobs:
    (the default), ``BEGIN``, ``END``, ``FAIL``, ``REQUEUE``, ``ALL``, or
    some combination as shown above.
 
+.. _s_monitoring_processes_in_jobs:
+
+Monitoring processes in jobs
+============================
+
+In addition to monitoring jobs at a high level, it is possible to
+actively monitor the processes running in your jobs via (interactive)
+shells running on the same node as the job you wish to monitor. This is
+particularly useful to make sure that tasks make efficient use of the
+allocated resources.
+
+In these examples we will use the ``htop`` command to monitor our jobs,
+but you can use basic ``top``, a ``bash`` shell, or any other command
+you prefer, but see the warning below regarding GPU resources.
+
+The first option for directly monitoring jobs is to request a job on the
+same server using the ``--nodelist`` option to specify the exact node
+you wish your job to monitor:
+
+.. code:: shell
+
+   $ squeue --me
+   JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+    8503 standardq my_scrip   abc123  R       0:02      1 esrumcmpn03fl
+   $ srun --pty --nodelist esrumcmpn03fl htop
+
+This requests an interactive shell on the node on which our job is
+running ( ``esrumcmpn03fl``) and starts the ``htop`` tool. This method
+requires that there are free resources on the node, but has the
+advantage that it does not impact your job.
+
+Alternatively, you can make use of (overlap) the resources used by the
+job you wish to monitor, which means that you can perform your
+monitoring even if the node is completely booked. This is done using the
+``--overlap`` and ``--jobid`` command-line options:
+
+.. code:: shell
+
+   $ squeue --me
+   JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+    8503 standardq my_scrip   abc123  R       0:02      1 esrumcmpn03fl
+   $ srun --pty --overlap --jobid 8503 htop
+
+The ``--jobid`` option takes as its argument the ID of the job we wish
+to monitor, which we can obtain using for example the ``squeue --me``
+command (from the ``JOBID`` column).
+
+.. warning::
+
+   It is not possible to use ``--overlap`` when you have reserved GPUs
+   using the ``--gres`` option. This also means that you cannot monitor
+   GPU resource usage in this manner, as other jobs on the same node
+   cannot access already reserved GPUs.
+
 *************************************
  Running multiple tasks using arrays
 *************************************

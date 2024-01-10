@@ -343,6 +343,12 @@ result in a 4x increase in CPU usage, but only an 3.5x increase with 4
 CPUs and only a 6x increase with 8 CPUs. Here it would be more efficient
 to run to tasks with 4 CPUs rather than one task with 8 CPUs.
 
+When reserving jobs with additional resources it can also be useful to
+monitor CPU/memory usage in real time. This can help diagnose poor
+resource usage much faster than waiting for the program to finish
+running. See the :ref:`s_monitoring_processes_in_jobs` section for
+information about how to do so.
+
 Because of this it is often more efficient to split your job into
 multiple sub-jobs (for example one job per chromosome) rather than
 increasing the number of threads used for the individual jobs. See the
