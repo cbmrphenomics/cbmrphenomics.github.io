@@ -5,38 +5,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Transferring data to/from SIF and ERDA &#8212; Esrum Cluster  documentation</title>
-    <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+    <title>Transferring data to/from Esrum &#8212; Esrum Cluster  documentation</title>
+    <link rel="stylesheet" href="_static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/playback.css" />
+    <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
     
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../_static/js/custom.js"></script>
-    <script src="../_static/js/libgif.js"></script>
-    <script src="../_static/bizstyle.js"></script>
-    <link rel="search" title="Search" href="../search.html" />
-    <script defer src="../_static/js/playback.js"></script>
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/js/custom.js"></script>
+    <script src="_static/js/libgif.js"></script>
+    <script src="_static/bizstyle.js"></script>
+    <link rel="search" title="Search" href="search.html" />
+    <script defer src="_static/js/playback.js"></script>
 
   </head><body>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
-  <h3><a href="../index.html">Table of Contents</a></h3>
+  <h3><a href="index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">Transferring data to/from SIF and ERDA</a><ul>
+<li><a class="reference internal" href="#">Transferring data to/from Esrum</a><ul>
+<li><a class="reference internal" href="#transferring-data-from-within-cbmr">Transferring data from within CBMR</a></li>
+<li><a class="reference internal" href="#transferring-data-from-outside-cbmr">Transferring data from outside CBMR</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#transferring-data-to-from-sif-and-erda">Transferring data to/from SIF and ERDA</a><ul>
 <li><a class="reference internal" href="#two-factor-authentication">Two Factor Authentication</a></li>
 <li><a class="reference internal" href="#transferring-data-using-lftp">Transferring data using lftp</a></li>
 <li><a class="reference internal" href="#transferring-data-using-sshfs">Transferring data using sshfs</a></li>
+<li><a class="reference internal" href="#transferring-data-to-from-computerome">Transferring data to/from Computerome</a></li>
+<li><a class="reference internal" href="#troubleshooting">Troubleshooting</a></li>
 </ul>
 </li>
 </ul>
@@ -44,7 +51,7 @@
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
+    <form class="search" action="search.html" method="get">
       <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
     </form>
@@ -59,8 +66,43 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="transferring-data-to-from-sif-and-erda">
-<span id="p-tranfers-sifanderda"></span><h1>Transferring data to/from SIF and ERDA<a class="headerlink" href="#transferring-data-to-from-sif-and-erda" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="transferring-data-to-from-esrum">
+<span id="p-transfers"></span><h1>Transferring data to/from Esrum<a class="headerlink" href="#transferring-data-to-from-esrum" title="Permalink to this headline">¶</a></h1>
+<p>This section describes how to bulk transfer data between Esrum, your PC,
+and services such as SIF/Erda and Computerome.</p>
+<div class="section" id="transferring-data-from-within-cbmr">
+<span id="s-transferring-within-cbmr"></span><h2>Transferring data from within CBMR<a class="headerlink" href="#transferring-data-from-within-cbmr" title="Permalink to this headline">¶</a></h2>
+<p>Users on a wired connection within CBMR or using the VPN can transfer
+files to/from their PCs using any of the standard tools that connect via
+SSH, including but not limited to <code class="docutils literal notranslate"><span class="pre">scp</span></code>, <code class="docutils literal notranslate"><span class="pre">sftp</span></code>, and <code class="docutils literal notranslate"><span class="pre">rsync</span></code>.
+Windows users may also consider graphical tools such as <a class="reference external" href="https://filezilla-project.org/">FileZilla</a> or
+MobaXterm (see the <a class="reference internal" href="usage/connecting.html#p-usage-connecting"><span class="std std-ref">Connecting to the cluster</span></a> page).</p>
+</div>
+<div class="section" id="transferring-data-from-outside-cbmr">
+<span id="s-transferring-outside-cbmr"></span><h2>Transferring data from outside CBMR<a class="headerlink" href="#transferring-data-from-outside-cbmr" title="Permalink to this headline">¶</a></h2>
+<p>If using the VPN is an option, then see the
+<a class="reference internal" href="#s-transferring-within-cbmr"><span class="std std-ref">Transferring data from within CBMR</span></a> section above.</p>
+<p>When outside CBMR and using the VPN is not feasible, one may instead use
+the SSH/SFTP server at <code class="docutils literal notranslate"><span class="pre">sftp.ku.dk</span></code>. Official documentation provided
+is provided on the <a class="reference external" href="https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/ucph-computing-hpc-systems/Pages/default.aspx">UCPH computing/HPC Systems</a> pages on KUNet.</p>
+<p>Briefly</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ sftp sftp://abc123@sftp.ku.dk
+<span class="o">(</span>abc123@sftp.ku.dk<span class="o">)</span> Enter password
+Password: ******
+<span class="o">(</span>abc123@sftp.ku.dk<span class="o">)</span> Enter one-time password
+Enter one-time password: ******
+Connected to sftp.ku.dk.
+sftp&gt; ls
+ucph
+sftp&gt; <span class="nb">cd</span> ucph/
+sftp&gt; ls
+datasets  hdir      ndir      projects
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="transferring-data-to-from-sif-and-erda">
+<span id="p-transfers-computerome"></span><span id="p-tranfers-sifanderda"></span><h1>Transferring data to/from SIF and ERDA<a class="headerlink" href="#transferring-data-to-from-sif-and-erda" title="Permalink to this headline">¶</a></h1>
 <p>The following describes how to bulk transfer data from the Esrum cluster
 to <a class="reference external" href="https://sif.ku.dk/">SIF</a> (Sensitive Information Facility) or <a class="reference external" href="https://erda.ku.dk/">ERDA</a> (Electronic Research
 Data Archive) and vice versa. For small amounts of data, it may be
@@ -116,6 +158,12 @@ broken mount-point that cannot be removed. You must therefore only
 create mount-points in your home folder!</p>
 </div>
 </div>
+<div class="section" id="transferring-data-to-from-computerome">
+<h2>Transferring data to/from Computerome<a class="headerlink" href="#transferring-data-to-from-computerome" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+</div>
 </div>
 
 
@@ -127,7 +175,7 @@ create mount-points in your home folder!</p>
     <div class="related" role="navigation" aria-label="related navigation">
       <h3>Navigation</h3>
       <ul>
-        <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li> 
+        <li class="nav-item nav-item-0"><a href="index.html">Esrum Cluster  documentation</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

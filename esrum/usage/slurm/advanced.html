@@ -48,7 +48,10 @@
 <li><a class="reference internal" href="#cancelling-srun">4.4.2.1.1. Cancelling srun</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#monitoring-your-jobs">4.4.2.2. Monitoring your jobs</a></li>
+<li><a class="reference internal" href="#monitoring-your-jobs">4.4.2.2. Monitoring your jobs</a><ul>
+<li><a class="reference internal" href="#monitoring-processes-in-jobs">4.4.2.2.1. Monitoring processes in jobs</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#running-multiple-tasks-using-arrays">4.4.2.3. Running multiple tasks using arrays</a><ul>
 <li><a class="reference internal" href="#limiting-simultaneous-jobs">4.4.2.3.1. Limiting simultaneous jobs</a></li>
 <li><a class="reference internal" href="#managing-job-arrays">4.4.2.3.2. Managing job arrays</a></li>
@@ -85,7 +88,7 @@
           <div class="body" role="main">
             
   <div class="section" id="advanced-slurm-jobs">
-<span id="p-usage-jobs-advanced"></span><h1><span class="section-number">4.4.2. </span>Advanced Slurm jobs<a class="headerlink" href="#advanced-slurm-jobs" title="Permalink to this headline">¶</a></h1>
+<span id="p-usage-slurm-advanced"></span><h1><span class="section-number">4.4.2. </span>Advanced Slurm jobs<a class="headerlink" href="#advanced-slurm-jobs" title="Permalink to this headline">¶</a></h1>
 <p>The following page describes how to use the <code class="docutils literal notranslate"><span class="pre">srun</span></code> command to run
 simple commands on the cluster, how to queue batches of jobs using
 <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, including how to manage these jobs and how to map</p>
@@ -122,7 +125,7 @@ srun: Job step aborted: Waiting up to <span class="m">32</span> seconds <span cl
 </pre></div>
 </div>
 <p>See also the <a class="reference internal" href="basics.html#s-cancelling-jobs"><span class="std std-ref">Cancelling jobs</span></a> section on the
-<a class="reference internal" href="basics.html#p-usage-jobs-basics"><span class="std std-ref">Basic Slurm jobs</span></a> page.</p>
+<a class="reference internal" href="basics.html#p-usage-slurm-basics"><span class="std std-ref">Basic Slurm jobs</span></a> page.</p>
 </div>
 </div>
 <div class="section" id="monitoring-your-jobs">
@@ -130,14 +133,15 @@ srun: Job step aborted: Waiting up to <span class="m">32</span> seconds <span cl
 <p>Slurm offers a number of ways in which you may monitor your jobs:</p>
 <ul>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">squeue</span></code> command allows you to list jobs that have not yet
-finished (or failed). The recommended use is either <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--me</span></code> to
-show all your jobs or <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--job</span> <span class="pre">${JOB_ID}</span></code>, where <code class="docutils literal notranslate"><span class="pre">${JOB_ID}</span></code>
-is the ID of the job whose status you want to inspect.</p></li>
+finished (or failed). The recommended use is either <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--me</span></code>
+to show all your jobs or <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--job</span> <span class="pre">${JOB_ID}</span></code>, where
+<code class="docutils literal notranslate"><span class="pre">${JOB_ID}</span></code> is the ID of the job whose status you want to inspect.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">sacct</span></code> command allows you list jobs that have finished running
 (or failed).</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">--wait</span></code> option makes <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> wait until your job has
 completed before returning (similar to how <code class="docutils literal notranslate"><span class="pre">srun</span></code> works). This is
-for example useful if you want to queue and wait for jobs in a script.</p></li>
+for example useful if you want to queue and wait for jobs in a
+script.</p></li>
 <li><p>In addition to actively monitoring your jobs, it is possible to
 receive email notifications when your jobs are started, finish, fail,
 are requeued, or some combination. This is accomplished by using the
@@ -146,13 +150,57 @@ are requeued, or some combination. This is accomplished by using the
 Submitted batch job <span class="m">8503</span>
 </pre></div>
 </div>
-<p>When run like this, you will receive notifications at <code class="docutils literal notranslate"><span class="pre">abc123&#64;ku.dk</span></code>
-(remember to use your account KU email address!) when the job is
-completed or fails. The possible options are <code class="docutils literal notranslate"><span class="pre">NONE</span></code> (the default),
-<code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">END</span></code>, <code class="docutils literal notranslate"><span class="pre">FAIL</span></code>, <code class="docutils literal notranslate"><span class="pre">REQUEUE</span></code>, <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, or some
-combination as shown above.</p>
+<p>When run like this, you will receive notifications at
+<code class="docutils literal notranslate"><span class="pre">abc123&#64;ku.dk</span></code> (remember to use your account KU email address!)
+when the job is completed or fails. The possible options are <code class="docutils literal notranslate"><span class="pre">NONE</span></code>
+(the default), <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>, <code class="docutils literal notranslate"><span class="pre">END</span></code>, <code class="docutils literal notranslate"><span class="pre">FAIL</span></code>, <code class="docutils literal notranslate"><span class="pre">REQUEUE</span></code>, <code class="docutils literal notranslate"><span class="pre">ALL</span></code>, or
+some combination as shown above.</p>
 </li>
 </ul>
+<div class="section" id="monitoring-processes-in-jobs">
+<span id="s-monitoring-processes-in-jobs"></span><h3><span class="section-number">4.4.2.2.1. </span>Monitoring processes in jobs<a class="headerlink" href="#monitoring-processes-in-jobs" title="Permalink to this headline">¶</a></h3>
+<p>In addition to monitoring jobs at a high level, it is possible to
+actively monitor the processes running in your jobs via (interactive)
+shells running on the same node as the job you wish to monitor. This is
+particularly useful to make sure that tasks make efficient use of the
+allocated resources.</p>
+<p>In these examples we will use the <code class="docutils literal notranslate"><span class="pre">htop</span></code> command to monitor our jobs,
+but you can use basic <code class="docutils literal notranslate"><span class="pre">top</span></code>, a <code class="docutils literal notranslate"><span class="pre">bash</span></code> shell, or any other command
+you prefer, but see the warning below regarding GPU resources.</p>
+<p>The first option for directly monitoring jobs is to request a job on the
+same server using the <code class="docutils literal notranslate"><span class="pre">--nodelist</span></code> option to specify the exact node
+you wish your job to monitor:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ squeue --me
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+ <span class="m">8503</span> standardq my_scrip   abc123  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn03fl
+$ srun --pty --nodelist esrumcmpn03fl htop
+</pre></div>
+</div>
+<p>This requests an interactive shell on the node on which our job is
+running ( <code class="docutils literal notranslate"><span class="pre">esrumcmpn03fl</span></code>) and starts the <code class="docutils literal notranslate"><span class="pre">htop</span></code> tool. This method
+requires that there are free resources on the node, but has the
+advantage that it does not impact your job.</p>
+<p>Alternatively, you can make use of (overlap) the resources used by the
+job you wish to monitor, which means that you can perform your
+monitoring even if the node is completely booked. This is done using the
+<code class="docutils literal notranslate"><span class="pre">--overlap</span></code> and <code class="docutils literal notranslate"><span class="pre">--jobid</span></code> command-line options:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ squeue --me
+JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST<span class="o">(</span>REASON<span class="o">)</span>
+ <span class="m">8503</span> standardq my_scrip   abc123  R       <span class="m">0</span>:02      <span class="m">1</span> esrumcmpn03fl
+$ srun --pty --overlap --jobid <span class="m">8503</span> htop
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--jobid</span></code> option takes as its argument the ID of the job we wish
+to monitor, which we can obtain using for example the <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">--me</span></code>
+command (from the <code class="docutils literal notranslate"><span class="pre">JOBID</span></code> column).</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is not possible to use <code class="docutils literal notranslate"><span class="pre">--overlap</span></code> when you have reserved GPUs
+using the <code class="docutils literal notranslate"><span class="pre">--gres</span></code> option. This also means that you cannot monitor
+GPU resource usage in this manner, as other jobs on the same node
+cannot access already reserved GPUs.</p>
+</div>
+</div>
 </div>
 <div class="section" id="running-multiple-tasks-using-arrays">
 <h2><span class="section-number">4.4.2.3. </span>Running multiple tasks using arrays<a class="headerlink" href="#running-multiple-tasks-using-arrays" title="Permalink to this headline">¶</a></h2>
@@ -302,9 +350,9 @@ bgzip <span class="s2">&quot;</span><span class="si">${</span><span class="nv">F
 <li><p>Using a table of numbered samples (<code class="docutils literal notranslate"><span class="pre">my_samples.tsv</span></code>):</p>
 <table class="docutils align-default">
 <colgroup>
-<col style="width: 6%" />
-<col style="width: 18%" />
-<col style="width: 76%" />
+<col style="width: 10%" />
+<col style="width: 19%" />
+<col style="width: 71%" />
 </colgroup>
 <tbody>
 <tr class="row-odd"><td><p>ID</p></td>

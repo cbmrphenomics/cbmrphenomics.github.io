@@ -81,6 +81,8 @@
 <li class="toctree-l2"><a class="reference internal" href="connecting.html#connecting-on-linux-or-osx">4.2.2. Connecting on Linux or OSX</a></li>
 <li class="toctree-l2"><a class="reference internal" href="connecting.html#troubleshooting">4.2.3. Troubleshooting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="connecting.html#timeout-while-connecting-to-the-cluster">4.2.3.1. Timeout while connecting to the cluster</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connecting.html#file-uploads-using-mobaxterm-never-start">4.2.3.2. File uploads using MobaXterm never start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="connecting.html#ku-network-folders-in-ucph-are-not-available-when-using-mobaxterm">4.2.3.3. KU network-folders in <code class="docutils literal notranslate"><span class="pre">~/ucph</span></code> are not available when using MobaXterm</a></li>
 </ul>
 </li>
 </ul>
@@ -95,47 +97,50 @@
 <li class="toctree-l2"><a class="reference internal" href="filesystem.html#backups">4.3.4. Backups</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="running_jobs/index.html">4.4. Running jobs using Slurm</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="running_jobs/basics.html">4.4.1. Basic Slurm jobs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#a-basic-job-script">4.4.1.1. A basic job script</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#queuing-a-job">4.4.1.2. Queuing a job</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#cancelling-jobs">4.4.1.3. Cancelling jobs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#setting-options">4.4.1.4. Setting options</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#reserving-resources">4.4.1.5. Reserving resources</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/basics.html#best-practice-for-reserving-resources">4.4.1.5.1. Best practice for reserving resources</a></li>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/basics.html#common-options">4.4.1.5.2. Common options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="slurm/index.html">4.4. Running jobs using Slurm</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="slurm/basics.html">4.4.1. Basic Slurm jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#a-basic-job-script">4.4.1.1. A basic job script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#queuing-a-job">4.4.1.2. Queuing a job</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#cancelling-jobs">4.4.1.3. Cancelling jobs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#setting-options">4.4.1.4. Setting options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#reserving-resources">4.4.1.5. Reserving resources</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slurm/basics.html#best-practice-for-reserving-resources">4.4.1.5.1. Best practice for reserving resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slurm/basics.html#common-options">4.4.1.5.2. Common options</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#interactive-sessions">4.4.1.6. Interactive sessions</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#sbatch-template-script">4.4.1.7. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#troubleshooting">4.4.1.8. Troubleshooting</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/basics.html#error-requested-node-configuration-is-not-available">4.4.1.8.1. Error: Requested node configuration is not available</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#interactive-sessions">4.4.1.6. Interactive sessions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#sbatch-template-script">4.4.1.7. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#troubleshooting">4.4.1.8. Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slurm/basics.html#error-requested-node-configuration-is-not-available">4.4.1.8.1. Error: Requested node configuration is not available</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/basics.html#additional-resources">4.4.1.9. Additional resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/basics.html#additional-resources">4.4.1.9. Additional resources</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="running_jobs/advanced.html">4.4.2. Advanced Slurm jobs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/advanced.html#running-commands-using-srun">4.4.2.1. Running commands using srun</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/advanced.html#cancelling-srun">4.4.2.1.1. Cancelling srun</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/advanced.html">4.4.2. Advanced Slurm jobs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/advanced.html#running-commands-using-srun">4.4.2.1. Running commands using srun</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slurm/advanced.html#cancelling-srun">4.4.2.1.1. Cancelling srun</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/advanced.html#monitoring-your-jobs">4.4.2.2. Monitoring your jobs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/advanced.html#running-multiple-tasks-using-arrays">4.4.2.3. Running multiple tasks using arrays</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/advanced.html#limiting-simultaneous-jobs">4.4.2.3.1. Limiting simultaneous jobs</a></li>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/advanced.html#managing-job-arrays">4.4.2.3.2. Managing job arrays</a></li>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/advanced.html#mapping-task-ids-to-data">4.4.2.3.3. Mapping task IDs to data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/advanced.html#monitoring-your-jobs">4.4.2.2. Monitoring your jobs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slurm/advanced.html#monitoring-processes-in-jobs">4.4.2.2.1. Monitoring processes in jobs</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/advanced.html#additional-resources">4.4.2.4. Additional resources</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/advanced.html#running-multiple-tasks-using-arrays">4.4.2.3. Running multiple tasks using arrays</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slurm/advanced.html#limiting-simultaneous-jobs">4.4.2.3.1. Limiting simultaneous jobs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slurm/advanced.html#managing-job-arrays">4.4.2.3.2. Managing job arrays</a></li>
+<li class="toctree-l4"><a class="reference internal" href="slurm/advanced.html#mapping-task-ids-to-data">4.4.2.3.3. Mapping task IDs to data</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="running_jobs/gpu.html">4.4.3. Using the GPU/hi-MEM node</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/gpu.html#monitoring-gpu-utilization">4.4.3.1. Monitoring GPU utilization</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="running_jobs/gpu.html#troubleshooting">4.4.3.1.1. Troubleshooting</a></li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/advanced.html#additional-resources">4.4.2.4. Additional resources</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="running_jobs/gpu.html#error-requested-node-configuration-is-not-available">4.4.3.2. Error: Requested node configuration is not available</a></li>
+<li class="toctree-l2"><a class="reference internal" href="slurm/gpu.html">4.4.3. Using the GPU/hi-MEM node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="slurm/gpu.html#monitoring-gpu-utilization">4.4.3.1. Monitoring GPU utilization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="slurm/gpu.html#troubleshooting">4.4.3.1.1. Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="slurm/gpu.html#error-requested-node-configuration-is-not-available">4.4.3.2. Error: Requested node configuration is not available</a></li>
 </ul>
 </li>
 </ul>
@@ -168,7 +173,8 @@
 <li class="toctree-l3"><a class="reference internal" href="modules.html#managing-modules-with-module-save-restore">4.6.2.1. Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="modules.html#requesting-missing-modules">4.6.3. Requesting missing modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#shared-cbmr-modules">4.6.3. Shared CBMR modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="modules.html#requesting-missing-modules">4.6.4. Requesting missing modules</a></li>
 </ul>
 </li>
 </ul>

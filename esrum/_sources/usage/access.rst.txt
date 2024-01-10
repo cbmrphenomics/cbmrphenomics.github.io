@@ -28,8 +28,10 @@ An official guide to the identity system used is available here_.
    in the resulting list. Wait for the check mark to turn green and then
    click the ``Next`` button.
 
-#. Verify that you are applying for access to ``SRV-esrumhead-users``
-   and then click the ``Submit`` button.
+#. Verify that you are applying for access to ``SRV-esrumhead-users``.
+   Do *not* apply for access to the ``SRV-esrumhead-admin`` group. Once
+   you have verified that you are applying for access the correct group,
+   click the ``Submit`` button.
 
 #. Wait for your request to be processed.
 
@@ -71,6 +73,14 @@ Analytics Platform cannot add you to projects owned by a third party.
 
 See :ref:`s_project_folders` for a description of the location and
 file-structure of projects on Esrum.
+
+.. warning::
+
+   Similar to the ``-admin`` group mentioned above for the cluster, each
+   project and dataset has a corresponding ``-Owners`` group. Do *not*
+   apply for access to these unless explicitly instructed to do so! Your
+   requests *will* be denied and that will delay your getting access to
+   the actual projects/datasets.
 
 *****************************************
  Applying for access to datasets/cohorts

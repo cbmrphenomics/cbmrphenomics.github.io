@@ -9,6 +9,6 @@
    access
    connecting
    filesystem
-   running_jobs/index
+   slurm/index
    rstudio
    modules

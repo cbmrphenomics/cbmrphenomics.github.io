@@ -20,7 +20,7 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="5. Tips and tricks" href="../tips_and_tricks/index.html" />
+    <link rel="next" title="5. Troubleshooting" href="../troubleshooting.html" />
     <link rel="prev" title="4.5. R, RStudio, and Jupyter Notebooks" href="rstudio.html" />
     <script defer src="../_static/js/playback.js"></script>
 
@@ -29,7 +29,7 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../tips_and_tricks/index.html" title="5. Tips and tricks"
+          <a href="../troubleshooting.html" title="5. Troubleshooting"
              accesskey="N">next</a></li>
         <li class="right" >
           <a href="rstudio.html" title="4.5. R, RStudio, and Jupyter Notebooks"
@@ -53,7 +53,8 @@
 <li><a class="reference internal" href="#managing-modules-with-module-save-restore">4.6.2.1. Managing modules with <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">save/restore</span></code></a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#requesting-missing-modules">4.6.3. Requesting missing modules</a></li>
+<li><a class="reference internal" href="#shared-cbmr-modules">4.6.3. Shared CBMR modules</a></li>
+<li><a class="reference internal" href="#requesting-missing-modules">4.6.4. Requesting missing modules</a></li>
 </ul>
 </li>
 </ul>
@@ -62,8 +63,8 @@
   <p class="topless"><a href="rstudio.html"
                         title="previous chapter"><span class="section-number">4.5. </span>R, RStudio, and Jupyter Notebooks</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="../tips_and_tricks/index.html"
-                        title="next chapter"><span class="section-number">5. </span>Tips and tricks</a></p>
+  <p class="topless"><a href="../troubleshooting.html"
+                        title="next chapter"><span class="section-number">5. </span>Troubleshooting</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -91,7 +92,9 @@ well as mutually exclusive pieces of software to coexist, and simplify
 making your analyses reproducible.</p>
 <p>Modules on Esrum are primarily provided by KU-IT (see below), but users
 may also set up their own private or shared environment modules. See the
-<a class="reference internal" href="../tips_and_tricks/modules.html#p-tips-modules"><span class="std std-ref">Creating environment modules</span></a></p>
+<a class="reference internal" href="../tips/modules.html#p-tips-modules"><span class="std std-ref">Creating environment modules</span></a> section for more information.</p>
+<p>A collection of software managed by the Data Analytics team is also
+available. See the <a class="reference internal" href="#s-shared-modules"><span class="std std-ref">Shared CBMR modules</span></a> section below.</p>
 <div class="section" id="basic-usage">
 <h2><span class="section-number">4.6.1. </span>Basic usage<a class="headerlink" href="#basic-usage" title="Permalink to this headline">¶</a></h2>
 <p>This section briefly describe how to carry out common tasks using the
@@ -256,8 +259,29 @@ of the file in your current shell. This has the same effect as running
 <p>Simply running the script with <code class="docutils literal notranslate"><span class="pre">bash</span> <span class="pre">modules.sh</span></code> will not work.</p>
 </div>
 </div>
+<div class="section" id="shared-cbmr-modules">
+<span id="s-shared-modules"></span><h2><span class="section-number">4.6.3. </span>Shared CBMR modules<a class="headerlink" href="#shared-cbmr-modules" title="Permalink to this headline">¶</a></h2>
+<p>The Data Analytics team manages a small collection of modules for custom
+tools in the <cite>cbmr_shared</cite> project folder. If you have not already been
+given access to this project, then please follow the steps outlined in
+<a class="reference internal" href="access.html#s-applying-for-access"><span class="std std-ref">Applying for access to the cluster</span></a> and apply for access to the
+<code class="docutils literal notranslate"><span class="pre">COMP-PRJ-cbmr_shared</span></code> project.</p>
+<p>To make use of these modules, run the following command in your
+terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module use --prepend /projects/cbmr_shared/apps/modules/modulefiles/
+</pre></div>
+</div>
+<p>A small helper script is also available to run this command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">source</span> /projects/cbmr_shared/apps/modules/activate.sh
+Using modules in <span class="s1">&#39;/projects/cbmr_shared/apps/modules/modulefiles/&#39;</span>
+</pre></div>
+</div>
+<p>You can add the <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">use</span></code> command to the end of your <code class="docutils literal notranslate"><span class="pre">~/.bashrc</span></code>
+file to make the shared modules available every time you connect to
+Esrum.</p>
+</div>
 <div class="section" id="requesting-missing-modules">
-<span id="s-requesting-missing-modules"></span><h2><span class="section-number">4.6.3. </span>Requesting missing modules<a class="headerlink" href="#requesting-missing-modules" title="Permalink to this headline">¶</a></h2>
+<span id="s-requesting-missing-modules"></span><h2><span class="section-number">4.6.4. </span>Requesting missing modules<a class="headerlink" href="#requesting-missing-modules" title="Permalink to this headline">¶</a></h2>
 <p>If software you are missing is not available as a module, you may
 request this software through KU-IT as described below. You are welcome
 to <a class="reference internal" href="../contact.html#p-contact"><span class="std std-ref">Contact</span></a> if you need help determining which exact software
@@ -304,7 +328,7 @@ describe&quot; text-box (see below).</p></li>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../tips_and_tricks/index.html" title="5. Tips and tricks"
+          <a href="../troubleshooting.html" title="5. Troubleshooting"
              >next</a></li>
         <li class="right" >
           <a href="rstudio.html" title="4.5. R, RStudio, and Jupyter Notebooks"

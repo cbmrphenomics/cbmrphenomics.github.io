@@ -78,7 +78,7 @@
           <div class="body" role="main">
             
   <div class="section" id="using-the-gpu-hi-mem-node">
-<span id="p-usage-jobs-gpu"></span><h1><span class="section-number">4.4.3. </span>Using the GPU/hi-MEM node<a class="headerlink" href="#using-the-gpu-hi-mem-node" title="Permalink to this headline">¶</a></h1>
+<span id="p-usage-slurm-gpu"></span><h1><span class="section-number">4.4.3. </span>Using the GPU/hi-MEM node<a class="headerlink" href="#using-the-gpu-hi-mem-node" title="Permalink to this headline">¶</a></h1>
 <p>This section describes how to schedule a task on the GPU/hi-MEM node.
 The GPU node is intended for tasks that need to use GPUs and for tasks
 that have very high memory requirements (more than 2 TB).</p>
@@ -106,10 +106,9 @@ option:</p>
 <div><div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Due to changes to Slurm settings, to ensure that jobs cannot
-access resources that were not reserved for them, it is
-currently not possible to monitor GPUs usage from a different
-job using the instructions below. The documentation will be
-updates shortly.</p>
+access resources that were not reserved for them, it is currently
+not possible to monitor GPUs usage from a different job using the
+instructions below. The documentation will be updates shortly.</p>
 </div>
 </div></blockquote>
 <p>Slurm does not provide any means of monitoring the actual GPU
@@ -174,8 +173,7 @@ run <code class="docutils literal notranslate"><span class="pre">gpustats</span>
 </div>
 <div class="section" id="error-requested-node-configuration-is-not-available">
 <h2><span class="section-number">4.4.3.2. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h2>
-<p>See <a class="reference internal" href="basics.html#s-configuration-not-available"><span class="std std-ref">Error: Requested node configuration is not available</span></a> on the
-<a class="reference internal" href="basics.html#p-usage-jobs-basics"><span class="std std-ref">Basic Slurm jobs</span></a> page.</p>
+<p>See the Slurm Basics <a class="reference internal" href="basics.html#s-slurm-basics-troubleshooting"><span class="std std-ref">Troubleshooting</span></a> section.</p>
 </div>
 </div>
 

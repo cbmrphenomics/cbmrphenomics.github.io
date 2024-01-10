@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>5.3. Writing robust bash scripts &#8212; Esrum Cluster  documentation</title>
+    <title>6.4. Writing robust bash scripts &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="6. Communications" href="../communications/index.html" />
-    <link rel="prev" title="5.2. Persistent sessions with tmux" href="tmux.html" />
+    <link rel="next" title="7. Communications" href="../communications/index.html" />
+    <link rel="prev" title="6.3. Batching commands outside Slurm" href="batching_commands.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -29,38 +29,38 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../communications/index.html" title="6. Communications"
+          <a href="../communications/index.html" title="7. Communications"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="tmux.html" title="5.2. Persistent sessions with tmux"
+          <a href="batching_commands.html" title="6.3. Batching commands outside Slurm"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>Tips and tricks</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">6. </span>Tips and tricks</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">5.3. Writing robust bash scripts</a><ul>
-<li><a class="reference internal" href="#improving-default-bash-behavior">5.3.1. Improving default bash behavior</a><ul>
-<li><a class="reference internal" href="#prevent-use-of-undefined-variables">5.3.1.1. Prevent use of undefined variables</a></li>
-<li><a class="reference internal" href="#stop-running-on-program-failures">5.3.1.2. Stop running on program failures</a></li>
-<li><a class="reference internal" href="#prevent-bash-from-updating-running-scripts">5.3.1.3. Prevent bash from updating running scripts</a></li>
-<li><a class="reference internal" href="#putting-it-all-together">5.3.1.4. Putting it all together</a></li>
+<li><a class="reference internal" href="#">6.4. Writing robust bash scripts</a><ul>
+<li><a class="reference internal" href="#improving-default-bash-behavior">6.4.1. Improving default bash behavior</a><ul>
+<li><a class="reference internal" href="#prevent-use-of-undefined-variables">6.4.1.1. Prevent use of undefined variables</a></li>
+<li><a class="reference internal" href="#stop-running-on-program-failures">6.4.1.2. Stop running on program failures</a></li>
+<li><a class="reference internal" href="#prevent-bash-from-updating-running-scripts">6.4.1.3. Prevent bash from updating running scripts</a></li>
+<li><a class="reference internal" href="#putting-it-all-together">6.4.1.4. Putting it all together</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#checking-your-scripts-for-common-mistakes">5.3.2. Checking your scripts for common mistakes</a></li>
+<li><a class="reference internal" href="#checking-your-scripts-for-common-mistakes">6.4.2. Checking your scripts for common mistakes</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="tmux.html"
-                        title="previous chapter"><span class="section-number">5.2. </span>Persistent sessions with tmux</a></p>
+  <p class="topless"><a href="batching_commands.html"
+                        title="previous chapter"><span class="section-number">6.3. </span>Batching commands outside Slurm</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="../communications/index.html"
-                        title="next chapter"><span class="section-number">6. </span>Communications</a></p>
+                        title="next chapter"><span class="section-number">7. </span>Communications</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -80,7 +80,7 @@
           <div class="body" role="main">
             
   <div class="section" id="writing-robust-bash-scripts">
-<span id="p-tips-robustscripts"></span><h1><span class="section-number">5.3. </span>Writing robust bash scripts<a class="headerlink" href="#writing-robust-bash-scripts" title="Permalink to this headline">¶</a></h1>
+<span id="p-tips-robustscripts"></span><h1><span class="section-number">6.4. </span>Writing robust bash scripts<a class="headerlink" href="#writing-robust-bash-scripts" title="Permalink to this headline">¶</a></h1>
 <p>Bash scripts are useful for automating tasks and for running batch jobs.
 However the default behavior of bash is to keep running when errors
 happen, and that can result in undesirable behavior such as running
@@ -91,7 +91,7 @@ generate bad results or do bad things quietly.</p>
 recommended to use a more robust programming language when performing
 more complex tasks.</p>
 <div class="section" id="improving-default-bash-behavior">
-<h2><span class="section-number">5.3.1. </span>Improving default bash behavior<a class="headerlink" href="#improving-default-bash-behavior" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4.1. </span>Improving default bash behavior<a class="headerlink" href="#improving-default-bash-behavior" title="Permalink to this headline">¶</a></h2>
 <p>This section describes several options that can make bash scripts behave
 in a more reasonable manner.</p>
 <div class="admonition warning">
@@ -104,7 +104,7 @@ in scripts that you import into your shell using the <code class="docutils liter
 <code class="docutils literal notranslate"><span class="pre">.</span></code> command.</p>
 </div>
 <div class="section" id="prevent-use-of-undefined-variables">
-<h3><span class="section-number">5.3.1.1. </span>Prevent use of undefined variables<a class="headerlink" href="#prevent-use-of-undefined-variables" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.4.1.1. </span>Prevent use of undefined variables<a class="headerlink" href="#prevent-use-of-undefined-variables" title="Permalink to this headline">¶</a></h3>
 <p>Variables are used for a variety of purposes in bash, including to
 access slurm options in batch scripts. However, unlike in most
 programming languages, it is not an error to access a variable that does
@@ -147,13 +147,13 @@ bash simply use <code class="docutils literal notranslate"><span class="pre">${n
 </div>
 </div>
 <div class="section" id="stop-running-on-program-failures">
-<h3><span class="section-number">5.3.1.2. </span>Stop running on program failures<a class="headerlink" href="#stop-running-on-program-failures" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.4.1.2. </span>Stop running on program failures<a class="headerlink" href="#stop-running-on-program-failures" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="prevent-bash-from-updating-running-scripts">
-<h3><span class="section-number">5.3.1.3. </span>Prevent bash from updating running scripts<a class="headerlink" href="#prevent-bash-from-updating-running-scripts" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.4.1.3. </span>Prevent bash from updating running scripts<a class="headerlink" href="#prevent-bash-from-updating-running-scripts" title="Permalink to this headline">¶</a></h3>
 </div>
 <div class="section" id="putting-it-all-together">
-<h3><span class="section-number">5.3.1.4. </span>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">6.4.1.4. </span>Putting it all together<a class="headerlink" href="#putting-it-all-together" title="Permalink to this headline">¶</a></h3>
 <p>The following bash script template combines the suggestions above and
 thereby helps avoid <em>some</em> of the pitfalls of using bash</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -177,7 +177,7 @@ thereby helps avoid <em>some</em> of the pitfalls of using bash</p>
 </div>
 </div>
 <div class="section" id="checking-your-scripts-for-common-mistakes">
-<h2><span class="section-number">5.3.2. </span>Checking your scripts for common mistakes<a class="headerlink" href="#checking-your-scripts-for-common-mistakes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">6.4.2. </span>Checking your scripts for common mistakes<a class="headerlink" href="#checking-your-scripts-for-common-mistakes" title="Permalink to this headline">¶</a></h2>
 <p>In addition to implementing the suggestions listed on this page, it is
 recommended that you use the <a class="reference external" href="https://github.com/koalaman/shellcheck">shellcheck</a> to check your bash scripts for
 common mistakes.</p>
@@ -208,13 +208,13 @@ In myscript.sh line <span class="m">3</span>:
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../communications/index.html" title="6. Communications"
+          <a href="../communications/index.html" title="7. Communications"
              >next</a></li>
         <li class="right" >
-          <a href="tmux.html" title="5.2. Persistent sessions with tmux"
+          <a href="batching_commands.html" title="6.3. Batching commands outside Slurm"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>Tips and tricks</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">6. </span>Tips and tricks</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

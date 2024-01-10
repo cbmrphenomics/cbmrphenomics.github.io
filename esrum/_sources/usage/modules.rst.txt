@@ -12,7 +12,10 @@ making your analyses reproducible.
 
 Modules on Esrum are primarily provided by KU-IT (see below), but users
 may also set up their own private or shared environment modules. See the
-:ref:`p_tips_modules`
+:ref:`p_tips_modules` section for more information.
+
+A collection of software managed by the Data Analytics team is also
+available. See the :ref:`s_shared_modules` section below.
 
 *************
  Basic usage
@@ -212,6 +215,36 @@ or
    $ . ./modules.txt
 
 Simply running the script with ``bash modules.sh`` will not work.
+
+.. _s_shared_modules:
+
+*********************
+ Shared CBMR modules
+*********************
+
+The Data Analytics team manages a small collection of modules for custom
+tools in the `cbmr_shared` project folder. If you have not already been
+given access to this project, then please follow the steps outlined in
+:ref:`s_applying_for_access` and apply for access to the
+``COMP-PRJ-cbmr_shared`` project.
+
+To make use of these modules, run the following command in your
+terminal:
+
+.. code-block:: shell
+
+   $ module use --prepend /projects/cbmr_shared/apps/modules/modulefiles/
+
+A small helper script is also available to run this command:
+
+.. code-block:: shell
+
+   $ source /projects/cbmr_shared/apps/modules/activate.sh
+   Using modules in '/projects/cbmr_shared/apps/modules/modulefiles/'
+
+You can add the ``module use`` command to the end of your ``~/.bashrc``
+file to make the shared modules available every time you connect to
+Esrum.
 
 .. _s_requesting_missing_modules:
 
