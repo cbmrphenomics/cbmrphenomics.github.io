@@ -21,4 +21,4 @@ documentation for easy access.
  Rstudio
 *********
 
-.. include:: usage/connecting_troubleshooting.rst
+.. include:: usage/rstudio_troubleshooting.rst
