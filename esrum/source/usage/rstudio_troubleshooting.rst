@@ -50,9 +50,10 @@ It is therefore recommended that you regularly clean up your workspace
 using the built in tools, when you no longer need to have the data
 loaded in R.
 
-You can remove individual bits of data using the `rm` function in R. The
-following gives two examples of using the `rm` function, one removing a
-single variable and the other removing *all* variables in the current
+You can remove individual bits of data using the ``rm`` function in R.
+This works both when using regular R and when using RStudio. The
+following gives two examples of using the ``rm`` function, one removing
+a single variable and the other removing *all* variables in the current
 session:
 
 .. code:: r
@@ -81,8 +82,18 @@ Options...`` accessible from the ``Tools`` menu:
    :align: center
 
 Should your R session have grown to such a size that you simply cannot
-login and clean it up, then please contact us and we can help you reset
-your R session.
+login and clean it up, then it my be necessary to remove the files
+containing the data that R/RStudio has saved. This data is stored in two
+locations:
+
+1. In the ``.RData`` file in your home (``~/.RData``). This is where R
+   saves your data if you answer yes ``Save workspace image? [y/n/c]``
+   when quitting R.
+2. In the ``environment`` file in your RStudio session folder (``~/.local/share/rstudio/sessions/active/session-*/suspended-session-data/environment``).
+   This is where Rstudio saves your data should your login time-out
+   while using RStudio.
+
+Please :ref:`p_contact` us and we can help you remove the correct files.
 
 Jupyter Notebooks: Browser error when opening URL
 =================================================
