@@ -98,9 +98,10 @@ delay when you attempt to login at a later date.</p>
 <p>It is therefore recommended that you regularly clean up your workspace
 using the built in tools, when you no longer need to have the data
 loaded in R.</p>
-<p>You can remove individual bits of data using the <cite>rm</cite> function in R. The
-following gives two examples of using the <cite>rm</cite> function, one removing a
-single variable and the other removing <em>all</em> variables in the current
+<p>You can remove individual bits of data using the <code class="docutils literal notranslate"><span class="pre">rm</span></code> function in R.
+This works both when using regular R and when using RStudio. The
+following gives two examples of using the <code class="docutils literal notranslate"><span class="pre">rm</span></code> function, one removing
+a single variable and the other removing <em>all</em> variables in the current
 session:</p>
 <div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Remove the variable `my_variable`</span>
 <span class="nf">rm</span><span class="p">(</span><span class="n">my_variable</span><span class="p">)</span>
@@ -119,8 +120,18 @@ the saved data on startup. This is accomplished via the <code class="docutils li
 <span class="pre">Options...</span></code> accessible from the <code class="docutils literal notranslate"><span class="pre">Tools</span></code> menu:</p>
 <img alt="../_images/rstudio_gc_03.png" class="align-center" src="../_images/rstudio_gc_03.png" />
 <p>Should your R session have grown to such a size that you simply cannot
-login and clean it up, then please contact us and we can help you reset
-your R session.</p>
+login and clean it up, then it my be necessary to remove the files
+containing the data that R/RStudio has saved. This data is stored in two
+locations:</p>
+<ol class="arabic simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">.RData</span></code> file in your home (<code class="docutils literal notranslate"><span class="pre">~/.RData</span></code>). This is where R
+saves your data if you answer yes <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">workspace</span> <span class="pre">image?</span> <span class="pre">[y/n/c]</span></code>
+when quitting R.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">environment</span></code> file in your RStudio session folder (<code class="docutils literal notranslate"><span class="pre">~/.local/share/rstudio/sessions/active/session-*/suspended-session-data/environment</span></code>).
+This is where Rstudio saves your data should your login time-out
+while using RStudio.</p></li>
+</ol>
+<p>Please <a class="reference internal" href="../contact.html#p-contact"><span class="std std-ref">Contact</span></a> us and we can help you remove the correct files.</p>
 </div>
 <div class="section" id="jupyter-notebooks-browser-error-when-opening-url">
 <h1>Jupyter Notebooks: Browser error when opening URL<a class="headerlink" href="#jupyter-notebooks-browser-error-when-opening-url" title="Permalink to this headline">¶</a></h1>

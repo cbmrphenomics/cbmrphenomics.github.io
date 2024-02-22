@@ -252,10 +252,10 @@ Esrum.
  Requesting missing modules
 ****************************
 
-If software you are missing is not available as a module, you may
-request this software through KU-IT as described below. You are welcome
-to :ref:`p_contact` if you need help determining which exact software
-and/or versions you need to request.
+If the software you need is not available as a module, you you can
+request it through KU-IT as described below. You are also welcome to
+:ref:`p_contact` us if you need help determining the exact software
+and/or versions you need to request, or if you have other questions.
 
 To request software,
 
@@ -269,8 +269,8 @@ To request software,
 #. List what software you wish to have installed in the "Please
    describe" text-box (see below).
 #. Write "esrumhead01fl.unicph.domain" in the System name text-box.
-#. Click the ``Add to cart`` button.
-#. Click the ``SUBMIT ORDER`` button.
+#. Click the ``ADD TO CART`` / ``TILFØJ TIL KURV`` button.
+#. Click the ``SUBMIT ORDER`` / ``INDSEND ORDRE`` button.
 
 Your request should include the following information:
 
