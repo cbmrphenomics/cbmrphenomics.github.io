@@ -304,7 +304,7 @@ Best practice for reserving resources
 =====================================
 
 Determining how many CPUs and how much memory you need to reserve for
-your jobs can be difficult.
+your jobs can be difficult:
 
 Few programs benefit from using a lot of threads (CPUs) due to overhead
 and due to limits to how much of a given process can be parallelized
@@ -325,6 +325,12 @@ We therefore recommended that you
       task, and only increasing the number after it has been determined
       that the software benefits from the additional CPUs.
 
+Monitoring resources used by jobs
+=================================
+
+Once you have actually started running a job, you have several options
+for monitoring resource usage:
+
 The ``/usr/bin/time -f "CPU = %P, MEM = %MKB"`` command can be used to
 estimate the efficiency from using multiple threads and to show how much
 memory a program used:
@@ -342,6 +348,37 @@ In this example increasing the number of threads/CPUs to 4 did not
 result in a 4x increase in CPU usage, but only an 3.5x increase with 4
 CPUs and only a 6x increase with 8 CPUs. Here it would be more efficient
 to run to tasks with 4 CPUs rather than one task with 8 CPUs.
+
+The ``sacct`` command may be used to review the average CPU usage, the
+peak memory usage, disk I/O, and more for completed jobs. This makes it
+easier to verify that you are not needlessly reserving resources. A
+helper script is provided that summarizes some of this information in an
+easily readable form:
+
+.. code-block:: console
+
+    $ source /projects/cbmr_shared/apps/modules/activate.sh
+    $ module load sacct-usage
+    $ sacct-usage
+          Age  User    Job   State         Elapsed  CPUs  CPUsWasted  ExtraMem  ExtraMemWasted  CPUHoursWasted
+    13:32:04s  abc123  1     FAILED     252:04:52s     8         6.9     131.4           131.4         4012.14
+    10:54:32s  abc123  2[1]  COMPLETED   02:49:25s    32        15.7       0.0             0.0           44.38
+    01:48:43s  abc123  3     COMPLETED   01:00:53s    24         2.4       0.0             0.0            2.43
+
+The important information is found in the ``CPUsWasted`` column and the
+``ExtraMemWasted`` column, which show the number CPUs that went unused
+on average the memory that was requested that went unused. Note that
+``ExtraMem`` only counts memory requested *in addition* to the default
+allocation of ~16GB of RAM per CPU. That is because any additional
+reserved memory results in CPUs going unused *unless* a user explicitly
+asks for less RAM than the default ~16GB per CPU.
+
+The final column indicates that number of CPU hours your job wasted,
+calculated as the length of time your job ran multiplied by the number
+of reserved CPUs wasted and the number of CPUs that would have been able
+to get the default 16GB of RAM had ``ExtraMemWasted`` been zero. Aim for
+your jobs to resemble the third job, not the second job and especially
+not the first job in the example!
 
 When reserving jobs with additional resources it can also be useful to
 monitor CPU/memory usage in real time. This can help diagnose poor

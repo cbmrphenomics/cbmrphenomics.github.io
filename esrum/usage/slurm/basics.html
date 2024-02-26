@@ -50,7 +50,8 @@
 <li><a class="reference internal" href="#setting-options">4.4.1.4. Setting options</a></li>
 <li><a class="reference internal" href="#reserving-resources">4.4.1.5. Reserving resources</a><ul>
 <li><a class="reference internal" href="#best-practice-for-reserving-resources">4.4.1.5.1. Best practice for reserving resources</a></li>
-<li><a class="reference internal" href="#common-options">4.4.1.5.2. Common options</a></li>
+<li><a class="reference internal" href="#monitoring-resources-used-by-jobs">4.4.1.5.2. Monitoring resources used by jobs</a></li>
+<li><a class="reference internal" href="#common-options">4.4.1.5.3. Common options</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#interactive-sessions">4.4.1.6. Interactive sessions</a></li>
@@ -323,7 +324,7 @@ without reserving a GPU.</p>
 <div class="section" id="best-practice-for-reserving-resources">
 <h3><span class="section-number">4.4.1.5.1. </span>Best practice for reserving resources<a class="headerlink" href="#best-practice-for-reserving-resources" title="Permalink to this headline">¶</a></h3>
 <p>Determining how many CPUs and how much memory you need to reserve for
-your jobs can be difficult.</p>
+your jobs can be difficult:</p>
 <p>Few programs benefit from using a lot of threads (CPUs) due to overhead
 and due to limits to how much of a given process can be parallelized
 (see <a class="reference external" href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl's law</a>).
@@ -342,6 +343,11 @@ task, and only increasing the number after it has been determined
 that the software benefits from the additional CPUs.</p></li>
 </ul>
 </div></blockquote>
+</div>
+<div class="section" id="monitoring-resources-used-by-jobs">
+<h3><span class="section-number">4.4.1.5.2. </span>Monitoring resources used by jobs<a class="headerlink" href="#monitoring-resources-used-by-jobs" title="Permalink to this headline">¶</a></h3>
+<p>Once you have actually started running a job, you have several options
+for monitoring resource usage:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span> <span class="pre">-f</span> <span class="pre">&quot;CPU</span> <span class="pre">=</span> <span class="pre">%P,</span> <span class="pre">MEM</span> <span class="pre">=</span> <span class="pre">%MKB&quot;</span></code> command can be used to
 estimate the efficiency from using multiple threads and to show how much
 memory a program used:</p>
@@ -357,6 +363,33 @@ memory a program used:</p>
 result in a 4x increase in CPU usage, but only an 3.5x increase with 4
 CPUs and only a 6x increase with 8 CPUs. Here it would be more efficient
 to run to tasks with 4 CPUs rather than one task with 8 CPUs.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">sacct</span></code> command may be used to review the average CPU usage, the
+peak memory usage, disk I/O, and more for completed jobs. This makes it
+easier to verify that you are not needlessly reserving resources. A
+helper script is provided that summarizes some of this information in an
+easily readable form:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> <span class="nb">source</span> /projects/cbmr_shared/apps/modules/activate.sh
+<span class="gp">$</span> module load sacct-usage
+<span class="gp">$</span> sacct-usage
+<span class="go">      Age  User    Job   State         Elapsed  CPUs  CPUsWasted  ExtraMem  ExtraMemWasted  CPUHoursWasted</span>
+<span class="go">13:32:04s  abc123  1     FAILED     252:04:52s     8         6.9     131.4           131.4         4012.14</span>
+<span class="go">10:54:32s  abc123  2[1]  COMPLETED   02:49:25s    32        15.7       0.0             0.0           44.38</span>
+<span class="go">01:48:43s  abc123  3     COMPLETED   01:00:53s    24         2.4       0.0             0.0            2.43</span>
+</pre></div>
+</div>
+<p>The important information is found in the <code class="docutils literal notranslate"><span class="pre">CPUsWasted</span></code> column and the
+<code class="docutils literal notranslate"><span class="pre">ExtraMemWasted</span></code> column, which show the number CPUs that went unused
+on average the memory that was requested that went unused. Note that
+<code class="docutils literal notranslate"><span class="pre">ExtraMem</span></code> only counts memory requested <em>in addition</em> to the default
+allocation of ~16GB of RAM per CPU. That is because any additional
+reserved memory results in CPUs going unused <em>unless</em> a user explicitly
+asks for less RAM than the default ~16GB per CPU.</p>
+<p>The final column indicates that number of CPU hours your job wasted,
+calculated as the length of time your job ran multiplied by the number
+of reserved CPUs wasted and the number of CPUs that would have been able
+to get the default 16GB of RAM had <code class="docutils literal notranslate"><span class="pre">ExtraMemWasted</span></code> been zero. Aim for
+your jobs to resemble the third job, not the second job and especially
+not the first job in the example!</p>
 <p>When reserving jobs with additional resources it can also be useful to
 monitor CPU/memory usage in real time. This can help diagnose poor
 resource usage much faster than waiting for the program to finish
@@ -369,7 +402,7 @@ increasing the number of threads used for the individual jobs. See the
 jobs.</p>
 </div>
 <div class="section" id="common-options">
-<span id="s-common-options"></span><h3><span class="section-number">4.4.1.5.2. </span>Common options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
+<span id="s-common-options"></span><h3><span class="section-number">4.4.1.5.3. </span>Common options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
 <p>The following provides a brief overview of common options for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
 not mentioned above. All of these options may be specified using
 <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments.</p>
