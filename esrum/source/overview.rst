@@ -4,8 +4,8 @@
  Overview
 ##########
 
-The Esrum cluster is a cluster managed by the Data Analytics Platform
-(formerly the `Phenomics Platform`_) at CBMR_. Technical support and
+The Esrum cluster is a cluster managed by the `Data Analytics Platform`_
+(formerly the Phenomics Platform) at CBMR_. Technical support and
 administration is handled by KU-IT via the `KU-IT Service portal`_.
 
 **************
@@ -81,11 +81,11 @@ See :ref:`p_usage_filesystem` for more information.
 
 .. _cbmr: https://cbmr.ku.dk/
 
+.. _data analytics platform: https://cbmr.ku.dk/research-facilities/phenomics/
+
 .. _environment modules: https://modules.readthedocs.io/en/latest/
 
 .. _ku-it service portal: https://serviceportal.ku.dk/
-
-.. _phenomics platform: https://cbmr.ku.dk/research-facilities/phenomics/
 
 .. _shiny: https://shiny.rstudio.com/
 
