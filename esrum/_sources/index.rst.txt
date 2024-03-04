@@ -4,7 +4,7 @@
 
 Welcome to the Esrum HPC cluster at The Novo Nordisk Foundation Center
 for Basic Metabolic Research (CBMR_). The Esrum cluster is managed by
-the Data Analytics Platform (formerly the `Phenomics Platform`_) and is
+the `Data Analytics Platform`_ (formerly the Phenomics Platform) and is
 available to employees at CBMR as well as collaborators visiting CBMR.
 
 You are always welcome to contact us if you have questions or problems
@@ -37,6 +37,6 @@ documentation for the `UCPH computing/HPC Systems`_ on KUNet.
 
 .. _cbmr: https://cbmr.ku.dk/
 
-.. _phenomics platform: https://cbmr.ku.dk/research-facilities/phenomics/
+.. _data analytics platform: https://cbmr.ku.dk/research-facilities/phenomics/
 
 .. _ucph computing/hpc systems: https://kunet.ku.dk/work-areas/research/Research%20Infrastructure/research-it/ucph-computing-hpc-systems/Pages/default.aspx
