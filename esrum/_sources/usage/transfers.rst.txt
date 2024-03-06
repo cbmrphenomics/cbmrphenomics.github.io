@@ -71,28 +71,39 @@ available on the cluster (Lynx_):
 
 #. Start Lynx as follows:
 
-      .. code:: shell
+         .. code:: shell
 
-         lynx -accept_all_cookies "https://sif.ku.dk"
+            lynx -accept_all_cookies "https://sif.ku.dk"
+
+      .. image:: images/sif_login_01.png
 
 #. Use the up/down arrow keys to select the ``log in`` link under ``I'm
    already signed up to SIF with my KU / UCPH account!`` and press
-   Enter.
+   ``enter``.
+
+      .. image:: images/sif_login_02.png
 
 #. Make sure that the ``Let me in without it, I want to try`` is
    highlighted and press enter to confirm that you wish to try login.
 
-#. Enter your KU username and password. Use ``Tab`` to jump to the next
-   field and ``Shift+Tab`` to jump to the previous field.
+      .. image:: images/sif_login_03.png
 
-#. Use ``Tab`` to select the Yes button (appears as ``(BUTTON) Yes``)
-   and press Enter.
+#. Enter your KU username and password. Use the ``tab`` button to jump
+   to the next field and ``Shift+Tab`` to jump to the previous field.
+   Finally use ``tab`` to select the "Yes" button (appears as ``(BUTTON)
+   Yes``) and press ``enter``.
 
-#. Enter the SIF two-factor code, press tab to select the ``Submit``
-   button, and press enter.
+      .. image:: images/sif_login_04.png
 
-#. If you see a page containing a submission form, and the text ``Exit
-   code: 0 Description: OK (done in 0.094s)`` then you are logged in.
+#. Enter your SIF two-factor code, press ``tab`` to select the
+   ``Submit`` button, and press ``enter``.
+
+      .. image:: images/sif_login_05.png
+
+#. You should now see a page with the header ``SIF Project Management``,
+   indicating that you have logged in:
+
+      .. image:: images/sif_login_06.png
 
 #. Press ``Ctrl+C`` to quit.
 
