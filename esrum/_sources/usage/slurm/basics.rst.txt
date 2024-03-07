@@ -71,11 +71,17 @@ file ``chr1.fasta``. This script is saved as ``my_script.sh``:
    module load igzip/2.30.0
    igzip --keep "chr1.fasta"
 
-The ``module`` command is used load the required software. This could
-also be done on the command-line before queuing the command, but it is
-recommended to load all required software *in* your job scripts. The
-``--keep`` option is used to prevent igzip from deleting our input file
-when it is done.
+The ``module`` command is used load the required software from the KU-IT
+provided library of scientific and other software. The
+:ref:`p_usage_modules` page gives an introduction to using modules on
+Esrum, but for now all you need to know is that the above command makes
+the ``igzip`` tool available to us. We could also have loaded the module
+on the command-line before queuing the command, as Slurm will remember
+what modules we have loaded, but it is recommended to load all required
+software *in* your job scripts to ensure that they are reproducible.
+
+The ``--keep`` option for ``igzip`` is used to prevent igzip from
+deleting our input file when it is done.
 
 To queue this script, run the ``sbatch`` command with the filename of
 the script as an argument:
@@ -357,13 +363,13 @@ easily readable form:
 
 .. code-block:: console
 
-    $ source /projects/cbmr_shared/apps/modules/activate.sh
-    $ module load sacct-usage
-    $ sacct-usage
-          Age  User    Job   State         Elapsed  CPUs  CPUsWasted  ExtraMem  ExtraMemWasted  CPUHoursWasted
-    13:32:04s  abc123  1     FAILED     252:04:52s     8         6.9     131.4           131.4         4012.14
-    10:54:32s  abc123  2[1]  COMPLETED   02:49:25s    32        15.7       0.0             0.0           44.38
-    01:48:43s  abc123  3     COMPLETED   01:00:53s    24         2.4       0.0             0.0            2.43
+   $ source /projects/cbmr_shared/apps/modules/activate.sh
+   $ module load sacct-usage
+   $ sacct-usage
+         Age  User    Job   State         Elapsed  CPUs  CPUsWasted  ExtraMem  ExtraMemWasted  CPUHoursWasted
+   13:32:04s  abc123  1     FAILED     252:04:52s     8         6.9     131.4           131.4         4012.14
+   10:54:32s  abc123  2[1]  COMPLETED   02:49:25s    32        15.7       0.0             0.0           44.38
+   01:48:43s  abc123  3     COMPLETED   01:00:53s    24         2.4       0.0             0.0            2.43
 
 The important information is found in the ``CPUsWasted`` column and the
 ``ExtraMemWasted`` column, which show the number CPUs that went unused
@@ -493,6 +499,16 @@ more robust bash scripts. A template using those recommendations is
 available for download :download:`here <robust_sbatch.sh>`.
 
 .. _s_slurm_basics_troubleshooting:
+
+*************
+ What's next
+*************
+
+The next section of the documentation covers advanced usage of Slurm,
+including how to run jobs on the High-MEM/GPU node. However, if you have
+not already done so then it is recommended that you read the
+:ref:`p_usage_modules` page for an introduction on how to use the module
+system on Esrum to load the software you need for your work.
 
 *****************
  Troubleshooting

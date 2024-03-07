@@ -57,10 +57,6 @@ See :ref:`p_usage_filesystem` for more information.
    permit small jobs on the head node, meaning a few cores *in total*
    and modest memory usage.
 
--  Do not use more resources than those you have reserved for your jobs:
-   If you need N cores/threads, if you need more RAM than default, or if
-   need to use GPUs, then you must reserve those resources via Slurm.
-
 -  Remember to be considerate to other users. For example, limit the
    number of jobs you are running simultaneously, so that others users
    can also run their jobs

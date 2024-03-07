@@ -56,11 +56,12 @@
 </li>
 <li><a class="reference internal" href="#interactive-sessions">4.4.1.6. Interactive sessions</a></li>
 <li><a class="reference internal" href="#sbatch-template-script">4.4.1.7. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script</a></li>
-<li><a class="reference internal" href="#troubleshooting">4.4.1.8. Troubleshooting</a><ul>
-<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.4.1.8.1. Error: Requested node configuration is not available</a></li>
+<li><a class="reference internal" href="#what-s-next">4.4.1.8. What's next</a></li>
+<li><a class="reference internal" href="#troubleshooting">4.4.1.9. Troubleshooting</a><ul>
+<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.4.1.9.1. Error: Requested node configuration is not available</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#additional-resources">4.4.1.9. Additional resources</a></li>
+<li><a class="reference internal" href="#additional-resources">4.4.1.10. Additional resources</a></li>
 </ul>
 </li>
 </ul>
@@ -143,11 +144,16 @@ module load igzip/2.30.0
 igzip --keep <span class="s2">&quot;chr1.fasta&quot;</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">module</span></code> command is used load the required software. This could
-also be done on the command-line before queuing the command, but it is
-recommended to load all required software <em>in</em> your job scripts. The
-<code class="docutils literal notranslate"><span class="pre">--keep</span></code> option is used to prevent igzip from deleting our input file
-when it is done.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">module</span></code> command is used load the required software from the KU-IT
+provided library of scientific and other software. The
+<a class="reference internal" href="../modules.html#p-usage-modules"><span class="std std-ref">The module system</span></a> page gives an introduction to using modules on
+Esrum, but for now all you need to know is that the above command makes
+the <code class="docutils literal notranslate"><span class="pre">igzip</span></code> tool available to us. We could also have loaded the module
+on the command-line before queuing the command, as Slurm will remember
+what modules we have loaded, but it is recommended to load all required
+software <em>in</em> your job scripts to ensure that they are reproducible.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--keep</span></code> option for <code class="docutils literal notranslate"><span class="pre">igzip</span></code> is used to prevent igzip from
+deleting our input file when it is done.</p>
 <p>To queue this script, run the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command with the filename of
 the script as an argument:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ls
@@ -505,10 +511,18 @@ This script can also be downloaded <a class="reference download internal" downlo
 more robust bash scripts. A template using those recommendations is
 available for download <a class="reference download internal" download="" href="../../_downloads/82a50c88dfbea8f697cd89345d1665b1/robust_sbatch.sh"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 </div>
+<div class="section" id="what-s-next">
+<span id="s-slurm-basics-troubleshooting"></span><h2><span class="section-number">4.4.1.8. </span>What's next<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<p>The next section of the documentation covers advanced usage of Slurm,
+including how to run jobs on the High-MEM/GPU node. However, if you have
+not already done so then it is recommended that you read the
+<a class="reference internal" href="../modules.html#p-usage-modules"><span class="std std-ref">The module system</span></a> page for an introduction on how to use the module
+system on Esrum to load the software you need for your work.</p>
+</div>
 <div class="section" id="troubleshooting">
-<span id="s-slurm-basics-troubleshooting"></span><h2><span class="section-number">4.4.1.8. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4.1.9. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="error-requested-node-configuration-is-not-available">
-<h3><span class="section-number">4.4.1.8.1. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.4.1.9.1. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h3>
 <p>If you request too many CPUs (more than 128), or too much RAM (more than
 1993 GB for compute nodes and more than 3920 GB for the GPU node), then
 Slurm will report that the request cannot be satisfied:</p>
@@ -545,7 +559,7 @@ remember to include the <code class="docutils literal notranslate"><span class="
 </div>
 </div>
 <div class="section" id="additional-resources">
-<h2><span class="section-number">4.4.1.9. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.4.1.10. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/overview.html">documentation</a></p></li>
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">summary</a> (PDF)</p></li>
