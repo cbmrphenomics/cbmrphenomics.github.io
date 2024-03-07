@@ -10,6 +10,7 @@
    connecting
    filesystem
    slurm/index
-   rstudio
    modules
+   rstudio
+   containers
    transfers
