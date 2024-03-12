@@ -92,13 +92,6 @@ file-structure of projects on Esrum.
    can still apply for access to cohorts, but you may not be granted
    access until everything is ready.
 
-You can find an up-to-date list of datasets and cohorts in the N-drive
-at
-
-.. code::
-
-   N:/path/to/TODO.xlsx
-
 In order to apply for access to a dataset, simply follow the steps
 described in the `Applying for access to the cluster`_ section and
 substitute ``SRV-esrumhead-users`` with the name of your project.
