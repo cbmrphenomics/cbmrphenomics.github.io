@@ -31,6 +31,7 @@ documentation for the `UCPH computing/HPC Systems`_ on KUNet.
    overview
    guidelines
    usage/index
+   services/index
    troubleshooting
    tips/index
    communications/index

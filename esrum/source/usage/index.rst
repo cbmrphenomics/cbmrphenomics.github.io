@@ -6,11 +6,8 @@
 
 .. toctree::
 
-   access
-   connecting
+   access/index
    filesystem
    slurm/index
    modules
-   rstudio
-   containers
    transfers

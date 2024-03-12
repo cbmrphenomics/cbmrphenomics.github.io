@@ -67,10 +67,10 @@ session:
 Alternatively you can remove all data saved in your R session using the
 broom icon on the ``Environment`` tab:
 
-.. image:: /usage/images/rstudio_gc_01.png
+.. image:: /services/images/rstudio_gc_01.png
    :align: center
 
-.. image:: /usage/images/rstudio_gc_02.png
+.. image:: /services/images/rstudio_gc_02.png
    :align: center
 
 If you wish to prevent this issue in the first case, then you can also
@@ -78,7 +78,7 @@ turn off saving the data in your session on exit and/or turn off loading
 the saved data on startup. This is accomplished via the ``Global
 Options...`` accessible from the ``Tools`` menu:
 
-.. image:: /usage/images/rstudio_gc_03.png
+.. image:: /services/images/rstudio_gc_03.png
    :align: center
 
 Should your R session have grown to such a size that you simply cannot
