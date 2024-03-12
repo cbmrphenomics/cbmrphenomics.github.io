@@ -166,6 +166,10 @@ having to specify your username:
 
 .. include:: connecting_troubleshooting.rst
 
+.. _danish: https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx
+
+.. _english: https://kunet.ku.dk/employee-guide/Pages/IT/Remote-access.aspx
+
 .. _mobaxterm: https://mobaxterm.mobatek.net/
 
 .. _putty: https://www.putty.org/
