@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.4.1. Basic Slurm jobs &#8212; Esrum Cluster  documentation</title>
+    <title>4.3.1. Basic Slurm jobs &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/playback.css" />
@@ -20,8 +20,8 @@
     <script src="../../_static/js/libgif.js"></script>
     <script src="../../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4.4.2. Advanced Slurm jobs" href="advanced.html" />
-    <link rel="prev" title="4.4. Running jobs using Slurm" href="index.html" />
+    <link rel="next" title="4.3.2. Advanced Slurm jobs" href="advanced.html" />
+    <link rel="prev" title="4.3. Running jobs using Slurm" href="index.html" />
     <script defer src="../../_static/js/playback.js"></script>
 
   </head><body>
@@ -29,49 +29,49 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="advanced.html" title="4.4.2. Advanced Slurm jobs"
+          <a href="advanced.html" title="4.3.2. Advanced Slurm jobs"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="index.html" title="4.4. Running jobs using Slurm"
+          <a href="index.html" title="4.3. Running jobs using Slurm"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span class="section-number">4.4. </span>Running jobs using Slurm</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span class="section-number">4.3. </span>Running jobs using Slurm</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4.4.1. Basic Slurm jobs</a><ul>
-<li><a class="reference internal" href="#a-basic-job-script">4.4.1.1. A basic job script</a></li>
-<li><a class="reference internal" href="#queuing-a-job">4.4.1.2. Queuing a job</a></li>
-<li><a class="reference internal" href="#cancelling-jobs">4.4.1.3. Cancelling jobs</a></li>
-<li><a class="reference internal" href="#setting-options">4.4.1.4. Setting options</a></li>
-<li><a class="reference internal" href="#reserving-resources">4.4.1.5. Reserving resources</a><ul>
-<li><a class="reference internal" href="#best-practice-for-reserving-resources">4.4.1.5.1. Best practice for reserving resources</a></li>
-<li><a class="reference internal" href="#monitoring-resources-used-by-jobs">4.4.1.5.2. Monitoring resources used by jobs</a></li>
-<li><a class="reference internal" href="#common-options">4.4.1.5.3. Common options</a></li>
+<li><a class="reference internal" href="#">4.3.1. Basic Slurm jobs</a><ul>
+<li><a class="reference internal" href="#a-basic-job-script">4.3.1.1. A basic job script</a></li>
+<li><a class="reference internal" href="#queuing-a-job">4.3.1.2. Queuing a job</a></li>
+<li><a class="reference internal" href="#cancelling-jobs">4.3.1.3. Cancelling jobs</a></li>
+<li><a class="reference internal" href="#setting-options">4.3.1.4. Setting options</a></li>
+<li><a class="reference internal" href="#reserving-resources">4.3.1.5. Reserving resources</a><ul>
+<li><a class="reference internal" href="#best-practice-for-reserving-resources">4.3.1.5.1. Best practice for reserving resources</a></li>
+<li><a class="reference internal" href="#monitoring-resources-used-by-jobs">4.3.1.5.2. Monitoring resources used by jobs</a></li>
+<li><a class="reference internal" href="#common-options">4.3.1.5.3. Common options</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#interactive-sessions">4.4.1.6. Interactive sessions</a></li>
-<li><a class="reference internal" href="#sbatch-template-script">4.4.1.7. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script</a></li>
-<li><a class="reference internal" href="#what-s-next">4.4.1.8. What's next</a></li>
-<li><a class="reference internal" href="#troubleshooting">4.4.1.9. Troubleshooting</a><ul>
-<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.4.1.9.1. Error: Requested node configuration is not available</a></li>
+<li><a class="reference internal" href="#interactive-sessions">4.3.1.6. Interactive sessions</a></li>
+<li><a class="reference internal" href="#sbatch-template-script">4.3.1.7. <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script</a></li>
+<li><a class="reference internal" href="#what-s-next">4.3.1.8. What's next</a></li>
+<li><a class="reference internal" href="#troubleshooting">4.3.1.9. Troubleshooting</a><ul>
+<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.3.1.9.1. Error: Requested node configuration is not available</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#additional-resources">4.4.1.10. Additional resources</a></li>
+<li><a class="reference internal" href="#additional-resources">4.3.1.10. Additional resources</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="index.html"
-                        title="previous chapter"><span class="section-number">4.4. </span>Running jobs using Slurm</a></p>
+                        title="previous chapter"><span class="section-number">4.3. </span>Running jobs using Slurm</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="advanced.html"
-                        title="next chapter"><span class="section-number">4.4.2. </span>Advanced Slurm jobs</a></p>
+                        title="next chapter"><span class="section-number">4.3.2. </span>Advanced Slurm jobs</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -91,7 +91,7 @@
           <div class="body" role="main">
             
   <div class="section" id="basic-slurm-jobs">
-<span id="p-usage-slurm-basics"></span><h1><span class="section-number">4.4.1. </span>Basic Slurm jobs<a class="headerlink" href="#basic-slurm-jobs" title="Permalink to this headline">¶</a></h1>
+<span id="p-usage-slurm-basics"></span><h1><span class="section-number">4.3.1. </span>Basic Slurm jobs<a class="headerlink" href="#basic-slurm-jobs" title="Permalink to this headline">¶</a></h1>
 <p>This section describes the basics of queuing jobs using on the Esrum
 cluster using the Slurm Workload Manager. This includes queuing tasks
 with the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command , monitoring jobs with <code class="docutils literal notranslate"><span class="pre">squeue</span></code> and
@@ -101,7 +101,7 @@ for jobs that need more CPUs or more RAM.</p>
 <code class="docutils literal notranslate"><span class="pre">computerome</span></code> can use this <a class="reference external" href="https://www.nrel.gov/hpc/assets/pdfs/pbs-to-slurm-translation-sheet.pdf">PBS to Slurm translation-sheet</a> to
 migrate <code class="docutils literal notranslate"><span class="pre">qsub</span></code> scripts/commands to <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
 <div class="section" id="a-basic-job-script">
-<h2><span class="section-number">4.4.1.1. </span>A basic job script<a class="headerlink" href="#a-basic-job-script" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.1.1. </span>A basic job script<a class="headerlink" href="#a-basic-job-script" title="Permalink to this headline">¶</a></h2>
 <p>In order to run a job using the Slurm workload manager, you must first
 write a shell script containing the commands that you want to execute.
 In the following example we just run a single command, <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;Hello,</span>
@@ -130,7 +130,7 @@ script, and that it is possible to pass command-line arguments to your
 scripts.</p>
 </div>
 <div class="section" id="queuing-a-job">
-<h2><span class="section-number">4.4.1.2. </span>Queuing a job<a class="headerlink" href="#queuing-a-job" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.1.2. </span>Queuing a job<a class="headerlink" href="#queuing-a-job" title="Permalink to this headline">¶</a></h2>
 <p>In the following examples we will use the <code class="docutils literal notranslate"><span class="pre">igzip</span></code> command to compress
 a file. The <code class="docutils literal notranslate"><span class="pre">igzip</span></code> command is similar to <code class="docutils literal notranslate"><span class="pre">gzip</span></code> except that it is
 only available via a module, that it sacrifices compression ratio for
@@ -146,7 +146,7 @@ igzip --keep <span class="s2">&quot;chr1.fasta&quot;</span>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">module</span></code> command is used load the required software from the KU-IT
 provided library of scientific and other software. The
-<a class="reference internal" href="../modules.html#p-usage-modules"><span class="std std-ref">The module system</span></a> page gives an introduction to using modules on
+<a class="reference internal" href="../modules.html#p-usage-modules"><span class="std std-ref">Environment modules</span></a> page gives an introduction to using modules on
 Esrum, but for now all you need to know is that the above command makes
 the <code class="docutils literal notranslate"><span class="pre">igzip</span></code> tool available to us. We could also have loaded the module
 on the command-line before queuing the command, as Slurm will remember
@@ -205,7 +205,7 @@ igzip: chr1.fast does not exist
 </div>
 </div>
 <div class="section" id="cancelling-jobs">
-<span id="s-cancelling-jobs"></span><h2><span class="section-number">4.4.1.3. </span>Cancelling jobs<a class="headerlink" href="#cancelling-jobs" title="Permalink to this headline">¶</a></h2>
+<span id="s-cancelling-jobs"></span><h2><span class="section-number">4.3.1.3. </span>Cancelling jobs<a class="headerlink" href="#cancelling-jobs" title="Permalink to this headline">¶</a></h2>
 <p>Already running jobs can be cancelled using the <code class="docutils literal notranslate"><span class="pre">scancel</span></code> command and
 the ID of the job you want to cancel:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ squeue --me
@@ -222,7 +222,7 @@ $ scancel <span class="m">8503</span>
 below) or individual sub-tasks. See the <a class="reference internal" href="advanced.html#s-job-arrays"><span class="std std-ref">Monitoring your jobs</span></a> section.</p>
 </div>
 <div class="section" id="setting-options">
-<h2><span class="section-number">4.4.1.4. </span>Setting options<a class="headerlink" href="#setting-options" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.1.4. </span>Setting options<a class="headerlink" href="#setting-options" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command offers two methods for setting options, such as
 resource requirements, notifications, etc (see e.g.
 <a class="reference internal" href="#s-common-options"><span class="std std-ref">Common options</span></a>). The first option is simply to specify the
@@ -270,7 +270,7 @@ and thereby break the <code class="docutils literal notranslate"><span class="pr
 </div>
 </div>
 <div class="section" id="reserving-resources">
-<span id="id1"></span><h2><span class="section-number">4.4.1.5. </span>Reserving resources<a class="headerlink" href="#reserving-resources" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><span class="section-number">4.3.1.5. </span>Reserving resources<a class="headerlink" href="#reserving-resources" title="Permalink to this headline">¶</a></h2>
 <p>By default a <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> will request 1 CPU and just under 15 GB of ram
 per reserved CPU. Jobs will not be executed before the requested
 resources are available on a node and your jobs cannot exceed the amount
@@ -328,7 +328,7 @@ nodes unless your jobs actually require that much RAM. See the
 <a class="reference internal" href="gpu.html#p-usage-slurm-gpu"><span class="std std-ref">Using the GPU/hi-MEM node</span></a> section for how to use the GPU node with or
 without reserving a GPU.</p>
 <div class="section" id="best-practice-for-reserving-resources">
-<h3><span class="section-number">4.4.1.5.1. </span>Best practice for reserving resources<a class="headerlink" href="#best-practice-for-reserving-resources" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.3.1.5.1. </span>Best practice for reserving resources<a class="headerlink" href="#best-practice-for-reserving-resources" title="Permalink to this headline">¶</a></h3>
 <p>Determining how many CPUs and how much memory you need to reserve for
 your jobs can be difficult:</p>
 <p>Few programs benefit from using a lot of threads (CPUs) due to overhead
@@ -351,7 +351,7 @@ that the software benefits from the additional CPUs.</p></li>
 </div></blockquote>
 </div>
 <div class="section" id="monitoring-resources-used-by-jobs">
-<h3><span class="section-number">4.4.1.5.2. </span>Monitoring resources used by jobs<a class="headerlink" href="#monitoring-resources-used-by-jobs" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.3.1.5.2. </span>Monitoring resources used by jobs<a class="headerlink" href="#monitoring-resources-used-by-jobs" title="Permalink to this headline">¶</a></h3>
 <p>Once you have actually started running a job, you have several options
 for monitoring resource usage:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">/usr/bin/time</span> <span class="pre">-f</span> <span class="pre">&quot;CPU</span> <span class="pre">=</span> <span class="pre">%P,</span> <span class="pre">MEM</span> <span class="pre">=</span> <span class="pre">%MKB&quot;</span></code> command can be used to
@@ -408,7 +408,7 @@ increasing the number of threads used for the individual jobs. See the
 jobs.</p>
 </div>
 <div class="section" id="common-options">
-<span id="s-common-options"></span><h3><span class="section-number">4.4.1.5.3. </span>Common options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
+<span id="s-common-options"></span><h3><span class="section-number">4.3.1.5.3. </span>Common options<a class="headerlink" href="#common-options" title="Permalink to this headline">¶</a></h3>
 <p>The following provides a brief overview of common options for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>
 not mentioned above. All of these options may be specified using
 <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> comments.</p>
@@ -449,7 +449,7 @@ run sbatch from another script.</p></li>
 </div>
 </div>
 <div class="section" id="interactive-sessions">
-<h2><span class="section-number">4.4.1.6. </span>Interactive sessions<a class="headerlink" href="#interactive-sessions" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.1.6. </span>Interactive sessions<a class="headerlink" href="#interactive-sessions" title="Permalink to this headline">¶</a></h2>
 <p>If you need to run an interactive process, for example if you need to
 use an interactive R shell to process a large dataset, or if you just
 need to experiment with running an computationally heavy process, then
@@ -480,7 +480,7 @@ the <a class="reference internal" href="advanced.html#p-usage-slurm-advanced"><s
 for your shell are made available to other users!</p>
 </div>
 <div class="section" id="sbatch-template-script">
-<h2><span class="section-number">4.4.1.7. </span><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script<a class="headerlink" href="#sbatch-template-script" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.1.7. </span><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> template script<a class="headerlink" href="#sbatch-template-script" title="Permalink to this headline">¶</a></h2>
 <p>The following is a simple template for use with the <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command.
 This script can also be downloaded <a class="reference download internal" download="" href="../../_downloads/228ce910c2ad03d01324f772cfe339e6/my_sbatch.sh"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -512,17 +512,17 @@ more robust bash scripts. A template using those recommendations is
 available for download <a class="reference download internal" download="" href="../../_downloads/82a50c88dfbea8f697cd89345d1665b1/robust_sbatch.sh"><code class="xref download docutils literal notranslate"><span class="pre">here</span></code></a>.</p>
 </div>
 <div class="section" id="what-s-next">
-<span id="s-slurm-basics-troubleshooting"></span><h2><span class="section-number">4.4.1.8. </span>What's next<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
+<span id="s-slurm-basics-troubleshooting"></span><h2><span class="section-number">4.3.1.8. </span>What's next<a class="headerlink" href="#what-s-next" title="Permalink to this headline">¶</a></h2>
 <p>The next section of the documentation covers advanced usage of Slurm,
 including how to run jobs on the High-MEM/GPU node. However, if you have
 not already done so then it is recommended that you read the
-<a class="reference internal" href="../modules.html#p-usage-modules"><span class="std std-ref">The module system</span></a> page for an introduction on how to use the module
+<a class="reference internal" href="../modules.html#p-usage-modules"><span class="std std-ref">Environment modules</span></a> page for an introduction on how to use the module
 system on Esrum to load the software you need for your work.</p>
 </div>
 <div class="section" id="troubleshooting">
-<h2><span class="section-number">4.4.1.9. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.1.9. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="error-requested-node-configuration-is-not-available">
-<h3><span class="section-number">4.4.1.9.1. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.3.1.9.1. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h3>
 <p>If you request too many CPUs (more than 128), or too much RAM (more than
 1993 GB for compute nodes and more than 3920 GB for the GPU node), then
 Slurm will report that the request cannot be satisfied:</p>
@@ -559,7 +559,7 @@ remember to include the <code class="docutils literal notranslate"><span class="
 </div>
 </div>
 <div class="section" id="additional-resources">
-<h2><span class="section-number">4.4.1.10. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.1.10. </span>Additional resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/overview.html">documentation</a></p></li>
 <li><p>Slurm <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">summary</a> (PDF)</p></li>
@@ -579,14 +579,14 @@ remember to include the <code class="docutils literal notranslate"><span class="
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="advanced.html" title="4.4.2. Advanced Slurm jobs"
+          <a href="advanced.html" title="4.3.2. Advanced Slurm jobs"
              >next</a></li>
         <li class="right" >
-          <a href="index.html" title="4.4. Running jobs using Slurm"
+          <a href="index.html" title="4.3. Running jobs using Slurm"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" ><span class="section-number">4.4. </span>Running jobs using Slurm</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" ><span class="section-number">4.3. </span>Running jobs using Slurm</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

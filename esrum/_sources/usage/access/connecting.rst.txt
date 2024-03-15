@@ -160,11 +160,17 @@ having to specify your username:
    public SSH key and that you therefore have to enter your password
    when connecting to the server.
 
+.. _s_connecting_troubleshooting:
+
 *****************
  Troubleshooting
 *****************
 
 .. include:: connecting_troubleshooting.rst
+
+.. _danish: https://kunet.ku.dk/medarbejderguide/Sider/It/Fjernadgang-vpn.aspx
+
+.. _english: https://kunet.ku.dk/employee-guide/Pages/IT/Remote-access.aspx
 
 .. _mobaxterm: https://mobaxterm.mobatek.net/
 

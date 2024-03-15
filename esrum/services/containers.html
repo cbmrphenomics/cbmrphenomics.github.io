@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.7. Containerized jobs &#8212; Esrum Cluster  documentation</title>
+    <title>5.2. Running containerized software &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.8. Transferring data" href="transfers.html" />
-    <link rel="prev" title="4.6. R, RStudio, and Jupyter Notebooks" href="rstudio.html" />
+    <link rel="next" title="5.3. Public and private Shiny servers" href="shiny.html" />
+    <link rel="prev" title="5.1. R, RStudio, and Jupyter Notebooks" href="rstudio.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -29,36 +29,36 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="transfers.html" title="4.8. Transferring data"
+          <a href="shiny.html" title="5.3. Public and private Shiny servers"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="rstudio.html" title="4.6. R, RStudio, and Jupyter Notebooks"
+          <a href="rstudio.html" title="5.1. R, RStudio, and Jupyter Notebooks"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>Other services</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4.7. Containerized jobs</a><ul>
-<li><a class="reference internal" href="#singularity-containers">4.7.1. Singularity containers</a><ul>
-<li><a class="reference internal" href="#running-dockerhub-images">4.7.1.1. Running Dockerhub images</a></li>
-<li><a class="reference internal" href="#running-custom-docker-podman-images">4.7.1.2. Running custom Docker/Podman images</a></li>
+<li><a class="reference internal" href="#">5.2. Running containerized software</a><ul>
+<li><a class="reference internal" href="#singularity-containers">5.2.1. Singularity containers</a><ul>
+<li><a class="reference internal" href="#running-dockerhub-images">5.2.1.1. Running Dockerhub images</a></li>
+<li><a class="reference internal" href="#running-custom-docker-podman-images">5.2.1.2. Running custom Docker/Podman images</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#podman-containers">4.7.2. Podman containers</a></li>
+<li><a class="reference internal" href="#podman-containers">5.2.2. Podman containers</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="rstudio.html"
-                        title="previous chapter"><span class="section-number">4.6. </span>R, RStudio, and Jupyter Notebooks</a></p>
+                        title="previous chapter"><span class="section-number">5.1. </span>R, RStudio, and Jupyter Notebooks</a></p>
   <h4>Next topic</h4>
-  <p class="topless"><a href="transfers.html"
-                        title="next chapter"><span class="section-number">4.8. </span>Transferring data</a></p>
+  <p class="topless"><a href="shiny.html"
+                        title="next chapter"><span class="section-number">5.3. </span>Public and private Shiny servers</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -77,8 +77,8 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <div class="section" id="containerized-jobs">
-<span id="p-containers"></span><h1><span class="section-number">4.7. </span>Containerized jobs<a class="headerlink" href="#containerized-jobs" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="running-containerized-software">
+<span id="p-containers"></span><h1><span class="section-number">5.2. </span>Running containerized software<a class="headerlink" href="#running-containerized-software" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://www.ibm.com/topics/containerization">Containerization</a> is a technique for running jobs in an isolated and
 reproducible manner, by bundling all necessary dependencies up to and
 including entire operating systems and running the software using
@@ -95,14 +95,14 @@ up for running in user-space and therefore offers better security
 guarantees.</p></li>
 </ol>
 <div class="section" id="singularity-containers">
-<h2><span class="section-number">4.7.1. </span>Singularity containers<a class="headerlink" href="#singularity-containers" title="Permalink to this headline">¶</a></h2>
-<p>Singularity is available via <a class="reference internal" href="modules.html#p-usage-modules"><span class="std std-ref">The module system</span></a> and allows you to
+<h2><span class="section-number">5.2.1. </span>Singularity containers<a class="headerlink" href="#singularity-containers" title="Permalink to this headline">¶</a></h2>
+<p>Singularity is available via <a class="reference internal" href="../usage/modules.html#p-usage-modules"><span class="std std-ref">Environment modules</span></a> and allows you to
 run containerized software as part of Slurm jobs. If possible, you
 should prefer to run your containerized tools in this manner.</p>
 <p>The following only covers the absolute basics. For more information
 please refer to the official <a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/">Singularity documentation</a>.</p>
 <div class="section" id="running-dockerhub-images">
-<h3><span class="section-number">4.7.1.1. </span>Running Dockerhub images<a class="headerlink" href="#running-dockerhub-images" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.1.1. </span>Running Dockerhub images<a class="headerlink" href="#running-dockerhub-images" title="Permalink to this headline">¶</a></h3>
 <p>Container images available on <a class="reference external" href="https://hub.docker.com/">dockerhub</a> can be converted to singularity
 images in one step using the <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">build</span></code> command. For the
 following example, we will download and run version <code class="docutils literal notranslate"><span class="pre">0.7.17</span></code> of the
@@ -118,7 +118,7 @@ working on so that your collaborators can also access it.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">--disable-cache</span></code> option is optional but recommended, since
 Singularity will otherwise cache the individual parts of the image it
 downloaded in <code class="docutils literal notranslate"><span class="pre">~/.singularity</span></code>. As described in
-<a class="reference internal" href="filesystem.html#p-usage-filesystem"><span class="std std-ref">Projects, data, and home folders</span></a> your home is limited to 100 GB and larger
+<a class="reference internal" href="../usage/filesystem.html#p-usage-filesystem"><span class="std std-ref">Projects, data, and home folders</span></a> your home is limited to 100 GB and larger
 docker images can easily take up GBs of space.</p>
 <p>Once you have run the <code class="docutils literal notranslate"><span class="pre">build</span></code> command, the image can be run using the
 <code class="docutils literal notranslate"><span class="pre">singularity</span> <span class="pre">run</span></code> command:</p>
@@ -138,7 +138,7 @@ docker images can easily take up GBs of space.</p>
 and it is therefore not recommended for the reasons described above.</p>
 </div>
 <div class="section" id="running-custom-docker-podman-images">
-<h3><span class="section-number">4.7.1.2. </span>Running custom Docker/Podman images<a class="headerlink" href="#running-custom-docker-podman-images" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.2.1.2. </span>Running custom Docker/Podman images<a class="headerlink" href="#running-custom-docker-podman-images" title="Permalink to this headline">¶</a></h3>
 <p>Docker/Podman images run on another system must be exported and
 converted before they can be run on Esrum. The <code class="docutils literal notranslate"><span class="pre">podman</span> <span class="pre">save</span></code> and the
 corresponding <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">save</span></code> command may be used to export an image to
@@ -167,7 +167,7 @@ command:</p>
 </div>
 </div>
 <div class="section" id="podman-containers">
-<h2><span class="section-number">4.7.2. </span>Podman containers<a class="headerlink" href="#podman-containers" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.2.2. </span>Podman containers<a class="headerlink" href="#podman-containers" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">esrumcont01fl</span></code> node is dedicated to running containerized
 software that is not suitable for conversion to/running via Singularity.
 Please <a class="reference internal" href="../contact.html#p-contact"><span class="std std-ref">Contact</span></a> us if you wish to run containers on the
@@ -185,13 +185,13 @@ container node.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="transfers.html" title="4.8. Transferring data"
+          <a href="shiny.html" title="5.3. Public and private Shiny servers"
              >next</a></li>
         <li class="right" >
-          <a href="rstudio.html" title="4.6. R, RStudio, and Jupyter Notebooks"
+          <a href="rstudio.html" title="5.1. R, RStudio, and Jupyter Notebooks"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>Other services</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.4.3. Using the GPU/hi-MEM node &#8212; Esrum Cluster  documentation</title>
+    <title>4.3.3. Using the GPU/hi-MEM node &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../../_static/css/playback.css" />
@@ -20,8 +20,8 @@
     <script src="../../_static/js/libgif.js"></script>
     <script src="../../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="4.5. The module system" href="../modules.html" />
-    <link rel="prev" title="4.4.2. Advanced Slurm jobs" href="advanced.html" />
+    <link rel="next" title="4.4. Environment modules" href="../modules.html" />
+    <link rel="prev" title="4.3.2. Advanced Slurm jobs" href="advanced.html" />
     <script defer src="../../_static/js/playback.js"></script>
 
   </head><body>
@@ -29,36 +29,36 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../modules.html" title="4.5. The module system"
+          <a href="../modules.html" title="4.4. Environment modules"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="advanced.html" title="4.4.2. Advanced Slurm jobs"
+          <a href="advanced.html" title="4.3.2. Advanced Slurm jobs"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span class="section-number">4.4. </span>Running jobs using Slurm</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" accesskey="U"><span class="section-number">4.3. </span>Running jobs using Slurm</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4.4.3. Using the GPU/hi-MEM node</a><ul>
-<li><a class="reference internal" href="#monitoring-gpu-utilization">4.4.3.1. Monitoring GPU utilization</a><ul>
-<li><a class="reference internal" href="#troubleshooting">4.4.3.1.1. Troubleshooting</a></li>
+<li><a class="reference internal" href="#">4.3.3. Using the GPU/hi-MEM node</a><ul>
+<li><a class="reference internal" href="#monitoring-gpu-utilization">4.3.3.1. Monitoring GPU utilization</a><ul>
+<li><a class="reference internal" href="#troubleshooting">4.3.3.1.1. Troubleshooting</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.4.3.2. Error: Requested node configuration is not available</a></li>
+<li><a class="reference internal" href="#error-requested-node-configuration-is-not-available">4.3.3.2. Error: Requested node configuration is not available</a></li>
 </ul>
 </li>
 </ul>
 
   <h4>Previous topic</h4>
   <p class="topless"><a href="advanced.html"
-                        title="previous chapter"><span class="section-number">4.4.2. </span>Advanced Slurm jobs</a></p>
+                        title="previous chapter"><span class="section-number">4.3.2. </span>Advanced Slurm jobs</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="../modules.html"
-                        title="next chapter"><span class="section-number">4.5. </span>The module system</a></p>
+                        title="next chapter"><span class="section-number">4.4. </span>Environment modules</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -78,7 +78,7 @@
           <div class="body" role="main">
             
   <div class="section" id="using-the-gpu-hi-mem-node">
-<span id="p-usage-slurm-gpu"></span><h1><span class="section-number">4.4.3. </span>Using the GPU/hi-MEM node<a class="headerlink" href="#using-the-gpu-hi-mem-node" title="Permalink to this headline">¶</a></h1>
+<span id="p-usage-slurm-gpu"></span><h1><span class="section-number">4.3.3. </span>Using the GPU/hi-MEM node<a class="headerlink" href="#using-the-gpu-hi-mem-node" title="Permalink to this headline">¶</a></h1>
 <p>This section describes how to schedule a task on the GPU/hi-MEM node.
 The GPU node is intended for tasks that need to use GPUs and for tasks
 that have very high memory requirements (more than 2 TB).</p>
@@ -101,7 +101,7 @@ option:</p>
 <p>As above you must also specify your CPU and RAM requirements using
 <code class="docutils literal notranslate"><span class="pre">--cpus-per-task</span></code> and <code class="docutils literal notranslate"><span class="pre">--mem</span></code>.</p>
 <div class="section" id="monitoring-gpu-utilization">
-<h2><span class="section-number">4.4.3.1. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.3.1. </span>Monitoring GPU utilization<a class="headerlink" href="#monitoring-gpu-utilization" title="Permalink to this headline">¶</a></h2>
 <blockquote>
 <div><div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -168,11 +168,11 @@ run <code class="docutils literal notranslate"><span class="pre">gpustats</span>
 </pre></div>
 </div>
 <div class="section" id="troubleshooting">
-<h3><span class="section-number">4.4.3.1.1. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">4.3.3.1.1. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h3>
 </div>
 </div>
 <div class="section" id="error-requested-node-configuration-is-not-available">
-<h2><span class="section-number">4.4.3.2. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">4.3.3.2. </span>Error: Requested node configuration is not available<a class="headerlink" href="#error-requested-node-configuration-is-not-available" title="Permalink to this headline">¶</a></h2>
 <p>See the Slurm Basics <a class="reference internal" href="basics.html#s-slurm-basics-troubleshooting"><span class="std std-ref">What's next</span></a> section.</p>
 </div>
 </div>
@@ -187,14 +187,14 @@ run <code class="docutils literal notranslate"><span class="pre">gpustats</span>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="../modules.html" title="4.5. The module system"
+          <a href="../modules.html" title="4.4. Environment modules"
              >next</a></li>
         <li class="right" >
-          <a href="advanced.html" title="4.4.2. Advanced Slurm jobs"
+          <a href="advanced.html" title="4.3.2. Advanced Slurm jobs"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../../index.html">Esrum Cluster  documentation</a> &#187;</li>
           <li class="nav-item nav-item-1"><a href="../index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li>
-          <li class="nav-item nav-item-2"><a href="index.html" ><span class="section-number">4.4. </span>Running jobs using Slurm</a> &#187;</li> 
+          <li class="nav-item nav-item-2"><a href="index.html" ><span class="section-number">4.3. </span>Running jobs using Slurm</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

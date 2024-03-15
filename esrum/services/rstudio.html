@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>4.6. R, RStudio, and Jupyter Notebooks &#8212; Esrum Cluster  documentation</title>
+    <title>5.1. R, RStudio, and Jupyter Notebooks &#8212; Esrum Cluster  documentation</title>
     <link rel="stylesheet" href="../_static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/css/playback.css" />
@@ -20,8 +20,8 @@
     <script src="../_static/js/libgif.js"></script>
     <script src="../_static/bizstyle.js"></script>
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="4.7. Containerized jobs" href="containers.html" />
-    <link rel="prev" title="4.5. The module system" href="modules.html" />
+    <link rel="next" title="5.2. Running containerized software" href="containers.html" />
+    <link rel="prev" title="5. Other services" href="index.html" />
     <script defer src="../_static/js/playback.js"></script>
 
   </head><body>
@@ -29,32 +29,32 @@
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="containers.html" title="4.7. Containerized jobs"
+          <a href="containers.html" title="5.2. Running containerized software"
              accesskey="N">next</a></li>
         <li class="right" >
-          <a href="modules.html" title="4.5. The module system"
+          <a href="index.html" title="5. Other services"
              accesskey="P">previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U"><span class="section-number">5. </span>Other services</a> &#187;</li> 
       </ul>
     </div>
       <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
         <div class="sphinxsidebarwrapper">
   <h3><a href="../index.html">Table of Contents</a></h3>
   <ul>
-<li><a class="reference internal" href="#">4.6. R, RStudio, and Jupyter Notebooks</a><ul>
-<li><a class="reference internal" href="#r">4.6.1. R</a></li>
-<li><a class="reference internal" href="#rstudio">4.6.2. RStudio</a></li>
-<li><a class="reference internal" href="#jupyter-notebook">4.6.3. Jupyter notebook</a><ul>
-<li><a class="reference internal" href="#port-forwarding-in-windows-mobaxterm">4.6.3.1. Port forwarding in Windows (MobaXterm)</a></li>
-<li><a class="reference internal" href="#port-forwarding-on-linux-osx">4.6.3.2. Port forwarding on Linux/OSX</a></li>
+<li><a class="reference internal" href="#">5.1. R, RStudio, and Jupyter Notebooks</a><ul>
+<li><a class="reference internal" href="#r">5.1.1. R</a></li>
+<li><a class="reference internal" href="#rstudio">5.1.2. RStudio</a></li>
+<li><a class="reference internal" href="#jupyter-notebook">5.1.3. Jupyter notebook</a><ul>
+<li><a class="reference internal" href="#port-forwarding-in-windows-mobaxterm">5.1.3.1. Port forwarding in Windows (MobaXterm)</a></li>
+<li><a class="reference internal" href="#port-forwarding-on-linux-osx">5.1.3.2. Port forwarding on Linux/OSX</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#troubleshooting">4.6.4. Troubleshooting</a><ul>
-<li><a class="reference internal" href="#r-libtk8-6-so-cannot-open-shared-object-file">4.6.4.1. R: libtk8.6.so: cannot open shared object file</a></li>
-<li><a class="reference internal" href="#rstudio-incorrect-or-invalid-username-password">4.6.4.2. RStudio: Incorrect or invalid username/password</a></li>
-<li><a class="reference internal" href="#rstudio-logging-in-takes-a-very-long-time">4.6.4.3. RStudio: Logging in takes a very long time</a></li>
-<li><a class="reference internal" href="#jupyter-notebooks-browser-error-when-opening-url">4.6.4.4. Jupyter Notebooks: Browser error when opening URL</a></li>
+<li><a class="reference internal" href="#troubleshooting">5.1.4. Troubleshooting</a><ul>
+<li><a class="reference internal" href="#r-libtk8-6-so-cannot-open-shared-object-file">5.1.4.1. R: libtk8.6.so: cannot open shared object file</a></li>
+<li><a class="reference internal" href="#rstudio-incorrect-or-invalid-username-password">5.1.4.2. RStudio: Incorrect or invalid username/password</a></li>
+<li><a class="reference internal" href="#rstudio-logging-in-takes-a-very-long-time">5.1.4.3. RStudio: Logging in takes a very long time</a></li>
+<li><a class="reference internal" href="#jupyter-notebooks-browser-error-when-opening-url">5.1.4.4. Jupyter Notebooks: Browser error when opening URL</a></li>
 </ul>
 </li>
 </ul>
@@ -62,11 +62,11 @@
 </ul>
 
   <h4>Previous topic</h4>
-  <p class="topless"><a href="modules.html"
-                        title="previous chapter"><span class="section-number">4.5. </span>The module system</a></p>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter"><span class="section-number">5. </span>Other services</a></p>
   <h4>Next topic</h4>
   <p class="topless"><a href="containers.html"
-                        title="next chapter"><span class="section-number">4.7. </span>Containerized jobs</a></p>
+                        title="next chapter"><span class="section-number">5.2. </span>Running containerized software</a></p>
 <div id="searchbox" style="display: none" role="search">
   <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
@@ -86,12 +86,12 @@
           <div class="body" role="main">
             
   <div class="section" id="r-rstudio-and-jupyter-notebooks">
-<span id="p-usage-rstudio"></span><h1><span class="section-number">4.6. </span>R, RStudio, and Jupyter Notebooks<a class="headerlink" href="#r-rstudio-and-jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
+<span id="p-usage-rstudio"></span><h1><span class="section-number">5.1. </span>R, RStudio, and Jupyter Notebooks<a class="headerlink" href="#r-rstudio-and-jupyter-notebooks" title="Permalink to this headline">¶</a></h1>
 <p>Users of the Esrum cluster have the option of using R, RStudio or
 Jupyter Notebooks to run their analyses. This section describes steps
 required to use these tools.</p>
 <div class="section" id="r">
-<h2><span class="section-number">4.6.1. </span>R<a class="headerlink" href="#r" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.1. </span>R<a class="headerlink" href="#r" title="Permalink to this headline">¶</a></h2>
 <p>R is available via the module system and modules may be installed in
 your home folder using the <code class="docutils literal notranslate"><span class="pre">install.packages</span></code> command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> module load --auto R/4.3.1
@@ -123,15 +123,15 @@ you and press enter:</p>
 <span class="pre">No</span> <span class="pre">such</span> <span class="pre">file</span> <span class="pre">or</span> <span class="pre">directory</span></code> or similar error.</p>
 </div>
 <div class="section" id="rstudio">
-<h2><span class="section-number">4.6.2. </span>RStudio<a class="headerlink" href="#rstudio" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.2. </span>RStudio<a class="headerlink" href="#rstudio" title="Permalink to this headline">¶</a></h2>
 <p>An <a class="reference external" href="https://posit.co/products/open-source/rstudio/">RStudio</a> server is made available at <a class="reference external" href="http://esrumcont01fl:8787/">http://esrumcont01fl:8787/</a>. To
 use this server, you must</p>
 <ol class="arabic simple">
 <li><p>Be a member of the <code class="docutils literal notranslate"><span class="pre">SRV-esrumcont-users</span></code> group. Simply follow the
-steps in the <a class="reference internal" href="access.html#s-applying-for-access"><span class="std std-ref">Applying for access to the cluster</span></a> section, and apply for
+steps in the <a class="reference internal" href="../usage/access/access.html#s-applying-for-access"><span class="std std-ref">Applying for access to the cluster</span></a> section, and apply for
 access to this group.</p></li>
 <li><p>Be connected via the KU VPN (a wired connection at CBMR is <em>not</em>
-sufficient). See <a class="reference internal" href="connecting.html#p-usage-connecting"><span class="std std-ref">Connecting to the cluster</span></a> for more information.</p></li>
+sufficient). See <a class="reference internal" href="../usage/access/connecting.html#p-usage-connecting"><span class="std std-ref">Connecting to the cluster</span></a> for more information.</p></li>
 </ol>
 <p>Once you have been been made a member of the <code class="docutils literal notranslate"><span class="pre">SRV-esrumcont-users</span></code> and
 connected using the VPN or a wired connection at CBMR, simply visit
@@ -145,7 +145,7 @@ basic support for using this service.</p>
 </div>
 </div>
 <div class="section" id="jupyter-notebook">
-<h2><span class="section-number">4.6.3. </span>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.3. </span>Jupyter notebook<a class="headerlink" href="#jupyter-notebook" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://jupyter.org/">Jupyter Notebooks</a> are available via the module system on Esrum and
 may be started as follows:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ module load jupyter-notebook
@@ -163,12 +163,12 @@ the server. See <a class="reference internal" href="../tips/tmux.html#p-tips-tmu
 <p>To actually connect to the notebook server, you will need to setup port
 forwarding using the port-number from your command.</p>
 <div class="section" id="port-forwarding-in-windows-mobaxterm">
-<h3><span class="section-number">4.6.3.1. </span>Port forwarding in Windows (MobaXterm)<a class="headerlink" href="#port-forwarding-in-windows-mobaxterm" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.1. </span>Port forwarding in Windows (MobaXterm)<a class="headerlink" href="#port-forwarding-in-windows-mobaxterm" title="Permalink to this headline">¶</a></h3>
 <p>The following instructions assume that you are using MobaXterm. If not,
 then please refer to the documentation for your tool of choice.</p>
 <ol class="arabic">
 <li><p>Install and configure MobaXterm as described in
-<a class="reference internal" href="connecting.html#s-configure-mobaxterm"><span class="std std-ref">Configuring MobaXterm</span></a>.</p></li>
+<a class="reference internal" href="../usage/access/connecting.html#s-configure-mobaxterm"><span class="std std-ref">Configuring MobaXterm</span></a>.</p></li>
 <li><p>Click the middle <code class="docutils literal notranslate"><span class="pre">Tunneling</span></code> button on the toolbar.</p>
 <img alt="../_images/mobaxterm_tunnel_01.png" class="align-center" src="../_images/mobaxterm_tunnel_01.png" />
 </li>
@@ -194,11 +194,11 @@ open your notebook via the
 Notebook printed in your terminal.</p>
 </div>
 <div class="section" id="port-forwarding-on-linux-osx">
-<h3><span class="section-number">4.6.3.2. </span>Port forwarding on Linux/OSX<a class="headerlink" href="#port-forwarding-on-linux-osx" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.3.2. </span>Port forwarding on Linux/OSX<a class="headerlink" href="#port-forwarding-on-linux-osx" title="Permalink to this headline">¶</a></h3>
 <p>It is recommended to enable port forwarding using your <code class="docutils literal notranslate"><span class="pre">~/.ssh/config</span></code>
 file. This is accomplished by adding a <code class="docutils literal notranslate"><span class="pre">LocalForward</span></code> line to your
 entry for Esrum as shown below (see also the section about
-<a class="reference internal" href="connecting.html#s-connecting-linux"><span class="std std-ref">Connecting on Linux or OSX</span></a>):</p>
+<a class="reference internal" href="../usage/access/connecting.html#s-connecting-linux"><span class="std std-ref">Connecting on Linux or OSX</span></a>):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Host esrum esrumhead01fl esrumhead01fl.unicph.domain
     HostName esrumhead01fl.unicph.domain
     User abc123
@@ -221,9 +221,9 @@ Notebook printed in your terminal.</p>
 </div>
 </div>
 <div class="section" id="troubleshooting">
-<h2><span class="section-number">4.6.4. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">5.1.4. </span>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="r-libtk8-6-so-cannot-open-shared-object-file">
-<h3><span class="section-number">4.6.4.1. </span>R: libtk8.6.so: cannot open shared object file<a class="headerlink" href="#r-libtk8-6-so-cannot-open-shared-object-file" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.4.1. </span>R: libtk8.6.so: cannot open shared object file<a class="headerlink" href="#r-libtk8-6-so-cannot-open-shared-object-file" title="Permalink to this headline">¶</a></h3>
 <p>Users connecting to Esrum with X11 forwarding enabled, for example using
 mobaXterm with default settings, may observe the following error when
 running the <code class="docutils literal notranslate"><span class="pre">install.packages</span></code>:</p>
@@ -247,14 +247,14 @@ your (bash) terminal:</p>
 </div>
 </div>
 <div class="section" id="rstudio-incorrect-or-invalid-username-password">
-<h3><span class="section-number">4.6.4.2. </span>RStudio: Incorrect or invalid username/password<a class="headerlink" href="#rstudio-incorrect-or-invalid-username-password" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.4.2. </span>RStudio: Incorrect or invalid username/password<a class="headerlink" href="#rstudio-incorrect-or-invalid-username-password" title="Permalink to this headline">¶</a></h3>
 <p>Please make sure that you are entering your username in the short form
 and that you have been added as a member of the <code class="docutils literal notranslate"><span class="pre">SRV-esrumcont-users</span></code>
 group (see above). If the problem persists, please <a class="reference internal" href="../contact.html#p-contact"><span class="std std-ref">Contact</span></a> us
 for assistance.</p>
 </div>
 <div class="section" id="rstudio-logging-in-takes-a-very-long-time">
-<h3><span class="section-number">4.6.4.3. </span>RStudio: Logging in takes a very long time<a class="headerlink" href="#rstudio-logging-in-takes-a-very-long-time" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.4.3. </span>RStudio: Logging in takes a very long time<a class="headerlink" href="#rstudio-logging-in-takes-a-very-long-time" title="Permalink to this headline">¶</a></h3>
 <p>Similar to regular R, RStudio will automatically save the data you have
 loaded into your R session and will restore it when you return later, so
 that you can continue your work. However, this many result in large
@@ -299,7 +299,7 @@ while using RStudio.</p></li>
 <p>Please <a class="reference internal" href="../contact.html#p-contact"><span class="std std-ref">Contact</span></a> us and we can help you remove the correct files.</p>
 </div>
 <div class="section" id="jupyter-notebooks-browser-error-when-opening-url">
-<h3><span class="section-number">4.6.4.4. </span>Jupyter Notebooks: Browser error when opening URL<a class="headerlink" href="#jupyter-notebooks-browser-error-when-opening-url" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">5.1.4.4. </span>Jupyter Notebooks: Browser error when opening URL<a class="headerlink" href="#jupyter-notebooks-browser-error-when-opening-url" title="Permalink to this headline">¶</a></h3>
 <p>Depending on your browser you may receive one of the following errors.
 The typical causes are listed, but the exact error message will depend
 on your browser. It is therefore helpful to review all possible causes
@@ -360,13 +360,13 @@ VPN is activated and try again.</p>
       <h3>Navigation</h3>
       <ul>
         <li class="right" style="margin-right: 10px">
-          <a href="containers.html" title="4.7. Containerized jobs"
+          <a href="containers.html" title="5.2. Running containerized software"
              >next</a></li>
         <li class="right" >
-          <a href="modules.html" title="4.5. The module system"
+          <a href="index.html" title="5. Other services"
              >previous</a> |</li>
         <li class="nav-item nav-item-0"><a href="../index.html">Esrum Cluster  documentation</a> &#187;</li>
-          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">4. </span>Using the cluster</a> &#187;</li> 
+          <li class="nav-item nav-item-1"><a href="index.html" ><span class="section-number">5. </span>Other services</a> &#187;</li> 
       </ul>
     </div>
     <div class="footer" role="contentinfo">

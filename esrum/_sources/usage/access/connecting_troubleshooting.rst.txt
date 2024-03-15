@@ -47,11 +47,20 @@ server:
 
    #. Click the ``SUBMIT ORDER`` button.
 
+.. warning::
+
+   If you are not an employee at CBMR you may not have permission to
+   open a ticket as described above. In that case simply
+   :ref:`p_contact` us and we will forward your issue to KU-IT.
+
+
 File uploads using MobaXterm never start
 ========================================
 
 Please make sure that your session is configured to use the ``SCP
-(enhanced speed)`` browser type. See step 4 in in the :ref:`s_configure_mobaxterm` section.
+(enhanced speed)`` browser type. See step 4 in in the
+:ref:`s_configure_mobaxterm` section.
+
 
 KU network-folders in ``~/ucph`` are not available when using MobaXterm
 =========================================================================

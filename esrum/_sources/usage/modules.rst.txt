@@ -1,8 +1,8 @@
 .. _p_usage_modules:
 
-###################
- The module system
-###################
+#####################
+ Environment modules
+#####################
 
 A wide range of scientific (and other) software is made available on
 Esrum via so-called `Environment modules`_. While environment modules
@@ -287,6 +287,13 @@ A request may look like the following:
    1. seqtk v1.4 (https://github.com/lh3/seqtk)
    2. jq v1.5 (https://stedolan.github.io/jq/)
    3. igzip v2.30.0 (https://github.com/intel/isa-l)
+
+.. warning::
+
+   If you are not an employee at CBMR you may not have permission to
+   open a ticket as described above. In that case simply
+   :ref:`p_contact` us with your request and we will forward it to
+   KU-IT.
 
 .. _environment modules: https://modules.sourceforge.net/
 

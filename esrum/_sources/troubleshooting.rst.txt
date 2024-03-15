@@ -9,7 +9,7 @@ documentation for easy access.
  Connecting to Esrum
 *********************
 
-.. include:: usage/connecting_troubleshooting.rst
+.. include:: usage/access/connecting_troubleshooting.rst
 
 **************
  Slurm basics
@@ -21,4 +21,4 @@ documentation for easy access.
  Rstudio
 *********
 
-.. include:: usage/rstudio_troubleshooting.rst
+.. include:: services/rstudio_troubleshooting.rst

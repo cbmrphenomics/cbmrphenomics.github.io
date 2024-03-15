@@ -2,9 +2,9 @@
 
 .. _p_containers:
 
-####################
- Containerized jobs
-####################
+################################
+ Running containerized software
+################################
 
 Containerization_ is a technique for running jobs in an isolated and
 reproducible manner, by bundling all necessary dependencies up to and
