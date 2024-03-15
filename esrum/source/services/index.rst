@@ -8,3 +8,4 @@
 
    rstudio
    containers
+   shiny

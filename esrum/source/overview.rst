@@ -29,8 +29,8 @@ and 1 GPU node:
 
 Users connect to the "head" node, from which jobs can be submitted to
 the individual compute nodes using the Slurm_ Workload Manager for
-running tasks. An :ref:`p_usage_rstudio` web server and a Shiny_ server,
-both managed by KU-IT, are also available.
+running tasks. An :ref:`p_usage_rstudio` web server and a
+:ref:`p_usage_shiny` server, both managed by KU-IT, are also available.
 
 **********
  Software
@@ -86,8 +86,6 @@ See :ref:`p_usage_filesystem` for more information.
 .. _environment modules: https://modules.readthedocs.io/en/latest/
 
 .. _ku-it service portal: https://serviceportal.ku.dk/
-
-.. _shiny: https://shiny.rstudio.com/
 
 .. _slurm: https://slurm.schedmd.com/
 
