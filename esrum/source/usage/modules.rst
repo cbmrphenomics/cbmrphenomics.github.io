@@ -1,8 +1,8 @@
 .. _p_usage_modules:
 
-###################
- The module system
-###################
+#####################
+ Environment modules
+#####################
 
 A wide range of scientific (and other) software is made available on
 Esrum via so-called `Environment modules`_. While environment modules
