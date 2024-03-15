@@ -288,6 +288,13 @@ A request may look like the following:
    2. jq v1.5 (https://stedolan.github.io/jq/)
    3. igzip v2.30.0 (https://github.com/intel/isa-l)
 
+.. warning::
+
+   If you are not an employee at CBMR you may not have permission to
+   open a ticket as described above. In that case simply
+   :ref:`p_contact` us with your request and we will forward it to
+   KU-IT.
+
 .. _environment modules: https://modules.sourceforge.net/
 
 .. _it serviceportal: https://serviceportal.ku.dk/

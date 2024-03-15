@@ -160,6 +160,8 @@ having to specify your username:
    public SSH key and that you therefore have to enter your password
    when connecting to the server.
 
+.. _s_connecting_troubleshooting:
+
 *****************
  Troubleshooting
 *****************
